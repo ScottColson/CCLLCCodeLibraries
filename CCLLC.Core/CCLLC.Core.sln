@@ -19,7 +19,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.Serialization", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Encryption", "LibraryProjects\CCLLC.Core.Encryption\CCLLC.Core.Encryption.csproj", "{12AF0208-F362-4A48-8576-E2FAD75E422E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.IocContainer", "LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj", "{41DEB0DB-F754-4598-9C5C-02CA95931F68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Core.IocContainer", "LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj", "{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Net", "LibraryProjects\CCLLC.Core.Net\CCLLC.Core.Net.csproj", "{578FFA24-E037-4D00-976E-AB586068034A}"
 EndProject
@@ -29,11 +29,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.RestClient", "Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Serialization", "LibraryProjects\CCLLC.Core.Serialization\CCLLC.Core.Serialization.csproj", "{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{499B06BC-0B19-461A-981F-66F6A58384BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.IocContainer.UnitTest", "TestProjects\CCLLC.Core.IocContainer.UnitTest\CCLLC.Core.IocContainer.UnitTest.csproj", "{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\Net\CCLLC.Core.Net.projitems*{085a0eb9-d245-4af3-9d25-fb86df3f9b42}*SharedItemsImports = 13
 		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{12af0208-f362-4a48-8576-e2fad75e422e}*SharedItemsImports = 4
-		SharedProjects\IocContainer\CCLLC.Core.IocContainer.projitems*{41deb0db-f754-4598-9c5c-02ca95931f68}*SharedItemsImports = 4
 		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{443aaee4-450d-47ee-9d9c-94ad3edbaa78}*SharedItemsImports = 4
 		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{519f6685-57b7-488d-8fa1-864fd46a38c4}*SharedItemsImports = 4
 		SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 4
@@ -53,10 +56,10 @@ Global
 		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{578FFA24-E037-4D00-976E-AB586068034A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{578FFA24-E037-4D00-976E-AB586068034A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578FFA24-E037-4D00-976E-AB586068034A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,6 +76,10 @@ Global
 		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +91,7 @@ Global
 		{ECD9FF45-12AA-4D19-9691-D1C5051105ED} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
 		{614892E4-B856-477E-B510-7A6CD1DAC9A7} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
 		{7526E378-7388-46F9-89F2-907FC39770F6} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+		{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890} = {499B06BC-0B19-461A-981F-66F6A58384BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C4E4BA9-D300-4FCC-B3D2-49C378AA5773}
