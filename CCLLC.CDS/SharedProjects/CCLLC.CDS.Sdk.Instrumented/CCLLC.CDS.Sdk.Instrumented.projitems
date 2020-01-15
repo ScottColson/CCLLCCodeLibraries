@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c822da0a-b416-497c-8c92-6dcd46b71253</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCLLC.CDS.Sdk.Instrumented</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumenetedCDSWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContextPropertyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSProcessContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumentedContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumentedPluginBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSPluginProcessContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSProcessContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSProcessContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSPluginProcessContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumenetedCDSPlugin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSTelemetryPropertyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PluginHttpWebRequest.cs" />
+  </ItemGroup>
+</Project>
