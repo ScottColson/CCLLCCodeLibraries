@@ -9,7 +9,7 @@
     <Import_RootNamespace>CCLLC.Core.HttpWebRequest</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)HttpWebReqestWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpWebRequestWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpWebResponseWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHttpWebRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHttpWebResponse.cs" />

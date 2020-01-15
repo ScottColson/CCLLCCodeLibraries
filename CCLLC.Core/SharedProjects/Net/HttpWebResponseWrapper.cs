@@ -11,7 +11,7 @@ namespace CCLLC.Core.Net
         public string StatusDescription { get;  }
         public bool Success { get;  }
 
-        protected internal HttpWebResponseWrapper(HttpWebResponse response)
+        public HttpWebResponseWrapper(HttpWebResponse response)
         {
             if (response != null)
             {

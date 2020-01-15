@@ -18,8 +18,7 @@ namespace CCLLC.Core.Net
 
         public TimeSpan Timeout { get; set; }
 
-
-        internal HttpWebRequestWrapper(Uri address) : base()
+        public HttpWebRequestWrapper(Uri address) : base()
         {
             if (address == null) { throw new ArgumentNullException("address cannot be null."); }
 
