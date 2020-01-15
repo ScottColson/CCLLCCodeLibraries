@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>16b58a4f-311a-4c19-aee1-0b78b3fb12ce</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedProject1</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AIConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\ComponentTelemetryClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\OperationTelemetryClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\SequencePropertyInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\TelemetryClientBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\TelemetryInitializerChain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\AIContextTagKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\CloudContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\ComponentContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\ContextTagKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\DataKeyContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\DataKeyTelemetryContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\DeviceContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\InternalContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\LocationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\OperationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\SessionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\TagManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\TelemetryContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\UserContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\DependencyDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\DependencyTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\EventDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\EventTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\ExceptionDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\ExceptionDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\ExceptionTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\InnerExceptionCountExceededException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\MessageDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\MessageTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\OperationalTelemetryBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\RequestDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\RequestTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\StackFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContract\TelemetryBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventLogger\InertEventLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\ExceptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\HttpWebResponseWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\IRandomNumberBatchGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\Property.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\StingExtensionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\WeakConcurrentRandom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Implementation\XorshiftRandomBatchGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Client\IComponentTelemetryClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Client\IOperationalTelemetryClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Client\ITelemetryClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Client\ITelemetryClientFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Client\ITelemetryInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Client\ITelemetryInitializerChain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\ICloudContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IComponentContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IContextTagKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IDataKeyContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IDeviceContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IInternalContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\ILocationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IOperationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\ISessionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\ISupportDataKeyContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\ITelemetryContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IUserContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\eSeverityLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IAvailabilityDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IAvailabilityTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IBlockDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IBlockTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDataModelTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDependencyDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDependencyTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IEventDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IEventTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IExceptionDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IExceptionDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IExceptionTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMessageDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMessageTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMetricDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMetricTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IOperationalDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IOperationalTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IPageViewDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IPageViewTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IRequestDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IRequestTelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IStackFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\ISupportMetrics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\ISupportProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\ISupportSampling.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\ITelemetry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\ITelemetryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\EventLogger\IEventLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Serialization\IJsonWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Serialization\IJsonWriterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Serialization\ITelemetrySerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\IHttpWebResponseWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITelemetryBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITelemetryChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITelemetryProcessChain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITelemetryProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITelemetrySink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITelemetryTransmitter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Sink\ITransmission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serializer\AITelemetrySerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serializer\JsonWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serializer\JsonWriterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serializer\TelemetrySerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\AITelemetryTransmitter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\AsyncMemoryChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\InstrumentationKeyPropertyProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\SequencePropertyProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\SyncMemoryChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\TelemetryBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\TelemetryProcessChain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\TelemetrySink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\TelemetryTransmitter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sink\Transmission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TelemetryClientFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TelemetryFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Interfaces\readme.txt" />
+  </ItemGroup>
+</Project>

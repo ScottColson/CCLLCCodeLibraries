@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Projects", "Shared Projects", "{3AA41C2B-989C-47FA-953E-3AE128AE8BAC}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Telemetry", "SharedProjects\Telemetry\CCLLC.Telemetry.shproj", "{16B58A4F-311A-4C19-AEE1-0B78B3FB12CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Telemetry", "LibraryProjects\CCLLC.Telemetry\CCLLC.Telemetry.csproj", "{43635423-C56A-48FE-A2FF-7857F3625A69}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedProjects\Telemetry\CCLLC.Telemetry.projitems*{16b58a4f-311a-4c19-aee1-0b78b3fb12ce}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16B58A4F-311A-4C19-AEE1-0B78B3FB12CE} = {3AA41C2B-989C-47FA-953E-3AE128AE8BAC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55E003B7-AE1E-46BD-BFEC-F6226BC26EE6}
+	EndGlobalSection
+EndGlobal

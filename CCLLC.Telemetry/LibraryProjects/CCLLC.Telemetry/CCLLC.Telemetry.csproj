@@ -1,0 +1,85 @@
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'Product.props'))\Product.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net452;net462;</TargetFrameworks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  
+  
+  <PropertyGroup>
+    <Company>Colson Code, LLC</Company>
+    <Copyright>Copyright © Colson Code, LLC. All Rights Reserved.</Copyright>
+    <AssemblyName>CCLLCTelemetry</AssemblyName>
+    <ProjectGuid>{43635423-C56A-48FE-A2FF-7857F3625A69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AppDesignerFolder>Properties</AppDesignerFolder>   
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <AssemblyOriginatorKeyFile>CCLCC.Telemetry.snk</AssemblyOriginatorKeyFile>
+    <Version>2.0.0</Version>
+    <Authors>Colson Code, LLC</Authors>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <Description>Provides basic telemetry creation and transmission services that are compatible with Microsoft Application Insights and also compatible with operation inside a sandboxed Xrm plugin or workflow activity.</Description>
+    <PackageId>CCLLCTelemetry</PackageId>
+    <Title>CCLLC.Telemetry</Title>
+    <PackageLicenseUrl>https://github.com/ScottColson/CCLLC.Xrm.Development/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ScottColson/CCLLC.Xrm.Development</PackageProjectUrl>
+    <PackageTags>Analytics ApplicationInsights Telemetry</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Product>CCLLC.Telemetry</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Client\**" />
+    <EmbeddedResource Remove="Context\**" />
+    <EmbeddedResource Remove="DataContract\**" />
+    <EmbeddedResource Remove="EventLogger\**" />
+    <EmbeddedResource Remove="Implementation\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Serializer\**" />
+    <EmbeddedResource Remove="Sink\**" />
+    <None Remove="Client\**" />
+    <None Remove="Context\**" />
+    <None Remove="DataContract\**" />
+    <None Remove="EventLogger\**" />
+    <None Remove="Implementation\**" />
+    <None Remove="Interfaces\**" />
+    <None Remove="Serializer\**" />
+    <None Remove="Sink\**" />
+  </ItemGroup>
+ 
+   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+	<None Include="CCLCC.Telemetry.snk" />
+  </ItemGroup>
+  <Import Project="..\..\SharedProjects\Telemetry\CCLLC.Telemetry.projitems" Label="Shared" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
+
+</Project>
