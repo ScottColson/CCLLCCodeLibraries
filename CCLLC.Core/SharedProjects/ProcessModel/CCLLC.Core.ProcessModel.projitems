@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ecd9ff45-12aa-4d19-9691-d1c5051105ed</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCLLC.Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DefaultCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\eSeverityLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataRecord.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecordPointer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProcessContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RecordPointer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
+  </ItemGroup>
+</Project>

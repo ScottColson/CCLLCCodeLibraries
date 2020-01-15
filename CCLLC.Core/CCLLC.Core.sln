@@ -1,0 +1,91 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Projects", "Shared Projects", "{0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.Encryption", "SharedProjects\Encryption\CCLLC.Core.Encryption.shproj", "{A1148225-6273-40EC-AB5B-B0DAACD5C243}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.IocContainer", "SharedProjects\IocContainer\CCLLC.Core.IocContainer.shproj", "{9BB1A0AB-3AC3-4A72-A487-22C8CE404AB2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.Net", "SharedProjects\Net\CCLLC.Core.Net.shproj", "{085A0EB9-D245-4AF3-9D25-FB86DF3F9B42}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.ProcessModel", "SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.shproj", "{ECD9FF45-12AA-4D19-9691-D1C5051105ED}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.RestClient", "SharedProjects\RestClient\CCLLC.Core.RestClient.shproj", "{614892E4-B856-477E-B510-7A6CD1DAC9A7}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.Serialization", "SharedProjects\Serialization\CCLLC.Core.Serialization.shproj", "{7526E378-7388-46F9-89F2-907FC39770F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Encryption", "LibraryProjects\CCLLC.Core.Encryption\CCLLC.Core.Encryption.csproj", "{12AF0208-F362-4A48-8576-E2FAD75E422E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.IocContainer", "LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj", "{41DEB0DB-F754-4598-9C5C-02CA95931F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Net", "LibraryProjects\CCLLC.Core.Net\CCLLC.Core.Net.csproj", "{578FFA24-E037-4D00-976E-AB586068034A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.ProcessModel", "LibraryProjects\CCLLC.Core.ProcessModel\CCLLC.Core.ProcessModel.csproj", "{64980A0B-A879-4350-AFED-2176DCF81A38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.RestClient", "LibraryProjects\CCLLC.Core.RestClient\CCLLC.Core.RestClient.csproj", "{519F6685-57B7-488D-8FA1-864FD46A38C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Serialization", "LibraryProjects\CCLLC.Core.Serialization\CCLLC.Core.Serialization.csproj", "{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedProjects\Net\CCLLC.Core.Net.projitems*{085a0eb9-d245-4af3-9d25-fb86df3f9b42}*SharedItemsImports = 13
+		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{12af0208-f362-4a48-8576-e2fad75e422e}*SharedItemsImports = 4
+		SharedProjects\IocContainer\CCLLC.Core.IocContainer.projitems*{41deb0db-f754-4598-9c5c-02ca95931f68}*SharedItemsImports = 4
+		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{443aaee4-450d-47ee-9d9c-94ad3edbaa78}*SharedItemsImports = 4
+		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{519f6685-57b7-488d-8fa1-864fd46a38c4}*SharedItemsImports = 4
+		SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 4
+		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{614892e4-b856-477e-b510-7a6cd1dac9a7}*SharedItemsImports = 13
+		SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{64980a0b-a879-4350-afed-2176dcf81a38}*SharedItemsImports = 4
+		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{7526e378-7388-46f9-89f2-907fc39770f6}*SharedItemsImports = 13
+		SharedProjects\IocContainer\CCLLC.Core.IocContainer.projitems*{9bb1a0ab-3ac3-4a72-a487-22c8ce404ab2}*SharedItemsImports = 13
+		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{a1148225-6273-40ec-ab5b-b0daacd5c243}*SharedItemsImports = 13
+		SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{ecd9ff45-12aa-4d19-9691-d1c5051105ed}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41DEB0DB-F754-4598-9C5C-02CA95931F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578FFA24-E037-4D00-976E-AB586068034A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578FFA24-E037-4D00-976E-AB586068034A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578FFA24-E037-4D00-976E-AB586068034A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578FFA24-E037-4D00-976E-AB586068034A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64980A0B-A879-4350-AFED-2176DCF81A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64980A0B-A879-4350-AFED-2176DCF81A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64980A0B-A879-4350-AFED-2176DCF81A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64980A0B-A879-4350-AFED-2176DCF81A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519F6685-57B7-488D-8FA1-864FD46A38C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519F6685-57B7-488D-8FA1-864FD46A38C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519F6685-57B7-488D-8FA1-864FD46A38C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519F6685-57B7-488D-8FA1-864FD46A38C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443AAEE4-450D-47EE-9D9C-94AD3EDBAA78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1148225-6273-40EC-AB5B-B0DAACD5C243} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+		{9BB1A0AB-3AC3-4A72-A487-22C8CE404AB2} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+		{085A0EB9-D245-4AF3-9D25-FB86DF3F9B42} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+		{ECD9FF45-12AA-4D19-9691-D1C5051105ED} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+		{614892E4-B856-477E-B510-7A6CD1DAC9A7} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+		{7526E378-7388-46F9-89F2-907FC39770F6} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C4E4BA9-D300-4FCC-B3D2-49C378AA5773}
+	EndGlobalSection
+EndGlobal

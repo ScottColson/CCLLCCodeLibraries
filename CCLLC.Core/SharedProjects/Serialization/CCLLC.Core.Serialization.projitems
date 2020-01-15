@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7526e378-7388-46f9-89f2-907fc39770f6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCLLC.Core.Serialization</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DateOnlyJSONSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DefaultXMLSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DefaultJSONSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IJSONContractSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISerializableData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataContractSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IXMLContractSerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+  </ItemGroup>
+</Project>
