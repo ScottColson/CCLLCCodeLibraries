@@ -46,7 +46,8 @@ namespace CCLLC.CDS.Sdk
             base.RegisterContainerServices();
 
             Container.Implement<IInstrumentedCDSProcessContextFactory<IInstrumentedCDSPluginProcessContext>>().Using<InstrumentedCDSProcessContextFactory>().AsSingleInstance();
-            Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<Instrumentedw>
+            Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>();
+            
             //Telemetry issue event logger
             Container.Implement<IEventLogger>().Using<InertEventLogger>().AsSingleInstance();
 

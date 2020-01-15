@@ -6,15 +6,10 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Telemetry;
 
     public class InstrumenetedCDSWebRequestFactory : IInstrumentedCDSWebRequestFactory
-    {      
-        public IHttpWebRequest CreateWebRequest(Uri address, string dependencyName = null)
-        {
-            return new HttpWebRequestWrapper(address);
-        }
-
+    {             
         public IHttpWebRequest CreateWebRequest(Uri address, string dependencyName, ITelemetryFactory telemetryFactory, ITelemetryClient telemetryClient)
         {
-            throw new NotImplementedException();
+            return new InstrumentedHttpWebRequestWrapper(address, telemetryFactory,telemetryClient, dependencyName);
         }
     }
 }

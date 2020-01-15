@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.ProcessModel", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Encryption", "..\CCLLC.Core\LibraryProjects\CCLLC.Core.Encryption\CCLLC.Core.Encryption.csproj", "{12AF0208-F362-4A48-8576-E2FAD75E422E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.CDS.Sdk.Instrumented", "LibraryProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.csproj", "{E064ABFF-1758-44A3-9772-4F9BA6E7283C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Telemetry", "..\CCLLC.Telemetry\LibraryProjects\CCLLC.Telemetry\CCLLC.Telemetry.csproj", "{43635423-C56A-48FE-A2FF-7857F3625A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Net.Instrumented", "..\CCLLC.Core\LibraryProjects\CCLLC.Core.Net.Instrumented\CCLLC.Core.Net.Instrumented.csproj", "{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{0ba50405-d933-4671-9c61-ae6c73ee8d5b}*SharedItemsImports = 13
@@ -28,7 +34,9 @@ Global
 		..\CCLLC.Core\SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 4
 		..\CCLLC.Core\SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{64980a0b-a879-4350-afed-2176dcf81a38}*SharedItemsImports = 4
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{cf336bb7-87c9-4561-9549-293426baaa3e}*SharedItemsImports = 4
+		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{e064abff-1758-44a3-9772-4f9ba6e7283c}*SharedItemsImports = 4
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{efe8bffa-135d-4dcc-a5af-74e255e4cbd7}*SharedItemsImports = 13
+		..\CCLLC.Core\SharedProjects\Net.Instrumented\CCLLC.Core.Net.Instrumented.projitems*{fe807c52-3cbe-4379-9eb9-33b28df07dc1}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +63,18 @@ Global
 		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AF0208-F362-4A48-8576-E2FAD75E422E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43635423-C56A-48FE-A2FF-7857F3625A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +86,8 @@ Global
 		{8AE70CE7-65E1-4117-BADE-A02E6023C1A1} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
 		{64980A0B-A879-4350-AFED-2176DCF81A38} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
 		{12AF0208-F362-4A48-8576-E2FAD75E422E} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
+		{43635423-C56A-48FE-A2FF-7857F3625A69} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
+		{FE807C52-3CBE-4379-9EB9-33B28DF07DC1} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51E4204A-267B-47ED-9A95-067F7B4115FD}

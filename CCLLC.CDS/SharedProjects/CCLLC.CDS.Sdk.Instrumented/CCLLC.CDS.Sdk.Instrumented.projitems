@@ -21,6 +21,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumenetedCDSPlugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSTelemetryPropertyManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PluginHttpWebRequest.cs" />
   </ItemGroup>
 </Project>
