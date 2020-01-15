@@ -7,10 +7,10 @@ namespace CCLLC.Core.Net
 {   
     public class HttpWebRequestWrapper : IHttpWebRequest, IDisposable
     {
-        internal const string ContentEncodingHeader = "Content-Encoding";
-        internal const int DefaultTimeoutInSeconds = 30;
+        private const string ContentEncodingHeader = "Content-Encoding";
+        private const int DefaultTimeoutInSeconds = 30;
 
-        private Uri _address = null;
+        protected Uri Address { get; private set; }
        
         public ICredentials Credentials { get; set; }
 
@@ -20,9 +20,7 @@ namespace CCLLC.Core.Net
 
         public HttpWebRequestWrapper(Uri address) : base()
         {
-            if (address == null) { throw new ArgumentNullException("address cannot be null."); }
-
-            _address = address;
+            Address = address ?? throw new ArgumentNullException("address cannot be null.");
 
             this.Headers = new WebHeaderCollection();
             this.Timeout = TimeSpan.FromSeconds(DefaultTimeoutInSeconds);
@@ -36,7 +34,7 @@ namespace CCLLC.Core.Net
 
         protected virtual void Dispose(bool disposing)
         {
-            _address = null;
+            Address = null;
             this.Credentials = null;
             this.Headers = null;
         }
@@ -45,7 +43,7 @@ namespace CCLLC.Core.Net
         {  
             try
             {
-                var request = (System.Net.HttpWebRequest)WebRequest.Create(_address);
+                var request = (System.Net.HttpWebRequest)WebRequest.Create(Address);
                 request.Method = "GET";
                 if (this.Credentials != null)
                 {
@@ -89,7 +87,7 @@ namespace CCLLC.Core.Net
         { 
             try
             {
-                var request = (System.Net.HttpWebRequest)WebRequest.Create(_address);
+                var request = (System.Net.HttpWebRequest)WebRequest.Create(Address);
                 request.Method = "POST";
                 if (this.Credentials != null)
                 {
@@ -149,7 +147,7 @@ namespace CCLLC.Core.Net
         {      
             try
             {
-                var request = (System.Net.HttpWebRequest)WebRequest.Create(_address);
+                var request = (System.Net.HttpWebRequest)WebRequest.Create(Address);
                 request.Method = "PUT";
                 if (this.Credentials != null)
                 {
