@@ -5,7 +5,7 @@
   
   <PropertyGroup>
     <RootNamespace>CCLLC.Core</RootNamespace>
-    <AssemblyName>CCLLCIoCContainer</AssemblyName>
+    <AssemblyName>CCLLC.Core.IocContainer</AssemblyName>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
 </Project>
