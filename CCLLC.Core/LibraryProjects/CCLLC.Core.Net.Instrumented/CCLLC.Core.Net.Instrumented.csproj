@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CCLLC.Core.Net.Instrumented</RootNamespace>
-    <AssemblyName>CCLLC.Core.Net.Instrumented</AssemblyName>
+    <AssemblyName>CCLLCNetInstrumented</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

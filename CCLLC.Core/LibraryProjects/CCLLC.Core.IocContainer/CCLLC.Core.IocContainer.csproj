@@ -43,7 +43,7 @@
     <Title>CCLLC.IoC.Container</Title>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>Adds fluent implementation registration methods. Defaults to not overwriting an exisitng implementation.</PackageReleaseNotes>
-    <AssemblyName>CCLLC.Core.IocContainer</AssemblyName>
+    <AssemblyName>CCLLCIocContainer</AssemblyName>
   </PropertyGroup> 
   
   
