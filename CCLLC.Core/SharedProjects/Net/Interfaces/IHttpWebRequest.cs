@@ -3,7 +3,7 @@ using System.Net;
 
 namespace CCLLC.Core.Net
 {
-    public interface IHttpWebRequest
+    public interface IHttpWebRequest : IDisposable
     {   
         ICredentials Credentials { get; set; }
         WebHeaderCollection Headers { get; }

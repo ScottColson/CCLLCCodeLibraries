@@ -5,7 +5,7 @@ using System.Net;
 
 namespace CCLLC.Core.Net
 {   
-    public class HttpWebRequestWrapper : IHttpWebRequest, IDisposable
+    public class HttpWebRequestWrapper : IHttpWebRequest
     {
         private const string ContentEncodingHeader = "Content-Encoding";
         private const int DefaultTimeoutInSeconds = 30;
