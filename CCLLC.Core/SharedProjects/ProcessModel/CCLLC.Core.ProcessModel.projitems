@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DefaultCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\eSeverityLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICache.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataRecord.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecordPointer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProcessContext.cs" />

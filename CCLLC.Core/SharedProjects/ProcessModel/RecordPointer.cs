@@ -1,20 +1,28 @@
 ﻿using System;
 
-namespace CCLLC.Core.ExecutionContext
+namespace CCLLC.Core
 {
-    public class RecordPointer<T> : IRecordPointer<T>
+    public class RecordPointer<T> : IRecordPointer<T>, ISettableRecordPointer<T>
     {
-        public T Id { get; }
+        public T Id { get;  }
 
-        public string RecordType { get; }
+        public string RecordType { get;  }
+        
+        string ISettableRecordPointer<T>.RecordType { get; set; }
+        T ISettableRecordPointer<T>.Id { get; set; }       
+              
+        public RecordPointer() { }
+        
+        public RecordPointer(IRecordPointer<T> source)
+        {
+            this.RecordType = source.RecordType;
+            this.Id = source.Id;            
+        }
 
-        public string Name { get; }
-
-        public RecordPointer(string recordType, T Id, string name)
+        public RecordPointer(string recordType, T Id)
         {
             this.RecordType = recordType;
-            this.Id = Id;
-            this.Name = name;
+            this.Id = Id;           
         }
     }
 }
