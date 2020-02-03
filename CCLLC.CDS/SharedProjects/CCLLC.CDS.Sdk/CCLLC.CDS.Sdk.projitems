@@ -14,9 +14,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtensionSettingsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSProcessContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageNames.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlConfigurationResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlConfigurationResourceFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ElevatedOrganizationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EnhancedOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSProcessContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IEnhancedOrganizationService.cs" />

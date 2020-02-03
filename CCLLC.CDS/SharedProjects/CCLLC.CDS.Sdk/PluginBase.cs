@@ -23,7 +23,7 @@ namespace CCLLC.CDS.Sdk
         /// <summary>
         /// Provides of list of <see cref="PluginEvent"/> items that define the 
         /// events the plugin can operate against. Add items to the list using the 
-        /// <see cref="RegisterEventHandler(string, string, ePluginStage, Action{ILocalPluginContext}, string)"/> method.
+        /// <see cref="RegisterEventHandler(string, string, ePluginStage, Action{ICDSPluginProcessContext}, string)"/> method.
         /// </summary>
         public IReadOnlyList<PluginEvent> PluginEventHandlers
         {
@@ -101,7 +101,7 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<IExtensionSettingsFactory>().Using<ExtensionSettingsFactory>();
             Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>();
             Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>();
-            Container.Implement<ICDSProcessContextFactory<ICDSPluginProcessContext>>().Using<CDSProcessContextFactory>();
+            Container.Implement<ICDSProcessContextFactory<ICDSPluginProcessContext>>().Using<CDSProcessContextFactory>();            
         }
 
         /// <summary>

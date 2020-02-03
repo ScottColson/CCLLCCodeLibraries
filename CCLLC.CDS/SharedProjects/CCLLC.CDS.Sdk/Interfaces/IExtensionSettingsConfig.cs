@@ -2,7 +2,7 @@
 namespace CCLLC.CDS.Sdk
 {
     /// <summary>
-    /// Defines settings passed in during the creation of <see cref="CCLLC.Xrm.Sdk.Configuration.ExtensionSettings"/>.
+    /// Defines settings passed in during the creation of <see cref="CCLLC.CDS.Sdk.Configuration.ExtensionSettings"/>.
     /// </summary>
     public interface IExtensionSettingsConfig
     {

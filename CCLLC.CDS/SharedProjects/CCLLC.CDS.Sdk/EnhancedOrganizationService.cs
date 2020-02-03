@@ -3,10 +3,10 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace CCLLC.CDS.Sdk
-{    
+{
     public class EnhancedOrganizationService : IEnhancedOrganizationService
     {
-        private IOrganizationService orgService;
+        private IOrganizationService orgService;   
 
         internal protected EnhancedOrganizationService(IOrganizationService orgService)
         {

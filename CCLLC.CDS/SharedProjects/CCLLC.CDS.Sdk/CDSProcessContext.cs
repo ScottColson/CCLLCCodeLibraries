@@ -40,7 +40,7 @@ namespace CCLLC.CDS.Sdk
             get
             {
                 if (organizationService == null)
-                {
+                {                   
                     organizationService = new EnhancedOrganizationService(this.OrganizationServiceFactory.CreateOrganizationService(this.ExecutionContext.UserId));
                 }
 
@@ -58,7 +58,7 @@ namespace CCLLC.CDS.Sdk
             get
             {
                 if (elevatedOrganizationService == null)
-                {
+                {                   
                     elevatedOrganizationService = new EnhancedOrganizationService(this.OrganizationServiceFactory.CreateOrganizationService(null));
                 }
 
