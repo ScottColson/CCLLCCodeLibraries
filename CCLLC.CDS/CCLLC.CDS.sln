@@ -27,12 +27,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Telemetry", "..\CCLLC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Net.Instrumented", "..\CCLLC.Core\LibraryProjects\CCLLC.Core.Net.Instrumented\CCLLC.Core.Net.Instrumented.csproj", "{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.Sdk.SearchUtilities", "SharedProjects\CCLLC.CDS.Sdk.SearchUtilities\CCLLC.CDS.Sdk.SearchUtilities.shproj", "{6BCF5AD7-E2EB-42E9-8317-FFDC2EC7FA11}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{0ba50405-d933-4671-9c61-ae6c73ee8d5b}*SharedItemsImports = 13
 		..\CCLLC.Core\SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{12af0208-f362-4a48-8576-e2fad75e422e}*SharedItemsImports = 4
 		..\CCLLC.Core\SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 4
 		..\CCLLC.Core\SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{64980a0b-a879-4350-afed-2176dcf81a38}*SharedItemsImports = 4
+		SharedProjects\CCLLC.CDS.Sdk.SearchUtilities\CCLLC.CDS.Sdk.SearchUtilities.projitems*{6bcf5ad7-e2eb-42e9-8317-ffdc2ec7fa11}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{cf336bb7-87c9-4561-9549-293426baaa3e}*SharedItemsImports = 4
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{e064abff-1758-44a3-9772-4f9ba6e7283c}*SharedItemsImports = 4
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{efe8bffa-135d-4dcc-a5af-74e255e4cbd7}*SharedItemsImports = 13
@@ -88,6 +91,7 @@ Global
 		{12AF0208-F362-4A48-8576-E2FAD75E422E} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
 		{43635423-C56A-48FE-A2FF-7857F3625A69} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
 		{FE807C52-3CBE-4379-9EB9-33B28DF07DC1} = {2FC953EF-4498-44A3-9141-92E278EC8A7D}
+		{6BCF5AD7-E2EB-42E9-8317-FFDC2EC7FA11} = {7B680925-EC15-499F-A0C2-8F1188934504}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51E4204A-267B-47ED-9A95-067F7B4115FD}

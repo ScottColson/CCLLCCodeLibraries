@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6bcf5ad7-e2eb-42e9-8317-ffdc2ec7fa11</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCLLC.CDS.Sdk.Utilities.Search</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AliasedSearchQueryGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AndClause.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AndClauseWIthQuickFind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IAliasedSearchQueryGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ISearchQuerySignature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrClause.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrClauseWithQuickFind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchQuerySignatureBase.cs" />
+  </ItemGroup>
+</Project>
