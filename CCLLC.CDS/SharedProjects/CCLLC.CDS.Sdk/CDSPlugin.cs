@@ -15,7 +15,7 @@ namespace CCLLC.CDS.Sdk
     /// Base plugin class for plugins using <see cref="IEnhancedPlugin"/> functionality. This class does not provide
     /// telemetry logging outside of Dynamics 365. For external telemetry use <see cref="InstrumentedPluginBase"/>."/>
     /// </summary>
-    public abstract class PluginBase : IPlugin, ICDSPlugin
+    public abstract class CDSPlugin : IPlugin, ICDSPlugin
     {
         private Collection<PluginEvent> _events = new Collection<PluginEvent>();
         private IIocContainer _container = null;
@@ -60,10 +60,10 @@ namespace CCLLC.CDS.Sdk
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PluginBase"/> class 
+        /// Initializes a new instance of the <see cref="CDSPlugin"/> class 
         /// with configuration information.
         /// </summary>
-        public PluginBase(string unsecureConfig, string secureConfig)
+        public CDSPlugin(string unsecureConfig, string secureConfig)
         {
             this.UnsecureConfig = unsecureConfig;
             this.SecureConfig = secureConfig;

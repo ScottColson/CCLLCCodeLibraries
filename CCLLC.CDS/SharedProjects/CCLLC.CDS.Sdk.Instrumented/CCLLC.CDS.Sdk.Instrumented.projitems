@@ -13,7 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExecutionContextPropertyManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSExecutionContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)InstrumentedPluginBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSPlugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSPluginExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSExecutionContext.cs" />

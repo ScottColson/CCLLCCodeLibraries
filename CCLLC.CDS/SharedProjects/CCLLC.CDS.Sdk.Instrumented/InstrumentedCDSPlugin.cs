@@ -17,7 +17,7 @@ namespace CCLLC.CDS.Sdk
     /// Base plugin class for plugins using <see cref="IEnhancedPlugin"/> functionality with telemetry logging outside 
     /// of Dynamics 365. For external telemetry use <see cref="InstrumentedPluginBase"/>."/>
     /// </summary>
-    public abstract class InstrumentedPluginBase : PluginBase, IInstrumenetedCDSPlugin
+    public abstract class InstrumentedCDSPlugin : CDSPlugin, IInstrumenetedCDSPlugin
     {
                
         /// <summary>
