@@ -30,7 +30,7 @@ The **CCLLC.Core** solution provides the following solution components. Each com
 
 - CCLLC.Core.ProcessModel: A standardized interface for creating processes indepentely of the platform that will ultimately host the process.
 
-The **CCLLC.CDS** solution provides the following components that provide platform specific implementations of the **CCLLC.Core.ProcessModel** and related extensions.
+The **CCLLC.CDS** solution provides the following components that provide Power Apps/Common Data Service platform specific implementations of the **CCLLC.Core.ProcessModel** and related extensions.
 
 - CCLLC.CDS.Sdk: Provides a standardized plugin development framework implementaion based on CCLLC.Core interfaces. This allows any process created against the CCLLC.Core.Process model to operate as a CDS plugin component.
 
