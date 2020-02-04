@@ -132,7 +132,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// </summary>
         /// <param name="localContext"></param>
         /// <returns></returns>
-        private QueryExpression extractQueryInputFromContext(ICDSProcessContext localContext)
+        private QueryExpression extractQueryInputFromContext(ICDSExecutionContext localContext)
         {
             var inputParameters = localContext.InputParameters;
 

@@ -23,7 +23,7 @@ namespace CCLLC.CDS.Sdk
         /// <summary>
         /// Provides of list of <see cref="PluginEvent"/> items that define the 
         /// events the plugin can operate against. Add items to the list using the 
-        /// <see cref="RegisterEventHandler(string, string, ePluginStage, Action{ICDSPluginProcessContext}, string)"/> method.
+        /// <see cref="RegisterEventHandler(string, string, ePluginStage, Action{ICDSPluginExecutionContext}, string)"/> method.
         /// </summary>
         public IReadOnlyList<PluginEvent> PluginEventHandlers
         {
