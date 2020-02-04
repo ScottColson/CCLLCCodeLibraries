@@ -2,7 +2,7 @@
 
 namespace CCLLC.Core
 {
-    public interface IProcessContext
+    public interface IProcessExecutionContext
     {
         IDataService DataService { get; }    
 
