@@ -18,7 +18,7 @@ namespace CCLLC.CDS.Sdk
         }
 
         public IReadOnlyIocContainer Container { get; private set; }
-        public IExecutionContext ExecutionContext { get; private set; }
+        protected IExecutionContext ExecutionContext { get; private set; }
 
         private IOrganizationServiceFactory organizationServiceFactory;
         protected IOrganizationServiceFactory OrganizationServiceFactory
@@ -32,8 +32,7 @@ namespace CCLLC.CDS.Sdk
                 return organizationServiceFactory;
             }
         }
-
-
+        
         private IEnhancedOrganizationService organizationService;
         public IEnhancedOrganizationService OrganizationService
         {
@@ -66,9 +65,6 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
-        public int Depth { get { return this.ExecutionContext.Depth; } }
-
-        public string MessageName { get { return this.ExecutionContext.MessageName; } }
 
         ICache cache;
         public ICache Cache
@@ -82,7 +78,7 @@ namespace CCLLC.CDS.Sdk
                 return cache;
             }
         }
-
+             
 
         private ISettingsProvider settings = null;
         public ISettingsProvider Settings
@@ -146,6 +142,7 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
+
         private ITracingService tracingService;
         public ITracingService TracingService
         {
@@ -157,7 +154,57 @@ namespace CCLLC.CDS.Sdk
         }
 
         public IDataService DataService => this.OrganizationService;
-        
+
+        public int Depth => this.ExecutionContext.Depth;
+
+        public string MessageName => this.ExecutionContext.MessageName;
+
+        public int Mode => this.ExecutionContext.Mode;
+
+        public int IsolationMode => this.ExecutionContext.IsolationMode;
+
+        public string PrimaryEntityName => this.ExecutionContext.PrimaryEntityName;
+
+        public Guid? RequestId => this.ExecutionContext.RequestId;
+
+        public string SecondaryEntityName => this.ExecutionContext.SecondaryEntityName;
+
+        public ParameterCollection InputParameters => this.ExecutionContext.InputParameters;
+
+        public ParameterCollection OutputParameters => this.ExecutionContext.OutputParameters;
+
+        public ParameterCollection SharedVariables => this.ExecutionContext.SharedVariables;
+
+        public Guid UserId => this.ExecutionContext.UserId;
+
+        public Guid InitiatingUserId => this.ExecutionContext.InitiatingUserId;
+
+        public Guid BusinessUnitId => this.ExecutionContext.BusinessUnitId;
+
+        public Guid OrganizationId => this.ExecutionContext.OrganizationId;
+
+        public string OrganizationName => this.ExecutionContext.OrganizationName;
+
+        public Guid PrimaryEntityId => this.ExecutionContext.PrimaryEntityId;
+
+        public EntityImageCollection PreEntityImages => this.ExecutionContext.PreEntityImages;
+
+        public EntityImageCollection PostEntityImages => this.ExecutionContext.PostEntityImages;
+
+        public EntityReference OwningExtension => this.ExecutionContext.OwningExtension;
+
+        public Guid CorrelationId => this.ExecutionContext.CorrelationId;
+
+        public bool IsExecutingOffline => this.ExecutionContext.IsExecutingOffline;
+
+        public bool IsOfflinePlayback => this.ExecutionContext.IsOfflinePlayback;
+
+        public bool IsInTransaction => this.ExecutionContext.IsInTransaction;
+
+        public Guid OperationId => this.ExecutionContext.OperationId;
+
+        public DateTime OperationCreatedOn => this.ExecutionContext.OperationCreatedOn;
+
         private ICDSWebRequestFactory _webRequestFactory;      
         public virtual IHttpWebRequest CreateWebRequest(Uri address, string dependencyName = null)
         {

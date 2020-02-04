@@ -17,7 +17,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
     /// <typeparam name="TAlias"></typeparam>
     public class AliasedSearchQueryGenerator<TParent, TAlias> : IAliasedSearchQueryGenerator<TParent, TAlias> where TParent : Entity, new() where TAlias : Entity, new()
     {
-        ICDSPluginProcessContext localContext = null;
+        ICDSProcessContext localContext = null;
         string aliasEntityName = null;
         string linkingAttributeName = null;
         string parentEntityName = null;
@@ -33,7 +33,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// modify the queary to incldue any matching records found in the the related alias table 
         /// defined by <typeparamref name="TAlias"/>.
         /// </summary>
-        public AliasedSearchQueryGenerator(ICDSPluginProcessContext localContext)
+        public AliasedSearchQueryGenerator(ICDSProcessContext localContext)
         {
             this.localContext = localContext;
 
@@ -119,7 +119,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
                     expandSearchFilter(qry, matchingParentIds);
 
                     //reset input parameter to qry incase passed in query started as fetchexpression
-                    localContext.ExecutionContext.InputParameters["Query"] = qry;
+                    localContext.InputParameters["Query"] = qry;
                 }
             }
 
@@ -132,9 +132,9 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// </summary>
         /// <param name="localContext"></param>
         /// <returns></returns>
-        private QueryExpression extractQueryInputFromContext(ICDSPluginProcessContext localContext)
+        private QueryExpression extractQueryInputFromContext(ICDSProcessContext localContext)
         {
-            var inputParameters = localContext.ExecutionContext.InputParameters;
+            var inputParameters = localContext.InputParameters;
 
             if (!inputParameters.Contains("Query") || inputParameters["Query"] == null)
             {

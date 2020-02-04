@@ -6,16 +6,11 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core;
     using CCLLC.Core.Net;
 
-    public interface ICDSProcessContext : IProcessContext, IDisposable 
-    {                
-        IExecutionContext ExecutionContext { get; }       
+    public interface ICDSProcessContext : IProcessContext, IExecutionContext, IDisposable 
+    {        
         IEnhancedOrganizationService OrganizationService { get; }
         IEnhancedOrganizationService ElevatedOrganizationService { get; }       
-        ITracingService TracingService { get;  }     
-        
-        int Depth { get; }
-        string MessageName { get; }       
-       
+        ITracingService TracingService { get;  }             
         IXmlConfigurationResource XmlConfigurationResources { get; }
 
         Entity TargetEntity { get; }

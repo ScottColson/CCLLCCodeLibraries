@@ -11,10 +11,8 @@ namespace CCLLC.CDS.Sdk
     public class CDSPluginProcessContext : CDSProcessContext, ICDSPluginProcessContext
     {
         public IServiceProvider ServiceProvider { get; private set; }
-
-        new public IPluginExecutionContext ExecutionContext { get { return (IPluginExecutionContext)base.ExecutionContext; } }
-
-        public ePluginStage Stage { get { return (ePluginStage)this.ExecutionContext.Stage; } }
+               
+        public ePluginStage Stage => (ePluginStage)(base.ExecutionContext as IPluginExecutionContext). Stage;
 
         /// <summary>
         /// Returns the first registered 'Pre' image for the pipeline execution
@@ -23,9 +21,9 @@ namespace CCLLC.CDS.Sdk
         {
             get
             {
-                if (this.ExecutionContext.PreEntityImages.Any())
+                if (base.ExecutionContext.PreEntityImages.Any())
                 {
-                    return this.ExecutionContext.PreEntityImages[this.ExecutionContext.PreEntityImages.FirstOrDefault().Key];
+                    return base.ExecutionContext.PreEntityImages[base.ExecutionContext.PreEntityImages.FirstOrDefault().Key];
                 }
                 return null;
             }
@@ -39,9 +37,9 @@ namespace CCLLC.CDS.Sdk
         {
             get
             {
-                if (this.ExecutionContext.PostEntityImages.Any())
+                if (base.ExecutionContext.PostEntityImages.Any())
                 {
-                    return this.ExecutionContext.PostEntityImages[this.ExecutionContext.PostEntityImages.FirstOrDefault().Key];
+                    return base.ExecutionContext.PostEntityImages[base.ExecutionContext.PostEntityImages.FirstOrDefault().Key];
                 }
                 return null;
             }
@@ -60,8 +58,8 @@ namespace CCLLC.CDS.Sdk
             {
                 if (_preMergedTarget == null)
                 {
-                    _preMergedTarget = new Entity(this.ExecutionContext.PrimaryEntityName);
-                    _preMergedTarget.Id = this.ExecutionContext.PrimaryEntityId;
+                    _preMergedTarget = new Entity(base.ExecutionContext.PrimaryEntityName);
+                    _preMergedTarget.Id = base.ExecutionContext.PrimaryEntityId;
                     _preMergedTarget.MergeWith(this.TargetEntity);
                     _preMergedTarget.MergeWith(this.PreImage);
                 }
@@ -69,6 +67,10 @@ namespace CCLLC.CDS.Sdk
                 return _preMergedTarget;
             }
         }
+
+        int IPluginExecutionContext.Stage => (base.ExecutionContext as IPluginExecutionContext).Stage;
+
+        public IPluginExecutionContext ParentContext => (base.ExecutionContext as IPluginExecutionContext).ParentContext;
 
         protected internal CDSPluginProcessContext(IServiceProvider serviceProvider, IIocContainer container, IPluginExecutionContext executionContext)
             : base(executionContext, container)
