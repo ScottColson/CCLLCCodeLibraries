@@ -1,8 +1,9 @@
 ﻿namespace CCLLC.CDS.Sdk
 {
     using CCLLC.Telemetry;
+    
 
-    public interface IInstrumentedCDSProcessContext : ICDSProcessContext
+    public interface IInstrumentedCDSExecutionContext : ICDSExecutionContext
     {
         IComponentTelemetryClient TelemetryClient { get; }
         ITelemetryFactory TelemetryFactory { get; }

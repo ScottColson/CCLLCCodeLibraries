@@ -78,7 +78,7 @@ namespace CCLLC.CDS.Sdk
         /// <param name="stage"></param>
         /// <param name="handler"></param>
         /// <param name="id"></param>
-        public virtual void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginProcessContext> handler, string id="")
+        public virtual void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginExecutionContext> handler, string id="")
         {
             this._events.Add(new PluginEvent
             {
@@ -101,7 +101,7 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<IExtensionSettingsFactory>().Using<ExtensionSettingsFactory>();
             Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>();
             Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>();
-            Container.Implement<ICDSProcessContextFactory<ICDSPluginProcessContext>>().Using<CDSProcessContextFactory>();            
+            Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>();            
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace CCLLC.CDS.Sdk
 
                 if (matchingHandlers.Any())
                 {
-                    var factory = Container.Resolve<ICDSProcessContextFactory<ICDSPluginProcessContext>>();
+                    var factory = Container.Resolve<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>();
 
                     using (var localContext = factory.CreateProcessContext(executionContext, serviceProvider, this.Container))
                     {

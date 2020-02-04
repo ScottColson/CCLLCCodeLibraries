@@ -10,7 +10,7 @@ namespace CCLLC.CDS.Sdk
         PostOperation = 40
     }
 
-    public interface ICDSPluginProcessContext : IPluginExecutionContext, ICDSProcessContext
+    public interface ICDSPluginExecutionContext : IPluginExecutionContext, ICDSExecutionContext
     {
         IServiceProvider ServiceProvider { get; }      
         new ePluginStage Stage { get; }        

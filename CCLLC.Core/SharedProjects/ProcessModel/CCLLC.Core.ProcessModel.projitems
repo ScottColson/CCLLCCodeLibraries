@@ -13,8 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\eSeverityLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecordPointer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProcessExecutionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecordPointer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RecordPointer.cs" />
   </ItemGroup>

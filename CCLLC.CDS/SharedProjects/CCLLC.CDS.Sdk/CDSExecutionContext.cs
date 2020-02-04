@@ -6,9 +6,9 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core;
     using CCLLC.Core.Net;
 
-    public abstract class CDSProcessContext : ICDSProcessContext 
+    public abstract class CDSExecutionContext : ICDSExecutionContext 
     {
-        protected internal CDSProcessContext(IExecutionContext executionContext, IIocContainer container)
+        protected internal CDSExecutionContext(IExecutionContext executionContext, IIocContainer container)
         {
             if (container == null) throw new ArgumentNullException("container");
             this.Container = container;

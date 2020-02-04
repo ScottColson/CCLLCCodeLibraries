@@ -5,7 +5,7 @@ namespace CCLLC.CDS.Sdk
 {
     using CCLLC.Core;
 
-    public interface ICDSProcessContextFactory<T> where T :  ICDSProcessContext
+    public interface ICDSExecutionContextFactory<T> where T :  ICDSExecutionContext
     {
         T CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container);
     }

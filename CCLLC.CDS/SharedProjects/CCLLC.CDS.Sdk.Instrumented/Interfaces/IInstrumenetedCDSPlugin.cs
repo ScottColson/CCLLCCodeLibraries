@@ -6,7 +6,7 @@ namespace CCLLC.CDS.Sdk
     public interface IInstrumenetedCDSPlugin : ICDSPlugin
     {
         ITelemetrySink TelemetrySink { get; }
-        bool ConfigureTelemetrySink(ICDSPluginProcessContext processContext);
+        bool ConfigureTelemetrySink(ICDSPluginExecutionContext processContext);
 
         bool TrackExecutionPerformance { get; set; }
 

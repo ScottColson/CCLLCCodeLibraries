@@ -7,7 +7,7 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core.Net;
     using CCLLC.Telemetry;
 
-    public abstract class InstrumentedCDSProcessContext : CDSProcessContext, IInstrumentedCDSProcessContext
+    public abstract class InstrumentedCDSExecutionContext : CDSExecutionContext, IInstrumentedCDSExecutionContext
     {
         public IComponentTelemetryClient TelemetryClient { get; private set; }
 
@@ -24,7 +24,7 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
-        protected internal InstrumentedCDSProcessContext(IExecutionContext executionContext, IIocContainer container, IComponentTelemetryClient telemetryClient) : base(executionContext, container)
+        protected internal InstrumentedCDSExecutionContext(IExecutionContext executionContext, IIocContainer container, IComponentTelemetryClient telemetryClient) : base(executionContext, container)
         {
             this.TelemetryClient = telemetryClient ?? throw new ArgumentNullException("telemetryClient is required."); ;
         }

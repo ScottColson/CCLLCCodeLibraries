@@ -2,22 +2,23 @@
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 
-
 namespace CCLLC.CDS.Sdk
 {
+    using Extensions;
     using CCLLC.Core;
-    using Extensions;    
+    using CCLLC.Telemetry;
 
-    public class CDSPluginProcessContext : CDSProcessContext, ICDSPluginProcessContext
+    public class InstrumentedCDSPluginExecutionContext : InstrumentedCDSExecutionContext, IInstrumentedCDSPluginExecutionContext
     {
         public IServiceProvider ServiceProvider { get; private set; }
-               
-        public ePluginStage Stage => (ePluginStage)(base.ExecutionContext as IPluginExecutionContext). Stage;
+
+
+        public virtual ePluginStage Stage => (ePluginStage)(base.ExecutionContext as IPluginExecutionContext).Stage;
 
         /// <summary>
         /// Returns the first registered 'Pre' image for the pipeline execution
         /// </summary>
-        public Entity PreImage 
+        public virtual Entity PreImage
         {
             get
             {
@@ -27,13 +28,12 @@ namespace CCLLC.CDS.Sdk
                 }
                 return null;
             }
-            
-        } 
+        }
 
         /// <summary>
         /// Returns the first registered 'Post' image for the pipeline execution
         /// </summary>
-        public Entity PostImage
+        public virtual Entity PostImage
         {
             get
             {
@@ -52,7 +52,7 @@ namespace CCLLC.CDS.Sdk
         /// return the same entity object and will not reflect changes made to that Target since initial
         /// request.
         /// </summary>
-        public Entity PreMergedTarget
+        public virtual Entity PreMergedTarget
         {
             get
             {
@@ -69,24 +69,23 @@ namespace CCLLC.CDS.Sdk
         }
 
         int IPluginExecutionContext.Stage => (base.ExecutionContext as IPluginExecutionContext).Stage;
-
         public IPluginExecutionContext ParentContext => (base.ExecutionContext as IPluginExecutionContext).ParentContext;
 
-        protected internal CDSPluginProcessContext(IServiceProvider serviceProvider, IIocContainer container, IPluginExecutionContext executionContext)
-            : base(executionContext, container)
+        protected internal InstrumentedCDSPluginExecutionContext(IServiceProvider serviceProvider, IIocContainer container, IPluginExecutionContext executionContext, IComponentTelemetryClient telemetryClient)
+            : base(executionContext, container, telemetryClient)
         {
             this.ServiceProvider = serviceProvider;
         }
 
-        protected override void Dispose(bool dispossing)
+        protected override void Dispose(bool disposing)
         {
-            if (dispossing)
+            if (disposing)
             {
                 this._preMergedTarget = null;
                 this.ServiceProvider = null;
             }
-
-            base.Dispose(dispossing);
+            
+            base.Dispose(disposing);
         }
 
         protected override IOrganizationServiceFactory CreateOrganizationServiceFactory()

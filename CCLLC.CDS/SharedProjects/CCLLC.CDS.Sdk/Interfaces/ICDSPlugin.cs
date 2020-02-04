@@ -13,7 +13,7 @@ namespace CCLLC.CDS.Sdk
        
         IReadOnlyList<PluginEvent> PluginEventHandlers { get; }
        
-        void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginProcessContext> handler, string id = "");
+        void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginExecutionContext> handler, string id = "");
 
         void RegisterContainerServices();
 

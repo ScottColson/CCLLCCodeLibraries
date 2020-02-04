@@ -45,7 +45,7 @@ namespace CCLLC.CDS.Sdk
         {
             base.RegisterContainerServices();
 
-            Container.Implement<IInstrumentedCDSProcessContextFactory<IInstrumentedCDSPluginProcessContext>>().Using<InstrumentedCDSProcessContextFactory>().AsSingleInstance();
+            Container.Implement<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>().Using<InstrumentedCDSExecutionContextFactory>().AsSingleInstance();
             Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>();
             
             //Telemetry issue event logger
@@ -86,7 +86,7 @@ namespace CCLLC.CDS.Sdk
         /// </summary>
         /// <param name="localContext"></param>
         /// <returns></returns>
-        public virtual bool ConfigureTelemetrySink(ICDSPluginProcessContext processContext)
+        public virtual bool ConfigureTelemetrySink(ICDSPluginExecutionContext processContext)
         {
             if (processContext != null)
             {
@@ -166,7 +166,7 @@ namespace CCLLC.CDS.Sdk
 
                     if (matchingHandlers.Any())
                     {
-                        var factory = Container.Resolve<IInstrumentedCDSProcessContextFactory<IInstrumentedCDSPluginProcessContext>>();
+                        var factory = Container.Resolve<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>();
 
                         using (var processContext = factory.CreateProcessContext(executionContext, serviceProvider, this.Container, telemetryClient))
                         {

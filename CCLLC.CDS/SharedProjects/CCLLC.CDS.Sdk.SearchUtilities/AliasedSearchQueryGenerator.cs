@@ -17,7 +17,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
     /// <typeparam name="TAlias"></typeparam>
     public class AliasedSearchQueryGenerator<TParent, TAlias> : IAliasedSearchQueryGenerator<TParent, TAlias> where TParent : Entity, new() where TAlias : Entity, new()
     {
-        ICDSProcessContext localContext = null;
+        ICDSExecutionContext localContext = null;
         string aliasEntityName = null;
         string linkingAttributeName = null;
         string parentEntityName = null;
@@ -33,7 +33,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// modify the queary to incldue any matching records found in the the related alias table 
         /// defined by <typeparamref name="TAlias"/>.
         /// </summary>
-        public AliasedSearchQueryGenerator(ICDSProcessContext localContext)
+        public AliasedSearchQueryGenerator(ICDSExecutionContext localContext)
         {
             this.localContext = localContext;
 

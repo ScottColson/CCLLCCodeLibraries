@@ -58,6 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj">
       <Project>{8ae70ce7-65e1-4117-bade-a02e6023c1a1}</Project>
       <Name>CCLLC.Core.IocContainer</Name>
@@ -82,9 +85,6 @@
       <Project>{cf336bb7-87c9-4561-9549-293426baaa3e}</Project>
       <Name>CCLLC.CDS.Sdk</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
