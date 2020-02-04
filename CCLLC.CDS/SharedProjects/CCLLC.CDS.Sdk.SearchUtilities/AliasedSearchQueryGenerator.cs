@@ -119,7 +119,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
                     expandSearchFilter(qry, matchingParentIds);
 
                     //reset input parameter to qry incase passed in query started as fetchexpression
-                    localContext.PluginExecutionContext.InputParameters["Query"] = qry;
+                    localContext.ExecutionContext.InputParameters["Query"] = qry;
                 }
             }
 
@@ -134,7 +134,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// <returns></returns>
         private QueryExpression extractQueryInputFromContext(ICDSPluginProcessContext localContext)
         {
-            var inputParameters = localContext.PluginExecutionContext.InputParameters;
+            var inputParameters = localContext.ExecutionContext.InputParameters;
 
             if (!inputParameters.Contains("Query") || inputParameters["Query"] == null)
             {

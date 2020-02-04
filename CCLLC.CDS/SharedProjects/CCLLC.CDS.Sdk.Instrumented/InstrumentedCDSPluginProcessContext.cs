@@ -12,9 +12,9 @@ namespace CCLLC.CDS.Sdk
     {
         public IServiceProvider ServiceProvider { get; private set; }
 
-        public virtual IPluginExecutionContext PluginExecutionContext { get { return (IPluginExecutionContext)base.ExecutionContext; } }
+        new public virtual IPluginExecutionContext ExecutionContext { get { return (IPluginExecutionContext)base.ExecutionContext; } }
 
-        public virtual ePluginStage Stage { get { return (ePluginStage)this.PluginExecutionContext.Stage; } }
+        public virtual ePluginStage Stage { get { return (ePluginStage)this.ExecutionContext.Stage; } }
 
         /// <summary>
         /// Returns the first registered 'Pre' image for the pipeline execution
@@ -23,9 +23,9 @@ namespace CCLLC.CDS.Sdk
         {
             get
             {
-                if (this.PluginExecutionContext.PreEntityImages.Any())
+                if (this.ExecutionContext.PreEntityImages.Any())
                 {
-                    return this.PluginExecutionContext.PreEntityImages[this.PluginExecutionContext.PreEntityImages.FirstOrDefault().Key];
+                    return this.ExecutionContext.PreEntityImages[this.ExecutionContext.PreEntityImages.FirstOrDefault().Key];
                 }
                 return null;
             }
@@ -38,9 +38,9 @@ namespace CCLLC.CDS.Sdk
         {
             get
             {
-                if (this.PluginExecutionContext.PostEntityImages.Any())
+                if (this.ExecutionContext.PostEntityImages.Any())
                 {
-                    return this.PluginExecutionContext.PostEntityImages[this.PluginExecutionContext.PostEntityImages.FirstOrDefault().Key];
+                    return this.ExecutionContext.PostEntityImages[this.ExecutionContext.PostEntityImages.FirstOrDefault().Key];
                 }
                 return null;
             }
@@ -59,8 +59,8 @@ namespace CCLLC.CDS.Sdk
             {
                 if (_preMergedTarget == null)
                 {
-                    _preMergedTarget = new Entity(this.PluginExecutionContext.PrimaryEntityName);
-                    _preMergedTarget.Id = this.PluginExecutionContext.PrimaryEntityId;
+                    _preMergedTarget = new Entity(this.ExecutionContext.PrimaryEntityName);
+                    _preMergedTarget.Id = this.ExecutionContext.PrimaryEntityId;
                     _preMergedTarget.MergeWith(this.TargetEntity);
                     _preMergedTarget.MergeWith(this.PreImage);
                 }

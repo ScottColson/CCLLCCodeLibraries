@@ -14,7 +14,7 @@ namespace CCLLC.CDS.Sdk
     {
         IServiceProvider ServiceProvider { get; }      
         ePluginStage Stage { get; }
-        IPluginExecutionContext PluginExecutionContext { get; }
+        new IPluginExecutionContext ExecutionContext { get; }        
         Entity PreImage { get; }
         Entity PostImage { get; }
         Entity PreMergedTarget { get; }
