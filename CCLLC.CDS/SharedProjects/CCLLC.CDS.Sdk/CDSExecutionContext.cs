@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace CCLLC.CDS.Sdk
 {
@@ -240,7 +241,53 @@ namespace CCLLC.CDS.Sdk
 
         protected abstract IOrganizationServiceFactory CreateOrganizationServiceFactory();
         protected abstract ITracingService CreateTracingService();
+
         
+        public T CreateOrganizationRequest<T>() where T : Microsoft.Xrm.Sdk.OrganizationRequest, new()
+        {
+            var req = new T();
+            foreach (var p in InputParameters)
+            {
+                req.Parameters[p.Key] = p.Value;
+            }
+
+            return req;
+        }
+
+        public T GetRecord<T>(EntityReference recordId, TimeSpan? cacheTimeout = null) where T : Entity
+        {
+            return GetRecord<T>(recordId, null, cacheTimeout);
+        }
+
+        public T GetRecord<T>(EntityReference recordId, string[] columns = null, TimeSpan? cacheTimeout = null) where T : Entity
+        {
+            string cacheKey = null;
+
+            if(Cache != null &&  cacheTimeout != null)
+            {
+                cacheKey = string.Format("CCLLC.CDS.GetRecord.{0}{1}", recordId.LogicalName, recordId.Id);
+
+                if (Cache.Exists(cacheKey))
+                {
+                    return Cache.Get<T>(cacheKey);
+                }
+            }
+
+            var columnSet = columns == null ? new ColumnSet(true) : new ColumnSet(columns);
+
+            var record = OrganizationService.Retrieve(
+                recordId.LogicalName,
+                recordId.Id,
+                columnSet).ToEntity<T>();
+
+            if(cacheKey != null)
+            {
+                Cache.Add<T>(cacheKey, record, cacheTimeout.Value);
+            }
+
+            return record;
+        }
+
         /// <summary>
         /// Writes a message to the pluign trace log.
         /// </summary>
