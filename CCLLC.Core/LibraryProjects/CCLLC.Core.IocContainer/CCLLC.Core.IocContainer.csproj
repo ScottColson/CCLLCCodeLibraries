@@ -4,56 +4,27 @@
   <PropertyGroup>
     <TargetFrameworks>net452;net462;</TargetFrameworks>
   </PropertyGroup>
-  
-  <PropertyGroup>   
-    <Company>Colson Code, LLC</Company>
-    <Copyright>Copyright © Colson Code, LLC. All Rights Reserved.</Copyright>
-    <ProjectGuid>{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <AppDesignerFolder>Properties</AppDesignerFolder> 
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-  </PropertyGroup>
-  
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-  </PropertyGroup>
-  
+
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <AssemblyName>CCLLCIocContainer</AssemblyName>
+    <RootNamespace>CCLLC.Core</RootNamespace>
+    <ProjectGuid>{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}</ProjectGuid>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <IncludeSymbols>True</IncludeSymbols>
-    <AssemblyOriginatorKeyFile>CCLCCIoCContainer.snk</AssemblyOriginatorKeyFile>    
+    <AssemblyOriginatorKeyFile>CCLCCIoCContainer.snk</AssemblyOriginatorKeyFile>
     <Version>1.6.0</Version>
-    <Authors>Colson Code, LLC</Authors>
     <AssemblyVersion>1.6.0.0</AssemblyVersion>
     <Description>A light IoC container implementation to register and resolve dependencies at runtime.</Description>
     <PackageId>CCLLCIoCContainer</PackageId>
-    <PackageLicenseUrl>https://github.com/ScottColson/CCLLCCodeLibraries/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</PackageProjectUrl>
     <PackageTags>IoC</PackageTags>
     <Product>CCLLC.IoC.Container</Product>
     <Title>CCLLC.IoC.Container</Title>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Adds fluent implementation registration methods. Defaults to not overwriting an exisitng implementation.</PackageReleaseNotes>
-    <AssemblyName>CCLLCIocContainer</AssemblyName>
-  </PropertyGroup> 
-  
-  
-  <ItemGroup>
-    <None Include="CCLCCIoCContainer.snk" />
-  </ItemGroup> 
-  
-  
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+
   <Import Project="..\..\SharedProjects\IocContainer\CCLLC.Core.IocContainer.projitems" Label="Shared" />
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
-
 </Project>
