@@ -1,10 +1,10 @@
-﻿using CCLLC.Core;
+﻿using System;
 using Microsoft.Xrm.Sdk;
-
-using System;
 
 namespace CCLLC.CDS.Sdk
 {
+    using CCLLC.Core;
+
     public class ExtensionSettingsFactory : IExtensionSettingsFactory
     {
         protected ICache Cache { get;  }
