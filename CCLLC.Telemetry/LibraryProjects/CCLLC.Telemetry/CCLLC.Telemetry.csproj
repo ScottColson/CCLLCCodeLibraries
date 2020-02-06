@@ -25,14 +25,14 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <AssemblyOriginatorKeyFile>CCLCC.Telemetry.snk</AssemblyOriginatorKeyFile>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
     <Authors>Colson Code, LLC</Authors>
     <AssemblyVersion>2.0.0</AssemblyVersion>
-    <Description>Provides basic telemetry creation and transmission services that are compatible with Microsoft Application Insights and also compatible with operation inside a sandboxed Xrm plugin or workflow activity.</Description>
+    <Description>Provides basic telemetry creation and transmission services that are compatible with Microsoft Application Insights and also compatible with operation inside a sandboxed CDS plugin or workflow activity.</Description>
     <PackageId>CCLLCTelemetry</PackageId>
     <Title>CCLLC.Telemetry</Title>
-    <PackageLicenseUrl>https://github.com/ScottColson/CCLLC.Xrm.Development/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/ScottColson/CCLLC.Xrm.Development</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ScottColson/CCLLCCodeLibraries/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</PackageProjectUrl>
     <PackageTags>Analytics ApplicationInsights Telemetry</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">    
