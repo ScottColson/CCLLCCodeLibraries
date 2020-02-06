@@ -14,10 +14,10 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLCCIoCContainer.snk</AssemblyOriginatorKeyFile>
-    <Version>1.6.0</Version>
-    <AssemblyVersion>1.6.0.0</AssemblyVersion>
+    <Version>2.0.0-alpha</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>A light IoC container implementation to register and resolve dependencies at runtime.</Description>
-    <PackageId>CCLLCIoCContainer</PackageId>
+    <PackageId>CCLLC.Core.IocContainer</PackageId>
     <PackageTags>IoC</PackageTags>
     <Product>CCLLC.IoC.Container</Product>
     <Title>CCLLC.IoC.Container</Title>
