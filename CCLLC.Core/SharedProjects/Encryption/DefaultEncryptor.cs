@@ -4,7 +4,10 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace CCLLC.Core
-{   
+{
+    /// <summary>
+    /// Implements <see cref="IEncryptionService"/> using the Rijndael algorithm.
+    /// </summary>
     public class DefautlEncryptor : IEncryptionService
     {
         private readonly string defaultKey = "7a5a64brEgaceqenuyegac7era3Ape6aWatrewegeka94waqegayathudrebuc7t";
