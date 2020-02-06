@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CCLLC.Core.Encryption
+namespace CCLLC.Core
 {   
     public class DefautlEncryptor : IEncryptionService
     {

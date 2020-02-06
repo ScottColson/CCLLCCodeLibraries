@@ -8,8 +8,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
 {
-    using CCLLC.Core;
-    using CCLLC.Core.Encryption;
+    using CCLLC.Core;   
 
     /// <summary>
     /// Base plugin class for plugins using <see cref="IEnhancedPlugin"/> functionality. This class does not provide
