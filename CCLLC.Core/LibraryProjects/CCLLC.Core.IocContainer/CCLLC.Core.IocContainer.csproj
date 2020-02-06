@@ -36,8 +36,8 @@
     <AssemblyVersion>1.6.0.0</AssemblyVersion>
     <Description>A light IoC container implementation to register and resolve dependencies at runtime.</Description>
     <PackageId>CCLLCIoCContainer</PackageId>
-    <PackageLicenseUrl>https://github.com/ScottColson/CCLLC.Xrm.Development/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/ScottColson/CCLLC.Xrm.Development</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ScottColson/CCLLCCodeLibraries/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</PackageProjectUrl>
     <PackageTags>IoC</PackageTags>
     <Product>CCLLC.IoC.Container</Product>
     <Title>CCLLC.IoC.Container</Title>
