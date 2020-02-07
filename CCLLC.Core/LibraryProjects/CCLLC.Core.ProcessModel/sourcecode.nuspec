@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="3.3.0">
+    <id>CCLLC.Core.ProcessModel.Sources</id>
+    <version>1.0.0-alpha</version>
+    <description>Provides basic context model for implementing business processes.</description>
+    <authors>Colson Code, LLC</authors>
+    <owners>Colson Code, LLC</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>Context</tags>
+    <dependencies>
+      <dependency id="CCLLC.Core.IocContainer" version="1.0.0-alpha" />      
+    </dependencies>
+  </metadata>
+  <files>   
+    <file src="..\..\SharedProjects\ProcessModel\**\*.cs" target="content/App_Packages/CCLLC.Core.ProcessModel.Sources.1.0.0-alpha/" />
+  </files>
+</package>
