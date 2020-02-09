@@ -1,6 +1,10 @@
 ﻿namespace CCLLC.Core
 {
+#if IOCBUILD
     public interface IContainerContract<TContract>
+#else     
+    internal interface IContainerContract<TContract>
+#endif
     {
         /// <summary>
         /// Specify the concreate implementation for the contract interface.

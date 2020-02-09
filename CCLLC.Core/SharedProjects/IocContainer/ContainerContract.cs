@@ -2,7 +2,7 @@
 
 namespace CCLLC.Core
 {
-    public class ContainerContract<TContract> : IContainerContract<TContract>, IContractModifiers
+    internal class ContainerContract<TContract> : IContainerContract<TContract>, IContractModifiers
     {
         private IocContainer container;
         private bool preexistingRegistration;

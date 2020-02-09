@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.Core.IocContainer.Sources</id>
-    <version>2.0.0-alpha</version>
+    <version>2.0.0</version>
     <description>Provides basic encryption services.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -10,6 +10,6 @@
     <tags>Encryption</tags>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\IocContainer\**\*.cs" target="content/App_Packages/CCLLC.Core.IocContainer.Sources.2.0.0-alpha/" />
+    <file src="..\..\SharedProjects\IocContainer\**\*.cs" target="content/App_Packages/CCLLC.Core.IocContainer.Sources.2.0.0/" />
   </files>
 </package>

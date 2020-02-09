@@ -1,6 +1,10 @@
 ﻿namespace CCLLC.Core
 {
+#if IOCBUILD
     public interface IContractModifiers
+#else
+    internal interface IContractModifiers
+#endif
     {
         /// <summary>
         /// Register the implementation as a single instance. The container will issue to same instance on each contract resolution.
