@@ -14,7 +14,7 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLCCCoreProcessModel.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.0-beta</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description></Description>
     <PackageId>CCLLC.Core.ProcessModel</PackageId>

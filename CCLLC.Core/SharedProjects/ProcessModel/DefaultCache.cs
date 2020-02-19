@@ -61,7 +61,12 @@ namespace CCLLC.Core
 
         public bool Exists(string key)
         {
-            return Cache[key] != null;
+            if (!string.IsNullOrEmpty(key))
+            {
+                return Cache[key] != null;
+            }
+
+            return false;
         }
 
     }
