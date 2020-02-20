@@ -1,84 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'Product.props'))\Product.props" />
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CF336BB7-87C9-4561-9549-293426BAAA3E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net462;</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>CCLLCCDSSdk</AssemblyName>
     <RootNamespace>CCLLC.CDS.Sdk</RootNamespace>
-    <AssemblyName>CCLLC.CDS.Sdk</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <ProjectGuid>{CF336BB7-87C9-4561-9549-293426BAAA3E}</ProjectGuid>
+    <DefineConstants>$(DefineConstants);CDSSDKBUILD</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup>
+    <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
+    <AssemblyOriginatorKeyFile>CCLLC.CDS.Sdk.snk</AssemblyOriginatorKeyFile>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Description>CDS Plugin framework built on the Process Execution Model.</Description>
+    <PackageId>CCLLC.CDS.Sdk</PackageId>
+    <PackageTags></PackageTags>
+    <Product>CCLLC.CDS.Sdk</Product>
+    <Title>CCLLC.CDS.Sdk</Title>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.0.7\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.0.7\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.DirectoryServices.AccountManagement" />
-    <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.Encryption\CCLLC.Core.Encryption.csproj">
-      <Project>{12af0208-f362-4a48-8576-e2fad75e422e}</Project>
-      <Name>CCLLC.Core.Encryption</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj">
-      <Project>{8ae70ce7-65e1-4117-bade-a02e6023c1a1}</Project>
-      <Name>CCLLC.Core.IocContainer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.Net\CCLLC.Core.Net.csproj">
-      <Project>{578ffa24-e037-4d00-976e-ab586068034a}</Project>
-      <Name>CCLLC.Core.Net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.ProcessModel\CCLLC.Core.ProcessModel.csproj">
-      <Project>{64980a0b-a879-4350-afed-2176dcf81a38}</Project>
-      <Name>CCLLC.Core.ProcessModel</Name>
-    </ProjectReference>
-  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+
   <Import Project="..\..\SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems" Label="Shared" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="CCLLC.Core.Encryption" Version="1.0.0" />
+    <PackageReference Include="CCLLC.Core.Net" Version="1.0.0" />
+    <PackageReference Include="CCLLC.Core.ProcessModel" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies">
+      <Version>9.0.2.20</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>
+

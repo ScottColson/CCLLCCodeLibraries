@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="3.3.0">
+    <id>CCLLC.CDS.Sdk.Sources</id>
+    <version>1.0.0</version>
+    <description>CDS Plugin framework built on the Process Execution Model.</description>
+    <authors>Colson Code, LLC</authors>
+    <owners>Colson Code, LLC</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>Context</tags>
+    <dependencies>
+      <dependency id="CCLLC.Core.ProcessModel.Sources" version="1.0.0" />
+      <dependency id="CCLLC.Core.Net.Sources" version="1.0.0" />
+      <dependency id="CCLLC.Core.Encryption.Sources" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>   
+    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Sources.1.0.0/" />
+  </files>
+</package>
