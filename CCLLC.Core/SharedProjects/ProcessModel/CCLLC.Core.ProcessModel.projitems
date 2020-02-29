@@ -10,13 +10,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DefaultCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\eSeverityLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProcessExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecordPointer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsProviderDataConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsProviderFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RecordPointer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsProviderFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Enums\" />
