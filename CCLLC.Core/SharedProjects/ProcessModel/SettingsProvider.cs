@@ -11,16 +11,17 @@ namespace CCLLC.Core
 
         private IDictionary<string,string> Settings { get; }
 
-        public SettingsProvider(IDictionary<string,string> settings)
-        {           
+        public SettingsProvider(IReadOnlyDictionary<string,string> settings)
+        {
+            Settings = new Dictionary<string, string>();
+
             if(settings != null)
             {
-                Settings = new Dictionary<string, string>(settings);               
-            }
-            else
-            {
-                Settings = new Dictionary<string, string>();
-            }
+                foreach(var setting in settings)
+                {
+                    Settings.Add(setting);
+                }     
+            }           
         }
         
         public string this[string key] => Settings[key];
@@ -36,6 +37,13 @@ namespace CCLLC.Core
             return Settings.ContainsKey(key);
         }
 
+        /// <summary>
+        /// Get the setting value identified by the key. If setting is not available return the optional supplied default value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public T GetValue<T>(string key, T defaultValue = default)
         {
             string value = null;

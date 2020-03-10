@@ -15,7 +15,7 @@ namespace CCLLC.Core
             DataConnector = dataConnector;
         }
 
-        public ISettingsProvider CreateSettingsProvider(IProcessExecutionContext executionContext, TimeSpan? overrideCacheTimeout)
+        public ISettingsProvider CreateSettingsProvider(IProcessExecutionContext executionContext, TimeSpan? overrideCacheTimeout = null)
         {
             if(executionContext.Cache != null && executionContext.Cache.Exists(CACHE_KEY))
             {
@@ -37,5 +37,6 @@ namespace CCLLC.Core
 
             return settingsProvider;
         }
+
     }
 }

@@ -13,6 +13,6 @@ namespace CCLLC.Core
         /// <param name="executionContext"></param>
         /// <param name="overrideCacheTimeout"></param>
         /// <returns></returns>
-        ISettingsProvider CreateSettingsProvider(IProcessExecutionContext executionContext, TimeSpan? overrideCacheTimeout);
+        ISettingsProvider CreateSettingsProvider(IProcessExecutionContext executionContext, TimeSpan? overrideCacheTimeout = null);
     }
 }
