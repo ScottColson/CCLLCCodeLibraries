@@ -32,7 +32,7 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
 
-namespace Xrm.Oss.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public static class IOrganizationServiceFluentQuery
     {
