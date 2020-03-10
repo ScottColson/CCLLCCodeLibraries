@@ -11,6 +11,8 @@ namespace CCLLC.CDS.Sdk
         /// </summary>
         IIocContainer Container { get; }
        
+        eRunAs RunAs { get; set; }
+
         IReadOnlyList<PluginEvent> PluginEventHandlers { get; }
        
         void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginExecutionContext> handler, string id = "");

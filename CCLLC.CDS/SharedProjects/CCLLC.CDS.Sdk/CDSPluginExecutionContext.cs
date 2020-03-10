@@ -72,8 +72,8 @@ namespace CCLLC.CDS.Sdk
 
         public IPluginExecutionContext ParentContext => (base.ExecutionContext as IPluginExecutionContext).ParentContext;
 
-        protected internal CDSPluginExecutionContext(IServiceProvider serviceProvider, IIocContainer container, IPluginExecutionContext executionContext)
-            : base(executionContext, container)
+        protected internal CDSPluginExecutionContext(IServiceProvider serviceProvider, IIocContainer container, IPluginExecutionContext executionContext, eRunAs runAs = eRunAs.User)
+            : base(executionContext, container, runAs)
         {
             this.ServiceProvider = serviceProvider;
         }

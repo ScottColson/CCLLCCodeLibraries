@@ -7,6 +7,6 @@ namespace CCLLC.CDS.Sdk
 
     public interface ICDSExecutionContextFactory<T> where T :  ICDSExecutionContext
     {
-        T CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container);
+        T CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, eRunAs runAs = eRunAs.User);
     }
 }

@@ -9,13 +9,13 @@
     <Import_RootNamespace>CCLLC.CDS.Sdk</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionSettingsConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionSettingsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\eRunAs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FluentQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ProcessModelExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsDataConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlConfigurationResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlConfigurationResourceFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnhancedOrganizationService.cs" />
@@ -23,11 +23,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IEnhancedOrganizationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSPlugin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IExtensionSettingsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSPluginExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IXmlConfigurationResourceFactory .cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IExtensionSettingsConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IXmlConfigurationResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSPluginExecutionContext.cs" />

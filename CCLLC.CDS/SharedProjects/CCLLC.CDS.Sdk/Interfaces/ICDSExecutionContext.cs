@@ -7,7 +7,8 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core.Net;
 
     public interface ICDSExecutionContext : IProcessExecutionContext, IExecutionContext, IDisposable 
-    {        
+    {    
+        eRunAs RunAs { get; }
         IEnhancedOrganizationService OrganizationService { get; }
         IEnhancedOrganizationService ElevatedOrganizationService { get; }       
         ITracingService TracingService { get;  }             

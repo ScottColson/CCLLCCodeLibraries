@@ -9,15 +9,13 @@ namespace CCLLC.CDS.Sdk
 
     public abstract class CDSExecutionContext : ICDSExecutionContext 
     {
-        protected internal CDSExecutionContext(IExecutionContext executionContext, IIocContainer container)
+        protected internal CDSExecutionContext(IExecutionContext executionContext, IIocContainer container, eRunAs runAs = eRunAs.User)
         {
-            if (container == null) throw new ArgumentNullException("container");
-            this.Container = container;
-
-            if (executionContext == null) throw new ArgumentNullException("executionContext");
-            this.ExecutionContext = executionContext;
+            this.Container = container ?? throw new ArgumentNullException("container");            
+            this.ExecutionContext = executionContext ?? throw new ArgumentNullException("executionContext");
         }
 
+        public eRunAs RunAs { get; }
         public IReadOnlyIocContainer Container { get; private set; }
         protected IExecutionContext ExecutionContext { get; private set; }
 
@@ -25,7 +23,7 @@ namespace CCLLC.CDS.Sdk
         protected IOrganizationServiceFactory OrganizationServiceFactory
         {
             get
-            {
+            {                
                 if (organizationServiceFactory == null)
                 {
                     organizationServiceFactory = CreateOrganizationServiceFactory();
@@ -39,6 +37,8 @@ namespace CCLLC.CDS.Sdk
         {
             get
             {
+                if (RunAs == eRunAs.System) return ElevatedOrganizationService;
+
                 if (organizationService == null)
                 {                   
                     organizationService = new EnhancedOrganizationService(this.OrganizationServiceFactory.CreateOrganizationService(this.ExecutionContext.UserId));
@@ -88,8 +88,8 @@ namespace CCLLC.CDS.Sdk
             {
                 if (settings is null)
                 {
-                    var factory = Container.Resolve<IExtensionSettingsFactory>();
-                    settings = factory.CreateExtensionSettings(this.ElevatedOrganizationService);
+                    var factory = Container.Resolve<ISettingsProviderFactory>();
+                    settings = factory.CreateSettingsProvider(this);
                 }
                 return settings;
             }
