@@ -1,91 +1,46 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), 'Product.props'))\Product.props" />
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E064ABFF-1758-44A3-9772-4F9BA6E7283C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net462;</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>CCLLCCDSSdkInstrumented</AssemblyName>
     <RootNamespace>CCLLC.CDS.Sdk.Instrumented</RootNamespace>
-    <AssemblyName>CCLLC.CDS.Sdk.Instrumented</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <ProjectGuid>{E064ABFF-1758-44A3-9772-4F9BA6E7283C}</ProjectGuid>
+    <DefineConstants>$(DefineConstants);CDSSDKBUILD</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup>
+    <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
+    <AssemblyOriginatorKeyFile>CCLLC.CDS.Sdk.Instrumented.snk</AssemblyOriginatorKeyFile>
+    <Version>1.1.0-beta</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insigits telemetry via CCLLC.Telemetry.</Description>
+    <PackageId>CCLLC.CDS.Sdk.Instrumented</PackageId>
+    <PackageTags></PackageTags>
+    <Product>CCLLC.CDS.Sdk.Instrumented</Product>
+    <Title>CCLLC.CDS.Sdk.Instrumented</Title>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net452|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.0.7\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.0.7\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.DirectoryServices.AccountManagement" />
-    <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj">
-      <Project>{8ae70ce7-65e1-4117-bade-a02e6023c1a1}</Project>
-      <Name>CCLLC.Core.IocContainer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.Net.Instrumented\CCLLC.Core.Net.Instrumented.csproj">
-      <Project>{fe807c52-3cbe-4379-9eb9-33b28df07dc1}</Project>
-      <Name>CCLLC.Core.Net.Instrumented</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.Net\CCLLC.Core.Net.csproj">
-      <Project>{578ffa24-e037-4d00-976e-ab586068034a}</Project>
-      <Name>CCLLC.Core.Net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Core\LibraryProjects\CCLLC.Core.ProcessModel\CCLLC.Core.ProcessModel.csproj">
-      <Project>{64980a0b-a879-4350-afed-2176dcf81a38}</Project>
-      <Name>CCLLC.Core.ProcessModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CCLLC.Telemetry\LibraryProjects\CCLLC.Telemetry\CCLLC.Telemetry.csproj">
-      <Project>{43635423-c56a-48fe-a2ff-7857f3625a69}</Project>
-      <Name>CCLLC.Telemetry</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.csproj">
-      <Project>{cf336bb7-87c9-4561-9549-293426baaa3e}</Project>
-      <Name>CCLLC.CDS.Sdk</Name>
-    </ProjectReference>
-  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+  
+ 
   <Import Project="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems" Label="Shared" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
+  <ItemGroup>
+    <PackageReference Include="CCLLC.CDS.Sdk" Version="1.1.0-beta" />
+    <PackageReference Include="CCLLC.Core.Net.Instrumented" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

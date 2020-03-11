@@ -4,6 +4,9 @@ namespace CCLLC.Core.Net
 {
     using CCLLC.Telemetry;
 
+    /// <summary>
+    /// Implements the capture of dependency telemetry as part of executing HTTP request actions.
+    /// </summary>
     public class InstrumentedHttpWebRequestWrapper : HttpWebRequestWrapper
     {               
         private ITelemetryFactory _telemetryFactory = null;
@@ -49,7 +52,6 @@ namespace CCLLC.Core.Net
             }
         }
       
-
         public override IHttpWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)             
         {
             IDependencyTelemetry dependencyTelemetry = null;           

@@ -11,13 +11,18 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core;   
 
     /// <summary>
-    /// Base plugin class for plugins using <see cref="IEnhancedPlugin"/> functionality. This class does not provide
-    /// telemetry logging outside of Dynamics 365. For external telemetry use <see cref="InstrumentedPluginBase"/>."/>
+    /// Base plugin class for plugins using <see cref="ICDSPlugin"/> functionality. This class does not provide
+    /// telemetry logging outside of the CDS platform. For external telemetry use the CCLLC.CDS.Sdk.Instrumented namespace.
     /// </summary>
     public abstract class CDSPlugin : IPlugin, ICDSPlugin
     {
         private Collection<PluginEvent> _events = new Collection<PluginEvent>();
         private IIocContainer _container = null;
+
+        /// <summary>
+        /// Set whether processes for this plugin run as User or System. Default is User.
+        /// </summary>
+        public eRunAs RunAs { get; set; }
 
         /// <summary>
         /// Provides of list of <see cref="PluginEvent"/> items that define the 
@@ -66,6 +71,7 @@ namespace CCLLC.CDS.Sdk
         {
             this.UnsecureConfig = unsecureConfig;
             this.SecureConfig = secureConfig;
+            this.RunAs = eRunAs.User; 
             RegisterContainerServices();
         }
 
@@ -95,9 +101,9 @@ namespace CCLLC.CDS.Sdk
         public virtual void RegisterContainerServices()
         {              
             Container.Implement<ICache>().Using<DefaultCache>();
-            Container.Implement<IEncryptionService>().Using<DefautlEncryptor>();  
-            Container.Implement<IExtensionSettingsConfig>().Using<ExtensionSettingsConfig>();
-            Container.Implement<IExtensionSettingsFactory>().Using<ExtensionSettingsFactory>();
+            Container.Implement<IEncryptionService>().Using<DefautlEncryptor>();
+            Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>();
+            Container.Implement<ISettingsProviderDataConnector>().Using<SettingsDataConnector>();           
             Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>();
             Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>();
             Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>();            
@@ -131,7 +137,7 @@ namespace CCLLC.CDS.Sdk
                 {
                     var factory = Container.Resolve<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>();
 
-                    using (var localContext = factory.CreateProcessContext(executionContext, serviceProvider, this.Container))
+                    using (var localContext = factory.CreateProcessContext(executionContext, serviceProvider, this.Container, this.RunAs))
                     {
                         foreach (var handler in matchingHandlers)
                         {

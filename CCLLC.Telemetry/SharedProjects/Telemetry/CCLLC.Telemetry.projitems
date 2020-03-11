@@ -73,10 +73,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\ITelemetryContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Context\IUserContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\eSeverityLevel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IAvailabilityDataModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IAvailabilityTelemetry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IBlockDataModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IBlockTelemetry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDataModelTelemetry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IDependencyDataModel.cs" />
@@ -88,12 +84,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IExceptionTelemetry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMessageDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMessageTelemetry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMetricDataModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IMetricTelemetry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IOperationalDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IOperationalTelemetry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IPageViewDataModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IPageViewTelemetry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IRequestDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IRequestTelemetry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\DataContract\IStackFrame.cs" />
@@ -130,8 +122,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sink\Transmission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TelemetryClientFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TelemetryFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Interfaces\readme.txt" />
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ namespace CCLLC.CDS.Sdk
     {
                
         /// <summary>
-        /// Provides a <see cref="ITelemetrySink"/> to recieve and process various 
+        /// Provides a <see cref="ITelemetrySink"/> to receive and process various 
         /// <see cref="ITelemetry"/> items generated during the execution of the 
         /// Plugin.
         /// </summary>
@@ -32,7 +32,7 @@ namespace CCLLC.CDS.Sdk
         /// </summary>
         /// <param name="unsecureConfig"></param>
         /// <param name="secureConfig"></param>
-        public InstrumentedPluginBase(string unsecureConfig, string secureConfig) 
+        public InstrumentedCDSPlugin(string unsecureConfig, string secureConfig) 
             : base(unsecureConfig, secureConfig)
         {
             TelemetrySink = Container.Resolve<ITelemetrySink>();
@@ -63,7 +63,7 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<ITelemetryProcessChain>().Using<TelemetryProcessChain>(); //ITelemetryProcessChain holds 0 or more processors that can modify the telemetry prior to transmission.
             Container.Implement<ITelemetryChannel>().Using<SyncMemoryChannel>(); //ITelemetryChannel provides the buffering and transmission. There is a sync and an asynch channel.
             Container.Implement<ITelemetryBuffer>().Using<TelemetryBuffer>(); //ITelemetryBuffer is used the channel
-            Container.Implement<ITelemetryTransmitter>().Using<AITelemetryTransmitter>(); //ITelemetryTransmitter transmits a block of telemetry to Applicatoin Insights.
+            Container.Implement<ITelemetryTransmitter>().Using<AITelemetryTransmitter>(); //ITelemetryTransmitter transmits a block of telemetry to Application Insights.
 
             //setup the objects needed to serialize telemetry as part of transmission.
             Container.Implement<IContextTagKeys>().Using<AIContextTagKeys>(); //Defines context tags expected by Application Insights.
@@ -72,17 +72,17 @@ namespace CCLLC.CDS.Sdk
         }
 
         /// <summary>
-        /// Flag to capture execution execution performance metrics using request telemetry.
+        /// Flag to capture execution performance metrics using request telemetry.
         /// </summary>
         public bool TrackExecutionPerformance { get; set; }
 
         /// <summary>
-        /// Flag to force flushing the telementry sink buffer after handler execution completes.
+        /// Flag to force flushing the telemetry sink buffer after handler execution completes.
         /// </summary>
         public bool FlushTelemetryAfterExecution { get; set; }
 
         /// <summary>
-        /// Telememetry Sink that gathers and transmits telemetry.
+        /// Telemetry Sink that gathers and transmits telemetry.
         /// </summary>
         /// <param name="localContext"></param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace CCLLC.CDS.Sdk
         {
             if (processContext != null)
             {
-                var key = processContext.Settings.Get<string>("Telemetry.InstrumentationKey");
+                var key = processContext.Settings.GetValue<string>("Telemetry.InstrumentationKey");
                
                 if (!string.IsNullOrEmpty(key))
                 {
@@ -101,7 +101,7 @@ namespace CCLLC.CDS.Sdk
                 }
             }
 
-            return false; //telmetry sink is not configured.
+            return false; //telemetry sink is not configured.
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace CCLLC.CDS.Sdk
             var telemetryFactory = Container.Resolve<ITelemetryFactory>();
             var telemetryClientFactory = Container.Resolve<ITelemetryClientFactory>();
 
-            //Create a dictionary of custom properties based on values in the execution context.
+            //Create a dictionary of custom telemetry properties based on values in the execution context.
             var propertyManager = Container.Resolve<ICDSTelemetryPropertyManager>();
             var properties = propertyManager.CreateXrmPropertiesDictionary(this.GetType().ToString(), executionContext);
             
@@ -138,7 +138,7 @@ namespace CCLLC.CDS.Sdk
                 properties))
             {
 
-                #region Setup Telementry Context
+                #region Setup Telemetry Context
 
                 //capture execution context attributes that fit in telemetry context
                 telemetryClient.Context.Operation.Name = executionContext.MessageName;
@@ -146,7 +146,7 @@ namespace CCLLC.CDS.Sdk
                 telemetryClient.Context.Operation.Id = executionContext.OperationId.ToString();
                 telemetryClient.Context.Session.Id = executionContext.CorrelationId.ToString();
 
-                //Capture data contexty if the telemetry provider supports data key context.
+                //Capture data context if the telemetry provider supports data key context.
                 var asDataContext = telemetryClient.Context as ISupportDataKeyContext;
                 if (asDataContext != null)
                 {

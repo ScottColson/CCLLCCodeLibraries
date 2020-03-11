@@ -16,28 +16,22 @@
     <AssemblyOriginatorKeyFile>CCLCCCoreNetInstrumented.snk</AssemblyOriginatorKeyFile>
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Description>Provides basic HTTP Web services with Telemetry collection.</Description>
-    <PackageId>CCLLCCoreNetInstrumented</PackageId>
+    <Description>Provides basic HTTP Web services with Dependency Telemetry collection based on CCLLC.Telemetry.</Description>
+    <PackageId>CCLLC.Core.Net.Instrumented</PackageId>
     <PackageTags></PackageTags>
     <Product>CCLLC.Core.Net.Instrumented</Product>
     <Title>CCLLC.Core.Net.Instrumented</Title>
     <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CCLLC.Telemetry\LibraryProjects\CCLLC.Telemetry\CCLLC.Telemetry.csproj">
-      <Project>{43635423-c56a-48fe-a2ff-7857f3625a69}</Project>
-      <Name>CCLLC.Telemetry</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CCLLC.Core.Net\CCLLC.Core.Net.csproj">
-      <Project>{578ffa24-e037-4d00-976e-ab586068034a}</Project>
-      <Name>CCLLC.Core.Net</Name>
-    </ProjectReference>
-  </ItemGroup>
   
   <Import Project="..\..\SharedProjects\Net.Instrumented\CCLLC.Core.Net.Instrumented.projitems" Label="Shared" />
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="CCLLC.Core.Net" Version="1.0.0" />
+    <PackageReference Include="CCLLC.Telemetry" Version="2.1.1" />
+  </ItemGroup>
 </Project>
 
 
