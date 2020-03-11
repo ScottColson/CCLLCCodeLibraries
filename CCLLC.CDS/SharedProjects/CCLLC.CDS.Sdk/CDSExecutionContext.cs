@@ -98,7 +98,7 @@ namespace CCLLC.CDS.Sdk
       
         private IXmlConfigurationResource xmlConfigurationResources = null;
         /// <summary>
-        /// Access to configuration resources stored in CRM Xml Data Web Resources.
+        /// Access to configuration resources stored in CRM XML Data Web Resources.
         /// </summary>
         public IXmlConfigurationResource XmlConfigurationResources
         {
@@ -119,7 +119,7 @@ namespace CCLLC.CDS.Sdk
         {
             get
             {
-                if (this.ExecutionContext.InputParameters.Contains("Target"))
+                if (this.ExecutionContext.InputParameters.Contains("Target") && this.ExecutionContext.InputParameters["Target"] is Entity)
                 {
                     return this.ExecutionContext.InputParameters["Target"] as Entity;                    
                 }
@@ -131,17 +131,7 @@ namespace CCLLC.CDS.Sdk
         /// <summary>
         /// Returns the 'Target' of the message as an EntityReference if available
         /// </summary>
-        public EntityReference TargetReference
-        {
-            get
-            {
-                if (this.TargetEntity != null)
-                {
-                    return this.TargetEntity.ToEntityReference();
-                }                   
-                return null;
-            }
-        }
+        public EntityReference TargetReference => this.TargetEntity?.ToEntityReference();        
 
 
         private ITracingService tracingService;
