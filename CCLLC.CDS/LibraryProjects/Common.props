@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ 
+  <PropertyGroup>
+    <LangVersion>7.3</LangVersion>	
+	<ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>  	
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup> 
+  
+  <PropertyGroup>
+    <Company>Colson Code, LLC</Company>
+    <Copyright>Copyright © Colson Code, LLC. All Rights Reserved.</Copyright>    
+    <OutputType>Library</OutputType>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+	<SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  
+  <PropertyGroup> 
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>  
+    <IncludeSymbols>True</IncludeSymbols>
+	<Authors>Colson Code, LLC</Authors>
+    <PackageLicenseUrl>https://github.com/ScottColson/CCLLCCodeLibraries/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</PackageProjectUrl>
+	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).XML</DocumentationFile>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <RunCodeAnalysis>true</RunCodeAnalysis>    
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+  </PropertyGroup>
+</Project>
