@@ -16,8 +16,8 @@
     <AssemblyOriginatorKeyFile>CCLCCCoreNetInstrumented.snk</AssemblyOriginatorKeyFile>
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Description>Provides basic HTTP Web services with Telemetry collection.</Description>
-    <PackageId>CCLLCCoreNetInstrumented</PackageId>
+    <Description>Provides basic HTTP Web services with Dependency Telemetry collection based on CCLLC.Telemetry.</Description>
+    <PackageId>CCLLC.Core.Net.Instrumented</PackageId>
     <PackageTags></PackageTags>
     <Product>CCLLC.Core.Net.Instrumented</Product>
     <Title>CCLLC.Core.Net.Instrumented</Title>
