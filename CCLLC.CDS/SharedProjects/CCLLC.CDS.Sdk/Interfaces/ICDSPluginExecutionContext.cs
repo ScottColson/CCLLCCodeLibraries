@@ -3,6 +3,9 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
 {
+    /// <summary>
+    /// Defined plugin stages.
+    /// </summary>
     public enum ePluginStage
     {
         PreValidation = 10,

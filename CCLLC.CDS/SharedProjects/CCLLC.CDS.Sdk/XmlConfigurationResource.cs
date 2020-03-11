@@ -31,17 +31,12 @@ namespace CCLLC.CDS.Sdk
         /// the XDocument from the XML Configuration data cache if it exists and has not expired.
         /// </summary>
         /// <param name="key">The name of the Web Resource to load.</param>
-        /// <param name="disableCache">Flag indicating that cache should be ignored and values should come directly from the CRM database.</param>
+        /// <param name="useCache">Flag indicating that cache should be ignored and values should come directly from the CRM database.</param>
         /// <returns>XDocument representing the XML data contained in the Web Resource.</returns>
-        public  XDocument Get(string key, bool disableCache = false)
+        public  XDocument Get(string key, bool useCache = true)
         { 
-            return XmlConfigurationResourceCache.Instance.GetXmlConfigurationDoc(orgService, key, disableCache);
-        }
-
-        public XDocument Get(string key)
-        {
-            return this.Get(key, false);
-        }
+            return XmlConfigurationResourceCache.Instance.GetXmlConfigurationDoc(orgService, key, useCache);
+        }        
 
     }
     
@@ -49,7 +44,7 @@ namespace CCLLC.CDS.Sdk
     /// <summary>
     /// Retrieves and caches XML Configuration Data stored in CRM Web Resources. Each resource that is retrieved
     /// is cached for future use. The XmlConfigurationResourceCache is implemented as a Singleton so that each class
-    /// within a givine plugin assembly shares a common instance and a common cache.
+    /// within a given plugin assembly shares a common instance and a common cache.
     /// </summary>
     class XmlConfigurationResourceCache
     {
@@ -104,12 +99,12 @@ namespace CCLLC.CDS.Sdk
             return _values.ContainsKey(resourceName);
         }
 
-        public XDocument GetXmlConfigurationDoc(IOrganizationService service, string resourceName, bool disableCache = false)
+        public XDocument GetXmlConfigurationDoc(IOrganizationService service, string resourceName, bool useCache = true)
         {
             resourceName = resourceName.ToLower();
 
             //Get the item from the cache if it exists.
-            if (!disableCache && _values.ContainsKey(resourceName))
+            if (useCache && _values.ContainsKey(resourceName))
             {
                 XDocument cachedDoc = _values[resourceName];
                 //get the expiration date of the cached content.
@@ -145,7 +140,7 @@ namespace CCLLC.CDS.Sdk
                 throw new InvalidPluginExecutionException(string.Format("Web resource '{0}' does not exist.",resourceName));
             }
 
-            //convert the web resource from its native Base64 string format to xml.
+            //convert the web resource from its native Base64 string format to XML.
             Entity resource = results.Entities[0];
             byte[] bytes = Convert.FromBase64String(resource.Attributes["content"].ToString());
             
@@ -155,9 +150,9 @@ namespace CCLLC.CDS.Sdk
                 doc = XDocument.Load(stream);
             }
 
-                if (!disableCache)
+                if (useCache)
                 {
-                    //calculate the cache timeout for this item. If the web resource has a cache timeout attribue, use it.
+                    //calculate the cache timeout for this item. If the web resource has a cache timeout attribute, use it.
                     int cacheTimeOut = DEFAULT_CACHE_TIMEOUT;
                     if (doc.Root.Attribute(CACHE_TIMEOUT_ATTRIBUTE_NAME) != null)
                     {
