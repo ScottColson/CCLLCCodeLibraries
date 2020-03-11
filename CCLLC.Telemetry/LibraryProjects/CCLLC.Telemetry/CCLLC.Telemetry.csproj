@@ -25,7 +25,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <AssemblyOriginatorKeyFile>CCLCC.Telemetry.snk</AssemblyOriginatorKeyFile>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <Authors>Colson Code, LLC</Authors>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <Description>Provides basic telemetry creation and transmission services that are compatible with Microsoft Application Insights and also compatible with operation inside a sandboxed CDS plugin or workflow activity.</Description>

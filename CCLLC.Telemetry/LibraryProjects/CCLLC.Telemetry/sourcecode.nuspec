@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.Telemetry.Sources</id>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
     <description>Provides basic telemetry creation and transmission services that are compatible with 
     Microsoft Application Insights and also compatible with operation inside a sandboxed CDS plugin or 
     workflow activity.</description>
@@ -12,6 +12,6 @@
     <tags>Encryption</tags>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\Telemetry\**\*.cs" target="content/App_Packages/CCLLC.Telemetry.Sources.2.1.0/" />
+    <file src="..\..\SharedProjects\Telemetry\**\*.cs" target="content/App_Packages/CCLLC.Telemetry.Sources.2.1.1/" />
   </files>
 </package>
