@@ -67,3 +67,11 @@ to operate as a CDS plugin component.
 - CCLLC.CDS.Sdk.SearchUtilities: Provides a standardized framework to implement alias searches 
 using data in related entities. 
 
+### Nuget Packages
+
+In addition to simply downloading and consuming the Shared Projects, each project is also being distributed through
+Nuget as either an assembly and as a source package using the project name (e.g. CCLLC.Core.Encryption) for assembly
+distribution and project name with .Sources suffix (e.g. CCLLC.Core.Encryption.Sources) for source code. 
+
+All source code packages are installed as folders under the projects App_Packages folder._
+

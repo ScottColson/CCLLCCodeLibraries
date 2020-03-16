@@ -1,3 +1,5 @@
+# CCLLC.Core.ProcessModel.
+
 Objects in the CCLLC.CoreProcessModel define interfaces and provide some default implementations for 
 creating processes that are independent of data access implementations and therefore more portable and extensible. 
 
@@ -7,7 +9,9 @@ Processes built on this model generally have three distinct architectural layers
 some event and is dictating the response to that event. So this may be the event 
 handler section of a CDS plugin, an Azure Function, an API etc.
 - Business Logic - This is the core of what the process is supposed to do. It reacts to requests
-from the orchestrator and when needed makes requests to the data layer.
+from the orchestrator and when needed makes requests to the data layer. The business logic layer
+defines data types as POCO objects and/or interfaces. It also typically defines one or more "data
+connectors" that define the requests sent to the data layer.
 - Data Layer - this is where the Business Logic interacts with the underlying 
 data system. The data layer responds with objects based on data model interfaces rather than
 specific entities.
@@ -67,8 +71,8 @@ logic level, to the data layer level. The orchestration and data layers share so
 data access works, but the business layer is ignorant and literally has now means to perform CRUD operations.
 2. Access to a cache that can store and retrieve typed objects.
 3. Access to a setting provider that provides a simple name-value-pair settings access
-4. Access to an [IoC/DI container] (CCLLC.Core.IoCContainer.md) for creating dependencies that were not directly injected into 
-the process at creation or execution.
+4. Access to an [IoC/DI container] (CCLLC.Core.IoCContainer.md) for creating dependencies that were not 
+directly injected into the process at object creation or execution.
 5. A mechanism to log trace messages to a logging system.
 6. A mechanism to track named events to a logging system.
 7. A mechanism to track exceptions to a logging system.
@@ -82,19 +86,50 @@ object into an interface that can actually interact with data.
 
 The _CCLLC.ProcessModel.IRecordPointer_ interface provides a system agnostic way to point to a records in a data
 table based system. The _IRecordPointer_ provides getters for Record Type (e.g. entity name) and Id. This is 
-analogous to the EntityReference provided by the Microsoft.Xrm.Sdk. However, _IRecordPointer_ is not locked in to GUID based unique record identifiers. It can represent alternate 
-pointer types such as int, or strings.
+analogous to the EntityReference provided by the Microsoft.Xrm.Sdk. However, _IRecordPointer_ is not locked in 
+to GUID based unique record identifiers. It can represent alternate pointer types such as int, or strings.
 
 The _CCLLC.ProcesModel.RecordPointer_ class provides a default implementation of the _IRecordPointer_ interface.
 
 ## Cache
 
-TBD
+The _CCLLC.Core.ICache_ interface defines the cache implementation used in the process model and the 
+_CCLLC.Core.DefaultCache_ implements that interface using the System.Runtime MemoryCache.  
 
 ## Settings Provider
 
-TBD
+Access to name-value paired settings is provided through the _CCLLC.Core.ISettingsProvider_ interface.
+_CCLLC.Core.SettingsProvider_ provides the default implementation of that interface. The default settings 
+provider is created using the _CCLLC.Core.SettingsProviderFactory_ class.
+
+The _GetValue\<T>(key, defaultValue)_ method supports type casting the string value into most common data types 
+such as int, decimal, and Boolean. These type conversions are based on the Convert.ChangeType method. In addition to 
+these standard conversions, the following specific conversions are supported:
+- _GetValue\<TimeSpan?>_ will convert a numeric setting value to a nullable TimeSpan object assuming the number 
+represents the number of 'seconds' for the TimeSpan.
+- _GetValue\<string[]>_ will convert the value to a string array assuming comma or semicolon value delineations. 
+
+The _SettingsProviderFactory_ requires a data connector that implements the _CCLLC.Core.SettingsProviderDataConnector_ 
+interface. This data connector implementation must be registered in the IoC Container as in the orchestration 
+layer of the overall process. The container will create the data connector and inject it into the factory which
+uses it when creating a loaded setting provider.
+
+The factory caches the created settings provider object for 15 minutes. This default cache timeout can be altered
+by creating a setting in the setting provider named "CCLLC.SettingsCacheTimeOut" with a numeric value indicating
+the number of seconds to cache the settings. 
+ 
 
 ## Tracing and Tracking
 
-TBD
+_IProcessExectionContext_ provides four method signatures for capturing logging information:
+
+- _Trace(severityLevel, message, args)_ writes a message with severity level flagging and optional 
+string formatting arguments to the logging system.
+- _Trace(message, args)_ writes a message with severity level 'information' and optional string 
+formatting arguments to the logging system.
+- _TrackEvent(name)_ captures the name of a specific event in the logging system, depending on exact implementation 
+this might just be a specifically formatted trace message.
+- _TrackException(exception)_ captures information about an code execution exception to the logging system.;
+
+The actual implementation of these methods and therefore the outcome of the method calls is left to the implementing
+class.
