@@ -31,7 +31,7 @@ The **CCLLC.Core** solution provides the following solution components. Each com
 based on defined interfaces and at least one optional implementation that can be modified 
 through inheritance:
 
-- [CCLLC.Core.IocContainer]:(/CCLLC.Core.IocContainer.md) : A lightweight inversion of control container implementation that is 
+- [CCLLC.Core.IocContainer]:(../CCLLC.Core.IocContainer.md) : A lightweight inversion of control container implementation that is 
 used within process to inject dependencies. Using a container simplifies maintenance and 
 extensibility of any created processes.
 
