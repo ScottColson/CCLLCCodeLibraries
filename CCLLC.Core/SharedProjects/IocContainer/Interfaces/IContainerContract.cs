@@ -7,7 +7,7 @@
 #endif
     {
         /// <summary>
-        /// Specify the concreate implementation for the contract interface.
+        /// Specify the concrete implementation for the contract interface.
         /// </summary>         
         IContractModifiers Using<TImplementation>() where TImplementation : TContract;
     }
