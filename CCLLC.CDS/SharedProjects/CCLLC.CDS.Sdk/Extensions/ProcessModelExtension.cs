@@ -5,6 +5,9 @@ namespace CCLLC.CDS.Sdk
 {
     using CCLLC.Core;
 
+    /// <summary>
+    /// Defines common conversions for objects based on the CCLLC.Core.IProcessModel.
+    /// </summary>
     static class ProcessModelExtension
     {
         public static IOrganizationService ToOrgService(this IDataService dataService)

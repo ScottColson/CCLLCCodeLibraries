@@ -5,8 +5,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
 {
-    using CCLLC.Core;
-    using Extensions;    
+    using CCLLC.Core; 
 
     public class CDSPluginExecutionContext : CDSExecutionContext, ICDSPluginExecutionContext
     {

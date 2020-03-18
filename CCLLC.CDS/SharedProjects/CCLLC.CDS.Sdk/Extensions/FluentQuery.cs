@@ -1,4 +1,12 @@
 ﻿/**
+ * 
+ * This code is ported from https://github.com/DigitalFlow/Xrm-Fluent-Query/tree/master/src/lib/Xrm.Oss.FluentQuery
+ * and added here with the CCLLC.CDS.Sdk namespace for ease of use and consistency with the way 
+ * source code nuget packages are deployed for these libraries.
+ * 
+ * /
+
+/**
 MIT License
 
 Copyright (c) 2018 Florian Krönert
