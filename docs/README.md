@@ -31,7 +31,7 @@ The **CCLLC.Core** solution provides the following solution components. Each com
 based on defined interfaces and at least one optional implementation that can be modified 
 through inheritance:
 
-- [CCLLC.Core.IocContainer](CCLLC.Core.IocContainer.md) : A lightweight inversion of control container implementation that is 
+- [CCLLC.Core.IocContainer]:(CCLLC.Core.IocContainer.md) : A lightweight inversion of control container implementation that is 
 used within process to inject dependencies. Using a container simplifies maintenance and 
 extensibility of any created processes.
 
@@ -50,7 +50,7 @@ The default implementations are based on System.Net DataContracts.
 - CCLLC.Core.RestClient: A standardized implementation for using POCO objects to interact with 
 REST based web services.
 
-- [CCLLC.Core.ProcessModel](CCLLC.Core.ProcessModel.md): A standardized, data agnostic, execution context model for creating 
+- [CCLLC.Core.ProcessModel]:(CCLLC.Core.ProcessModel.md) \: A standardized, data agnostic, execution context model for creating 
 processes independently of the platform that will ultimately host the process. Building to 
 this model makes it easy to move business logic between different process implementation platforms
 (e.g. CDS plugin or Azure Function.)
