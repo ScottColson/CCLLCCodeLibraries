@@ -137,7 +137,7 @@ namespace CCLLC.CDS.Sdk
                 {
                     var factory = Container.Resolve<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>();
 
-                    using (var localContext = factory.CreateProcessContext(executionContext, serviceProvider, this.Container, this.RunAs))
+                    using (var localContext = factory.CreateCDSExecutionContext(executionContext, serviceProvider, this.Container, this.RunAs))
                     {
                         foreach (var handler in matchingHandlers)
                         {

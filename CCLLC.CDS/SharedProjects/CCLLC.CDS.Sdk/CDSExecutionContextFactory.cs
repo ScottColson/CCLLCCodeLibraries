@@ -7,7 +7,7 @@ namespace CCLLC.CDS.Sdk
 
     public class CDSExecutionContextFactory : ICDSExecutionContextFactory<ICDSPluginExecutionContext>
     {             
-        public ICDSPluginExecutionContext CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, eRunAs runAs = eRunAs.User)
+        public ICDSPluginExecutionContext CreateCDSExecutionContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, eRunAs runAs = eRunAs.User)
         {
             return new CDSPluginExecutionContext(serviceProvider, container, executionContext as IPluginExecutionContext, runAs);
         }

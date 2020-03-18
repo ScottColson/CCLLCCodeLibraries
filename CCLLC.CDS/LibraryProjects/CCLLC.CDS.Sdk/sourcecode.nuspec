@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.CDS.Sdk.Sources</id>
-    <version>1.1.0-beta</version>
+    <version>1.1.0-charlie</version>
     <description>CDS Plugin framework built on the Process Execution Model.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -15,6 +15,6 @@
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Sources.1.1.0-beta/" />
+    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Sources.1.1.0-charlie/" />
   </files>
 </package>

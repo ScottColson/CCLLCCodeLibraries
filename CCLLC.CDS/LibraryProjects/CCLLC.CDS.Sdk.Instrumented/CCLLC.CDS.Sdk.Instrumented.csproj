@@ -39,7 +39,7 @@
   <Import Project="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems" Label="Shared" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
   <ItemGroup>
-    <PackageReference Include="CCLLC.CDS.Sdk" Version="1.1.0-beta" />
+    <PackageReference Include="CCLLC.CDS.Sdk" Version="1.1.0-charlie" />
     <PackageReference Include="CCLLC.Core.Net.Instrumented" Version="1.0.0" />
   </ItemGroup>
 

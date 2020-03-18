@@ -3,8 +3,7 @@ using System.Linq;
 using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
-{
-    using Extensions;
+{    
     using CCLLC.Core;
     using CCLLC.Telemetry;
 

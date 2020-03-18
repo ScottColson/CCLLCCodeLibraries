@@ -8,6 +8,6 @@ namespace CCLLC.CDS.Sdk
 
     public interface IInstrumentedCDSExecutionContextFactory<T> where T :  IInstrumentedCDSExecutionContext
     {
-        T CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, IComponentTelemetryClient telemetryClient );
+        T CreateCDSExecutionContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, IComponentTelemetryClient telemetryClient );
     }
 }

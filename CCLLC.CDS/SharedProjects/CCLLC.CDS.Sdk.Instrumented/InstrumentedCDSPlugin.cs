@@ -14,8 +14,8 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Telemetry.Sink;
 
     /// <summary>
-    /// Base plugin class for plugins using <see cref="IEnhancedPlugin"/> functionality with telemetry logging outside 
-    /// of Dynamics 365. For external telemetry use <see cref="InstrumentedPluginBase"/>."/>
+    /// Base plugin class for plugins using <see cref="ICDSPlugin"/> functionality with telemetry logging outside 
+    /// of Dynamics 365.
     /// </summary>
     public abstract class InstrumentedCDSPlugin : CDSPlugin, IInstrumenetedCDSPlugin
     {
@@ -28,7 +28,7 @@ namespace CCLLC.CDS.Sdk
         public virtual ITelemetrySink TelemetrySink { get; private set; }
         
         /// <summary>
-        /// Constructor for <see cref="InstrumentedPluginBase"/>.
+        /// Constructor for <see cref="InstrumentedCDSPlugin"/>.
         /// </summary>
         /// <param name="unsecureConfig"></param>
         /// <param name="secureConfig"></param>
@@ -77,20 +77,21 @@ namespace CCLLC.CDS.Sdk
         public bool TrackExecutionPerformance { get; set; }
 
         /// <summary>
-        /// Flag to force flushing the telemetry sink buffer after handler execution completes.
+        /// Flag to force flushing the telemetry sink buffer after handler execution completes. Rather than
+        /// wait for the telemetry sink timer to fire. 
         /// </summary>
         public bool FlushTelemetryAfterExecution { get; set; }
 
         /// <summary>
         /// Telemetry Sink that gathers and transmits telemetry.
         /// </summary>
-        /// <param name="localContext"></param>
+        /// <param name="cdsExecutionContext"></param>
         /// <returns></returns>
-        public virtual bool ConfigureTelemetrySink(ICDSPluginExecutionContext processContext)
+        public virtual bool ConfigureTelemetrySink(ICDSPluginExecutionContext cdsExecutionContext)
         {
-            if (processContext != null)
+            if (cdsExecutionContext != null)
             {
-                var key = processContext.Settings.GetValue<string>("Telemetry.InstrumentationKey");
+                var key = cdsExecutionContext.Settings.GetValue<string>("Telemetry.InstrumentationKey");
                
                 if (!string.IsNullOrEmpty(key))
                 {
@@ -168,18 +169,18 @@ namespace CCLLC.CDS.Sdk
                     {
                         var factory = Container.Resolve<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>();
 
-                        using (var processContext = factory.CreateProcessContext(executionContext, serviceProvider, this.Container, telemetryClient))
+                        using (var cdsExecutionContext = factory.CreateCDSExecutionContext(executionContext, serviceProvider, this.Container, telemetryClient))
                         {
                             if (!TelemetrySink.IsConfigured)
                             {
-                                TelemetrySink.OnConfigure = () => { return this.ConfigureTelemetrySink(processContext); };
+                                TelemetrySink.OnConfigure = () => { return this.ConfigureTelemetrySink(cdsExecutionContext); };
                             }
 
                             foreach (var handler in matchingHandlers)
                             {
                                 try
                                 {
-                                    handler.PluginAction.Invoke(processContext);
+                                    handler.PluginAction.Invoke(cdsExecutionContext);
                                 }
                                 catch (InvalidPluginExecutionException ex)
                                 {

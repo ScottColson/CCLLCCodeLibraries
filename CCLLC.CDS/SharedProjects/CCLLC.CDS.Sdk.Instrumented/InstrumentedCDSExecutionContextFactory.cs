@@ -7,12 +7,12 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Telemetry;
 
     public class InstrumentedCDSExecutionContextFactory : IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>
-    {             
-       
-
-        public IInstrumentedCDSPluginExecutionContext CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, IComponentTelemetryClient telemetryClient)
+    {  
+        public IInstrumentedCDSPluginExecutionContext CreateCDSExecutionContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, IComponentTelemetryClient telemetryClient)
         {
             return new InstrumentedCDSPluginExecutionContext(serviceProvider, container, executionContext as IPluginExecutionContext, telemetryClient);
         }
+
+       
     }
 }

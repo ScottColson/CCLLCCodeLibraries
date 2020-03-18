@@ -19,6 +19,6 @@ namespace CCLLC.CDS.Sdk
         /// <param name="container"></param>
         /// <param name="runAs"></param>
         /// <returns></returns>
-        T CreateProcessContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, eRunAs runAs = eRunAs.User);
+        T CreateCDSExecutionContext(IExecutionContext executionContext, IServiceProvider serviceProvider, IIocContainer container, eRunAs runAs = eRunAs.User);
     }
 }
