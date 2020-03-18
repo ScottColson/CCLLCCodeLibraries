@@ -50,7 +50,7 @@ The default implementations are based on System.Net DataContracts.
 - CCLLC.Core.RestClient: A standardized implementation for using POCO objects to interact with 
 REST based web services.
 
-- [CCLLC.Core.ProcessModel](/docs/CCLLC.Core.ProcessModel.md) : A standardized, data agnostic, execution context model for creating 
+- [CCLLC.Core.ProcessModel](/CCLLC.Core.ProcessModel.md) : A standardized, data agnostic, execution context model for creating 
 processes independently of the platform that will ultimately host the process. Building to 
 this model makes it easy to move business logic between different process implementation platforms
 (e.g. CDS plugin or Azure Function.)
