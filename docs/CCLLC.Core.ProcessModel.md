@@ -16,6 +16,16 @@ connectors" that define the requests sent to the data layer.
 data system. The data layer responds with objects based on data model interfaces rather than
 specific entities.
 
+###### Dependencies
+
+- [CCLLC.Core.IocContainer](/CCLLC.Core.IocContainer.md)
+
+###### Nuget Packages
+
+- [Assembly - CCLLC.Core.ProcessModel](https://www.nuget.org/packages/CCLLC.Core.ProcessModel/)
+- [Source Code - CCLLC.Core.ProcessModel.Sources](https://www.nuget.org/packages/CCLLC.Core.ProcessModel.Sources/)
+
+
 # Why Should I Do This?
 
 For someone like me, whose career evolved around SQL Server, Microsoft CRM, and now CDS and 

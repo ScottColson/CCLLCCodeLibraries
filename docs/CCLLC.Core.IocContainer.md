@@ -3,6 +3,13 @@
 The IoCContainer is a lightweight container implementation that supports 
 constructor [dependency injection](https://stackify.com/dependency-injection-c-sharp/). 
 
+###### Nuget Packages
+
+- [Assembly - CCLLC.Core.IoCContainer](https://www.nuget.org/packages/CCLLC.Core.IoCContainer/)
+- [Source Code - CCLLC.Core.IocContainer.Sources](https://www.nuget.org/packages/CCLLC.Core.IocContainer.Sources/)
+
+
+
 The _CCLLC.Core.IReadOnlyIocContainer_ interface provides a _Resolve\<T>()_ method that searches
 the container for a registered implementation for the interface type _T_ and then returns that implementation
 with all constructor dependencies created and injected.

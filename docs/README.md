@@ -35,9 +35,9 @@ through inheritance:
 used within process to inject dependencies. Using a container simplifies maintenance and 
 extensibility of any created processes.
 
-- CCLLC.Core.Encryption: A standardized encryption implementation. 
+- [CCLLC.Core.Encryption](/CCLLC.Core.Encryption.md): A simple SHA256 encryption implementation. 
 
-- CCLLC.Core.Net: A standardized implementation for building HTTP web requests. This module 
+- [CCLLC.Core.Net](/CCLLC.Core.Net.md): A simplified implementation for building HTTP web requests. This module 
 provides an interface and implementation that wraps the System.Net HttpWebRequest which 
 results in code that can be unit tested because the web request execution process can be mocked. 
 
@@ -58,7 +58,7 @@ this model makes it easy to move business logic between different process implem
 The **CCLLC.CDS** solution provides the following components that provide Power Apps/Common Data 
 Service platform specific implementations of the **CCLLC.Core.ProcessModel** and related extensions.
 
-- CCLLC.CDS.Sdk: Provides a standardized plugin development framework implementation based on 
+- [CCLLC.CDS.Sdk](/CCLLC.CDS.Sdk.md) : Provides a standardized plugin development framework implementation based on 
 CCLLC.Core interfaces. This allows any process created against the CCLLC.Core.Process model 
 to operate as a CDS plugin component.
 
