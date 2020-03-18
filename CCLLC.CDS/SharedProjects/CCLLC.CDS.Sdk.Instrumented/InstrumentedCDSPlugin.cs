@@ -83,6 +83,13 @@ namespace CCLLC.CDS.Sdk
         public bool FlushTelemetryAfterExecution { get; set; }
 
         /// <summary>
+        /// Sets a the default key used when sending telemetry data from the plugin. Can be overridden using
+        /// setting "Telemetry.InstrumentationKey". If no instrumentation key is provided then telemetry
+        /// capture is disabled. 
+        /// </summary>
+        public string DefaultInstrumentationKey { get; set; }
+
+        /// <summary>
         /// Telemetry Sink that gathers and transmits telemetry.
         /// </summary>
         /// <param name="cdsExecutionContext"></param>
@@ -91,7 +98,7 @@ namespace CCLLC.CDS.Sdk
         {
             if (cdsExecutionContext != null)
             {
-                var key = cdsExecutionContext.Settings.GetValue<string>("Telemetry.InstrumentationKey");
+                var key = cdsExecutionContext.Settings.GetValue<string>("Telemetry.InstrumentationKey",this.DefaultInstrumentationKey);
                
                 if (!string.IsNullOrEmpty(key))
                 {
