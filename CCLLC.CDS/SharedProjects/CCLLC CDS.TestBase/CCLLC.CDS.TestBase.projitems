@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3c48daf6-1a77-485a-9d54-ecad7bdac509</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCLLC.CDS.TestBase</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ccllc_extensionsettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\EnhancedOrgService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\ExecutionContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\ExecutionSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\PluginExecutionContextBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\ServiceProviderBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address1_addresstypecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address1_shippingmethodcode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address2_addresstypecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address2_shippingmethodcode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ccllc_extensionsettingsState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ccllc_extensionsettings_statuscode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_accessmode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_address1_addresstypecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_address1_shippingmethodcode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_address2_addresstypecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_address2_shippingmethodcode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_caltype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_emailrouteraccessapproval.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_incomingemaildeliverymethod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_invitestatuscode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_outgoingemaildeliverymethod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_preferredaddresscode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_preferredemailcode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_preferredphonecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrganizationServicePreProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestMethodClassBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestServiceContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)spkl\earlybound.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)spkl.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Assumptions\" />
+  </ItemGroup>
+</Project>
