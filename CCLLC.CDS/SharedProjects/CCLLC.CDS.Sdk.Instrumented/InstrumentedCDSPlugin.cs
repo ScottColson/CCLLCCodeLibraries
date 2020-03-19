@@ -45,27 +45,32 @@ namespace CCLLC.CDS.Sdk
         {
             base.RegisterContainerServices();
 
+            // Dependencies for instrumented execution context.
             Container.Implement<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>().Using<InstrumentedCDSExecutionContextFactory>().AsSingleInstance();
             Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>();
             
-            //Telemetry issue event logger
+            // Telemetry issue event logger. Use inert logger for plugins because we don't have
+            // the required security level to interact directly with the event log.
             Container.Implement<IEventLogger>().Using<InertEventLogger>().AsSingleInstance();
 
-            //setup the objects needed to create/capture telemetry items.
+            // Setup the objects needed to create/capture telemetry items.
             Container.Implement<ITelemetryFactory>().Using<TelemetryFactory>().AsSingleInstance();  //ITelemetryFactory is used to create new telemetry items.
             Container.Implement<ITelemetryClientFactory>().Using<TelemetryClientFactory>().AsSingleInstance(); //ITelemetryClientFactory is used to create and configure a telemetry client.
             Container.Implement<ICDSTelemetryPropertyManager>().Using<ExecutionContextPropertyManager>().AsSingleInstance(); //Plugin property manager.
             Container.Implement<ITelemetryContext>().Using<TelemetryContext>(); //ITelemetryContext is a dependency for telemetry creation.
             Container.Implement<ITelemetryInitializerChain>().Using<TelemetryInitializerChain>(); //ITelemetryInitializerChain is a dependency for building a telemetry client.
 
-            //setup the objects needed to buffer and send telemetry to Application Insights.
+            // Setup the objects needed to buffer and send telemetry to Application Insights. TelemetrySink
+            // is setup as a single instance so that all plugins share the same sink. This may not always be
+            // desirable. If multiple TelemetrySinks are needed then overwrite this implementation in the 
+            // inheriting class.
             Container.Implement<ITelemetrySink>().Using<TelemetrySink>().AsSingleInstance(); //ITelemetrySink receives telemetry from one or more telemetry clients, processes it, buffers it, and transmits it.
             Container.Implement<ITelemetryProcessChain>().Using<TelemetryProcessChain>(); //ITelemetryProcessChain holds 0 or more processors that can modify the telemetry prior to transmission.
             Container.Implement<ITelemetryChannel>().Using<SyncMemoryChannel>(); //ITelemetryChannel provides the buffering and transmission. There is a sync and an asynch channel.
             Container.Implement<ITelemetryBuffer>().Using<TelemetryBuffer>(); //ITelemetryBuffer is used the channel
             Container.Implement<ITelemetryTransmitter>().Using<AITelemetryTransmitter>(); //ITelemetryTransmitter transmits a block of telemetry to Application Insights.
 
-            //setup the objects needed to serialize telemetry as part of transmission.
+            // Setup the objects needed to serialize telemetry as part of transmission.
             Container.Implement<IContextTagKeys>().Using<AIContextTagKeys>(); //Defines context tags expected by Application Insights.
             Container.Implement<ITelemetrySerializer>().Using<AITelemetrySerializer>(); //Serialize telemetry items into a compressed Gzip data.
             Container.Implement<IJsonWriterFactory>().Using<JsonWriterFactory>(); //Factory to create JSON converters as needed.

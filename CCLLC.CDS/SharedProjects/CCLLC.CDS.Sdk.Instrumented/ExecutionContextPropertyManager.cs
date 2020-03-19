@@ -3,8 +3,18 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
 {
+    /// <summary>
+    /// Creates a list of telemetry properties based on the execution context information. This data
+    /// provides additional meta information about logged telemetry.
+    /// </summary>
     public class ExecutionContextPropertyManager : ICDSTelemetryPropertyManager
     {
+        /// <summary>
+        /// Create properties
+        /// </summary>
+        /// <param name="className">The name of the calling class.</param>
+        /// <param name="executionContext">The current execution context.</param>
+        /// <returns></returns>
         public virtual IDictionary<string, string> CreatePropertiesDictionary(string className, IExecutionContext executionContext)
         {
             var properties =  new Dictionary<string, string>{

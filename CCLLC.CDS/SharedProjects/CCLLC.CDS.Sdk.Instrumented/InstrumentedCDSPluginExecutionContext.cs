@@ -7,6 +7,9 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core;
     using CCLLC.Telemetry;
 
+    /// <summary>
+    /// Extends the <see cref="InstrumentedCDSExecutionContext"/> with properties and methods that are plugin specific.
+    /// </summary>
     public class InstrumentedCDSPluginExecutionContext : InstrumentedCDSExecutionContext, IInstrumentedCDSPluginExecutionContext
     {
         public IServiceProvider ServiceProvider { get; private set; }
