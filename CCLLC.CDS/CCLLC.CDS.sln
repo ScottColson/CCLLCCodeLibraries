@@ -15,9 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.CDS.Sdk.Instrumented"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.Sdk.SearchUtilities", "SharedProjects\CCLLC.CDS.Sdk.SearchUtilities\CCLLC.CDS.Sdk.SearchUtilities.shproj", "{6BCF5AD7-E2EB-42E9-8317-FFDC2EC7FA11}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.TestBase", "SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.shproj", "{3C48DAF6-1A77-485A-9D54-ECAD7BDAC509}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.CDS.Testing", "LibraryProjects\CCLLC.CDS.Testing\CCLLC.CDS.Testing.csproj", "{B09CAB44-F47E-4994-AD63-EF9BF570F2D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6C2A8FFE-F1AA-42B0-ACEF-18DCEA3F8EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.CDS.Sdk.Instrumented.UnitTest", "LibraryProjects\CCLLC.CDS.Sdk.Instrumented.UnitTest\CCLLC.CDS.Sdk.Instrumented.UnitTest.csproj", "{27085B8E-2E31-4F96-804A-5C5AF9D4751D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{0ba50405-d933-4671-9c61-ae6c73ee8d5b}*SharedItemsImports = 13
+		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{27085b8e-2e31-4f96-804a-5c5af9d4751d}*SharedItemsImports = 4
+		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{3c48daf6-1a77-485a-9d54-ecad7bdac509}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk.SearchUtilities\CCLLC.CDS.Sdk.SearchUtilities.projitems*{6bcf5ad7-e2eb-42e9-8317-ffdc2ec7fa11}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{cf336bb7-87c9-4561-9549-293426baaa3e}*SharedItemsImports = 4
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{e064abff-1758-44a3-9772-4f9ba6e7283c}*SharedItemsImports = 4
@@ -36,6 +46,14 @@ Global
 		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E064ABFF-1758-44A3-9772-4F9BA6E7283C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09CAB44-F47E-4994-AD63-EF9BF570F2D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09CAB44-F47E-4994-AD63-EF9BF570F2D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09CAB44-F47E-4994-AD63-EF9BF570F2D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09CAB44-F47E-4994-AD63-EF9BF570F2D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27085B8E-2E31-4F96-804A-5C5AF9D4751D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27085B8E-2E31-4F96-804A-5C5AF9D4751D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27085B8E-2E31-4F96-804A-5C5AF9D4751D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27085B8E-2E31-4F96-804A-5C5AF9D4751D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +62,9 @@ Global
 		{EFE8BFFA-135D-4DCC-A5AF-74E255E4CBD7} = {7B680925-EC15-499F-A0C2-8F1188934504}
 		{0BA50405-D933-4671-9C61-AE6C73EE8D5B} = {7B680925-EC15-499F-A0C2-8F1188934504}
 		{6BCF5AD7-E2EB-42E9-8317-FFDC2EC7FA11} = {7B680925-EC15-499F-A0C2-8F1188934504}
+		{3C48DAF6-1A77-485A-9D54-ECAD7BDAC509} = {7B680925-EC15-499F-A0C2-8F1188934504}
+		{B09CAB44-F47E-4994-AD63-EF9BF570F2D0} = {6C2A8FFE-F1AA-42B0-ACEF-18DCEA3F8EEC}
+		{27085B8E-2E31-4F96-804A-5C5AF9D4751D} = {6C2A8FFE-F1AA-42B0-ACEF-18DCEA3F8EEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51E4204A-267B-47ED-9A95-067F7B4115FD}
