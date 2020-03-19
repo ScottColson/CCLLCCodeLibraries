@@ -59,7 +59,7 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<ITelemetryInitializerChain>().Using<TelemetryInitializerChain>(); //ITelemetryInitializerChain is a dependency for building a telemetry client.
 
             //setup the objects needed to buffer and send telemetry to Application Insights.
-            Container.Implement<ITelemetrySink>().Using<TelemetrySink>(); //ITelemetrySink receives telemetry from one or more telemetry clients, processes it, buffers it, and transmits it.
+            Container.Implement<ITelemetrySink>().Using<TelemetrySink>().AsSingleInstance(); //ITelemetrySink receives telemetry from one or more telemetry clients, processes it, buffers it, and transmits it.
             Container.Implement<ITelemetryProcessChain>().Using<TelemetryProcessChain>(); //ITelemetryProcessChain holds 0 or more processors that can modify the telemetry prior to transmission.
             Container.Implement<ITelemetryChannel>().Using<SyncMemoryChannel>(); //ITelemetryChannel provides the buffering and transmission. There is a sync and an asynch channel.
             Container.Implement<ITelemetryBuffer>().Using<TelemetryBuffer>(); //ITelemetryBuffer is used the channel
@@ -105,7 +105,7 @@ namespace CCLLC.CDS.Sdk
                 {
                     TelemetrySink.ProcessChain.TelemetryProcessors.Add(new SequencePropertyProcessor());
                     TelemetrySink.ProcessChain.TelemetryProcessors.Add(new InstrumentationKeyPropertyProcessor(key));
-                    
+                         
                     return true; //telemetry sink is configured.
                 }
             }
