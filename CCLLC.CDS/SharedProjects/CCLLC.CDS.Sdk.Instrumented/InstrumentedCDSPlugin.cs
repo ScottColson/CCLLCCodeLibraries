@@ -77,8 +77,9 @@ namespace CCLLC.CDS.Sdk
         public bool TrackExecutionPerformance { get; set; }
 
         /// <summary>
-        /// Flag to force flushing the telemetry sink buffer after handler execution completes. Rather than
-        /// wait for the telemetry sink timer to fire. 
+        /// Flag to force flushing the telemetry sink buffer after handler execution completes. When
+        /// set to false the <see cref="TelemetrySink"/> transmits every 30 seconds while the plugin
+        /// is in memory, every 1000 pieces of telemetry, and just prior to plugin disposal. 
         /// </summary>
         public bool FlushTelemetryAfterExecution { get; set; }
 
