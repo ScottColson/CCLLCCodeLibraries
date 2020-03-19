@@ -5,7 +5,7 @@ namespace CCLLC.CDS.Sdk
 {
     public class ExecutionContextPropertyManager : ICDSTelemetryPropertyManager
     {
-        public virtual IDictionary<string, string> CreateXrmPropertiesDictionary(string className, IExecutionContext executionContext)
+        public virtual IDictionary<string, string> CreatePropertiesDictionary(string className, IExecutionContext executionContext)
         {
             var properties =  new Dictionary<string, string>{
                 { "source", className },

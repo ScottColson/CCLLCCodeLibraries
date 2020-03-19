@@ -139,7 +139,7 @@ namespace CCLLC.CDS.Sdk
 
             //Create a dictionary of custom telemetry properties based on values in the execution context.
             var propertyManager = Container.Resolve<ICDSTelemetryPropertyManager>();
-            var properties = propertyManager.CreateXrmPropertiesDictionary(this.GetType().ToString(), executionContext);
+            var properties = propertyManager.CreatePropertiesDictionary(this.GetType().ToString(), executionContext);
             
             using (var telemetryClient = telemetryClientFactory.BuildClient(
                 this.GetType().ToString(),

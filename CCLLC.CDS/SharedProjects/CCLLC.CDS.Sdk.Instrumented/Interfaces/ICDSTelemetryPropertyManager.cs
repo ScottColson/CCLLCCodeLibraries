@@ -5,7 +5,7 @@ namespace CCLLC.CDS.Sdk
 {
     public interface ICDSTelemetryPropertyManager
     {
-        IDictionary<string, string> CreateXrmPropertiesDictionary(string className, IExecutionContext executionContext);
+        IDictionary<string, string> CreatePropertiesDictionary(string className, IExecutionContext executionContext);
 
     }
 }
