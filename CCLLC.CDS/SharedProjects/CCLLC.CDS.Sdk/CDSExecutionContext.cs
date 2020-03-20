@@ -7,6 +7,10 @@ namespace CCLLC.CDS.Sdk
     using CCLLC.Core;
     using CCLLC.Core.Net;
 
+    /// <summary>
+    /// Enhanced execution context that implements requirements of <see cref="Microsoft.Xrm.Sdk.IExecutionContext"/> and
+    /// <see cref="CCLLC.Core.IProcessExecutionContext"/> and adds additional functionality.
+    /// </summary>
     public abstract class CDSExecutionContext : ICDSExecutionContext 
     {
         protected internal CDSExecutionContext(IExecutionContext executionContext, IIocContainer container, eRunAs runAs = eRunAs.User)
@@ -15,11 +19,27 @@ namespace CCLLC.CDS.Sdk
             this.ExecutionContext = executionContext ?? throw new ArgumentNullException("executionContext");
         }
 
+        /// <summary>
+        /// Flag indicating whether the <see cref="OrganizationService"/> property returns an <see cref="IOrganizationService"/>
+        /// object that runs as the initiating user or the system.
+        /// </summary>
         public eRunAs RunAs { get; }
+
+        /// <summary>
+        /// Provides read only access to the <see cref="IIocContainer"/> in the plugin.
+        /// </summary>
         public IReadOnlyIocContainer Container { get; private set; }
+
+        /// <summary>
+        /// Protected getter for the wrapped <see cref="IExecutionContext"/> object.
+        /// </summary>
         protected IExecutionContext ExecutionContext { get; private set; }
 
         private IOrganizationServiceFactory organizationServiceFactory;
+
+        /// <summary>
+        /// Protected getter for the <see cref="IOrganizationServiceFactory"/> object.
+        /// </summary>
         protected IOrganizationServiceFactory OrganizationServiceFactory
         {
             get
@@ -33,6 +53,12 @@ namespace CCLLC.CDS.Sdk
         }
         
         private IEnhancedOrganizationService organizationService;
+
+        /// <summary>
+        /// Instance of <see cref="IEnhancedOrganizationService"/> that runs as the user identified by <see cref="UserId"/> except when
+        /// <see cref="RunAs"/> is set to <see cref="eRunAs.System"/> the <see cref="IEnhancedOrganizationService"/> object
+        /// will run as the System user.
+        /// </summary>
         public IEnhancedOrganizationService OrganizationService
         {
             get
@@ -41,7 +67,7 @@ namespace CCLLC.CDS.Sdk
 
                 if (organizationService == null)
                 {                   
-                    organizationService = new EnhancedOrganizationService(this.OrganizationServiceFactory.CreateOrganizationService(this.ExecutionContext.UserId));
+                    organizationService = new EnhancedOrganizationService(this.OrganizationServiceFactory.CreateOrganizationService(this.UserId));
                 }
 
                 return organizationService;
@@ -49,9 +75,10 @@ namespace CCLLC.CDS.Sdk
         }
 
         private IEnhancedOrganizationService elevatedOrganizationService = null;
+ 
         /// <summary>
-        /// Access to an organization service that runs with elevated access credentials under 
-        /// the SYSTEM user identity.
+        /// Instance of <see cref="IEnhancedOrganizationService"/> that runs as the
+        /// System user regardless of the setting of <see cref="RunAs"/>.
         /// </summary>
         public IEnhancedOrganizationService ElevatedOrganizationService
         {
@@ -66,7 +93,9 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
-
+        /// <summary>
+        /// Access to the <see cref="ICache"/> implementation.
+        /// </summary>
         ICache cache;
         public ICache Cache
         {
@@ -82,6 +111,11 @@ namespace CCLLC.CDS.Sdk
              
 
         private ISettingsProvider settings = null;
+
+        /// <summary>
+        /// Access to the <see cref="ISettingsProvider"/> for using name/value pair
+        /// settings.
+        /// </summary>
         public ISettingsProvider Settings
         {
             get
@@ -114,14 +148,16 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
-
+        /// <summary>
+        /// Returns the 'Target' entity passed in the <see cref="InputParameters"/> "Target" parameter. 
+        /// </summary>
         public Entity TargetEntity
         {
             get
             {
-                if (this.ExecutionContext.InputParameters.Contains("Target") && this.ExecutionContext.InputParameters["Target"] is Entity)
+                if (this.InputParameters.Contains("Target") && this.InputParameters["Target"] is Entity)
                 {
-                    return this.ExecutionContext.InputParameters["Target"] as Entity;                    
+                    return this.InputParameters["Target"] as Entity;                    
                 }
 
                 return null;
@@ -135,6 +171,9 @@ namespace CCLLC.CDS.Sdk
 
 
         private ITracingService tracingService;
+        /// <summary>
+        /// Access to the <see cref="ITracingService"/> for plugin or workflow execution.
+        /// </summary>
         public ITracingService TracingService
         {
             get
@@ -144,6 +183,11 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
+
+        /// <summary>
+        /// Access to the <see cref="IDataService"/> used by the <see cref="IProcessExecutionContext"/> 
+        /// when working with code based on the CCLLC.Core.ProcessModel framework.
+        /// </summary>
         public IDataService DataService => this.OrganizationService;
 
         public int Depth => this.ExecutionContext.Depth;
@@ -196,7 +240,15 @@ namespace CCLLC.CDS.Sdk
 
         public DateTime OperationCreatedOn => this.ExecutionContext.OperationCreatedOn;
 
-        private ICDSWebRequestFactory _webRequestFactory;      
+        private ICDSWebRequestFactory _webRequestFactory;    
+        
+        /// <summary>
+        /// Generates a disposable <see cref="IHttpWebRequest"/> object for simplified HTTP web request
+        /// access inside a plugin.
+        /// </summary>
+        /// <param name="address">The URI of the web resource.</param>
+        /// <param name="dependencyName">A dependence name to use for telemetry tracking.</param>
+        /// <returns></returns>
         public virtual IHttpWebRequest CreateWebRequest(Uri address, string dependencyName = null)
         {
             if(_webRequestFactory is null)
@@ -206,12 +258,19 @@ namespace CCLLC.CDS.Sdk
             return _webRequestFactory.CreateWebRequest(address, dependencyName);
         }
 
+        /// <summary>
+        /// Dispose of the execution context.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }     
 
+        /// <summary>
+        /// Protected disposal of context dependencies.
+        /// </summary>
+        /// <param name="dispossing"></param>
         protected virtual void Dispose(bool dispossing)
         {
             if (dispossing)
@@ -232,7 +291,12 @@ namespace CCLLC.CDS.Sdk
         protected abstract IOrganizationServiceFactory CreateOrganizationServiceFactory();
         protected abstract ITracingService CreateTracingService();
 
-        
+        /// <summary>
+        /// Creates an early bound organization request of type T based on data stored in the <see cref="InputParameters"/>
+        /// of the execution context.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public T CreateOrganizationRequest<T>() where T : Microsoft.Xrm.Sdk.OrganizationRequest, new()
         {
             var req = new T();
@@ -244,11 +308,27 @@ namespace CCLLC.CDS.Sdk
             return req;
         }
 
+        /// <summary>
+        /// Retrieves a single entity record as early bound type T,  containing all fields and optionally 
+        /// caches the record when a cacheTimeout value is provided.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="recordId"></param>
+        /// <param name="cacheTimeout"></param>
+        /// <returns></returns>
         public T GetRecord<T>(EntityReference recordId, TimeSpan? cacheTimeout = null) where T : Entity
         {
             return GetRecord<T>(recordId, null, cacheTimeout);
         }
 
+        /// <summary>
+        /// Retrieves a single entity record as early bound type T,  containing the specified fields and optionally 
+        /// caches the record when a cacheTimeout value is provided.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="recordId"></param>
+        /// <param name="cacheTimeout"></param>
+        /// <returns></returns>
         public T GetRecord<T>(EntityReference recordId, string[] columns = null, TimeSpan? cacheTimeout = null) where T : Entity
         {
             string cacheKey = null;
@@ -279,7 +359,7 @@ namespace CCLLC.CDS.Sdk
         }
 
         /// <summary>
-        /// Writes a message to the pluign trace log.
+        /// Writes a message to the plugin trace log.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="args"></param>

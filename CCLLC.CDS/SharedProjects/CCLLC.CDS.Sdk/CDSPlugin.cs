@@ -100,13 +100,13 @@ namespace CCLLC.CDS.Sdk
         /// </summary>
         public virtual void RegisterContainerServices()
         {              
-            Container.Implement<ICache>().Using<DefaultCache>();
-            Container.Implement<IEncryptionService>().Using<DefautlEncryptor>();
-            Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>();
-            Container.Implement<ISettingsProviderDataConnector>().Using<SettingsDataConnector>();           
-            Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>();
-            Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>();
-            Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>();            
+            Container.Implement<ICache>().Using<DefaultCache>().AsSingleInstance();
+            Container.Implement<IEncryptionService>().Using<DefautlEncryptor>().AsSingleInstance();
+            Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>().AsSingleInstance();
+            Container.Implement<ISettingsProviderDataConnector>().Using<SettingsDataConnector>().AsSingleInstance();           
+            Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>().AsSingleInstance();
+            Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>().AsSingleInstance();
+            Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>().AsSingleInstance();            
         }
 
         /// <summary>

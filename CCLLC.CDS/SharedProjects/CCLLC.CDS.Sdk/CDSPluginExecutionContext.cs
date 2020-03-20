@@ -57,8 +57,8 @@ namespace CCLLC.CDS.Sdk
             {
                 if (_preMergedTarget == null)
                 {
-                    _preMergedTarget = new Entity(base.ExecutionContext.PrimaryEntityName);
-                    _preMergedTarget.Id = base.ExecutionContext.PrimaryEntityId;
+                    _preMergedTarget = new Entity(PrimaryEntityName, PrimaryEntityId);
+                    
                     _preMergedTarget.MergeWith(this.TargetEntity);
                     _preMergedTarget.MergeWith(this.PreImage);
                 }
