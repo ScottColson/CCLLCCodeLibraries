@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\eRunAs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EnvironmentVariablesDataConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FluentQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ProcessModelExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageNames.cs" />
