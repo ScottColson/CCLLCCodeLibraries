@@ -10,7 +10,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
     /// <summary>
     /// Supports the Aliased Search Pattern. Examines query supplied in the plugin context query input.
     /// If query runs against an entity of type <typeparamref name="TParent"/> the generator will
-    /// modify the queary to incldue any matching records found in the the related alias table 
+    /// modify the query to include any matching records found in the related alias table 
     /// defined by <typeparamref name="TAlias"/>.
     /// </summary>
     /// <typeparam name="TParent"></typeparam>
@@ -30,7 +30,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// <summary>
         /// Supports the Aliased Search Pattern. Examines query supplied in the plugin context query input.
         /// If query runs against an entity of type <typeparamref name="TParent"/> the generator will
-        /// modify the queary to incldue any matching records found in the the related alias table 
+        /// modify the query to include any matching records found in the related alias table 
         /// defined by <typeparamref name="TAlias"/>.
         /// </summary>
         public AliasedSearchQueryGenerator(ICDSExecutionContext localContext)
@@ -118,7 +118,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
                     //modify the existing query to include all matching part ids.
                     expandSearchFilter(qry, matchingParentIds);
 
-                    //reset input parameter to qry incase passed in query started as fetchexpression
+                    //reset input parameter to qry in case passed in query started as fetchexpression
                     localContext.InputParameters["Query"] = qry;
                 }
             }
@@ -128,7 +128,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
 
        
         /// <summary>
-        /// Extacts the query from the plugin context Query input argument.
+        /// Extracts the query from the plugin context Query input argument.
         /// </summary>
         /// <param name="localContext"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         }
 
         /// <summary>
-        /// Examine the condition to see if it mathces the standard quick find condition signature.
+        /// Examine the condition to see if it matches the standard quick find condition signature.
         /// </summary>
         /// <param name="condition"></param>
         /// <returns></returns>
@@ -255,7 +255,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
 
         /// <summary>
         /// Attempts to generate a query to run against the alias entity table that search it
-        /// using the same search criteria used on the the parent table, mapping over search field 
+        /// using the same search criteria used on the parent table, mapping over search field 
         /// names from the parent to the alias as needed.
         /// </summary>
         /// <param name="parentQuery"></param>
@@ -389,7 +389,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// true if the condition mapped.
         /// </summary>
         /// <param name="parentCondition">The condition from the contact query</param>
-        /// <param name="aliasCondition">The created condtion for the customer alias query.</param>
+        /// <param name="aliasCondition">The created condition for the customer alias query.</param>
         /// <returns></returns>
         private bool tryGenerateAliasCondition(ConditionExpression parentCondition, out ConditionExpression aliasCondition)
         {
@@ -414,14 +414,14 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
          
 
         /// <summary>
-        /// Modifies the filter criteria of the passsed in query with an OR clause
+        /// Modifies the filter criteria of the passed in query with an OR clause
         /// that will match any passed in entity reference.
         /// </summary>
         /// <param name="baseQuery"></param>
         /// <param name="matchingAliasedRecordIds"></param>
         public void expandSearchFilter(QueryExpression baseQuery, List<EntityReference> matchingAliasedRecordIds)
         {
-            //generate a new filter expression to match any partent record id in the matching list
+            //generate a new filter expression to match any parent record id in the matching list
             var matchingFilter = new FilterExpression
             {
                 FilterOperator = LogicalOperator.Or
@@ -438,8 +438,8 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
             var baseFilter = baseQuery.Criteria;
             clearQuickFindFlags(baseFilter);
 
-            // combine the modifed base filter and the aliased record matching filter in an overarching
-            // or filter so that the resulting query will return anything that would have origionally been
+            // combine the modified base filter and the aliased record matching filter in an overarching
+            // or filter so that the resulting query will return anything that would have originally been
             // found in addition to any records identified by the alias record search.
             baseQuery.Criteria = new FilterExpression
             {
