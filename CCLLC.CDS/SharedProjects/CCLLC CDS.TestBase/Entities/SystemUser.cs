@@ -2464,74 +2464,146 @@ namespace TestProxy
 		}
 		
 		/// <summary>
-		/// 1:N lk_ccllc_extensionsettings_createdby
+		/// 1:N lk_environmentvariabledefinition_createdby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ccllc_extensionsettings_createdby")]
-		public System.Collections.Generic.IEnumerable<TestProxy.ccllc_extensionsettings> lk_ccllc_extensionsettings_createdby
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_createdby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableDefinition> lk_environmentvariabledefinition_createdby
 		{
 			get
 			{
-				return this.GetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_createdby", null);
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdby", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("lk_ccllc_extensionsettings_createdby");
-				this.SetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_createdby", null, value);
-				this.OnPropertyChanged("lk_ccllc_extensionsettings_createdby");
+				this.OnPropertyChanging("lk_environmentvariabledefinition_createdby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_createdby");
 			}
 		}
 		
 		/// <summary>
-		/// 1:N lk_ccllc_extensionsettings_createdonbehalfby
+		/// 1:N lk_environmentvariabledefinition_createdonbehalfby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ccllc_extensionsettings_createdonbehalfby")]
-		public System.Collections.Generic.IEnumerable<TestProxy.ccllc_extensionsettings> lk_ccllc_extensionsettings_createdonbehalfby
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableDefinition> lk_environmentvariabledefinition_createdonbehalfby
 		{
 			get
 			{
-				return this.GetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_createdonbehalfby", null);
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdonbehalfby", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("lk_ccllc_extensionsettings_createdonbehalfby");
-				this.SetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_createdonbehalfby", null, value);
-				this.OnPropertyChanged("lk_ccllc_extensionsettings_createdonbehalfby");
+				this.OnPropertyChanging("lk_environmentvariabledefinition_createdonbehalfby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_createdonbehalfby");
 			}
 		}
 		
 		/// <summary>
-		/// 1:N lk_ccllc_extensionsettings_modifiedby
+		/// 1:N lk_environmentvariabledefinition_modifiedby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ccllc_extensionsettings_modifiedby")]
-		public System.Collections.Generic.IEnumerable<TestProxy.ccllc_extensionsettings> lk_ccllc_extensionsettings_modifiedby
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_modifiedby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableDefinition> lk_environmentvariabledefinition_modifiedby
 		{
 			get
 			{
-				return this.GetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_modifiedby", null);
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedby", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("lk_ccllc_extensionsettings_modifiedby");
-				this.SetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_modifiedby", null, value);
-				this.OnPropertyChanged("lk_ccllc_extensionsettings_modifiedby");
+				this.OnPropertyChanging("lk_environmentvariabledefinition_modifiedby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_modifiedby");
 			}
 		}
 		
 		/// <summary>
-		/// 1:N lk_ccllc_extensionsettings_modifiedonbehalfby
+		/// 1:N lk_environmentvariabledefinition_modifiedonbehalfby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_ccllc_extensionsettings_modifiedonbehalfby")]
-		public System.Collections.Generic.IEnumerable<TestProxy.ccllc_extensionsettings> lk_ccllc_extensionsettings_modifiedonbehalfby
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariabledefinition_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableDefinition> lk_environmentvariabledefinition_modifiedonbehalfby
 		{
 			get
 			{
-				return this.GetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_modifiedonbehalfby", null);
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedonbehalfby", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("lk_ccllc_extensionsettings_modifiedonbehalfby");
-				this.SetRelatedEntities<TestProxy.ccllc_extensionsettings>("lk_ccllc_extensionsettings_modifiedonbehalfby", null, value);
-				this.OnPropertyChanged("lk_ccllc_extensionsettings_modifiedonbehalfby");
+				this.OnPropertyChanging("lk_environmentvariabledefinition_modifiedonbehalfby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("lk_environmentvariabledefinition_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariabledefinition_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_createdby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableValue> lk_environmentvariablevalue_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_createdby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_createdby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableValue> lk_environmentvariablevalue_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_createdonbehalfby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_modifiedby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableValue> lk_environmentvariablevalue_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_modifiedby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_environmentvariablevalue_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_environmentvariablevalue_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableValue> lk_environmentvariablevalue_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_environmentvariablevalue_modifiedonbehalfby");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableValue>("lk_environmentvariablevalue_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_environmentvariablevalue_modifiedonbehalfby");
 			}
 		}
 		
@@ -2608,20 +2680,38 @@ namespace TestProxy
 		}
 		
 		/// <summary>
-		/// 1:N user_ccllc_extensionsettings
+		/// 1:N user_environmentvariabledefinition
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_ccllc_extensionsettings")]
-		public System.Collections.Generic.IEnumerable<TestProxy.ccllc_extensionsettings> user_ccllc_extensionsettings
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_environmentvariabledefinition")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableDefinition> user_environmentvariabledefinition
 		{
 			get
 			{
-				return this.GetRelatedEntities<TestProxy.ccllc_extensionsettings>("user_ccllc_extensionsettings", null);
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("user_environmentvariabledefinition", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("user_ccllc_extensionsettings");
-				this.SetRelatedEntities<TestProxy.ccllc_extensionsettings>("user_ccllc_extensionsettings", null, value);
-				this.OnPropertyChanged("user_ccllc_extensionsettings");
+				this.OnPropertyChanging("user_environmentvariabledefinition");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("user_environmentvariabledefinition", null, value);
+				this.OnPropertyChanged("user_environmentvariabledefinition");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N user_environmentvariablevalue
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_environmentvariablevalue")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableValue> user_environmentvariablevalue
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableValue>("user_environmentvariablevalue", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("user_environmentvariablevalue");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableValue>("user_environmentvariablevalue", null, value);
+				this.OnPropertyChanged("user_environmentvariablevalue");
 			}
 		}
 		

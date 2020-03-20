@@ -1,4 +1,0 @@
-12:40:35 PM	CrmSvcUtil : CRM Service Utility [Version 9.0.0.9154]
-12:56:28 PM	CrmSvcUtil : CRM Service Utility [Version 9.0.0.9154]
-5:42:32 PM	CrmSvcUtil : CRM Service Utility [Version 9.0.0.9154]
-9:32:17 AM	CrmSvcUtil : CRM Service Utility [Version 9.0.0.9154]

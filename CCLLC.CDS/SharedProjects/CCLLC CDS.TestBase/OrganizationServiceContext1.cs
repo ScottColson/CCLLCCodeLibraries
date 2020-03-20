@@ -25,13 +25,24 @@ namespace TestProxy
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="TestProxy.ccllc_extensionsettings"/> entities.
+		/// Gets a binding to the set of all <see cref="TestProxy.EnvironmentVariableDefinition"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<TestProxy.ccllc_extensionsettings> ccllc_extensionsettingsSet
+		public System.Linq.IQueryable<TestProxy.EnvironmentVariableDefinition> EnvironmentVariableDefinitionSet
 		{
 			get
 			{
-				return this.CreateQuery<TestProxy.ccllc_extensionsettings>();
+				return this.CreateQuery<TestProxy.EnvironmentVariableDefinition>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="TestProxy.EnvironmentVariableValue"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<TestProxy.EnvironmentVariableValue> EnvironmentVariableValueSet
+		{
+			get
+			{
+				return this.CreateQuery<TestProxy.EnvironmentVariableValue>();
 			}
 		}
 		

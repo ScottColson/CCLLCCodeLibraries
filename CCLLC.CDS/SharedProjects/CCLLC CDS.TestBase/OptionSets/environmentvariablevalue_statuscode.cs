@@ -4,13 +4,13 @@ namespace TestProxy
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
-	public enum field_security_permission_type
+	public enum environmentvariablevalue_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NotAllowed = 0,
+		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Allowed = 4,
+		Inactive = 2,
 	}
 }

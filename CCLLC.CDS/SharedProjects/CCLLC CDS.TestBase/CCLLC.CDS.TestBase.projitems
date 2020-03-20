@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\ccllc_extensionsettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EnvironmentVariableDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\EnvironmentVariableValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\EnhancedOrgService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\ExecutionContext.cs" />
@@ -24,8 +25,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address1_shippingmethodcode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address2_addresstypecode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\businessunit_address2_shippingmethodcode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ccllc_extensionsettingsState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\ccllc_extensionsettings_statuscode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\componentstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\componenttype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\EnvironmentVariableDefinitionState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\environmentvariabledefinition_statuscode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\environmentvariabledefinition_type.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\EnvironmentVariableValueState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OptionSets\environmentvariablevalue_statuscode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_accessmode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_address1_addresstypecode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OptionSets\systemuser_address1_shippingmethodcode.cs" />

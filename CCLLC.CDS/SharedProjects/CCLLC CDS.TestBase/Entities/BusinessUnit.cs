@@ -1393,20 +1393,38 @@ namespace TestProxy
 		}
 		
 		/// <summary>
-		/// 1:N business_unit_ccllc_extensionsettings
+		/// 1:N business_unit_environmentvariabledefinition
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_ccllc_extensionsettings")]
-		public System.Collections.Generic.IEnumerable<TestProxy.ccllc_extensionsettings> business_unit_ccllc_extensionsettings
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_environmentvariabledefinition")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableDefinition> business_unit_environmentvariabledefinition
 		{
 			get
 			{
-				return this.GetRelatedEntities<TestProxy.ccllc_extensionsettings>("business_unit_ccllc_extensionsettings", null);
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("business_unit_environmentvariabledefinition", null);
 			}
 			set
 			{
-				this.OnPropertyChanging("business_unit_ccllc_extensionsettings");
-				this.SetRelatedEntities<TestProxy.ccllc_extensionsettings>("business_unit_ccllc_extensionsettings", null, value);
-				this.OnPropertyChanged("business_unit_ccllc_extensionsettings");
+				this.OnPropertyChanging("business_unit_environmentvariabledefinition");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableDefinition>("business_unit_environmentvariabledefinition", null, value);
+				this.OnPropertyChanged("business_unit_environmentvariabledefinition");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N business_unit_environmentvariablevalue
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_environmentvariablevalue")]
+		public System.Collections.Generic.IEnumerable<TestProxy.EnvironmentVariableValue> business_unit_environmentvariablevalue
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.EnvironmentVariableValue>("business_unit_environmentvariablevalue", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("business_unit_environmentvariablevalue");
+				this.SetRelatedEntities<TestProxy.EnvironmentVariableValue>("business_unit_environmentvariablevalue", null, value);
+				this.OnPropertyChanged("business_unit_environmentvariablevalue");
 			}
 		}
 		

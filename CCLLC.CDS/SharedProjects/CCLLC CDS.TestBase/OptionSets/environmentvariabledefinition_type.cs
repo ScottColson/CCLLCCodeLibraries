@@ -4,25 +4,22 @@ namespace TestProxy
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
-	public enum photo_resolution
+	public enum environmentvariabledefinition_type
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		DeviceDefault = 0,
+		String = 100000000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_640x480 = 1,
+		Number = 100000001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1024x768 = 2,
+		Boolean = 100000002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1600x1200 = 3,
+		JSON = 100000003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_2048x1536 = 4,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_2592x1936 = 5,
+		Connectionreference = 100000004,
 	}
 }

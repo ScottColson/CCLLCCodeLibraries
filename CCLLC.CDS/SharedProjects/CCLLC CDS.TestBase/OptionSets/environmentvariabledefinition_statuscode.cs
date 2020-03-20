@@ -4,13 +4,13 @@ namespace TestProxy
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
-	public enum workflow_runas
+	public enum environmentvariabledefinition_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Owner = 0,
+		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CallingUser = 1,
+		Inactive = 2,
 	}
 }
