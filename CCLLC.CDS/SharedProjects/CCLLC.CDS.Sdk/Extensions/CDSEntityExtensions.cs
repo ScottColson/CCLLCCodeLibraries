@@ -40,33 +40,26 @@ namespace CCLLC.CDS.Sdk
         /// <returns></returns>
         public static T GetValue<T>(this Entity Target, string Key, T DefaultValue = default(T))
         {
-            if (!Target.Contains(Key))
+            if (!Target.Contains(Key) || Target[Key] is null)
             {
                 return DefaultValue;
             }
-            else if (Target[Key] == null)
-            {
-                return DefaultValue;
-            }
-            else
-            {
-                return Target.GetAttributeValue<T>(Key);
-            }
+            
+            return Target.GetAttributeValue<T>(Key);
+            
         }
 
 
         public static T GetAliasedValue<T>(this Entity Target, string EntityAlias, string FieldName, T DefaultValue)
         {
             string key = string.Format("{0}.{1}", EntityAlias, FieldName);
-            if (!Target.Contains(key))
+            if (!Target.Contains(key) || Target[key] is null)
             {
                 return DefaultValue;
             }
-            else
-            {
-                AliasedValue value = Target.GetAttributeValue<AliasedValue>(key);
-                return (T)value.Value;
-            }
+
+            AliasedValue value = Target.GetAttributeValue<AliasedValue>(key);
+            return (T)value.Value;
         }
 
 
@@ -106,29 +99,6 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
-        public static void SetValue(this Entity target, string attributeName, object value)
-        {
-            if (target.Attributes.Contains(attributeName))
-            {
-                target.Attributes[attributeName] = value;
-            }
-            else
-            {
-                target.Attributes.Add(attributeName, value);
-            }
-        }
-
-        public static void SetValue<T>(this Entity target, string attributeName, T value)
-        {
-            if (target.Attributes.Contains(attributeName))
-            {
-                target.Attributes[attributeName] = value;
-            }
-            else
-            {
-                target.Attributes.Add(attributeName, value);
-            }
-        }       
     }
 }
 
