@@ -254,9 +254,10 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         }
 
         /// <summary>
-        /// Attempts to generate a query to run against the alias entity table that search it
-        /// using the same search criteria used on the parent table, mapping over search field 
-        /// names from the parent to the alias as needed.
+        /// Attempts to generate a query to run against the alias entity to search it
+        /// using the same search criteria used on the parent table. The search field names from
+        /// the parent entity query are mapped over to corresponding field names on the  
+        /// alias entity as needed.
         /// </summary>
         /// <param name="parentQuery"></param>
         /// <param name="aliasQuery"></param>
@@ -274,7 +275,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
                         EntityName = aliasEntityName,
                         Distinct = true,
                         TopCount = aliasRecordLimit,
-                        ColumnSet = new ColumnSet(linkingAttributeName),  //return only th linking attribute
+                        ColumnSet = new ColumnSet(linkingAttributeName),  //return only the linking attribute
                         Criteria = new FilterExpression //use the mapped filter with an additional filter to only get active records
                         {
                             FilterOperator = LogicalOperator.And,
@@ -415,7 +416,9 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
 
         /// <summary>
         /// Modifies the filter criteria of the passed in query with an OR clause
-        /// that will match any passed in entity reference.
+        /// that will match any passed in entity reference. This causes the query return
+        /// all record found through the alias queries and also any records that match
+        /// the original parent entity search.
         /// </summary>
         /// <param name="baseQuery"></param>
         /// <param name="matchingAliasedRecordIds"></param>
