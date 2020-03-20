@@ -19,7 +19,7 @@ namespace CCLLC.Core
             {
                 foreach(var setting in settings)
                 {
-                    Settings.Add(setting);
+                    Settings.Add(setting.Key.ToLower(),setting.Value);
                 }     
             }           
         }
