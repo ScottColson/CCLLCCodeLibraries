@@ -9,12 +9,12 @@ namespace CCLLC.CDS.Sdk
     /// Provides access to settings stored in the ccllc_extensionsettings entity. Also handles decryption
     /// of any encrypted values in that entity. 
     /// </summary>
-    public class SettingsDataConnector : ISettingsProviderDataConnector
+    public class ExtensionSettingsDataConnector : ISettingsProviderDataConnector
     {
         private IEncryptionService EncryptionService { get; }
         private readonly string EncryptionKey = "7a5a64brEgaceqenuyegac7era3Ape6aWatrewegeka94waqegayathudrebuc7t";
 
-        public SettingsDataConnector(IEncryptionService encryptionService)
+        public ExtensionSettingsDataConnector(IEncryptionService encryptionService)
         {
             EncryptionService = encryptionService;
         }

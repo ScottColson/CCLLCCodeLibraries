@@ -15,7 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FluentQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ProcessModelExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageNames.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SettingsDataConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionSettingsDataConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlConfigurationResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlConfigurationResourceFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnhancedOrganizationService.cs" />

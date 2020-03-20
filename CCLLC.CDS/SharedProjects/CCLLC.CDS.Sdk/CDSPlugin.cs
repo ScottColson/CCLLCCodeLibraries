@@ -103,7 +103,7 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<ICache>().Using<DefaultCache>().AsSingleInstance();
             Container.Implement<IEncryptionService>().Using<DefautlEncryptor>().AsSingleInstance();
             Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>().AsSingleInstance();
-            Container.Implement<ISettingsProviderDataConnector>().Using<SettingsDataConnector>().AsSingleInstance();           
+            Container.Implement<ISettingsProviderDataConnector>().Using<ExtensionSettingsDataConnector>().AsSingleInstance();           
             Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>().AsSingleInstance();
             Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>().AsSingleInstance();
             Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>().AsSingleInstance();            
