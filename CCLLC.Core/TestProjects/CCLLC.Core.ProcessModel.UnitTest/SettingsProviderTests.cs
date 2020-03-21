@@ -17,6 +17,7 @@ namespace CCLLC.Core.ProcessModel.UnitTest
 
                 entries.Add("ENV1", "VALUE1");
                 entries.Add("ENV2", "VALUE2");
+                entries.Add("CCLLC.SettingsCacheTimeOut", "0");
 
                 return entries;
             }
@@ -75,9 +76,10 @@ namespace CCLLC.Core.ProcessModel.UnitTest
 
             var settings = factory.CreateSettingsProvider(executionContext);
 
-            Assert.AreEqual(2, settings.Count);
+            Assert.AreEqual(3, settings.Count);
             Assert.AreEqual("VALUE1", settings.GetValue<string>("ENV1"));
             Assert.AreEqual("VALUE1", settings.GetValue<string>("env1"));
+            Assert.AreEqual(TimeSpan.FromSeconds(0).Ticks, settings.GetValue<TimeSpan?>("CCLLC.SettingsCacheTimeOut").Value.Ticks);
            
 
         }

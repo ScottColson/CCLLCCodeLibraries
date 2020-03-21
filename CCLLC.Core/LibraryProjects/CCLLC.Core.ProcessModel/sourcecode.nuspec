@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.Core.ProcessModel.Sources</id>
-    <version>1.1.2-alpha</version>
+    <version>1.1.2-beta</version>
     <description>Provides basic context model for implementing business processes.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -13,6 +13,6 @@
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\ProcessModel\**\*.cs" target="content/App_Packages/CCLLC.Core.ProcessModel.Sources.1.1.2-alpha/" />
+    <file src="..\..\SharedProjects\ProcessModel\**\*.cs" target="content/App_Packages/CCLLC.Core.ProcessModel.Sources.1.1.2-beta/" />
   </files>
 </package>

@@ -73,7 +73,7 @@ namespace CCLLC.Core
                     int timeInSeconds = -1;
                     if (int.TryParse(value, out timeInSeconds))
                     {
-                        if (timeInSeconds > 0)
+                        if (timeInSeconds >= 0)
                         {
                             return (T)((object)TimeSpan.FromSeconds(timeInSeconds));
                         }
