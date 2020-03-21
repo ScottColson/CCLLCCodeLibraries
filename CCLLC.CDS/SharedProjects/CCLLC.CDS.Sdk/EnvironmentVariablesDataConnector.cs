@@ -12,7 +12,11 @@ namespace CCLLC.CDS.Sdk
     /// </summary>
     public class EnvironmentVariablesDataConnector : ISettingsProviderDataConnector
     {
-       // Minimum case early bound proxies
+        #region Proxies
+
+        [System.Runtime.Serialization.DataContractAttribute()]
+        [Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("environmentvariabledefinition")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
         class EnvironmentVariableDefinition : Microsoft.Xrm.Sdk.Entity
         {            
             public EnvironmentVariableDefinition() :
@@ -83,6 +87,9 @@ namespace CCLLC.CDS.Sdk
 
         }
 
+        [System.Runtime.Serialization.DataContractAttribute()]
+        [Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("environmentvariablevalue")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
         class EnvironmentVariableValue : Microsoft.Xrm.Sdk.Entity
         {            
             public EnvironmentVariableValue() :
@@ -160,6 +167,7 @@ namespace CCLLC.CDS.Sdk
             }
         }
 
+        #endregion Proxies
 
         public EnvironmentVariablesDataConnector() { }
 

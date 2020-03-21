@@ -37,16 +37,20 @@
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
 
-  <ItemGroup>
-    <PackageReference Include="CCLLC.Core.Encryption" Version="1.0.0" />
-    <PackageReference Include="CCLLC.Core.Net" Version="1.0.0" />
-    <PackageReference Include="CCLLC.Core.ProcessModel" Version="1.1.0" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies">
       <Version>9.0.2.20</Version>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CCLLC.Core.Encryption" Version="1.0.0" />
+    <PackageReference Include="CCLLC.Core.Net" Version="1.0.0" />
+    <PackageReference Include="CCLLC.Core.ProcessModel" Version="1.1.2-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Runtime.Caching" />
   </ItemGroup>
 </Project>
 

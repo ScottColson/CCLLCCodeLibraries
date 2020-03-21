@@ -6,16 +6,15 @@
     <SharedGUID>3c48daf6-1a77-485a-9d54-ecad7bdac509</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>CCLLC.CDS.TestBase</Import_RootNamespace>
+    <Import_RootNamespace>CCLLC.CDS.Test</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EnvVariableDefinitionBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builders\EnvVariableValueBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BusinessUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EnvironmentVariableDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\EnvironmentVariableValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\SystemUser.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\EnhancedOrgService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\ExecutionContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExecutionContext\ExecutionSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\CrmEnvironmentBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\EntityBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Builders\OrganizationServiceBuilder.cs" />

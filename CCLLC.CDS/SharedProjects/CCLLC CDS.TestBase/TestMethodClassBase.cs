@@ -16,10 +16,10 @@ namespace CCLLC.CDS.Test
 
         protected override IAgnosticServiceBuilder GetOrganizationServiceBuilder(IOrganizationService service) { return new Builders.OrganizationServiceBuilder(service); }
 
-        protected IProcessExecutionContext GetExecutionContext(IOrganizationService service)
-        {
-            return new CCLLC.CDS.Test.ExecutionContext.Context(service, this.Container);
-        }
+        //protected IProcessExecutionContext GetExecutionContext(IOrganizationService service)
+        //{
+        //    return new CCLLC.CDS.Test.ExecutionContext.Context(service, this.Container);
+        //}
 
         protected override void LoadConfigurationSettings()
         {

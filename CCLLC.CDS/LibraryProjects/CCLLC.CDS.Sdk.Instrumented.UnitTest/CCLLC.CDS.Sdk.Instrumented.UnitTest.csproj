@@ -39,6 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PluginSettingsProviderTests.cs" />
     <Compile Include="PluginTelemtryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CCLLC.Core.ProcessModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=506847acdbcda1d9, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CCLLC.Core.ProcessModel.1.1.0\lib\net462\CCLLC.Core.ProcessModel.dll</HintPath>
+      <HintPath>..\..\packages\CCLLC.Core.ProcessModel.1.1.2-beta\lib\net462\CCLLC.Core.ProcessModel.dll</HintPath>
     </Reference>
     <Reference Include="CCLLCCoreNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=506847acdbcda1d9, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CCLLC.Core.Net.1.0.0\lib\net462\CCLLCCoreNet.dll</HintPath>
