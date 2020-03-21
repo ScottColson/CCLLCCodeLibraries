@@ -17,13 +17,13 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.RestClient", "Sh
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.Serialization", "SharedProjects\Serialization\CCLLC.Core.Serialization.shproj", "{7526E378-7388-46F9-89F2-907FC39770F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Encryption", "LibraryProjects\CCLLC.Core.Encryption\CCLLC.Core.Encryption.csproj", "{12AF0208-F362-4A48-8576-E2FAD75E422E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Core.Encryption", "LibraryProjects\CCLLC.Core.Encryption\CCLLC.Core.Encryption.csproj", "{12AF0208-F362-4A48-8576-E2FAD75E422E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Core.IocContainer", "LibraryProjects\CCLLC.Core.IocContainer\CCLLC.Core.IocContainer.csproj", "{8AE70CE7-65E1-4117-BADE-A02E6023C1A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Net", "LibraryProjects\CCLLC.Core.Net\CCLLC.Core.Net.csproj", "{578FFA24-E037-4D00-976E-AB586068034A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Core.Net", "LibraryProjects\CCLLC.Core.Net\CCLLC.Core.Net.csproj", "{578FFA24-E037-4D00-976E-AB586068034A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.ProcessModel", "LibraryProjects\CCLLC.Core.ProcessModel\CCLLC.Core.ProcessModel.csproj", "{64980A0B-A879-4350-AFED-2176DCF81A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Core.ProcessModel", "LibraryProjects\CCLLC.Core.ProcessModel\CCLLC.Core.ProcessModel.csproj", "{64980A0B-A879-4350-AFED-2176DCF81A38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.RestClient", "LibraryProjects\CCLLC.Core.RestClient\CCLLC.Core.RestClient.csproj", "{519F6685-57B7-488D-8FA1-864FD46A38C4}"
 EndProject
@@ -35,11 +35,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.IocContainer.Uni
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.Core.Net.Instrumented", "SharedProjects\Net.Instrumented\CCLLC.Core.Net.Instrumented.shproj", "{B08019A1-92C2-4D37-A2B8-3A02F53CAAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.Net.Instrumented", "LibraryProjects\CCLLC.Core.Net.Instrumented\CCLLC.Core.Net.Instrumented.csproj", "{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Core.Net.Instrumented", "LibraryProjects\CCLLC.Core.Net.Instrumented\CCLLC.Core.Net.Instrumented.csproj", "{FE807C52-3CBE-4379-9EB9-33B28DF07DC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference Projects", "Reference Projects", "{A797E372-499D-4171-A1A3-13414D46DEDD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.Telemetry", "..\CCLLC.Telemetry\LibraryProjects\CCLLC.Telemetry\CCLLC.Telemetry.csproj", "{43635423-C56A-48FE-A2FF-7857F3625A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.Core.ProcessModel.UnitTest", "TestProjects\CCLLC.Core.ProcessModel.UnitTest\CCLLC.Core.ProcessModel.UnitTest.csproj", "{554278BF-71AF-4B5A-978C-2693967F4152}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -98,6 +100,10 @@ Global
 		{43635423-C56A-48FE-A2FF-7857F3625A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43635423-C56A-48FE-A2FF-7857F3625A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43635423-C56A-48FE-A2FF-7857F3625A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{554278BF-71AF-4B5A-978C-2693967F4152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554278BF-71AF-4B5A-978C-2693967F4152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554278BF-71AF-4B5A-978C-2693967F4152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554278BF-71AF-4B5A-978C-2693967F4152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +118,7 @@ Global
 		{11A33F69-0EB5-4BAA-80D4-0D8DCBB26890} = {499B06BC-0B19-461A-981F-66F6A58384BC}
 		{B08019A1-92C2-4D37-A2B8-3A02F53CAAC5} = {0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}
 		{43635423-C56A-48FE-A2FF-7857F3625A69} = {A797E372-499D-4171-A1A3-13414D46DEDD}
+		{554278BF-71AF-4B5A-978C-2693967F4152} = {499B06BC-0B19-461A-981F-66F6A58384BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C4E4BA9-D300-4FCC-B3D2-49C378AA5773}

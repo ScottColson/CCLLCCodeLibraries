@@ -6,8 +6,7 @@ namespace CCLLC.Core
     {
         private const string CACHE_KEY = "CCLLC.SettingsProviderFactory";
         private const string CACHE_TIMEOUT_SETTING = "CCLLC.SettingsCacheTimeOut";
-        private TimeSpan DEFAULT_TIMEOUT = TimeSpan.FromMinutes(15);
-
+       
         private ISettingsProviderDataConnector DataConnector { get; }
 
         public SettingsProviderFactory(ISettingsProviderDataConnector dataConnector)
@@ -15,9 +14,9 @@ namespace CCLLC.Core
             DataConnector = dataConnector;
         }
 
-        public ISettingsProvider CreateSettingsProvider(IProcessExecutionContext executionContext, TimeSpan? overrideCacheTimeout = null)
+        public ISettingsProvider CreateSettingsProvider(IProcessExecutionContext executionContext, bool useCache = true)
         {
-            if(executionContext.Cache != null && executionContext.Cache.Exists(CACHE_KEY))
+            if(useCache && executionContext.Cache != null && executionContext.Cache.Exists(CACHE_KEY))
             {
                 return executionContext.Cache.Get<ISettingsProvider>(CACHE_KEY);
             }
@@ -26,13 +25,14 @@ namespace CCLLC.Core
 
             var settingsProvider = new SettingsProvider(settings);
 
-            var cacheTimeout = (overrideCacheTimeout != null) 
-                ? overrideCacheTimeout.Value 
-                : settingsProvider.GetValue<TimeSpan?>(CACHE_TIMEOUT_SETTING, DEFAULT_TIMEOUT);
-
-            if(cacheTimeout != null)
+            if (useCache)
             {
-                executionContext.Cache.Add<ISettingsProvider>(CACHE_KEY, settingsProvider, cacheTimeout.Value);
+                var cacheTimeout = settingsProvider.GetValue<TimeSpan?>(CACHE_TIMEOUT_SETTING);
+
+                if (cacheTimeout != null && cacheTimeout.Value.Ticks != 0)
+                {
+                    executionContext.Cache.Add<ISettingsProvider>(CACHE_KEY, settingsProvider, cacheTimeout.Value);
+                }
             }
 
             return settingsProvider;
