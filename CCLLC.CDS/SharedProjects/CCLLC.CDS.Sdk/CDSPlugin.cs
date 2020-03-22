@@ -101,7 +101,6 @@ namespace CCLLC.CDS.Sdk
         public virtual void RegisterContainerServices()
         {              
             Container.Implement<ICache>().Using<DefaultCache>().AsSingleInstance();
-            Container.Implement<IEncryptionService>().Using<DefautlEncryptor>().AsSingleInstance();
             Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>().AsSingleInstance();
             Container.Implement<ISettingsProviderDataConnector>().Using<EnvironmentVariablesDataConnector>().AsSingleInstance();           
             Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>().AsSingleInstance();

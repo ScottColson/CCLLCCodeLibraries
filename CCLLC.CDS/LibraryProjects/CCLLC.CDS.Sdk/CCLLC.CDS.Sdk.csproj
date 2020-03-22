@@ -44,7 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CCLLC.Core.Encryption" Version="1.0.0" />
     <PackageReference Include="CCLLC.Core.Net" Version="1.0.0" />
     <PackageReference Include="CCLLC.Core.ProcessModel" Version="1.1.2-beta" />
   </ItemGroup>
