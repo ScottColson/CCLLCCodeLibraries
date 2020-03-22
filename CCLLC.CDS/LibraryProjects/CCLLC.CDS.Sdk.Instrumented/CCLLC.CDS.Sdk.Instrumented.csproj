@@ -15,9 +15,9 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLLC.CDS.Sdk.Instrumented.snk</AssemblyOriginatorKeyFile>
-    <Version>1.1.0-beta</Version>
+    <Version>1.1.2-beta</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insigits telemetry via CCLLC.Telemetry.</Description>
+    <Description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insights telemetry via CCLLC.Telemetry.</Description>
     <PackageId>CCLLC.CDS.Sdk.Instrumented</PackageId>
     <PackageTags></PackageTags>
     <Product>CCLLC.CDS.Sdk.Instrumented</Product>
@@ -39,8 +39,9 @@
   <Import Project="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems" Label="Shared" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
   <ItemGroup>
-    <PackageReference Include="CCLLC.CDS.Sdk" Version="1.1.0-charlie" />
+    <PackageReference Include="CCLLC.CDS.Sdk" Version="1.1.2-beta" />
     <PackageReference Include="CCLLC.Core.Net.Instrumented" Version="1.0.0" />
+    <PackageReference Include="CCLLC.Telemetry" Version="2.1.1" />
   </ItemGroup>
 
 </Project>
