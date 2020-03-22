@@ -15,7 +15,7 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLLC.CDS.Sdk.snk</AssemblyOriginatorKeyFile>
-    <Version>1.1.0-charlie</Version>
+    <Version>1.1.2-beta</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>CDS Plugin framework built on the Process Execution Model.</Description>
     <PackageId>CCLLC.CDS.Sdk</PackageId>
