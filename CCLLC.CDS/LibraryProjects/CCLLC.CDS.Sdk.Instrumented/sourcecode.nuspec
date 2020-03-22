@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.CDS.Sdk.Instrumented.Sources</id>
-    <version>1.1.2-beta</version>
+    <version>1.1.2-beta2</version>
     <description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insights telemetry via CCLLC.Telemetry.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -10,7 +10,7 @@
     <tags>Context</tags>
     <dependencies>
       <dependency id="CCLLC.CDS.Sdk.Sources" version="1.1.2-beta" />
-      <dependency id="CCLLC.Telemetry.Sources" version="2.2.1"/>
+      <dependency id="CCLLC.Telemetry.Sources" version="2.1.1"/>
       <dependency id="CCLLC.Core.Net.Instrumented.Sources" version="1.0.0" />
     </dependencies>
   </metadata>
