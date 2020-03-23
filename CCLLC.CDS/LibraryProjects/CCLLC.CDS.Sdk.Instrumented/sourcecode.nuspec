@@ -2,19 +2,21 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.CDS.Sdk.Instrumented.Sources</id>
-    <version>1.1.2-beta3</version>
+    <version>1.1.2</version>
     <description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insights telemetry via CCLLC.Telemetry.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>Context</tags>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
+    <tags>D365 CDS Plugin</tags>
     <dependencies>
-      <dependency id="CCLLC.CDS.Sdk.Sources" version="1.1.2-beta" />
-      <dependency id="CCLLC.Telemetry.Sources" version="2.1.1"/>
-      <dependency id="CCLLC.Core.Net.Instrumented.Sources" version="1.0.0" />
+      <dependency id="CCLLC.CDS.Sdk.Sources" version="1.1.2" />
+      <dependency id="CCLLC.Telemetry.Sources" version="2.1.2"/>
+      <dependency id="CCLLC.Core.Net.Instrumented.Sources" version="1.0.1" />
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Instrumented.Sources.1.1.2-beta/" />
+    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Instrumented.1.1.2/" />
   </files>
 </package>
