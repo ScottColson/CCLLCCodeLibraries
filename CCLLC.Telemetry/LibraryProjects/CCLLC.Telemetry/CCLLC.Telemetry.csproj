@@ -25,13 +25,13 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <AssemblyOriginatorKeyFile>CCLCC.Telemetry.snk</AssemblyOriginatorKeyFile>
-    <Version>2.1.1</Version>
+    <Version>2.1.2</Version>
     <Authors>Colson Code, LLC</Authors>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <Description>Provides basic telemetry creation and transmission services that are compatible with Microsoft Application Insights and also compatible with operation inside a sandboxed CDS plugin or workflow activity.</Description>
     <PackageId>CCLLC.Telemetry</PackageId>
     <Title>CCLLC.Telemetry</Title>
-    <PackageLicenseUrl>https://github.com/ScottColson/CCLLCCodeLibraries/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</PackageProjectUrl>
     <PackageTags>Analytics ApplicationInsights Telemetry</PackageTags>
   </PropertyGroup>
@@ -43,6 +43,7 @@
     <SignAssembly>true</SignAssembly>
     <FileVersion>2.0.0.0</FileVersion>
     <Product>CCLLC.Telemetry</Product>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Client\**" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Projects", "Shared Projects", "{3AA41C2B-989C-47FA-953E-3AE128AE8BAC}"
 EndProject
@@ -12,6 +12,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\Telemetry\CCLLC.Telemetry.projitems*{16b58a4f-311a-4c19-aee1-0b78b3fb12ce}*SharedItemsImports = 13
+		SharedProjects\Telemetry\CCLLC.Telemetry.projitems*{43635423-c56a-48fe-a2ff-7857f3625a69}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
