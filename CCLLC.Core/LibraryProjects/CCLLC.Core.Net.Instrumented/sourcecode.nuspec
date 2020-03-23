@@ -12,7 +12,7 @@
     <tags>HTTP WebRequest</tags>
     <dependencies>
       <dependency id="CCLLC.Core.Net.Sources" version="1.0.1" />
-      <dependency id="CCLLC.Telemetry.Sources" version="2.1.1" />
+      <dependency id="CCLLC.Telemetry.Sources" version="2.1.2" />
     </dependencies>
   </metadata>
   <files>   
