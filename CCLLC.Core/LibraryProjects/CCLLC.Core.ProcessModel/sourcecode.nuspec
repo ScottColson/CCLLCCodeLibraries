@@ -2,17 +2,19 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.Core.ProcessModel.Sources</id>
-    <version>1.1.2-beta</version>
+    <version>1.1.2</version>
     <description>Provides basic context model for implementing business processes.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>Context</tags>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
+    <tags>Process Context Model</tags>
     <dependencies>
-      <dependency id="CCLLC.Core.IocContainer.Sources" version="2.0.0" />      
+      <dependency id="CCLLC.Core.IocContainer.Sources" version="2.0.1" />      
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\ProcessModel\**\*.cs" target="content/App_Packages/CCLLC.Core.ProcessModel.Sources.1.1.2-beta/" />
+    <file src="..\..\SharedProjects\ProcessModel\**\*.cs" target="content/App_Packages/CCLLC.Core.ProcessModel.1.1.2/" />
   </files>
 </package>

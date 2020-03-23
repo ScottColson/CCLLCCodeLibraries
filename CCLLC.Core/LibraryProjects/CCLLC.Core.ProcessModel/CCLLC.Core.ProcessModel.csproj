@@ -14,7 +14,7 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLCCCoreProcessModel.snk</AssemblyOriginatorKeyFile>
-    <Version>1.1.2-beta</Version>
+    <Version>1.1.2</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>Provides a basic context model for implementing business processes.</Description>
     <PackageId>CCLLC.Core.ProcessModel</PackageId>
@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CCLLC.Core.IocContainer" Version="2.0.0" />
+    <PackageReference Include="CCLLC.Core.IocContainer" Version="2.0.1" />
   </ItemGroup>
  
 
