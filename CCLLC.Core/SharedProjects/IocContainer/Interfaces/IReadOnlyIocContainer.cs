@@ -2,11 +2,7 @@
 
 namespace CCLLC.Core
 {
-#if IOCBUILD
     public interface IReadOnlyIocContainer
-#else
-    internal interface IReadOnlyIocContainer
-#endif
     {
         /// <summary>
         /// Return an implementation for the desired contract interface.

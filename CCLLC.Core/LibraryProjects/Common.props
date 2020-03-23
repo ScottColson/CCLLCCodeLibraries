@@ -28,7 +28,7 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>  
     <IncludeSymbols>True</IncludeSymbols>
 	<Authors>Colson Code, LLC</Authors>
-    <PackageLicenseUrl>https://github.com/ScottColson/CCLLCCodeLibraries/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</PackageProjectUrl>
 	<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>

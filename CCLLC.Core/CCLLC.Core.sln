@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Projects", "Shared Projects", "{0BE60F20-8F4C-4BE7-92FA-FD5E1B46E8F4}"
 EndProject
@@ -46,18 +46,20 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\Net\CCLLC.Core.Net.projitems*{085a0eb9-d245-4af3-9d25-fb86df3f9b42}*SharedItemsImports = 13
-		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{12af0208-f362-4a48-8576-e2fad75e422e}*SharedItemsImports = 4
+		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{12af0208-f362-4a48-8576-e2fad75e422e}*SharedItemsImports = 5
+		..\CCLLC.Telemetry\SharedProjects\Telemetry\CCLLC.Telemetry.projitems*{43635423-c56a-48fe-a2ff-7857f3625a69}*SharedItemsImports = 5
 		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{443aaee4-450d-47ee-9d9c-94ad3edbaa78}*SharedItemsImports = 4
 		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{519f6685-57b7-488d-8fa1-864fd46a38c4}*SharedItemsImports = 4
-		SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 4
+		SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 5
 		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{614892e4-b856-477e-b510-7a6cd1dac9a7}*SharedItemsImports = 13
-		SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{64980a0b-a879-4350-afed-2176dcf81a38}*SharedItemsImports = 4
+		SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{64980a0b-a879-4350-afed-2176dcf81a38}*SharedItemsImports = 5
 		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{7526e378-7388-46f9-89f2-907fc39770f6}*SharedItemsImports = 13
+		SharedProjects\IocContainer\CCLLC.Core.IocContainer.projitems*{8ae70ce7-65e1-4117-bade-a02e6023c1a1}*SharedItemsImports = 5
 		SharedProjects\IocContainer\CCLLC.Core.IocContainer.projitems*{9bb1a0ab-3ac3-4a72-a487-22c8ce404ab2}*SharedItemsImports = 13
 		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{a1148225-6273-40ec-ab5b-b0daacd5c243}*SharedItemsImports = 13
 		SharedProjects\Net.Instrumented\CCLLC.Core.Net.Instrumented.projitems*{b08019a1-92c2-4d37-a2b8-3a02f53caac5}*SharedItemsImports = 13
 		SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{ecd9ff45-12aa-4d19-9691-d1c5051105ed}*SharedItemsImports = 13
-		SharedProjects\Net.Instrumented\CCLLC.Core.Net.Instrumented.projitems*{fe807c52-3cbe-4379-9eb9-33b28df07dc1}*SharedItemsImports = 4
+		SharedProjects\Net.Instrumented\CCLLC.Core.Net.Instrumented.projitems*{fe807c52-3cbe-4379-9eb9-33b28df07dc1}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
