@@ -1,0 +1,4 @@
+12:44:04 PM	c 2019 Microsoft Corporation. All rights reserved
+12:44:04 PM	
+12:44:04 PM	Loading config from 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\packages\Microsoft.CrmSdk.CoreTools.9.1.0.38\content\bin\coretools\spkl.crmsvcutil.config'
+12:44:10 PM	Code written to E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\EarlyBoundTypes.cs.

@@ -1,0 +1,39 @@
+12:44:00 PM	Generating early bound types
+12:44:00 PM	Searching for plugin config in 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\..'
+12:44:02 PM	Using Config 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin'
+12:44:02 PM	Target E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\packages\spkl.1.0.234-beta\tools
+12:44:02 PM	Running E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\packages\spkl.1.0.234-beta\tools\..\..\Microsoft.CrmSdk.CoreTools.9.1.0.38\content\bin\coretools\CrmSvcUtil.exe /connstr:"AuthType=Office365;Url=https://orge83f40b7.api.crm.dynamics.com/XRMServices/2011/Organization.svc;Username=scott@colsoncode.com;Password=!42DHOxFEdO" /out:"E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\EarlyBoundTypes.cs" /namespace:"SamplePlugin" /serviceContextName:"XrmSvc" /GenerateActions:"True" /codewriterfilter:"spkl.CrmSvcUtilExtensions.FilteringService,spkl.CrmSvcUtilExtensions" /codewritermessagefilter:"spkl.CrmSvcUtilExtensions.MessageFilteringService,spkl.CrmSvcUtilExtensions" /codegenerationservice:"spkl.CrmSvcUtilExtensions.CodeGenerationService, spkl.CrmSvcUtilExtensions" /metadataproviderqueryservice:"spkl.CrmSvcUtilExtensions.MetadataProviderQueryService,spkl.CrmSvcUtilExtensions"
+12:44:10 PM	Processed 1 config(s)
+10:03:08 AM	Deploying Plugins
+10:03:08 AM	Searching for plugin config in 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\..'
+10:03:09 AM	Using Config 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin'
+10:03:09 AM	Checking assembly 'SamplePlugin.dll' for plugins
+10:03:09 AM	3 plugin(s) found!
+10:03:09 AM	Processed 1 config(s)
+10:10:45 AM	Deploying Plugins
+10:10:45 AM	Searching for plugin config in 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\..'
+10:10:45 AM	Using Config 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin'
+10:10:45 AM	Checking assembly 'SamplePlugin.dll' for plugins
+10:10:45 AM	3 plugin(s) found!
+10:10:48 AM	Registering Plugin 'SamplePlugin' from 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\bin\Debug\SamplePlugin.dll'
+10:11:40 AM	Deploying Plugins
+10:11:40 AM	Searching for plugin config in 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\..'
+10:11:41 AM	Using Config 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin'
+10:11:41 AM	Checking assembly 'SamplePlugin.dll' for plugins
+10:11:41 AM	3 plugin(s) found!
+10:11:42 AM	Registering Plugin 'SamplePlugin' from 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\bin\Debug\SamplePlugin.dll'
+10:11:44 AM	Registering Type 'SamplePlugin.PluginWithTelemetry'
+10:11:45 AM	Registering Step 'Sample PostOp Account Update'
+10:11:45 AM	Processed 1 config(s)
+10:14:48 AM	Deploying Plugins
+10:14:48 AM	Searching for plugin config in 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\..'
+10:14:48 AM	Using Config 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin'
+10:14:48 AM	Checking assembly 'SamplePlugin.dll' for plugins
+10:14:48 AM	3 plugin(s) found!
+10:14:49 AM	Checking for orphaned PluginTypes: 'SamplePlugin' 
+10:14:50 AM	Updating Plugin 'SamplePlugin' from 'E:\Repos\CCLLCCodeLibraries\CCLLC.CDS\Samples\SamplePlugin\bin\Debug\SamplePlugin.dll'
+10:14:51 AM	Updating Type 'SamplePlugin.PluginWithTelemetry'
+10:14:52 AM	Registering Step 'Sample PostOp Account Create'
+10:14:52 AM	Updating Step 'Sample PostOp Account Update'
+10:14:53 AM	Registering Step 'Sample PreOp Entity Update'
+10:14:53 AM	Processed 1 config(s)
