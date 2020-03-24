@@ -35,20 +35,13 @@ namespace CCLLC.CDS.Sdk
         public InstrumentedCDSPlugin(string unsecureConfig, string secureConfig) 
             : base(unsecureConfig, secureConfig)
         {
-            TelemetrySink = Container.Resolve<ITelemetrySink>();
-        }
 
-        /// <summary>
-        /// Registration of services used by base plugin.
-        /// </summary>
-        public override void RegisterContainerServices()
-        {
-            base.RegisterContainerServices();
+            #region Register supporting implementations in the container
 
             // Dependencies for instrumented execution context.
             Container.Implement<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>().Using<InstrumentedCDSExecutionContextFactory>().AsSingleInstance();
             Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>();
-            
+
             // Telemetry issue event logger. Use inert logger for plugins because we don't have
             // the required security level to interact directly with the event log.
             Container.Implement<IEventLogger>().Using<InertEventLogger>().AsSingleInstance();
@@ -74,7 +67,13 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<IContextTagKeys>().Using<AIContextTagKeys>(); //Defines context tags expected by Application Insights.
             Container.Implement<ITelemetrySerializer>().Using<AITelemetrySerializer>(); //Serialize telemetry items into a compressed Gzip data.
             Container.Implement<IJsonWriterFactory>().Using<JsonWriterFactory>(); //Factory to create JSON converters as needed.
+
+            #endregion
+
+
+            TelemetrySink = Container.Resolve<ITelemetrySink>();
         }
+              
 
         /// <summary>
         /// Flag to capture execution performance metrics using request telemetry.

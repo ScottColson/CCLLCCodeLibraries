@@ -12,7 +12,8 @@ namespace CCLLC.CDS.Sdk
 
     /// <summary>
     /// Base plugin class for plugins using <see cref="ICDSPlugin"/> functionality. This class does not provide
-    /// telemetry logging outside of the CDS platform. For external telemetry use the CCLLC.CDS.Sdk.Instrumented namespace.
+    /// telemetry logging outside of the CDS platform. For external telemetry use the CCLLC.CDS.Sdk.InstrumentedCDSPlugin
+    /// from the CCLLC.CDS.Sdk.Instrumented package.
     /// </summary>
     public abstract class CDSPlugin : IPlugin, ICDSPlugin
     {
@@ -71,8 +72,15 @@ namespace CCLLC.CDS.Sdk
         {
             this.UnsecureConfig = unsecureConfig;
             this.SecureConfig = secureConfig;
-            this.RunAs = eRunAs.User; 
-            RegisterContainerServices();
+            this.RunAs = eRunAs.User;
+
+            // Register supporting implementations in the container.
+            Container.Implement<ICache>().Using<DefaultCache>().AsSingleInstance();
+            Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>().AsSingleInstance();
+            Container.Implement<ISettingsProviderDataConnector>().Using<EnvironmentVariablesDataConnector>().AsSingleInstance();
+            Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>().AsSingleInstance();
+            Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>().AsSingleInstance();
+            Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>().AsSingleInstance();
         }
 
         /// <summary>
@@ -94,20 +102,7 @@ namespace CCLLC.CDS.Sdk
                 Id = id
             });
         }
-
-        /// <summary>
-        /// Registers all dependencies used by the Plugin. 
-        /// </summary>
-        public virtual void RegisterContainerServices()
-        {              
-            Container.Implement<ICache>().Using<DefaultCache>().AsSingleInstance();
-            Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>().AsSingleInstance();
-            Container.Implement<ISettingsProviderDataConnector>().Using<EnvironmentVariablesDataConnector>().AsSingleInstance();           
-            Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>().AsSingleInstance();
-            Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>().AsSingleInstance();
-            Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>().AsSingleInstance();            
-        }
-
+               
         /// <summary>
         /// Executes the plug-in.
         /// </summary>
