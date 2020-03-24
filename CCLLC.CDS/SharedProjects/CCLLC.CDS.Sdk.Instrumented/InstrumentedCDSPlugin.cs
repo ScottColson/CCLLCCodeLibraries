@@ -25,7 +25,7 @@ namespace CCLLC.CDS.Sdk
         /// <see cref="ITelemetry"/> items generated during the execution of the 
         /// Plugin.
         /// </summary>
-        public virtual ITelemetrySink TelemetrySink { get; private set; }
+        public virtual ITelemetrySink TelemetrySink { get; protected set; }
         
         /// <summary>
         /// Constructor for <see cref="InstrumentedCDSPlugin"/>.
@@ -34,10 +34,7 @@ namespace CCLLC.CDS.Sdk
         /// <param name="secureConfig"></param>
         public InstrumentedCDSPlugin(string unsecureConfig, string secureConfig) 
             : base(unsecureConfig, secureConfig)
-        {
-
-            #region Register supporting implementations in the container
-
+        {           
             // Dependencies for instrumented execution context.
             Container.Implement<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>().Using<InstrumentedCDSExecutionContextFactory>().AsSingleInstance();
             Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>();
@@ -68,10 +65,6 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<ITelemetrySerializer>().Using<AITelemetrySerializer>(); //Serialize telemetry items into a compressed Gzip data.
             Container.Implement<IJsonWriterFactory>().Using<JsonWriterFactory>(); //Factory to create JSON converters as needed.
 
-            #endregion
-
-
-            TelemetrySink = Container.Resolve<ITelemetrySink>();
         }
               
 
@@ -137,6 +130,18 @@ namespace CCLLC.CDS.Sdk
             tracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Entering {0}.Execute()", this.GetType().ToString()));
 
             var executionContext = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
+
+            // Setup sink if it has not already been done. This is done here to cover the possibility that an implementing class might override
+            // the default, non-static, property implementation.
+            var lockObj = new object();
+            lock (lockObj)
+            {
+                if (TelemetrySink is null)
+                {
+                    TelemetrySink = Container.Resolve<ITelemetrySink>();
+                }
+            }
+            
 
             var telemetryFactory = Container.Resolve<ITelemetryFactory>();
             var telemetryClientFactory = Container.Resolve<ITelemetryClientFactory>();

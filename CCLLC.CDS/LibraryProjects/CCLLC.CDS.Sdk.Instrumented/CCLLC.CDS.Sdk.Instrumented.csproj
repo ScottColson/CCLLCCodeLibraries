@@ -15,7 +15,7 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLLC.CDS.Sdk.Instrumented.snk</AssemblyOriginatorKeyFile>
-    <Version>1.1.3</Version>
+    <Version>1.1.4</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insights telemetry via CCLLC.Telemetry.</Description>
     <PackageId>CCLLC.CDS.Sdk.Instrumented</PackageId>

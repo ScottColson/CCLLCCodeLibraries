@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.CDS.Sdk.Instrumented.Sources</id>
-    <version>1.1.3</version>
+    <version>1.1.4</version>
     <description>CDS Plugin framework built on the CCLLC.Core.ProcessModel Process Execution Context with Microsoft Applications Insights telemetry via CCLLC.Telemetry.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Instrumented.1.1.3/" />
+    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk.Instrumented\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Instrumented.1.1.4/" />
   </files>
 </package>
