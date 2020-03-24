@@ -290,3 +290,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /CCLLC.CDS/SharedProjects/CCLLC CDS.TestBase/spkl/Log*.txt
+/CCLLC.CDS/Samples/SamplePlugin/App_Packages
+/CCLLC.CDS/Samples/SamplePlugin/Log*.txt
