@@ -15,7 +15,7 @@ namespace CCLLC.Core.RESTClient
             this.Configuration = configuration ?? throw new ArgumentNullException("restEndpoint cannot be null.");            
         }
 
-        public virtual Uri ApiEndpoint
+        public virtual IAPIEndpoint ApiEndpoint
         {
             get
             {

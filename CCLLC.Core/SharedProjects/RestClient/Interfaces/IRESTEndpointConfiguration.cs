@@ -4,7 +4,7 @@ namespace CCLLC.Core.RESTClient
 { 
     public interface IRESTEndpointConfiguration
     {
-        Uri Endpoint { get; }        
+        IAPIEndpoint Endpoint { get; }        
         string AccessToken { get; }
     }
 }

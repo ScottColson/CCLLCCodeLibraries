@@ -48,8 +48,8 @@ Global
 		SharedProjects\Net\CCLLC.Core.Net.projitems*{085a0eb9-d245-4af3-9d25-fb86df3f9b42}*SharedItemsImports = 13
 		SharedProjects\Encryption\CCLLC.Core.Encryption.projitems*{12af0208-f362-4a48-8576-e2fad75e422e}*SharedItemsImports = 5
 		..\CCLLC.Telemetry\SharedProjects\Telemetry\CCLLC.Telemetry.projitems*{43635423-c56a-48fe-a2ff-7857f3625a69}*SharedItemsImports = 5
-		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{443aaee4-450d-47ee-9d9c-94ad3edbaa78}*SharedItemsImports = 4
-		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{519f6685-57b7-488d-8fa1-864fd46a38c4}*SharedItemsImports = 4
+		SharedProjects\Serialization\CCLLC.Core.Serialization.projitems*{443aaee4-450d-47ee-9d9c-94ad3edbaa78}*SharedItemsImports = 5
+		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{519f6685-57b7-488d-8fa1-864fd46a38c4}*SharedItemsImports = 5
 		SharedProjects\Net\CCLLC.Core.Net.projitems*{578ffa24-e037-4d00-976e-ab586068034a}*SharedItemsImports = 5
 		SharedProjects\RestClient\CCLLC.Core.RestClient.projitems*{614892e4-b856-477e-b510-7a6cd1dac9a7}*SharedItemsImports = 13
 		SharedProjects\ProcessModel\CCLLC.Core.ProcessModel.projitems*{64980a0b-a879-4350-afed-2176dcf81a38}*SharedItemsImports = 5

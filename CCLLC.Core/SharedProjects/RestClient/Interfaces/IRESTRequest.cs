@@ -6,7 +6,7 @@ namespace CCLLC.Core.RESTClient
 
     public interface IRESTRequest
     {
-        Uri ApiEndpoint { get; }
+        IAPIEndpoint ApiEndpoint { get; }
         IRESTResponse Execute(IHttpWebRequest webRequest);
     }
 }
