@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="3.3.0">
+    <id>CCLLC.Core.Serialization.Sources</id>
+    <version>1.0.0-beta</version>
+    <description>Provides basic serialization services.</description>
+    <authors>Colson Code, LLC</authors>
+    <owners>Colson Code, LLC</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
+    <tags>Serialization</tags>
+  </metadata>
+  <files>   
+    <file src="..\..\SharedProjects\Serialization\**\*.cs" target="content/App_Packages/CCLLC.Core.Serialization.1.0.0-beta/" />
+  </files>
+</package>
