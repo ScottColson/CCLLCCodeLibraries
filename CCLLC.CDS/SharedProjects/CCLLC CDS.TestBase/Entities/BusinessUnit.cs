@@ -1393,6 +1393,42 @@ namespace TestProxy
 		}
 		
 		/// <summary>
+		/// 1:N business_unit_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_accounts")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> business_unit_accounts
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("business_unit_accounts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("business_unit_accounts");
+				this.SetRelatedEntities<TestProxy.Account>("business_unit_accounts", null, value);
+				this.OnPropertyChanged("business_unit_accounts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N business_unit_contacts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_contacts")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> business_unit_contacts
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("business_unit_contacts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("business_unit_contacts");
+				this.SetRelatedEntities<TestProxy.Contact>("business_unit_contacts", null, value);
+				this.OnPropertyChanged("business_unit_contacts");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N business_unit_environmentvariabledefinition
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("business_unit_environmentvariabledefinition")]

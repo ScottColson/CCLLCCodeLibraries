@@ -2392,6 +2392,96 @@ namespace TestProxy
 		}
 		
 		/// <summary>
+		/// 1:N contact_owning_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_owning_user")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> contact_owning_user
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("contact_owning_user", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("contact_owning_user");
+				this.SetRelatedEntities<TestProxy.Contact>("contact_owning_user", null, value);
+				this.OnPropertyChanged("contact_owning_user");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_accountbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_createdby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> lk_accountbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("lk_accountbase_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_createdby");
+				this.SetRelatedEntities<TestProxy.Account>("lk_accountbase_createdby", null, value);
+				this.OnPropertyChanged("lk_accountbase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_accountbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> lk_accountbase_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("lk_accountbase_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_createdonbehalfby");
+				this.SetRelatedEntities<TestProxy.Account>("lk_accountbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_accountbase_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_accountbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> lk_accountbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("lk_accountbase_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_modifiedby");
+				this.SetRelatedEntities<TestProxy.Account>("lk_accountbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_accountbase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_accountbase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> lk_accountbase_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("lk_accountbase_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_modifiedonbehalfby");
+				this.SetRelatedEntities<TestProxy.Account>("lk_accountbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_accountbase_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N lk_businessunit_createdonbehalfby
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_businessunit_createdonbehalfby")]
@@ -2460,6 +2550,78 @@ namespace TestProxy
 				this.OnPropertyChanging("lk_businessunitbase_modifiedby");
 				this.SetRelatedEntities<TestProxy.BusinessUnit>("lk_businessunitbase_modifiedby", null, value);
 				this.OnPropertyChanged("lk_businessunitbase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_contact_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contact_createdonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> lk_contact_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("lk_contact_createdonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_contact_createdonbehalfby");
+				this.SetRelatedEntities<TestProxy.Contact>("lk_contact_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_contact_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_contact_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contact_modifiedonbehalfby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> lk_contact_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("lk_contact_modifiedonbehalfby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_contact_modifiedonbehalfby");
+				this.SetRelatedEntities<TestProxy.Contact>("lk_contact_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_contact_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_contactbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contactbase_createdby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> lk_contactbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("lk_contactbase_createdby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_contactbase_createdby");
+				this.SetRelatedEntities<TestProxy.Contact>("lk_contactbase_createdby", null, value);
+				this.OnPropertyChanged("lk_contactbase_createdby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N lk_contactbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contactbase_modifiedby")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> lk_contactbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("lk_contactbase_modifiedby", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("lk_contactbase_modifiedby");
+				this.SetRelatedEntities<TestProxy.Contact>("lk_contactbase_modifiedby", null, value);
+				this.OnPropertyChanged("lk_contactbase_modifiedby");
 			}
 		}
 		
@@ -2676,6 +2838,60 @@ namespace TestProxy
 				this.OnPropertyChanging("Referencedlk_systemuserbase_modifiedby");
 				this.SetRelatedEntities<TestProxy.SystemUser>("lk_systemuserbase_modifiedby", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedlk_systemuserbase_modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N system_user_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_accounts")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> system_user_accounts
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("system_user_accounts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("system_user_accounts");
+				this.SetRelatedEntities<TestProxy.Account>("system_user_accounts", null, value);
+				this.OnPropertyChanged("system_user_accounts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N system_user_contacts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_contacts")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Contact> system_user_contacts
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Contact>("system_user_contacts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("system_user_contacts");
+				this.SetRelatedEntities<TestProxy.Contact>("system_user_contacts", null, value);
+				this.OnPropertyChanged("system_user_contacts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N user_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_accounts")]
+		public System.Collections.Generic.IEnumerable<TestProxy.Account> user_accounts
+		{
+			get
+			{
+				return this.GetRelatedEntities<TestProxy.Account>("user_accounts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("user_accounts");
+				this.SetRelatedEntities<TestProxy.Account>("user_accounts", null, value);
+				this.OnPropertyChanged("user_accounts");
 			}
 		}
 		

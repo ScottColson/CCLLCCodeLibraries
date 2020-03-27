@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>72dad66e-c987-4c63-8773-2a80b18e0d2d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCLLC.CDS.FluentQuery</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Condition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExecutableFluentQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\FluentQueryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TheLaBarExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\OrganizationServiceExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IExecutableFluentQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IQueryEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FluentQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Filterable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICondition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFilterable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IJoinedEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFluentQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IQueryExpressionBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JoinedEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryExpressionBuilder.cs" />
+  </ItemGroup>
+</Project>

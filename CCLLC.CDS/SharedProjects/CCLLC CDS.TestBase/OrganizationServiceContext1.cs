@@ -14,6 +14,17 @@ namespace TestProxy
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="TestProxy.Account"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<TestProxy.Account> AccountSet
+		{
+			get
+			{
+				return this.CreateQuery<TestProxy.Account>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="TestProxy.BusinessUnit"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<TestProxy.BusinessUnit> BusinessUnitSet
@@ -21,6 +32,17 @@ namespace TestProxy
 			get
 			{
 				return this.CreateQuery<TestProxy.BusinessUnit>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="TestProxy.Contact"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<TestProxy.Contact> ContactSet
+		{
+			get
+			{
+				return this.CreateQuery<TestProxy.Contact>();
 			}
 		}
 		
