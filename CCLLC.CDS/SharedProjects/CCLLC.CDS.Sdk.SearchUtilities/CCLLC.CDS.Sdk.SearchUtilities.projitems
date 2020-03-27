@@ -9,10 +9,10 @@
     <Import_RootNamespace>CCLLC.CDS.Sdk.Utilities.Search</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AliasedSearchQueryGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AliasedSearchQueryBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AndClause.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AndClauseWIthQuickFind.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IAliasedSearchQueryGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IAliasedSearchQueryBuilder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISearchQuerySignature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OrClause.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OrClauseWithQuickFind.cs" />

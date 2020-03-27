@@ -15,9 +15,10 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
     /// </summary>
     /// <typeparam name="TParent"></typeparam>
     /// <typeparam name="TAlias"></typeparam>
-    public class AliasedSearchQueryGenerator<TParent, TAlias> : IAliasedSearchQueryGenerator<TParent, TAlias> where TParent : Entity, new() where TAlias : Entity, new()
+    public class AliasedSearchQueryBuilder<TParent, TAlias> : IAliasedSearchQueryBuilder<TParent, TAlias>  where TParent : Entity, new() where TAlias : Entity, new()
     {
-        ICDSExecutionContext localContext = null;
+        private ICDSExecutionContext ExecutionContext { get; }
+
         string aliasEntityName = null;
         string linkingAttributeName = null;
         string parentEntityName = null;
@@ -33,9 +34,9 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// modify the query to include any matching records found in the related alias table 
         /// defined by <typeparamref name="TAlias"/>.
         /// </summary>
-        public AliasedSearchQueryGenerator(ICDSExecutionContext localContext)
+        public AliasedSearchQueryBuilder(ICDSExecutionContext executionContext)
         {
-            this.localContext = localContext;
+            ExecutionContext = executionContext;
 
             TParent parent = new TParent();
             parentEntityName = parent.LogicalName;
@@ -49,19 +50,19 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
 
         #region FluentMethods
 
-        public IAliasedSearchQueryGenerator<TParent, TAlias> WithLinkingAttribute(string attributeName)
+        public IAliasedSearchQueryBuilder<TParent, TAlias> WithLinkingAttribute(string attributeName)
         {
             linkingAttributeName = attributeName;
             return this;
         }
 
-        public IAliasedSearchQueryGenerator<TParent, TAlias> WithMappedSearchFields(IDictionary<string, string> mappedFields)
+        public IAliasedSearchQueryBuilder<TParent, TAlias> WithMappedSearchFields(IDictionary<string, string> mappedFields)
         {
             this.mappedSearchFields = mappedFields;
             return this;
         }
 
-        public IAliasedSearchQueryGenerator<TParent, TAlias> AddMappedSearchField(string parentFieldName, string aliasFieldName)
+        public IAliasedSearchQueryBuilder<TParent, TAlias> AddMappedSearchField(string parentFieldName, string aliasFieldName)
         {
             if (mappedSearchFields.ContainsKey(parentFieldName))
             {
@@ -76,7 +77,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
             return this;
         }
 
-        public IAliasedSearchQueryGenerator<TParent, TAlias> AddSearchSignature(ISearchQuerySignature signature)
+        public IAliasedSearchQueryBuilder<TParent, TAlias> AddSearchSignature(ISearchQuerySignature signature)
         {
             searchSignatures.Add(signature);
             return this;
@@ -86,7 +87,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
 
         public QueryExpression Build()
         {
-            var qry = extractQueryInputFromContext(localContext);
+            var qry = extractQueryInputFromContext();
 
             // return input query if it does not target the parent entity
             if (qry.EntityName != parentEntityName)
@@ -105,7 +106,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
             if (tryGenerateAliasQuery(qry, out aliasQuery))
             {
                 var matchingAliasRecords =
-                    localContext.OrganizationService.RetrieveMultiple(
+                    ExecutionContext.OrganizationService.RetrieveMultiple(
                         aliasQuery).Entities;
                
                 var matchingParentIds = matchingAliasRecords
@@ -119,7 +120,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
                     expandSearchFilter(qry, matchingParentIds);
 
                     //reset input parameter to qry in case passed in query started as fetchexpression
-                    localContext.InputParameters["Query"] = qry;
+                    ExecutionContext.InputParameters["Query"] = qry;
                 }
             }
 
@@ -130,11 +131,10 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
         /// <summary>
         /// Extracts the query from the plugin context Query input argument.
         /// </summary>
-        /// <param name="localContext"></param>
-        /// <returns></returns>
-        private QueryExpression extractQueryInputFromContext(ICDSExecutionContext localContext)
+       /// <returns></returns>
+        private QueryExpression extractQueryInputFromContext()
         {
-            var inputParameters = localContext.InputParameters;
+            var inputParameters = ExecutionContext.InputParameters;
 
             if (!inputParameters.Contains("Query") || inputParameters["Query"] == null)
             {
@@ -156,7 +156,7 @@ namespace CCLLC.CDS.Sdk.Utilities.Search
                     FetchXml = fetchExpression.Query
                 };
 
-                var conversionResponse = (FetchXmlToQueryExpressionResponse)localContext.OrganizationService.Execute(conversionRequest);
+                var conversionResponse = (FetchXmlToQueryExpressionResponse)ExecutionContext.OrganizationService.Execute(conversionRequest);
 
                 return conversionResponse.Query;
             }
