@@ -36,7 +36,7 @@ namespace CCLLC.CDS.FluentQuery
                     {
                         statusFilter.Conditions.Add(new ConditionExpression("statuscode", ConditionOperator.Equal, s));
                     }
-                    this.Filters.Add(statusFilter);
+                    this.Filters.Add(statusFilter.ToFilterExpression());
                 }
             }
             return this;
@@ -57,11 +57,12 @@ namespace CCLLC.CDS.FluentQuery
             return new Condition<IFilter<P>> (this, name);
         }
 
-        public override FilterExpression GetFilterExpression()
+        public FilterExpression ToFilterExpression()
         {
             var filterExpression = new FilterExpression(Operator);
-            AddConditions(ref filterExpression);
-            AddChildFilters(ref filterExpression);
+            filterExpression.Conditions.AddRange(Conditions);
+            filterExpression.Filters.AddRange(Filters);
+            
             return filterExpression;            
         }
        

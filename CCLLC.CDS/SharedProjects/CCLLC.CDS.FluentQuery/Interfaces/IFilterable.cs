@@ -6,9 +6,8 @@ namespace CCLLC.CDS.FluentQuery
 {
     public interface IFilterable
     {
-        IList<IFilter> Filters { get; }
+        IList<FilterExpression> Filters { get; }
         IList<ConditionExpression> Conditions { get; }
-        FilterExpression GetFilterExpression();
     }
 
 

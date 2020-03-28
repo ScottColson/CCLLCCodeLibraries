@@ -78,7 +78,7 @@ namespace CCLLC.CDS.FluentQuery
                 addConditionToFilter(conditionOperator, v, impliedOrFilter);
             }
 
-            Parent.Filters.Add(impliedOrFilter);
+            Parent.Filters.Add(impliedOrFilter.ToFilterExpression());
         }
 
         private void addConditionToFilter(ConditionOperator conditionOperator, object value, IFilter filter)

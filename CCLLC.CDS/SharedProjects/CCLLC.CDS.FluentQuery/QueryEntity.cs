@@ -68,14 +68,41 @@ namespace CCLLC.CDS.FluentQuery
             return this;
         }
 
-        public override FilterExpression GetFilterExpression()
+        public IQueryEntity<P, E> OrderByAsc(params string[] columns)
         {
-            if (Filters.Count == 0) return null;
+            if (columns != null)
+            {
+                foreach (var c in columns)
+                {
+                    OrderExpressions.Add(new OrderExpression(c, OrderType.Ascending));
+                }
+            }
 
-            if (Filters.Count == 1) return Filters[0].GetFilterExpression();
+            return this;
+        }
 
+        public IQueryEntity<P, E> OrderByDesc(params string[] columns)
+        {
+            if (columns != null)
+            {
+                foreach (var c in columns)
+                {
+                    OrderExpressions.Add(new OrderExpression(c, OrderType.Descending));
+                }
+            }
+
+            return this;
+        }
+
+        protected FilterExpression GetFilterExpression()
+        {
+            if (Filters.Count == 0) return new FilterExpression();
+
+            if (Filters.Count == 1) return Filters[0];
+
+            // Wrap multiple filters in an AND filter.
             var filterExpression = new FilterExpression(LogicalOperator.And);
-            AddChildFilters(ref filterExpression);
+            filterExpression.Filters.AddRange(Filters);
 
             return filterExpression;
         }
@@ -100,39 +127,13 @@ namespace CCLLC.CDS.FluentQuery
 
             return new ColumnSet(uniqueColumns.ToArray());
         }
-
-        
-
-        protected bool isSelectAllColumnSet(IList<string> columns)
+           
+        private bool isSelectAllColumnSet(IList<string> columns)
         {
             return (columns.Where(v => v.Equals("*")).FirstOrDefault() != null);
         }
                
 
-        public IQueryEntity<P, E> OrderByAsc(params string[] columns)
-        {
-            if(columns != null)
-            {
-                foreach(var c in columns)
-                {
-                    OrderExpressions.Add(new OrderExpression(c, OrderType.Ascending));
-                }
-            }
-
-            return this;
-        }
-
-        public IQueryEntity<P, E> OrderByDesc(params string[] columns)
-        {
-            if (columns != null)
-            {
-                foreach (var c in columns)
-                {
-                    OrderExpressions.Add(new OrderExpression(c, OrderType.Descending));
-                }
-            }
-
-            return this;
-        }
+        
     }
 }
