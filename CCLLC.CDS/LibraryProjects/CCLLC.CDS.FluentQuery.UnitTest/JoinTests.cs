@@ -86,5 +86,106 @@ namespace CCLLC.CDS.FluentQuery.UnitTest
 
         #endregion InnerJoin_Should_CreateLinkedEntity
 
+
+        #region Join_Should_SelectColumns
+
+        [TestMethod]
+        public void Test_Join_Should_SelectColumns()
+        {
+            new Join_Should_SelectColumns().Test();
+        }
+
+        private class Join_Should_SelectColumns : TestMethodClassBase
+        {
+           
+            protected override void Test(IOrganizationService service)
+            {
+                var qryExpression = new QueryExpressionBuilder<Account>()
+                    .Select(cols => new { cols.AccountNumber, cols.Name })
+                    .LeftJoin<Contact>("primarycontactid", "contactid", c => c
+                         .WithAlias("pc")
+                         .Select(cols => new { cols.FullName }))
+                    .Build();
+                               
+                var linkEntity = qryExpression.LinkEntities[0];
+                var columnSet = linkEntity.Columns;
+
+                Assert.AreEqual(1, columnSet.Columns.Count);
+                Assert.AreEqual("fullname", columnSet.Columns[0]);
+            }
+        }
+
+        #endregion Join_Should_SelectColumns
+
+
+        #region JoinWithWhere_Should_CreateLinkEntityFilter
+
+        [TestMethod]
+        public void Test_JoinWithWhere_Should_CreateLinkEntityFilter()
+        {
+            new JoinWithWhere_Should_CreateLinkEntityFilter().Test();
+        }
+
+        private class JoinWithWhere_Should_CreateLinkEntityFilter : TestMethodClassBase
+        {
+
+            protected override void Test(IOrganizationService service)
+            {
+                var qryExpression = new QueryExpressionBuilder<Account>()
+                     .Select(cols => new { cols.AccountNumber, cols.Name })
+                     .LeftJoin<Contact>("primarycontactid", "contactid", c => c
+                          .WithAlias("pc")
+                          .Select(cols => new { cols.FullName })
+                          .WhereAll(c1 => c1
+                            .IsActive()))
+                     .Build();
+
+                var linkEntity = qryExpression.LinkEntities[0];
+                var filter = linkEntity.LinkCriteria;
+
+                Assert.AreEqual(LogicalOperator.And, filter.FilterOperator);
+                Assert.AreEqual(1, filter.Conditions.Count);
+                Assert.AreEqual("statecode", filter.Conditions[0].AttributeName);
+            }
+        }
+
+        #endregion JoinWithWhere_Should_CreateLinkEntityFilter
+
+
+        #region NestedJoin_Should_CreateNestedLinkEntity
+
+        [TestMethod]
+        public void Test_NestedJoin_Should_CreateNestedLinkEntity()
+        {
+            new NestedJoin_Should_CreateNestedLinkEntity().Test();
+        }
+
+        private class NestedJoin_Should_CreateNestedLinkEntity : TestMethodClassBase
+        {
+           
+
+            protected override void Test(IOrganizationService service)
+            {
+                var qryExpression = new QueryExpressionBuilder<Account>()
+                    .Select(cols => new { cols.AccountNumber, cols.Name })
+                    .LeftJoin<Contact>("primarycontactid", "contactid", c => c
+                        .InnerJoin<SystemUser>("ownerid","systemuserid", u => u
+                            .WithAlias("owner")
+                            .Select(cols => new { cols.SystemUserId } )))
+                    .Build();
+
+                var linkEntity = qryExpression.LinkEntities[0];
+                linkEntity = linkEntity.LinkEntities[0];
+
+                Assert.AreEqual(JoinOperator.Inner, linkEntity.JoinOperator);
+                Assert.AreEqual("contact", linkEntity.LinkFromEntityName);
+                Assert.AreEqual("systemuser", linkEntity.LinkToEntityName);
+                Assert.AreEqual("ownerid", linkEntity.LinkFromAttributeName);
+                Assert.AreEqual("systemuserid", linkEntity.LinkToAttributeName);
+                Assert.AreEqual("owner", linkEntity.EntityAlias);
+            }
+        }
+
+        #endregion NestedJoin_Should_CreateNestedLinkEntity
     }
 }

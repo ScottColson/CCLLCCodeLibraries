@@ -33,11 +33,20 @@ namespace CCLLC.CDS.FluentQuery
             var relatedRecordType = new RE().LogicalName;
 
             var linkEntity = new LinkEntity(ParentEntity, RelatedEntity, ParentAttribute, RelatedAttribute, JoinOperator);
+           
             if (!string.IsNullOrEmpty(Alias))
             {
-                linkEntity.EntityAlias = Alias;
+                linkEntity.EntityAlias = Alias;               
             }
-            
+
+            linkEntity.Columns = GetColumnSet();
+            linkEntity.LinkCriteria = GetFilterExpression();
+
+            foreach (var l in GetLinkedEntities())
+            {
+                linkEntity.LinkEntities.Add(l);
+            }
+
             return linkEntity;
             
         }

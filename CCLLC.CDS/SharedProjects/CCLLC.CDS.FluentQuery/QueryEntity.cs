@@ -77,7 +77,7 @@ namespace CCLLC.CDS.FluentQuery
             return filterExpression;
         }
            
-        protected ColumnSet generateColumnSet()
+        protected ColumnSet GetColumnSet()
         {
             var uniqueColumns = new List<string>();
 

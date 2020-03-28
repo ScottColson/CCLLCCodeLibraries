@@ -33,7 +33,7 @@ namespace CCLLC.CDS.FluentQuery
 
             var qryExpression = new QueryExpression(baseRecord.LogicalName);
 
-            qryExpression.ColumnSet = generateColumnSet();
+            qryExpression.ColumnSet = GetColumnSet();
             qryExpression.Criteria = GetFilterExpression();
             qryExpression.LinkEntities.AddRange(GetLinkedEntities());
             return qryExpression;
