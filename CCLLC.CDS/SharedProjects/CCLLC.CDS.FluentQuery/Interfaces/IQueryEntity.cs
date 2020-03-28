@@ -23,5 +23,9 @@ namespace CCLLC.CDS.FluentQuery
         IQueryEntity<P, E> Select(Expression<Func<E, object>> anonymousTypeInitializer);
 
         IQueryEntity<P, E> SelectAll();
+
+        IQueryEntity<P, E> OrderByAsc(params string[] columns);
+
+        IQueryEntity<P, E> OrderByDesc(params string[] columns);
     }
 }

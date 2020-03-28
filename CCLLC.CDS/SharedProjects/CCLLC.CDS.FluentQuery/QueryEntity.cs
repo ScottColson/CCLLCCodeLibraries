@@ -11,6 +11,8 @@ namespace CCLLC.CDS.FluentQuery
     {   
         protected IList<IList<string>> Columnsets { get; }
         protected IList<IJoinedEntity> JoinedEntities { get; }
+        protected IList<OrderExpression> OrderExpressions { get; }
+
         private IQueryEntity<P,E> Parent { get; }
         protected string RecordType { get; }
 
@@ -19,6 +21,7 @@ namespace CCLLC.CDS.FluentQuery
             RecordType = new E().LogicalName;
             Columnsets = new List<IList<string>>();
             JoinedEntities = new List<IJoinedEntity>();
+            OrderExpressions = new List<OrderExpression>();
             this.Parent = this;
         }
 
@@ -98,6 +101,7 @@ namespace CCLLC.CDS.FluentQuery
             return new ColumnSet(uniqueColumns.ToArray());
         }
 
+        
 
         protected bool isSelectAllColumnSet(IList<string> columns)
         {
@@ -115,6 +119,30 @@ namespace CCLLC.CDS.FluentQuery
             return linkedEnttites;
         }
 
-       
+        public IQueryEntity<P, E> OrderByAsc(params string[] columns)
+        {
+            if(columns != null)
+            {
+                foreach(var c in columns)
+                {
+                    OrderExpressions.Add(new OrderExpression(c, OrderType.Ascending));
+                }
+            }
+
+            return this;
+        }
+
+        public IQueryEntity<P, E> OrderByDesc(params string[] columns)
+        {
+            if (columns != null)
+            {
+                foreach (var c in columns)
+                {
+                    OrderExpressions.Add(new OrderExpression(c, OrderType.Descending));
+                }
+            }
+
+            return this;
+        }
     }
 }

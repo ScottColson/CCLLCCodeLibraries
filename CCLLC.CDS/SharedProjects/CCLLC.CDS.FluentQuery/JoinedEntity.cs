@@ -41,11 +41,8 @@ namespace CCLLC.CDS.FluentQuery
 
             linkEntity.Columns = GetColumnSet();
             linkEntity.LinkCriteria = GetFilterExpression();
-
-            foreach (var l in GetLinkedEntities())
-            {
-                linkEntity.LinkEntities.Add(l);
-            }
+            linkEntity.LinkEntities.AddRange(GetLinkedEntities());
+            linkEntity.Orders.AddRange(OrderExpressions);
 
             return linkEntity;
             
