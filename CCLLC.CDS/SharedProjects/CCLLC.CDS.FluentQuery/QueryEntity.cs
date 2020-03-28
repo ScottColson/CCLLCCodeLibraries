@@ -7,30 +7,36 @@ using System.Linq;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public abstract class QueryEntity<P,E> : Filterable<IQueryEntity<P,E>>, IQueryEntity<P,E> where P : IQueryEntity where E : Entity
+    public abstract class QueryEntity<P,E> : Filterable<IQueryEntity<P,E>>, IQueryEntity<P,E> where P : IQueryEntity where E : Entity, new()
     {   
         protected IList<IList<string>> Columnsets { get; }
         protected IList<IJoinedEntity> JoinedEntities { get; }
         private IQueryEntity<P,E> Parent { get; }
+        protected string RecordType { get; }
 
         public QueryEntity(IQueryEntity parent) : base(null)
         {
+            RecordType = new E().LogicalName;
             Columnsets = new List<IList<string>>();
             JoinedEntities = new List<IJoinedEntity>();
             this.Parent = this;
         }
 
-        public IQueryEntity<P, E> LeftJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<P, E>> expression) where RE : Entity
+        public IQueryEntity<P, E> LeftJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<IQueryEntity<P, E>, RE>> expression) where RE : Entity, new()
         {
-            var joinEntity = new JoinedEntity<P, E>(JoinOperator.LeftOuter, this);
+            var relatedRecordType = new RE().LogicalName;
+
+            var joinEntity = new JoinedEntity<IQueryEntity<P, E>, RE>(JoinOperator.LeftOuter, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
             expression(joinEntity);
             JoinedEntities.Add(joinEntity);
             return this;
         }
 
-        public IQueryEntity<P, E> InnerJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<P, E>> expression) where RE : Entity
+        public IQueryEntity<P, E> InnerJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<IQueryEntity<P, E>, RE>> expression) where RE : Entity, new()
         {
-            var joinEntity = new JoinedEntity<P, E>(JoinOperator.Inner, this);
+            var relatedRecordType = new RE().LogicalName;
+
+            var joinEntity = new JoinedEntity<IQueryEntity<P,E>, RE>(JoinOperator.Inner, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
             expression(joinEntity);
             JoinedEntities.Add(joinEntity);
             return this;
@@ -70,7 +76,7 @@ namespace CCLLC.CDS.FluentQuery
 
             return filterExpression;
         }
-
+           
         protected ColumnSet generateColumnSet()
         {
             var uniqueColumns = new List<string>();
@@ -97,5 +103,18 @@ namespace CCLLC.CDS.FluentQuery
         {
             return (columns.Where(v => v.Equals("*")).FirstOrDefault() != null);
         }
+
+        public virtual IList<LinkEntity> GetLinkedEntities()
+        {
+            var linkedEnttites = new List<LinkEntity>();
+
+            foreach(var j in this.JoinedEntities)
+            {
+                linkedEnttites.Add(j.ToLinkEntity());
+            }
+            return linkedEnttites;
+        }
+
+       
     }
 }

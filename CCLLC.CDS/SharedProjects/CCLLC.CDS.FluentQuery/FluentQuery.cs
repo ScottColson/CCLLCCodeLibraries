@@ -35,6 +35,7 @@ namespace CCLLC.CDS.FluentQuery
 
             qryExpression.ColumnSet = generateColumnSet();
             qryExpression.Criteria = GetFilterExpression();
+            qryExpression.LinkEntities.AddRange(GetLinkedEntities());
             return qryExpression;
         }
 

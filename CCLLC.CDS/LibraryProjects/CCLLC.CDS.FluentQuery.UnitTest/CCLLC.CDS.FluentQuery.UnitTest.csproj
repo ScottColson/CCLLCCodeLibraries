@@ -118,6 +118,7 @@
     <Compile Include="SelectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FilterTests.cs" />
+    <Compile Include="JoinTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
