@@ -8,7 +8,6 @@ namespace CCLLC.CDS.FluentQuery
 {
     public interface IQueryEntity : IFilterable
     {
-        IList<LinkEntity> GetLinkedEntities();
     }
 
     public interface IQueryEntity<P,E> : IQueryEntity, IFilterable<IQueryEntity<P,E>> where P : IQueryEntity where E : Entity

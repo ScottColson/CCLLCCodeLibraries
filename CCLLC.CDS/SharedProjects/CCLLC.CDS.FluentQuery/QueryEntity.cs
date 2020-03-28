@@ -10,7 +10,7 @@ namespace CCLLC.CDS.FluentQuery
     public abstract class QueryEntity<P,E> : Filterable<IQueryEntity<P,E>>, IQueryEntity<P,E> where P : IQueryEntity where E : Entity, new()
     {   
         protected IList<IList<string>> Columnsets { get; }
-        protected IList<IJoinedEntity> JoinedEntities { get; }
+        protected IList<LinkEntity> LinkEntities { get; }
         protected IList<OrderExpression> OrderExpressions { get; }
 
         private IQueryEntity<P,E> Parent { get; }
@@ -20,7 +20,7 @@ namespace CCLLC.CDS.FluentQuery
         {
             RecordType = new E().LogicalName;
             Columnsets = new List<IList<string>>();
-            JoinedEntities = new List<IJoinedEntity>();
+            LinkEntities = new List<LinkEntity>();
             OrderExpressions = new List<OrderExpression>();
             this.Parent = this;
         }
@@ -31,7 +31,7 @@ namespace CCLLC.CDS.FluentQuery
 
             var joinEntity = new JoinedEntity<IQueryEntity<P, E>, RE>(JoinOperator.LeftOuter, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
             expression(joinEntity);
-            JoinedEntities.Add(joinEntity);
+            LinkEntities.Add(joinEntity.ToLinkEntity());
             return this;
         }
 
@@ -41,7 +41,7 @@ namespace CCLLC.CDS.FluentQuery
 
             var joinEntity = new JoinedEntity<IQueryEntity<P,E>, RE>(JoinOperator.Inner, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
             expression(joinEntity);
-            JoinedEntities.Add(joinEntity);
+            LinkEntities.Add(joinEntity.ToLinkEntity());
             return this;
         }        
 
@@ -107,17 +107,7 @@ namespace CCLLC.CDS.FluentQuery
         {
             return (columns.Where(v => v.Equals("*")).FirstOrDefault() != null);
         }
-
-        public virtual IList<LinkEntity> GetLinkedEntities()
-        {
-            var linkedEnttites = new List<LinkEntity>();
-
-            foreach(var j in this.JoinedEntities)
-            {
-                linkedEnttites.Add(j.ToLinkEntity());
-            }
-            return linkedEnttites;
-        }
+               
 
         public IQueryEntity<P, E> OrderByAsc(params string[] columns)
         {
