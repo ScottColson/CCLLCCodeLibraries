@@ -14,7 +14,7 @@ namespace CCLLC.CDS.Sdk
     ///   Daryl LaBar @ https://github.com/daryllabar/DLaB.Xrm/blob/master/DLaB.Xrm.Core/Extensions/Extensions.cs 
     /// </credit>
     /// </summary>
-    public static partial class TheLaBarExtensions
+    public static partial class Extensions
     {
         /// <summary>
         /// Creates an array of attribute names array from an Anonymous Type Initializer.

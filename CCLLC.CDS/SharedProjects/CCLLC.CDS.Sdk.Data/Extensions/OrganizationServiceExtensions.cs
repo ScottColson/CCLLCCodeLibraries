@@ -2,7 +2,7 @@
 
 namespace CCLLC.CDS.Sdk
 {
-    public static class OrganizationServiceExtensions
+    public static partial class Extensions
     {
         public static IExecutableFluentQuery<E> Query<E>(this IOrganizationService organizationService) where E : Entity, new()
         {
