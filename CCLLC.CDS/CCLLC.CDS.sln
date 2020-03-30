@@ -39,7 +39,7 @@ Global
 		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{27085b8e-2e31-4f96-804a-5c5af9d4751d}*SharedItemsImports = 4
 		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{33bad8b8-7c91-4a88-a96d-dab3a2490448}*SharedItemsImports = 4
 		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{3c48daf6-1a77-485a-9d54-ecad7bdac509}*SharedItemsImports = 13
-		SharedProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.projitems*{642d436f-0839-444f-8fd4-955205f98564}*SharedItemsImports = 4
+		SharedProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.projitems*{642d436f-0839-444f-8fd4-955205f98564}*SharedItemsImports = 5
 		SharedProjects\CCLLC.CDS.Sdk.SearchUtilities\CCLLC.CDS.Sdk.SearchUtilities.projitems*{6bcf5ad7-e2eb-42e9-8317-ffdc2ec7fa11}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.projitems*{8248fea5-b7de-42bb-ae95-495103e0d7c2}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{cf336bb7-87c9-4561-9549-293426baaa3e}*SharedItemsImports = 5
