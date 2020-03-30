@@ -7,7 +7,7 @@ namespace CCLLC.CDS.Sdk
     /// <summary>
     /// Extensions for the Microsoft.Xrm.Sdk Entity class to provide a set of common functions for manipulating Entity records.
     /// </summary>
-    public static class CDSEntityExtensions
+    public static partial class Extensions
     {   
         /// <summary>
         /// Checks the target for existence of any attribute contained in the provided array of attribute names and returns

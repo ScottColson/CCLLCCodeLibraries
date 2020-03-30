@@ -174,17 +174,17 @@ namespace CCLLC.CDS.Sdk
         public IReadOnlyDictionary<string, string> LoadSettings(IDataService dataService)
         {
             var orgService = dataService.ToOrgService();
-            
+
             // Load environment variable definitions
             var definitions = orgService.Query<EnvironmentVariableDefinition>()
-                .IncludeColumns(new string[] {"environmentvariabledefinitionid","displayname","defaultvalue"})
-                .Where(e => e.Attribute(a => a.Named("statecode").Is(ConditionOperator.Equal).To(0)))
+                .Select(cols => new { cols.EnvironmentVariableDefinitionId, cols.DisplayName, cols.DefaultValue })
+                .WhereAll(e => e.IsActive())
                 .RetrieveAll();
 
             // Load any override values
             var overrideValues = orgService.Query<EnvironmentVariableValue>()
-                .IncludeColumns(new string[] { "environmentvariabledefinitionid","value" })
-                .Where(e => e.Attribute(a => a.Named("statecode").Is(ConditionOperator.Equal).To(0)))
+                .Select(cols => new { cols.EnvironmentVariableDefinitionId, cols.Value })
+                .WhereAll(e => e.IsActive())
                 .RetrieveAll();
 
             // Build a dictionary 
