@@ -43,7 +43,12 @@ namespace CCLLC.CDS.Sdk
                 var result = OrganizationService.RetrieveMultiple(qryExpression);
                 moreRecords = result.MoreRecords;
                 var records = result.Entities.Select(e => e.ToEntity<E>());
-                allRecords.AddRange(records); 
+                allRecords.AddRange(records);
+
+                if (moreRecords)
+                {
+                    qryExpression.PageInfo.PagingCookie = result.PagingCookie;
+                }
             }          
 
             return allRecords;
