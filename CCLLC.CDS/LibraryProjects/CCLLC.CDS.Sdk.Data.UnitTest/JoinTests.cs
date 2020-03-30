@@ -26,7 +26,7 @@ namespace CCLLC.CDS.Sdk.UnitTest
                 var qryExpression = new QueryExpressionBuilder<Account>()
                      .Select(cols => new { cols.AccountNumber, cols.Name })
                      .LeftJoin<Contact>("primarycontactid", "contactid", c => c
-                          .WithAlias("pc")
+                          .With.Alias("pc")
                           .Select(cols => new { cols.FullName }))
                      .Build();
 
@@ -64,7 +64,7 @@ namespace CCLLC.CDS.Sdk.UnitTest
                 var qryExpression = new QueryExpressionBuilder<Account>()
                      .Select(cols => new { cols.AccountNumber, cols.Name })
                      .InnerJoin<Contact>("primarycontactid", "contactid", c => c
-                          .WithAlias("pc")
+                          .With.Alias("pc")
                           .Select(cols => new { cols.FullName }))
                      .Build();
 
@@ -103,7 +103,7 @@ namespace CCLLC.CDS.Sdk.UnitTest
                 var qryExpression = new QueryExpressionBuilder<Account>()
                     .Select(cols => new { cols.AccountNumber, cols.Name })
                     .LeftJoin<Contact>("primarycontactid", "contactid", c => c
-                         .WithAlias("pc")
+                         .With.Alias("pc")
                          .Select(cols => new { cols.FullName }))
                     .Build();
                                
@@ -134,7 +134,7 @@ namespace CCLLC.CDS.Sdk.UnitTest
                var qryExpression = new QueryExpressionBuilder<Account>()
                      .Select(cols => new { cols.AccountNumber, cols.Name })
                      .LeftJoin<Contact>("primarycontactid", "contactid", c => c
-                          .WithAlias("pc")
+                          .With.Alias("pc")
                           .Select(cols => new { cols.FullName })
                           .WhereAll(c1 => c1
                             .IsActive()
@@ -171,7 +171,7 @@ namespace CCLLC.CDS.Sdk.UnitTest
                     .Select(cols => new { cols.AccountNumber, cols.Name })
                     .LeftJoin<Contact>("primarycontactid", "contactid", c => c
                         .InnerJoin<SystemUser>("ownerid","systemuserid", u => u
-                            .WithAlias("owner")
+                            .With.Alias("owner")
                             .Select(cols => new { cols.SystemUserId } )))
                     .Build();
 

@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace CCLLC.CDS.Sdk
 {
-    public class JoinedEntity<P, E, RE> : QueryEntity<IJoinedEntity<P, E, RE>, RE>, IJoinedEntity<P, E, RE> where P : IQueryEntity<P, E> where E : Entity, new() where RE : Entity, new()
+    public class JoinedEntity<P, E, RE> : QueryEntity<IJoinedEntity<P, E, RE>, RE>, IJoinedEntity<P, E, RE>, IJoinedEntitySettings<P, E, RE> where P : IQueryEntity<P, E> where E : Entity, new() where RE : Entity, new()
     {
         protected string Alias { get; private set; }
         protected JoinOperator JoinOperator { get; }
@@ -15,6 +15,8 @@ namespace CCLLC.CDS.Sdk
         protected string RelatedEntity { get; }
         protected string RelatedAttribute { get; }
 
+        public IJoinedEntitySettings<P, E, RE> With => this;
+
         public JoinedEntity(JoinOperator joinOperator, string parentEntityName, string parentAttributeName, string relatedEntityName, string relatedAttributeName, IQueryEntity<P,E> parent) : base() 
         {
             this.JoinOperator = joinOperator;
@@ -22,12 +24,6 @@ namespace CCLLC.CDS.Sdk
             this.ParentAttribute = parentAttributeName;
             this.RelatedEntity = relatedEntityName;
             this.RelatedAttribute = relatedAttributeName;
-        }
-
-        public IJoinedEntity<P, E, RE> WithAlias(string aliasName)
-        {
-            this.Alias = aliasName;
-            return this;
         }
 
         public LinkEntity ToLinkEntity()
@@ -50,6 +46,10 @@ namespace CCLLC.CDS.Sdk
             
         }
 
-     
+        IJoinedEntity<P, E, RE> IJoinedEntitySettings<P, E, RE>.Alias(string aliasName)
+        {
+            this.Alias = aliasName;
+            return this;
+        }
     }
 }
