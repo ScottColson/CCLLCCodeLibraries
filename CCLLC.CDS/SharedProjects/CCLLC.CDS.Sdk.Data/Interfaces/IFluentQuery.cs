@@ -25,6 +25,13 @@ namespace CCLLC.CDS.Sdk
         /// <param name="recordLimit"></param>
         /// <returns></returns>
         P RecordLimit(int? recordLimit);
+
+        /// <summary>
+        /// Limits the results to unique records when set to true. 
+        /// </summary>
+        /// <param name="uniqueRecords"></param>
+        /// <returns></returns>
+        P UniqueRecords(bool uniqueRecords = true);
     }
     
 }

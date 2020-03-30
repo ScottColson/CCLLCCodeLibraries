@@ -11,6 +11,7 @@ namespace CCLLC.CDS.Sdk
             private IFluentQuery Parent { get; }
             public bool UseNoLock { get; private set; }
             public int? TopCount { get; private set; }
+            public bool Distinct { get; private set; }
 
             public FluentQuerySettings(IFluentQuery parent)
             {
@@ -27,6 +28,12 @@ namespace CCLLC.CDS.Sdk
             public P RecordLimit(int? recordLimit)
             {
                 TopCount = recordLimit;
+                return (P)Parent;
+            }
+
+            public P UniqueRecords(bool uniqueRecords = true)
+            {
+                Distinct = uniqueRecords;
                 return (P)Parent;
             }
         }
@@ -47,8 +54,8 @@ namespace CCLLC.CDS.Sdk
             var qryExpression = new QueryExpression(baseRecord.LogicalName);
            
             qryExpression.NoLock = Settings.UseNoLock;
-            qryExpression.TopCount = Settings.TopCount;           
-
+            qryExpression.TopCount = Settings.TopCount;
+            qryExpression.Distinct = Settings.Distinct;
             qryExpression.ColumnSet = GetColumnSet();
             qryExpression.Criteria = GetFilterExpression();
             qryExpression.LinkEntities.AddRange(LinkEntities);
