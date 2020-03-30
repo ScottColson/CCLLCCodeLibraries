@@ -8,8 +8,8 @@
     <ProjectGuid>{33BAD8B8-7C91-4A88-A96D-DAB3A2490448}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CCLLC.CDS.FluentQuery.UnitTest</RootNamespace>
-    <AssemblyName>CCLLC.CDS.FluentQuery.UnitTest</AssemblyName>
+    <RootNamespace>CCLLC.CDS.Sdk.UnitTest</RootNamespace>
+    <AssemblyName>CCLLC.CDS.Sdk.Data.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -125,9 +125,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CCLLC.CDS.FluentQuery\CCLLC.CDS.FluentQuery.csproj">
+    <ProjectReference Include="..\CCLLC.CDS.FluentQuery\CCLLC.CDS.Sdk.Data.csproj">
       <Project>{642d436f-0839-444f-8fd4-955205f98564}</Project>
-      <Name>CCLLC.CDS.FluentQuery</Name>
+      <Name>CCLLC.CDS.Sdk.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\CCLLC.CDS.Testing\CCLLC.CDS.Testing.csproj">
       <Project>{b09cab44-f47e-4994-ad63-ef9bf570f2d0}</Project>

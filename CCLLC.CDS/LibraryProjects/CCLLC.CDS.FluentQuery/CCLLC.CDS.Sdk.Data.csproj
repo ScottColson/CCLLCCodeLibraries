@@ -7,8 +7,8 @@
     <ProjectGuid>{642D436F-0839-444F-8FD4-955205F98564}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CCLLC.CDS.FluentQuery</RootNamespace>
-    <AssemblyName>CCLLCCDSFluentQuery</AssemblyName>
+    <RootNamespace>CCLLC.CDS.Sdk</RootNamespace>
+    <AssemblyName>CCLLCCDSSdkData</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -67,6 +67,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\SharedProjects\CCLLC.CDS.FluentQuery\CCLLC.CDS.FluentQuery.projitems" Label="Shared" />
+  <Import Project="..\..\SharedProjects\CCLLC.CDS.FluentQuery\CCLLC.CDS.Sdk.Data.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

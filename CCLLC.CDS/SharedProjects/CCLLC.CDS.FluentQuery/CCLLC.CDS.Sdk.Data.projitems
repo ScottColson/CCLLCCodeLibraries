@@ -6,7 +6,7 @@
     <SharedGUID>72dad66e-c987-4c63-8773-2a80b18e0d2d</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>CCLLC.CDS.FluentQuery</Import_RootNamespace>
+    <Import_RootNamespace>CCLLC.CDS.Sdk.Data</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Condition.cs" />
