@@ -120,6 +120,7 @@
     <Compile Include="FilterTests.cs" />
     <Compile Include="JoinTests.cs" />
     <Compile Include="OrderTests.cs" />
+    <Compile Include="QuerySettingsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
