@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.CDS.Sdk.Data.Sources</id>
-    <version>0.0.9-alpha</version>
+    <version>0.1.0-alpha</version>
     <description>CDS data access helpers.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -15,6 +15,6 @@
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk.Data\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Data.0.0.9-alpha/" />
+    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk.Data\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.Data.0.1.0-alpha/" />
   </files>
 </package>

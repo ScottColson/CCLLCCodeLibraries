@@ -15,7 +15,7 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLLC.CDS.Sdk.Data.snk</AssemblyOriginatorKeyFile>
-    <Version>0.0.9-alpha</Version>
+    <Version>0.1.0-alpha</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>CDS data access helpers</Description>
     <PackageId>CCLLC.CDS.Sdk.Data</PackageId>
