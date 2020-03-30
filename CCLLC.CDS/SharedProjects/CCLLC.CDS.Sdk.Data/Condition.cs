@@ -68,7 +68,7 @@ namespace CCLLC.CDS.Sdk
 
             if (values.Length == 1)
             {
-                addConditionToFilter(conditionOperator, values, Parent);
+                addConditionToFilter(conditionOperator, values[0], Parent);
                 return;
             }
 
