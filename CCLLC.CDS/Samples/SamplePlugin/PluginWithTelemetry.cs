@@ -174,15 +174,13 @@ namespace SamplePlugin
 
 
             // FluentQuery OrganizationService extension generates more readable queries than
-            // standard query syntax. This feature is from the Xrm.Oss.FluentQuery package 
-            // created and distributed by DigitalFlow at https://github.com/DigitalFlow/Xrm-Fluent-Query.
-            // All credit goes to Florian Krönert for his great work here. 
+            // standard query syntax. 
             var records = orgService.Query<Account>()
-                .IncludeColumns("name", "accountnumber")
-                .Where(e => e
-                    .Attribute(a => a.Named("statecode").Is(ConditionOperator.Equal).To(0))
-                    .Attribute(a => a.Named("name").Is(ConditionOperator.BeginsWith).To("C")))
-                .Order(e => e.By("name").Ascending())
+                .Select(cols => new { cols.Name, cols.AccountNumber })
+                .WhereAll(e => e
+                    .IsActive()
+                    .Attribute("name").Is<string>(ConditionOperator.BeginsWith,"C"))
+                .OrderByAsc("name","accountnumber")
                 .Retrieve();
                 
         }
