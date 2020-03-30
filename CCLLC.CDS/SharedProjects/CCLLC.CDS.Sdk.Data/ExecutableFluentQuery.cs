@@ -15,8 +15,6 @@ namespace CCLLC.CDS.Sdk
             this.OrganizationService = organizationService ?? throw new ArgumentNullException("organizationService");
         }
 
-
-
         public IList<E> Retreive()
         {
             var queryExpression = this.getQueryExpression();
@@ -24,7 +22,15 @@ namespace CCLLC.CDS.Sdk
             return OrganizationService.RetrieveMultiple(queryExpression).Entities
                 .Select(e => e.ToEntity<E>()).ToList();
         }
+            
+        public E FirstOrDefault()
+        {
+            this.With.RecordLimit(1); //set the retrieve record limit to 1
 
-        
+            var queryExpression = this.getQueryExpression();
+
+            return OrganizationService.RetrieveMultiple(queryExpression).Entities
+                .Select(e => e.ToEntity<E>()).ToList().FirstOrDefault();            
+        }
     }
 }
