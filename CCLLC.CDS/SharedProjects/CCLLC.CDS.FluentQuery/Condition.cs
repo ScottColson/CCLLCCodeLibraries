@@ -3,62 +3,62 @@ using System;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public class Condition<P> : ICondition<P> where P : IFilter
+    public class Condition<P> : ICondition<P> where P : IFilterable
     {
-        protected P Parent { get; }
+        public IFilter<P> Parent { get; }
         protected string AttributeName { get; }
-
-        public Condition(P parent, string attributeName)
+        
+        public Condition(IFilter<P> parent, string attributeName)
         {
             this.AttributeName = attributeName;
             this.Parent = parent;
         }
 
-        public P Is<T>(ConditionOperator conditionOperator, params T[] values)
+        public IFilter<P> Is<T>(ConditionOperator conditionOperator, params T[] values)
         {            
             throw new NotImplementedException();
         }
 
-        public P IsEqualTo<T>(T[] values)
+        public IFilter<P> IsEqualTo<T>(T[] values)
         {
             addConditions<T>(ConditionOperator.Equal, values);
-            return Parent;
+            return (IFilter<P>)Parent;
         }
 
-        public P IsGreaterThan<T>(T value)
+        public IFilter<P> IsGreaterThan<T>(T value)
         {
-            addConditionToFilter(ConditionOperator.GreaterThan, value, Parent);
-            return Parent;
+            addConditionToFilter(ConditionOperator.GreaterThan, value, (IFilter<P>)Parent);
+            return (IFilter<P>)Parent;
         }
 
-        public P IsGreaterThanOrEqualTo<T>(T value)
+        public IFilter<P> IsGreaterThanOrEqualTo<T>(T value)
         {
             addConditionToFilter(ConditionOperator.GreaterEqual, value, Parent);
-            return Parent;
+            return (IFilter<P>)Parent;
         }
 
-        public P IsLessThan<T>(T value)
+        public IFilter<P> IsLessThan<T>(T value)
         {
             addConditionToFilter(ConditionOperator.LessThan, value, Parent);
-            return Parent;
+            return (IFilter<P>)Parent;
         }
 
-        public P IsLessThanOrEqualTo<T>(T value)
+        public IFilter<P> IsLessThanOrEqualTo<T>(T value)
         {
             addConditionToFilter(ConditionOperator.LessEqual, value, Parent);
-            return Parent;
+            return (IFilter<P>)Parent;
         }
 
-        public P IsNotNull()
+        public IFilter<P> IsNotNull()
         {
             addConditionToFilter(ConditionOperator.NotNull, null, Parent);
-            return Parent;
+            return (IFilter<P>)Parent;
         }
 
-        public P IsNull()
+        public IFilter<P> IsNull()
         {
             addConditionToFilter(ConditionOperator.Null, null, Parent);
-            return Parent;
+            return (IFilter<P>)Parent;
         }
 
 
@@ -72,18 +72,18 @@ namespace CCLLC.CDS.FluentQuery
                 return;
             }
 
-            var impliedOrFilter = new Filter<P>(Parent, LogicalOperator.Or);
+            var impliedOrFilter = new Filter<P>((IFilter<P>)Parent, LogicalOperator.Or);
             foreach(var v in values)
             {
                 addConditionToFilter(conditionOperator, v, impliedOrFilter);
             }
 
-            Parent.Filters.Add(impliedOrFilter.ToFilterExpression());
+            (Parent as IFilter).Filters.Add(impliedOrFilter.ToFilterExpression());
         }
 
-        private void addConditionToFilter(ConditionOperator conditionOperator, object value, IFilter filter)
+        private void addConditionToFilter(ConditionOperator conditionOperator, object value, IFilterable filter)
         {            
-            filter.Conditions.Add(new ConditionExpression(AttributeName, conditionOperator, value));
+           filter.Conditions.Add(new ConditionExpression(AttributeName, conditionOperator, value));
         }
     }
 }

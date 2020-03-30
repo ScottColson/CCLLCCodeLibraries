@@ -9,35 +9,31 @@ namespace CCLLC.CDS.FluentQuery
     {
         public IList<FilterExpression> Filters { get; }
         public IList<ConditionExpression> Conditions { get; }
-        private P Parent { get; }
+        public virtual IFilterable<P> Parent { get; protected set; }
 
-        public Filterable(P parent)
+        public Filterable()
         {
             Filters = new List<FilterExpression>();
-            Conditions = new List<ConditionExpression>();
-            Parent = parent;
+            Conditions = new List<ConditionExpression>();           
         }
        
 
-        public virtual P WhereAll(Action<IFilter<IFilterable<P>>> experssion)
+        public virtual P WhereAll(Action<IFilter<P>> expression)
         {
-            var filter = new Filter<IFilterable<P>>(this, LogicalOperator.And);
-            experssion(filter);
+            var filter = new Filter<P>(Parent, LogicalOperator.And);
+            expression(filter);
             this.Filters.Add(filter.ToFilterExpression());
-            return Parent;
+            return (P)Parent;
         }
 
-        public virtual P WhereAny(Action<IFilter<IFilterable<P>>> experssion)
+        public virtual P WhereAny(Action<IFilter<P>> experssion)
         {
-            var filter = new Filter<IFilterable<P>>(this, LogicalOperator.Or);
+            var filter = new Filter<P>(Parent, LogicalOperator.Or);
             experssion(filter);
             this.Filters.Add(filter.ToFilterExpression());
-            return Parent;
+            return (P)Parent;
         }
-
-       // public abstract FilterExpression GetFilterExpression();
 
        
-        
     }
 }

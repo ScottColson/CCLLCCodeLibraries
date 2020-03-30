@@ -22,7 +22,7 @@ namespace CCLLC.CDS.FluentQuery.UnitTest
         private class LeftJoin_Should_CreateLinkedEntity : TestMethodClassBase
         {           
             protected override void Test(IOrganizationService service)
-            {
+            {               
                 var qryExpression = new QueryExpressionBuilder<Account>()
                      .Select(cols => new { cols.AccountNumber, cols.Name })
                      .LeftJoin<Contact>("primarycontactid", "contactid", c => c
@@ -131,20 +131,21 @@ namespace CCLLC.CDS.FluentQuery.UnitTest
 
             protected override void Test(IOrganizationService service)
             {
-                var qryExpression = new QueryExpressionBuilder<Account>()
+               var qryExpression = new QueryExpressionBuilder<Account>()
                      .Select(cols => new { cols.AccountNumber, cols.Name })
                      .LeftJoin<Contact>("primarycontactid", "contactid", c => c
                           .WithAlias("pc")
                           .Select(cols => new { cols.FullName })
                           .WhereAll(c1 => c1
-                            .IsActive()))
+                            .IsActive()
+                            .Attribute("fullname").IsNotNull()))
                      .Build();
 
                 var linkEntity = qryExpression.LinkEntities[0];
                 var filter = linkEntity.LinkCriteria;
 
                 Assert.AreEqual(LogicalOperator.And, filter.FilterOperator);
-                Assert.AreEqual(1, filter.Conditions.Count);
+                Assert.AreEqual(2, filter.Conditions.Count);
                 Assert.AreEqual("statecode", filter.Conditions[0].AttributeName);
             }
         }

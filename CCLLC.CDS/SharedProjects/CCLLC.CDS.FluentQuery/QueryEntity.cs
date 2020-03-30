@@ -7,16 +7,15 @@ using System.Linq;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public abstract class QueryEntity<P,E> : Filterable<IQueryEntity<P,E>>, IQueryEntity<P,E> where P : IQueryEntity where E : Entity, new()
+    public abstract class QueryEntity<P,E> : Filterable<P>, IQueryEntity<P,E> where P : IQueryEntity<P,E> where E : Entity, new()
     {   
         protected IList<IList<string>> Columnsets { get; }
         protected IList<LinkEntity> LinkEntities { get; }
         protected IList<OrderExpression> OrderExpressions { get; }
-
-        private IQueryEntity<P,E> Parent { get; }
+                
         protected string RecordType { get; }
 
-        public QueryEntity(IQueryEntity parent) : base(null)
+        public QueryEntity() : base()
         {
             RecordType = new E().LogicalName;
             Columnsets = new List<IList<string>>();
@@ -25,50 +24,52 @@ namespace CCLLC.CDS.FluentQuery
             this.Parent = this;
         }
 
-        public IQueryEntity<P, E> LeftJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<IQueryEntity<P, E>, RE>> expression) where RE : Entity, new()
+        public P LeftJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<P, E, RE>> expression) where RE : Entity, new()
         {
             var relatedRecordType = new RE().LogicalName;
 
-            var joinEntity = new JoinedEntity<IQueryEntity<P, E>, RE>(JoinOperator.LeftOuter, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
+            var joinEntity = new JoinedEntity<P,E, RE>(JoinOperator.LeftOuter, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
             expression(joinEntity);
             LinkEntities.Add(joinEntity.ToLinkEntity());
-            return this;
+            return (P)Parent;
         }
 
-        public IQueryEntity<P, E> InnerJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<IQueryEntity<P, E>, RE>> expression) where RE : Entity, new()
+       
+
+        public P InnerJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<P, E, RE>> expression) where RE : Entity, new()
         {
             var relatedRecordType = new RE().LogicalName;
 
-            var joinEntity = new JoinedEntity<IQueryEntity<P,E>, RE>(JoinOperator.Inner, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
+            var joinEntity = new JoinedEntity<P, E ,RE>(JoinOperator.Inner, RecordType, fromAttributeName, relatedRecordType, toAttributeName, this);
             expression(joinEntity);
             LinkEntities.Add(joinEntity.ToLinkEntity());
-            return this;
+            return (P)Parent;
         }        
 
-        public IQueryEntity<P, E> Select(params string[] columns)
+        public P Select(params string[] columns)
         {
             if(columns != null)
             {
                 Columnsets.Add(new List<string>(columns));
             }
-            return this;           
+            return (P)Parent;          
         }
 
-        public IQueryEntity<P, E> Select(Expression<Func<E, object>> anonymousTypeInitializer)
+        public P Select(Expression<Func<E, object>> anonymousTypeInitializer)
         {
             var columns = anonymousTypeInitializer.GetAttributeNamesArray<E>();
                       
             Columnsets.Add(columns);
-            return this;
+            return (P)Parent;
         }
 
-        public IQueryEntity<P, E> SelectAll()
+        public P SelectAll()
         {
             Columnsets.Add(new List<string>(new string[] { "*" }));
-            return this;
+            return (P)Parent;
         }
 
-        public IQueryEntity<P, E> OrderByAsc(params string[] columns)
+        public P OrderByAsc(params string[] columns)
         {
             if (columns != null)
             {
@@ -78,10 +79,10 @@ namespace CCLLC.CDS.FluentQuery
                 }
             }
 
-            return this;
+            return (P)Parent;
         }
 
-        public IQueryEntity<P, E> OrderByDesc(params string[] columns)
+        public P OrderByDesc(params string[] columns)
         {
             if (columns != null)
             {
@@ -91,7 +92,7 @@ namespace CCLLC.CDS.FluentQuery
                 }
             }
 
-            return this;
+            return (P)Parent;
         }
 
         protected FilterExpression GetFilterExpression()
@@ -132,8 +133,9 @@ namespace CCLLC.CDS.FluentQuery
         {
             return (columns.Where(v => v.Equals("*")).FirstOrDefault() != null);
         }
-               
 
-        
+       
+
+       
     }
 }

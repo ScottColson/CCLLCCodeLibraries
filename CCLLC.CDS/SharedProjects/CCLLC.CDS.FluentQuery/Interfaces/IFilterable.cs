@@ -4,23 +4,23 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public interface IFilterable
+    public interface IFilterable 
     {
         IList<FilterExpression> Filters { get; }
         IList<ConditionExpression> Conditions { get; }
+        
     }
-
-
+    
     public interface IFilterable<P> : IFilterable where P : IFilterable
     {
-        P WhereAll(Action<IFilter<IFilterable<P>>> experssion);
-        
+        IFilterable<P> Parent { get; }
+        P WhereAll(Action<IFilter<P>> expression);
+
         /// <summary>
         /// Evaluate contained conditions using a logical OR.
         /// </summary>
-        /// <param name="experssion"></param>
+        /// <param name="expression"></param>
         /// <returns></returns>
-        P WhereAny(Action<IFilter<IFilterable<P>>> experssion);
-        
+        P WhereAny(Action<IFilter<P>> expression);
     }
 }

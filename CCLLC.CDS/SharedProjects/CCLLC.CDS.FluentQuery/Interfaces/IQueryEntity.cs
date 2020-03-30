@@ -6,25 +6,23 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public interface IQueryEntity : IFilterable
-    {
-    }
+    public interface IQueryEntity { }
 
-    public interface IQueryEntity<P,E> : IQueryEntity, IFilterable<IQueryEntity<P,E>> where P : IQueryEntity where E : Entity
+    public interface IQueryEntity<P, E> : IQueryEntity, IFilterable<P> where P : IQueryEntity<P,E>, IFilterable<P> where E : Entity
     {
 
-        IQueryEntity<P, E> LeftJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<IQueryEntity<P, E>, RE>> experession) where RE : Entity, new();
+        P LeftJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<P, E, RE>> expression) where RE : Entity, new();
 
-        IQueryEntity<P, E> InnerJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<IQueryEntity<P, E>, RE>> expression) where RE : Entity, new();
+        P InnerJoin<RE>(string fromAttributeName, string toAttributeName, Action<IJoinedEntity<P, E, RE>> expression) where RE : Entity, new();
 
-        IQueryEntity<P, E> Select(params string[] columns);
+        P Select(params string[] columns);
 
-        IQueryEntity<P, E> Select(Expression<Func<E, object>> anonymousTypeInitializer);
+        P Select(Expression<Func<E, object>> anonymousTypeInitializer);
 
-        IQueryEntity<P, E> SelectAll();
+        P SelectAll();
 
-        IQueryEntity<P, E> OrderByAsc(params string[] columns);
+        P OrderByAsc(params string[] columns);
 
-        IQueryEntity<P, E> OrderByDesc(params string[] columns);
+        P OrderByDesc(params string[] columns);
     }
 }

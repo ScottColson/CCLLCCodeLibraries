@@ -6,9 +6,8 @@ namespace CCLLC.CDS.FluentQuery
     public partial class Filter<P> : Filterable<P>, IFilter<P> where P : IFilterable
     {
         public LogicalOperator Operator { get; }      
-        private P Parent { get; }
-
-        public Filter(P parent, LogicalOperator logicalOperator) : base(parent)
+     
+        public Filter(IFilterable<P> parent, LogicalOperator logicalOperator) : base()
         {
             this.Parent = parent;
             this.Operator = logicalOperator;           
@@ -17,7 +16,7 @@ namespace CCLLC.CDS.FluentQuery
         public IFilter<P> IsActive(bool value = true)
         {
             Conditions.Add(new ConditionExpression("statecode", ConditionOperator.Equal, (value == true) ? 0:1));
-            return this;
+            return (IFilter<P>)this;
         }
 
         public IFilter<P> HasStatus(params int[] status)
@@ -31,7 +30,7 @@ namespace CCLLC.CDS.FluentQuery
                 else
                 {
                     //Multiple status values imply an OR clause for each value.
-                    var statusFilter = new Filter<IFilter<P>>(this, LogicalOperator.Or);
+                    var statusFilter = new Filter<P>(this, LogicalOperator.Or);
                     foreach(var s in status)
                     {
                         statusFilter.Conditions.Add(new ConditionExpression("statuscode", ConditionOperator.Equal, s));
@@ -52,10 +51,7 @@ namespace CCLLC.CDS.FluentQuery
             return this;            
         }
 
-        public ICondition<IFilter<P>> Attribute(string name)
-        {
-            return new Condition<IFilter<P>> (this, name);
-        }
+       
 
         public FilterExpression ToFilterExpression()
         {
@@ -65,7 +61,12 @@ namespace CCLLC.CDS.FluentQuery
             
             return filterExpression;            
         }
-       
+
+        public ICondition<P> Attribute(string name)
+        {
+            return new Condition<P>(this, name);
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -5,7 +5,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public class ExecutableFluentQuery<E> : FluentQuery<IExecutableFluentQuery,E>, IExecutableFluentQuery<E> where E : Entity, new()
+    public class ExecutableFluentQuery<E> : FluentQuery<IExecutableFluentQuery<E>,E>, IExecutableFluentQuery<E> where E : Entity, new()
     {
         public IOrganizationService OrganizationService { get; }      
 

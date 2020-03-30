@@ -4,14 +4,9 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public interface IExecutableFluentQuery : IFluentQuery 
+       public interface IExecutableFluentQuery<E> : IFluentQuery<IExecutableFluentQuery<E>,E> where E : Entity
     {
         IOrganizationService OrganizationService { get; }
-    }
-
-    public interface IExecutableFluentQuery<E> : IExecutableFluentQuery, IFluentQuery<IExecutableFluentQuery,E> where E : Entity
-    {
-        
         IList<E> Retreive();
     }
 }

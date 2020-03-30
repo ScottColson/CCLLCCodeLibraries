@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public class JoinedEntity<P, RE> : QueryEntity<P, RE>, IJoinedEntity<P, RE> where P : IQueryEntity where RE : Entity, new()
+    public class JoinedEntity<P, E, RE> : QueryEntity<IJoinedEntity<P, E, RE>, RE>, IJoinedEntity<P, E, RE> where P : IQueryEntity<P, E> where E : Entity, new() where RE : Entity, new()
     {
         protected string Alias { get; private set; }
         protected JoinOperator JoinOperator { get; }
@@ -13,7 +15,7 @@ namespace CCLLC.CDS.FluentQuery
         protected string RelatedEntity { get; }
         protected string RelatedAttribute { get; }
 
-        public JoinedEntity(JoinOperator joinOperator, string parentEntityName, string parentAttributeName, string relatedEntityName, string relatedAttributeName, IQueryEntity parent) : base(parent) 
+        public JoinedEntity(JoinOperator joinOperator, string parentEntityName, string parentAttributeName, string relatedEntityName, string relatedAttributeName, IQueryEntity<P,E> parent) : base() 
         {
             this.JoinOperator = joinOperator;
             this.ParentEntity = parentEntityName;
@@ -22,7 +24,7 @@ namespace CCLLC.CDS.FluentQuery
             this.RelatedAttribute = relatedAttributeName;
         }
 
-        public IJoinedEntity<P, RE> WithAlias(string aliasName)
+        public IJoinedEntity<P, E, RE> WithAlias(string aliasName)
         {
             this.Alias = aliasName;
             return this;
@@ -47,5 +49,7 @@ namespace CCLLC.CDS.FluentQuery
             return linkEntity;
             
         }
+
+     
     }
 }

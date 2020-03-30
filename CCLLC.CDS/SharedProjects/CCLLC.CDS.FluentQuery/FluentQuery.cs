@@ -4,28 +4,29 @@ using System;
 
 namespace CCLLC.CDS.FluentQuery
 {
-    public abstract class FluentQuery<T,E> : QueryEntity<IFluentQuery<T,E>,E>, IFluentQuery<T,E> where T : IFluentQuery where E : Entity, new()
+    public abstract class FluentQuery<P,E> : QueryEntity<P,E>, IFluentQuery<P,E> where P : IFluentQuery<P,E> where E : Entity, new()
     {       
 
-        public FluentQuery() : base(null)
+        public FluentQuery() : base()
         {          
         }
 
-        public override IQueryEntity<IFluentQuery<T, E>, E> WhereAll(Action<IFilter<IFilterable<IQueryEntity<IFluentQuery<T, E>, E>>>> experssion)
-        {
-            // The FluentQuery is the top of the tree and has no parent so return this rather than 
-            // the default parent of the Fluent abstract class.
-            base.WhereAll(experssion);
-            return this;
-        }
+        
+        //public override P WhereAll(Action<IFilter<P>> expression)
+        //{
+        //    // The FluentQuery is the top of the tree and has no parent so return this rather than 
+        //    // the default parent of the Fluent abstract class.
+        //    base.WhereAll(expression);
+        //    return (P)Parent;
+        //}
 
-        public override IQueryEntity<IFluentQuery<T, E>, E> WhereAny(Action<IFilter<IFilterable<IQueryEntity<IFluentQuery<T, E>, E>>>> experssion)
-        {
-            // The FluentQuery is the top of the tree and has no parent so return this rather than 
-            // the default parent of the Fluent abstract class.
-            base.WhereAny(experssion);
-            return this;
-        }
+        //public override P WhereAny(Action<IFilter<P>> expression)
+        //{
+        //    // The FluentQuery is the top of the tree and has no parent so return this rather than 
+        //    // the default parent of the Fluent abstract class.
+        //    base.WhereAny(expression);
+        //    return this;
+        //}
 
         protected QueryExpression getQueryExpression()
         {
