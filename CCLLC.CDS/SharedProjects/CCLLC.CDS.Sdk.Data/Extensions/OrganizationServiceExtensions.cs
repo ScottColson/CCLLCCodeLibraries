@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public static class OrganizationServiceExtensions
     {

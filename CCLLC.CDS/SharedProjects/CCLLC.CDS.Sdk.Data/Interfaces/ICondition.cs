@@ -1,4 +1,4 @@
-﻿namespace CCLLC.CDS.FluentQuery
+﻿namespace CCLLC.CDS.Sdk
 {
    
     public interface ICondition<P> where P : IFilterable

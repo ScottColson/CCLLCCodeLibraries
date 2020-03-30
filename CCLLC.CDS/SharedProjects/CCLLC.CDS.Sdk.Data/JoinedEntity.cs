@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public class JoinedEntity<P, E, RE> : QueryEntity<IJoinedEntity<P, E, RE>, RE>, IJoinedEntity<P, E, RE> where P : IQueryEntity<P, E> where E : Entity, new() where RE : Entity, new()
     {

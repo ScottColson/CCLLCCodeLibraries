@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public class ExecutableFluentQuery<E> : FluentQuery<IExecutableFluentQuery<E>,E>, IExecutableFluentQuery<E> where E : Entity, new()
     {

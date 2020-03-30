@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xrm.Sdk.Query;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public interface IFilterable 
     {

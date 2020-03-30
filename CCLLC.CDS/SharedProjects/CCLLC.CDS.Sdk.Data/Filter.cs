@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xrm.Sdk.Query;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public partial class Filter<P> : Filterable<P>, IFilter<P> where P : IFilterable
     {

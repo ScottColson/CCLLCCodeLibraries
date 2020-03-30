@@ -2,7 +2,7 @@
 using Microsoft.Xrm.Sdk.Query;
 using System;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public abstract class FluentQuery<P,E> : QueryEntity<P,E>, IFluentQuery<P,E> where P : IFluentQuery<P,E> where E : Entity, new()
     {       

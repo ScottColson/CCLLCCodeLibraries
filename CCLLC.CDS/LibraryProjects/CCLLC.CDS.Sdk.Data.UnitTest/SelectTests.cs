@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xrm.Sdk;
 using TestProxy;
 
-namespace CCLLC.CDS.FluentQuery.UnitTest
+namespace CCLLC.CDS.Sdk.UnitTest
 {
     [TestClass]
     public class SelectTests

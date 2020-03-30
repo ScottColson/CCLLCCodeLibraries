@@ -6,7 +6,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using TestProxy;
 
-namespace CCLLC.CDS.FluentQuery.UnitTest
+namespace CCLLC.CDS.Sdk.UnitTest
 {
     [TestClass]
     public class OrderTests

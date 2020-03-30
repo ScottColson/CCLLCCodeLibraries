@@ -5,7 +5,7 @@ using Microsoft.Xrm.Sdk.Query;
 using System.Linq.Expressions;
 using System.Linq;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public abstract class QueryEntity<P,E> : Filterable<P>, IQueryEntity<P,E> where P : IQueryEntity<P,E> where E : Entity, new()
     {   

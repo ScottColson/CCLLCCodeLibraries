@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xrm.Sdk.Query;
 using System;
 
-namespace CCLLC.CDS.FluentQuery
+namespace CCLLC.CDS.Sdk
 {
     public class Condition<P> : ICondition<P> where P : IFilterable
     {
