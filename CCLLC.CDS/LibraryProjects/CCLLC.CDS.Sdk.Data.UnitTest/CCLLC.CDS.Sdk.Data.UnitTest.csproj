@@ -125,7 +125,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CCLLC.CDS.FluentQuery\CCLLC.CDS.Sdk.Data.csproj">
+    <ProjectReference Include="..\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.csproj">
       <Project>{642d436f-0839-444f-8fd4-955205f98564}</Project>
       <Name>CCLLC.CDS.Sdk.Data</Name>
     </ProjectReference>

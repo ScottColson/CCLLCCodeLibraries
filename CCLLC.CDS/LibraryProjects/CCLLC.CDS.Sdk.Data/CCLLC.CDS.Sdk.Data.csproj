@@ -67,6 +67,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\SharedProjects\CCLLC.CDS.FluentQuery\CCLLC.CDS.Sdk.Data.projitems" Label="Shared" />
+  <Import Project="..\..\SharedProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
