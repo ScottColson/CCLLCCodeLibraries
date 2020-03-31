@@ -4,13 +4,13 @@ This project provides standardized components for coding processes in PowerApps 
 A key design principle of this project is extensibility through architectural 
 standardization. It should be easy to modify or enhance processes that use the 
 various components created in this project without having to make large scale 
-changes. To that end, the code for this project adheres to the concepts of 
+code changes. To that end, the code for this project adheres to the concepts of 
 coding to an interface and inversion of control. 
 
 If the implementation for a class doesn't meet your needs, you can change it 
 either through inheritance and overrides, or by writing a completely different 
 implementation for the defined interface. Either way, register your new implementation
- in the process IoC container and your done. Simple.
+ in the process IoC container and your done.
 
 ### Shared Libraries
 
@@ -62,10 +62,14 @@ Service platform specific implementations of the **CCLLC.Core.ProcessModel** and
 CCLLC.Core interfaces. This allows any process created against the CCLLC.Core.Process model 
 to operate as a CDS plugin component.
 
-- CCLLC.CDS.Sdk.Instrumented: Provides the CCLLC.CDS.Sdk plugin framework with telemetry data capture.
+- [CCLLC.CDS.Sdk.Data](/CCLLC.CDS.Sdk.Data.md) : Provides data access helpers including a Fluent Query Expression
+Builder and various IOrganizationService extensions to retrieve data.
 
-- CCLLC.CDS.Sdk.SearchUtilities: Provides a standardized framework to implement alias searches 
-using data in related entities. 
+- CCLLC.CDS.Sdk.Instrumented: Extends the CCLLC.CDS.Sdk plugin framework with telemetry data capture.
+
+- CCLLC.CDS.Sdk.SearchUtilities: Extends the CCLLC.CDS.Sdk framework with a standard mechanism to implement entity
+searches that include results from matching related entity searches. For example a search on part number returns parts
+with that part number and parts linked to alternate part number records with a matching part number. 
 
 ### Nuget Packages
 
