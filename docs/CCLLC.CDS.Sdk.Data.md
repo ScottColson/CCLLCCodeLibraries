@@ -12,11 +12,9 @@ IOrganizationService to access CDS data.
 
 The FluentQueryExpressionBuilder is used to build standard CDS Query Expressions
 using a Fluent implementation with data filtering and joining syntax that is similar 
-to SQL. Credit to Florian Krönert's [Xrm-Fluent-Query][l_kronert] query project and Daryl LaBar's 
-[DLaB.Xrm][l_labar] framework project for inspiration and code snippets.
-
- [l_kronert]:(https://github.com/DigitalFlow/Xrm-Fluent-Query/)
- [l_labar]:(https://github.com/daryllabar/DLaB.Xrm/)
+to SQL. Credit to Florian Krönert's <a href="https://github.com/DigitalFlow/Xrm-Fluent-Query/">Xrm-Fluent-Query</a> 
+query project and Daryl LaBar's <a href="https://github.com/daryllabar/DLaB.Xrm/">DLaB.Xrm</a> 
+framework project for inspiration and code examples.
 
 ```c#
 using CCLLC.CDS.Sdk;

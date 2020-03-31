@@ -12,20 +12,18 @@ either through inheritance and overrides, or by writing a completely different
 implementation for the defined interface. Either way, register your new implementation
  in the process IoC container and your done.
 
-### Shared Libraries
+### Project Structure
 
-This project is segregated into various related projects that consist of one or 
+This project is segregated into various solutions that consist of one or 
 more Shared Projects that can be consumed in any C# project based that supports 
-the Shared Project model.
+the Shared Project model. Each shared project has a corresponding .NET Framework 
+Library project that creates the associated assemblies.
 
 The **CCLLC.Telementry** solutions provides the components needed to capture 
 telemetry information for logging in an external system. It is a sandbox-safe 
-implementation of a **_subset_** of the [Microsoft\Applicationinsights-dotnet Sdk][l_sdk]. 
-It is fully compatible with [Application Insights][l_ai], but can also be extended 
+implementation of a **_subset_** of the <a href="https://github.com/Microsoft/ApplicationInsights-dotnet">Microsoft\Applicationinsights-dotnet Sdk]</a>. 
+It is fully compatible with <a href="https://azure.microsoft.com/en-us/services/application-insights/">Application Insights</a>, but can also be extended 
 to connect to custom telemetry system endpoints with alternate telemetry serialization schemes.
-
- [l_sdk]:(https://github.com/Microsoft/ApplicationInsights-dotnet)
- [l_ai]:(https://azure.microsoft.com/en-us/services/application-insights/)
 
 The **CCLLC.Core** solution provides the following solution components. Each component is 
 based on defined interfaces and at least one optional implementation that can be modified 
@@ -53,7 +51,7 @@ REST based web services.
 - [CCLLC.Core.ProcessModel](/CCLLC.Core.ProcessModel.md) : A standardized, data agnostic, execution context model for creating 
 processes independently of the platform that will ultimately host the process. Building to 
 this model makes it easy to move business logic between different process implementation platforms
-(e.g. CDS plugin or Azure Function.)
+(e.g. CDS plugin or Azure Function) it also simplifies changes related to data schema.
 
 The **CCLLC.CDS** solution provides the following components that provide Power Apps/Common Data 
 Service platform specific implementations of the **CCLLC.Core.ProcessModel** and related extensions.
