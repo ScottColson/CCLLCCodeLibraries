@@ -15,8 +15,9 @@ namespace CCLLC.CDS.Sdk
         }
 
         public IFilter<P> Is<T>(ConditionOperator conditionOperator, params T[] values)
-        {            
-            throw new NotImplementedException();
+        {
+            addConditions<T>(conditionOperator, values);
+            return (IFilter<P>)Parent;
         }
 
         public IFilter<P> IsEqualTo<T>(T[] values)

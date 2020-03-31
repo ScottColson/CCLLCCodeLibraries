@@ -108,9 +108,10 @@ namespace CCLLC.CDS.Sdk
             return filterExpression;
         }
            
-        protected ColumnSet GetColumnSet()
+        protected virtual ColumnSet GetColumnSet()
         {
             var uniqueColumns = new List<string>();
+                      
 
             foreach (var cs in this.Columnsets)
             {

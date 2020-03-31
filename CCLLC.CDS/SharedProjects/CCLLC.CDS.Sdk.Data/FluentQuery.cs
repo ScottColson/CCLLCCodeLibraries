@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
-using System;
+
 
 namespace CCLLC.CDS.Sdk
 {
@@ -64,7 +64,18 @@ namespace CCLLC.CDS.Sdk
             return qryExpression;
         }
 
+        protected override ColumnSet GetColumnSet()
+        {
+            // default to select all if no select statements were provided 
+            // for an IFluentQuery object otherwise use the standard base
+            // implementation.
+            if (this.Columnsets.Count == 0)
+            {
+                return new ColumnSet(true);
+            }
 
-        
+            return base.GetColumnSet();
+        }
+
     }
 }
