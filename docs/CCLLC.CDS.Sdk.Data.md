@@ -12,7 +12,7 @@ IOrganizationService to access CDS data.
 
 The FluentQueryExpressionBuilder is used to build standard CDS Query Expressions
 using a Fluent implementation with data filtering and joining syntax that is similar 
-to SQL. Credit to Florian Krönert's <a href="https://github.com/DigitalFlow/Xrm-Fluent-Query/">Xrm-Fluent-Query</a> 
+to SQL. Credit to Florian Kronert's <a href="https://github.com/DigitalFlow/Xrm-Fluent-Query/">Xrm-Fluent-Query</a> 
 query project and Daryl LaBar's <a href="https://github.com/daryllabar/DLaB.Xrm/">DLaB.Xrm</a> 
 framework project for inspiration and code examples.
 
@@ -89,7 +89,7 @@ var contact = orgService.Query<Contact>()
 
 ##### GetRecord
 
-Provides a conscise method to retreive a single record based on its record id.
+Provides a concise method to retrieve a single record based on its record id.
 
 ```C#
 
