@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.Core.RestClient.Sources</id>
-    <version>1.0.0-beta</version>
+    <version>1.0.0</version>
     <description>Provides basic REST client services.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -12,10 +12,10 @@
     <tags></tags>
     <dependencies>
       <dependency id="CCLLC.Core.Net.Sources" version="1.0.1" />
-      <dependency id="CCLLC.Core.Serialization.Sources" version="1.0.0-beta" />
+      <dependency id="CCLLC.Core.Serialization.Sources" version="1.0.0" />
     </dependencies>
   </metadata>  
   <files>   
-    <file src="..\..\SharedProjects\RestClient\**\*.cs" target="content/App_Packages/CCLLC.Core.Serialization.1.0.0-beta/" />
+    <file src="..\..\SharedProjects\RestClient\**\*.cs" target="content/App_Packages/CCLLC.Core.RestClient.1.0.0/" />
   </files>
 </package>
