@@ -22,13 +22,7 @@ namespace CCLLC.CDS.Sdk
         eRunAs RunAs { get; set; }
 
         /// <summary>
-        /// A list of events registered with the plugin. When an event triggers the plugin, the plugin will iterate through
-        /// the list of registered handlers and execute any that match the event signature.
-        /// </summary>
-        IReadOnlyList<PluginEvent> PluginEventHandlers { get; }
-
-        /// <summary>
-        /// Mechanism to register an event handler for a particular events signature.
+        /// Mechanism to register a generic plugin event handler for a particular event signature.
         /// </summary>
         /// <param name="entityName">Logical name of the entity that triggered the execution</param>
         /// <param name="messageName">Message name for the call</param>

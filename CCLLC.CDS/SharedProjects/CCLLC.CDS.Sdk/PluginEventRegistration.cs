@@ -2,16 +2,16 @@
 
 namespace CCLLC.CDS.Sdk
 {    
-    public class PluginEvent
+    public class PluginEventRegistration : IPluginEventRegistration
     {
-        private string _id;
+        private string handlerId;
         /// <summary>
-        /// Identifing name for the handler. Used in logging events.
+        /// Identifying name for the handler. Used in logging events.
         /// </summary>
-        public string Id
+        public string HandlerId
         {
-            get { return _id ?? string.Empty; }
-            set { _id = value; }
+            get { return handlerId ?? string.Empty; }
+            set { handlerId = value; }
         }
 
         /// <summary>

@@ -17,7 +17,7 @@ namespace CCLLC.CDS.Sdk
     /// </summary>
     public abstract class CDSPlugin : IPlugin, ICDSPlugin
     {
-        private Collection<PluginEvent> _events = new Collection<PluginEvent>();
+        private Collection<IPluginEventRegistration> _events = new Collection<IPluginEventRegistration>();
         private IIocContainer _container = null;
 
         /// <summary>
@@ -26,11 +26,11 @@ namespace CCLLC.CDS.Sdk
         public eRunAs RunAs { get; set; }
 
         /// <summary>
-        /// Provides of list of <see cref="PluginEvent"/> items that define the 
-        /// events the plugin can operate against. Add items to the list using the 
-        /// <see cref="RegisterEventHandler(string, string, ePluginStage, Action{ICDSPluginExecutionContext}, string)"/> method.
+        /// Provides of list of <see cref="IPluginEventRegistration"/> items that define the 
+        /// events the plugin can operate against. Items are added to the list using the 
+        /// RegisterEvent method.
         /// </summary>
-        public IReadOnlyList<PluginEvent> PluginEventHandlers
+        protected IReadOnlyList<IPluginEventRegistration> PluginEventRegistrations
         {
             get
             {
@@ -93,13 +93,13 @@ namespace CCLLC.CDS.Sdk
         /// <param name="id"></param>
         public virtual void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginExecutionContext> handler, string id="")
         {
-            this._events.Add(new PluginEvent
+            this._events.Add(new PluginEventRegistration
             {
                 EntityName = entityName,
                 MessageName = messageName,
                 Stage = stage,
                 PluginAction = handler,
-                Id = id
+                HandlerId = id
             });
         }
                
@@ -122,20 +122,20 @@ namespace CCLLC.CDS.Sdk
             
             try
             {
-                var matchingHandlers = this.PluginEventHandlers
+                var matchingRegistrations = this.PluginEventRegistrations
                     .Where(a => (int)a.Stage == executionContext.Stage
                         && (string.IsNullOrWhiteSpace(a.MessageName) || string.Compare(a.MessageName, executionContext.MessageName, StringComparison.InvariantCultureIgnoreCase) == 0)
                         && (string.IsNullOrWhiteSpace(a.EntityName) || string.Compare(a.EntityName, executionContext.PrimaryEntityName, StringComparison.InvariantCultureIgnoreCase) == 0));
 
-                if (matchingHandlers.Any())
+                if (matchingRegistrations.Any())
                 {
                     var factory = Container.Resolve<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>();
 
-                    using (var localContext = factory.CreateCDSExecutionContext(executionContext, serviceProvider, this.Container, this.RunAs))
+                    using (var cdsExecutionContext = factory.CreateCDSExecutionContext(executionContext, serviceProvider, this.Container, this.RunAs))
                     {
-                        foreach (var handler in matchingHandlers)
+                        foreach (var registration in matchingRegistrations)
                         {
-                            handler.PluginAction.Invoke(localContext);
+                            InvokeRegisteredHandler(cdsExecutionContext, registration);                       
                         }
                     }
                 }
@@ -153,5 +153,20 @@ namespace CCLLC.CDS.Sdk
 
             tracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Exiting {0}.Execute()", this.GetType().ToString()));
         }
+    
+        /// <summary>
+        /// Invokes the event handler associated with the specified plugin event registration.
+        /// </summary>
+        /// <param name="executionContext"></param>
+        /// <param name="registration"></param>
+        protected void InvokeRegisteredHandler(ICDSPluginExecutionContext executionContext, IPluginEventRegistration registration)
+        {
+            if (registration is PluginEventRegistration)
+            {
+                (registration as PluginEventRegistration).PluginAction.Invoke(executionContext);
+                return;
+            }
+        }
+    
     }
 }
