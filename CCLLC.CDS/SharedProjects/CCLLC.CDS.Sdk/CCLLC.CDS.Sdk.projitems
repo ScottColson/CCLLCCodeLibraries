@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeleteEventRegistration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UpdateEventRegistration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateEventRegistration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\eRunAs.cs" />

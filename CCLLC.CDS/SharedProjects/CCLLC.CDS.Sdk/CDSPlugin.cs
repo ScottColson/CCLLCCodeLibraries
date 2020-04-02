@@ -126,7 +126,12 @@ namespace CCLLC.CDS.Sdk
 
         public void RegisterDeleteHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference> handler, string handlerId = "") where E : Entity, new()
         {
-            throw new NotImplementedException();
+            this._events.Add(new DeleteEventRegistration<E>
+            {
+                HandlerId = handlerId,
+                Stage = stage,
+                PluginAction = handler
+            });
         }
 
         public void RegisterRetrieveHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference, ColumnSet, E> handler, string handlerId = "") where E : Entity, new()

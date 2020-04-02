@@ -90,8 +90,16 @@ namespace CCLLC.CDS.Sdk.Instrumented.UnitTest
                         var data = webReq.Get();
                     }
 
-                    // Unhandled exception tracking logged by base plugin.
-                    throw new Exception("Throw Unhandled Exception");
+                    // randomly throw an exception 
+                    var random = new Random();
+                    if(random.Next(100) <= 10)
+                    {
+                        // Unhandled exception tracking logged by base plugin.
+                        throw new Exception("Throw Unhandled Exception");
+                    }
+
+
+                   
                 }
             }
 
@@ -119,7 +127,7 @@ namespace CCLLC.CDS.Sdk.Instrumented.UnitTest
                         .Build(),
                     new DebugLogger()).Build();
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 20; i++)
                 {
                     try
                     {
