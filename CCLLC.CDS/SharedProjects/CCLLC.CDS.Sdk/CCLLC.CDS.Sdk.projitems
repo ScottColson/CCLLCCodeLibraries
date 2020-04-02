@@ -35,7 +35,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IXmlConfigurationResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSPluginExecutionContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Extensions\CDSEntityExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CDSPlugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registrations\PluginEventRegistration.cs" />
   </ItemGroup>

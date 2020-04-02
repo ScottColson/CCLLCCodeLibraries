@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
@@ -16,18 +18,29 @@ namespace CCLLC.CDS.Sdk
         /// <param name="Target"></param>
         /// <param name="AttributeNames"></param>
         /// <returns></returns>
-        public static bool ContainsAny(this Entity Target, string[] AttributeNames)
+        public static bool ContainsAny(this Entity Target, params string[] AttributeNames)
         {
-            foreach (string a in AttributeNames)
+            if (AttributeNames != null)
             {
-                if (Target.Contains(a))
+                foreach (string a in AttributeNames)
                 {
-                    return true;
+                    if (Target.Contains(a))
+                    {
+                        return true;
+                    }
                 }
             }
 
             return false;
         }
+
+        public static bool ContainsAny<E>(this E Target, Expression<Func<E, object>> anonymousTypeInitializer) where E : Entity
+        {
+            var columns = anonymousTypeInitializer.GetAttributeNamesArray<E>();
+            return Target.ContainsAny(columns);
+        }
+
+
 
         /// <summary>
         /// Retrieves an attribute from the entity with of the specified type and returns an 
