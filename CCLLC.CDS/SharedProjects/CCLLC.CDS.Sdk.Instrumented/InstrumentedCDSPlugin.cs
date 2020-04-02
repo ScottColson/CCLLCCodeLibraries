@@ -19,7 +19,25 @@ namespace CCLLC.CDS.Sdk
     /// </summary>
     public abstract class InstrumentedCDSPlugin : CDSPlugin, IInstrumenetedCDSPlugin
     {
-               
+        /// <summary>
+        /// Flag to capture execution performance metrics using request telemetry. Defaults to true.
+        /// </summary>
+        public bool TrackExecutionPerformance { get; set; }
+
+        /// <summary>
+        /// Flag to force flushing the telemetry sink buffer after handler execution completes. When
+        /// set to false the <see cref="TelemetrySink"/> transmits every 30 seconds while the plugin
+        /// is in memory, every 1000 pieces of telemetry, and just prior to plugin disposal. 
+        /// </summary>
+        public bool FlushTelemetryAfterExecution { get; set; }
+
+        /// <summary>
+        /// Sets a the default key used when sending telemetry data from the plugin. Can be overridden using
+        /// setting "Telemetry.InstrumentationKey". If no instrumentation key is provided then telemetry
+        /// capture is disabled. 
+        /// </summary>
+        public string DefaultInstrumentationKey { get; set; }
+
         /// <summary>
         /// Provides a <see cref="ITelemetrySink"/> to receive and process various 
         /// <see cref="ITelemetry"/> items generated during the execution of the 
@@ -34,10 +52,13 @@ namespace CCLLC.CDS.Sdk
         /// <param name="secureConfig"></param>
         public InstrumentedCDSPlugin(string unsecureConfig, string secureConfig) 
             : base(unsecureConfig, secureConfig)
-        {           
+        {
+            this.TrackExecutionPerformance = true;
+            this.FlushTelemetryAfterExecution = false;
+            
             // Dependencies for instrumented execution context.
             Container.Implement<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>().Using<InstrumentedCDSExecutionContextFactory>().AsSingleInstance();
-            Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>();
+            Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>().AsSingleInstance();
 
             // Telemetry issue event logger. Use inert logger for plugins because we don't have
             // the required security level to interact directly with the event log.
@@ -64,29 +85,8 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<IContextTagKeys>().Using<AIContextTagKeys>(); //Defines context tags expected by Application Insights.
             Container.Implement<ITelemetrySerializer>().Using<AITelemetrySerializer>(); //Serialize telemetry items into a compressed Gzip data.
             Container.Implement<IJsonWriterFactory>().Using<JsonWriterFactory>(); //Factory to create JSON converters as needed.
-
         }
               
-
-        /// <summary>
-        /// Flag to capture execution performance metrics using request telemetry.
-        /// </summary>
-        public bool TrackExecutionPerformance { get; set; }
-
-        /// <summary>
-        /// Flag to force flushing the telemetry sink buffer after handler execution completes. When
-        /// set to false the <see cref="TelemetrySink"/> transmits every 30 seconds while the plugin
-        /// is in memory, every 1000 pieces of telemetry, and just prior to plugin disposal. 
-        /// </summary>
-        public bool FlushTelemetryAfterExecution { get; set; }
-
-        /// <summary>
-        /// Sets a the default key used when sending telemetry data from the plugin. Can be overridden using
-        /// setting "Telemetry.InstrumentationKey". If no instrumentation key is provided then telemetry
-        /// capture is disabled. 
-        /// </summary>
-        public string DefaultInstrumentationKey { get; set; }
-
         /// <summary>
         /// Telemetry Sink that gathers and transmits telemetry.
         /// </summary>
@@ -177,12 +177,12 @@ namespace CCLLC.CDS.Sdk
                                
                 try
                 {
-                    var matchingHandlers = this.PluginEventHandlers
+                    var matchingRegistrations = this.PluginEventRegistrations
                         .Where(a => (int)a.Stage == executionContext.Stage
                             && (string.IsNullOrWhiteSpace(a.MessageName) || string.Compare(a.MessageName, executionContext.MessageName, StringComparison.InvariantCultureIgnoreCase) == 0)
                             && (string.IsNullOrWhiteSpace(a.EntityName) || string.Compare(a.EntityName, executionContext.PrimaryEntityName, StringComparison.InvariantCultureIgnoreCase) == 0));
 
-                    if (matchingHandlers.Any())
+                    if (matchingRegistrations.Any())
                     {
                         var factory = Container.Resolve<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>();
 
@@ -193,11 +193,11 @@ namespace CCLLC.CDS.Sdk
                                 TelemetrySink.OnConfigure = () => { return this.ConfigureTelemetrySink(cdsExecutionContext); };
                             }
 
-                            foreach (var handler in matchingHandlers)
+                            foreach (var registration in matchingRegistrations)
                             {
                                 try
                                 {
-                                    handler.PluginAction.Invoke(cdsExecutionContext);
+                                    registration.Invoke(cdsExecutionContext);                                   
                                 }
                                 catch (InvalidPluginExecutionException ex)
                                 {
@@ -223,7 +223,7 @@ namespace CCLLC.CDS.Sdk
                                 {
                                     if (this.TrackExecutionPerformance && telemetryFactory != null && telemetryClient != null)
                                     {
-                                        var r = telemetryFactory.BuildRequestTelemetry("PluginExecution", null, new Dictionary<string, string> { { "handlerName", handler.Id } });
+                                        var r = telemetryFactory.BuildRequestTelemetry("PluginExecution", null, new Dictionary<string, string> { { "handlerName", registration.HandlerId} });
                                         r.Duration = sw.Elapsed;
                                         r.ResponseCode = responseCode;
                                         r.Success = success;
@@ -240,7 +240,7 @@ namespace CCLLC.CDS.Sdk
                                     
                                 }
                             }
-                        } //using localContext
+                        } //using cdsExecutionContext
                     }
                 }
                 catch (InvalidPluginExecutionException ex)
