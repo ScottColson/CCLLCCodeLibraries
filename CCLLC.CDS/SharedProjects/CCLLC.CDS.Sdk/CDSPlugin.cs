@@ -85,7 +85,7 @@ namespace CCLLC.CDS.Sdk
         }
 
         /// <summary>
-        /// Adds a new event to <see cref="PluginEventHandlers"/> list.
+        /// Adds a new event handler registration to link a plugin event signature to a specific handler.
         /// </summary>
         /// <param name="entityName"></param>
         /// <param name="messageName"></param>
@@ -136,19 +136,33 @@ namespace CCLLC.CDS.Sdk
 
         public void RegisterRetrieveHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference, ColumnSet, E> handler, string handlerId = "") where E : Entity, new()
         {
-            throw new NotImplementedException();
+            this._events.Add(new RetrieveEventRegistration<E>
+            {
+                HandlerId = handlerId,
+                Stage = stage,
+                PluginAction = handler
+            });
         }
 
         public void RegisterQueryHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, QueryExpression, EntityCollection> handler, string handlerId = "") where E : Entity, new()
         {
-            throw new NotImplementedException();
+            this._events.Add(new QueryEventRegistration<E>
+            {
+                HandlerId = handlerId,
+                Stage = stage,
+                PluginAction = handler
+            });
         }
 
         public void RegisterActionHandler<TRequest, TResponse>(Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "")
-            where TRequest : OrganizationRequest
-            where TResponse : OrganizationResponse
+            where TRequest : OrganizationRequest, new()
+            where TResponse : OrganizationResponse, new()
         {
-            throw new NotImplementedException();
+            this._events.Add(new ActionEventRegistration<TRequest, TResponse>
+            {
+                HandlerId = handlerId,                
+                PluginAction = handler
+            });
         }
 
 

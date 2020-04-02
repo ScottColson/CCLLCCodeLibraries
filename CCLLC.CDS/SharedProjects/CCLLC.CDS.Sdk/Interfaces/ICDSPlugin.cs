@@ -42,7 +42,9 @@ namespace CCLLC.CDS.Sdk
 
         void RegisterQueryHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, QueryExpression, EntityCollection> handler, string handlerId = "") where E : Entity, new();
 
-        void RegisterActionHandler<TRequest, TResponse>(Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "") where TRequest : OrganizationRequest where TResponse : OrganizationResponse;
+        void RegisterActionHandler<TRequest, TResponse>(Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "") 
+            where TRequest : OrganizationRequest, new() 
+            where TResponse : OrganizationResponse, new();
     
     }
 }
