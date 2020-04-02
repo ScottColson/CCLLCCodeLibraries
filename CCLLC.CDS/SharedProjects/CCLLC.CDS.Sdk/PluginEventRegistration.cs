@@ -30,5 +30,10 @@ namespace CCLLC.CDS.Sdk
         /// Method that should be executed when the conditions of the Plugin Event have been met.
         /// </summary>
         public Action<ICDSPluginExecutionContext> PluginAction  { get; set; }
-}
+
+        public void Invoke(ICDSPluginExecutionContext executionContext)
+        {
+            this.PluginAction.Invoke(executionContext);
+        }
+    }
 }

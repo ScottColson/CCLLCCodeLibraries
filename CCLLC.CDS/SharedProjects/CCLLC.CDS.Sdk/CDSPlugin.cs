@@ -8,7 +8,8 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
 {
-    using CCLLC.Core;   
+    using CCLLC.Core;
+    using Microsoft.Xrm.Sdk.Query;
 
     /// <summary>
     /// Base plugin class for plugins using <see cref="ICDSPlugin"/> functionality. This class does not provide
@@ -102,7 +103,46 @@ namespace CCLLC.CDS.Sdk
                 HandlerId = id
             });
         }
-               
+
+        public void RegisterCreateHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, E, EntityReference> handler, string handlerId = "") where E : Entity, new()
+        {
+            this._events.Add(new CreateEventRegistration<E>
+            {
+                HandlerId = handlerId,
+                Stage = stage,
+                PluginAction = handler
+            });
+        }
+
+        public void RegisterUpdateHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, E> handler, string handlerId = "") where E : Entity, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterDeleteHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference> handler, string handlerId = "") where E : Entity, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterRetrieveHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference, ColumnSet, E> handler, string handlerId = "") where E : Entity, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterQueryHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, QueryExpression, EntityCollection> handler, string handlerId = "") where E : Entity, new()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterActionHandler<TRequest, TResponse>(Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "")
+            where TRequest : OrganizationRequest
+            where TResponse : OrganizationResponse
+        {
+            throw new NotImplementedException();
+        }
+
+
+
         /// <summary>
         /// Executes the plug-in.
         /// </summary>
@@ -135,7 +175,7 @@ namespace CCLLC.CDS.Sdk
                     {
                         foreach (var registration in matchingRegistrations)
                         {
-                            InvokeRegisteredHandler(cdsExecutionContext, registration);                       
+                            registration.Invoke(cdsExecutionContext);
                         }
                     }
                 }
@@ -153,20 +193,5 @@ namespace CCLLC.CDS.Sdk
 
             tracingService.Trace(string.Format(CultureInfo.InvariantCulture, "Exiting {0}.Execute()", this.GetType().ToString()));
         }
-    
-        /// <summary>
-        /// Invokes the event handler associated with the specified plugin event registration.
-        /// </summary>
-        /// <param name="executionContext"></param>
-        /// <param name="registration"></param>
-        protected void InvokeRegisteredHandler(ICDSPluginExecutionContext executionContext, IPluginEventRegistration registration)
-        {
-            if (registration is PluginEventRegistration)
-            {
-                (registration as PluginEventRegistration).PluginAction.Invoke(executionContext);
-                return;
-            }
-        }
-    
     }
 }

@@ -12,5 +12,7 @@
         /// Name of the message that the plugin should be triggered off of.
         /// </summary>
         string MessageName { get; }
+
+        void Invoke(ICDSPluginExecutionContext executionContext);
     }
 }

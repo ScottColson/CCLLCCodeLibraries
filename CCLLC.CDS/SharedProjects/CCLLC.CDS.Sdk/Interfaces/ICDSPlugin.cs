@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using CCLLC.Core;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 
 namespace CCLLC.CDS.Sdk
 {
@@ -28,7 +29,20 @@ namespace CCLLC.CDS.Sdk
         /// <param name="messageName">Message name for the call</param>
         /// <param name="stage">Plugin stage for the call</param>
         /// <param name="handler">The handler that will be executed</param>
-        /// <param name="id">An ad that can be passed through to telemetry when used.</param>
-        void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginExecutionContext> handler, string id = "");
+        /// <param name="handlerId">An ad that can be passed through to telemetry when used.</param>
+        void RegisterEventHandler(string entityName, string messageName, ePluginStage stage, Action<ICDSPluginExecutionContext> handler, string handlerId = "");
+
+        void RegisterCreateHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, E, EntityReference> handler, string handlerId = "") where E : Entity, new();
+
+        void RegisterUpdateHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, E> handler, string handlerId = "") where E : Entity, new();
+
+        void RegisterDeleteHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference> handler, string handlerId = "") where E : Entity, new();
+
+        void RegisterRetrieveHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference, ColumnSet, E> handler, string handlerId = "") where E : Entity, new();
+
+        void RegisterQueryHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, QueryExpression, EntityCollection> handler, string handlerId = "") where E : Entity, new();
+
+        void RegisterActionHandler<TRequest, TResponse>(Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "") where TRequest : OrganizationRequest where TResponse : OrganizationResponse;
+    
     }
 }
