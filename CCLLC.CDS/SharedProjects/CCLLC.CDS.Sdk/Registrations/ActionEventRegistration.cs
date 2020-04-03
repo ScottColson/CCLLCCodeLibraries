@@ -20,7 +20,7 @@ namespace CCLLC.CDS.Sdk
         /// <summary>
         /// Execution pipeline stage that the plugin should be registered against.
         /// </summary>
-        public ePluginStage Stage { get; }
+        public ePluginStage Stage { get; set; }
         /// <summary>
         /// Logical name of the entity that the plugin should be registered against. Leave 'null' to register against all entities.
         /// </summary>
@@ -33,10 +33,9 @@ namespace CCLLC.CDS.Sdk
         public Action<ICDSPluginExecutionContext, TRequest, TResponse> PluginAction { get; set; }
 
         public ActionEventRegistration()
-        {
-            Stage = ePluginStage.PostOperation;
-            EntityName = new TRequest().RequestName;
-            MessageName = MessageNames.Create;
+        {            
+            EntityName = null;
+            MessageName = new TRequest().RequestName;
         }
 
         public void Invoke(ICDSPluginExecutionContext executionContext)

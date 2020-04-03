@@ -104,6 +104,13 @@ namespace CCLLC.CDS.Sdk
             });
         }
 
+        /// <summary>
+        /// Register a new event handler for create message using early bound entity types.
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="stage"></param>
+        /// <param name="handler"></param>
+        /// <param name="handlerId"></param>
         public void RegisterCreateHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, E, EntityReference> handler, string handlerId = "") where E : Entity, new()
         {
             this._events.Add(new CreateEventRegistration<E>
@@ -114,6 +121,13 @@ namespace CCLLC.CDS.Sdk
             });
         }
 
+        /// <summary>
+        /// Register a new event handler for an update message using early bound entity types.
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="stage"></param>
+        /// <param name="handler"></param>
+        /// <param name="handlerId"></param>
         public void RegisterUpdateHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, E> handler, string handlerId = "") where E : Entity, new()
         {
             this._events.Add(new UpdateEventRegistration<E>
@@ -124,6 +138,14 @@ namespace CCLLC.CDS.Sdk
             });
         }
 
+
+        /// <summary>
+        /// Register a new event handler for a delete message using early bound entity types.
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="stage"></param>
+        /// <param name="handler"></param>
+        /// <param name="handlerId"></param>
         public void RegisterDeleteHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference> handler, string handlerId = "") where E : Entity, new()
         {
             this._events.Add(new DeleteEventRegistration<E>
@@ -134,6 +156,13 @@ namespace CCLLC.CDS.Sdk
             });
         }
 
+        /// <summary>
+        /// Register a new event handler for a retrieve message using early bound entity types.
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="stage"></param>
+        /// <param name="handler"></param>
+        /// <param name="handlerId"></param>
         public void RegisterRetrieveHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, EntityReference, ColumnSet, E> handler, string handlerId = "") where E : Entity, new()
         {
             this._events.Add(new RetrieveEventRegistration<E>
@@ -144,6 +173,13 @@ namespace CCLLC.CDS.Sdk
             });
         }
 
+        /// <summary>
+        /// Register a new event handler for a retrieve multiple message using early bound entity types.
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="stage"></param>
+        /// <param name="handler"></param>
+        /// <param name="handlerId"></param>
         public void RegisterQueryHandler<E>(ePluginStage stage, Action<ICDSPluginExecutionContext, QueryExpression, EntityCollection> handler, string handlerId = "") where E : Entity, new()
         {
             this._events.Add(new QueryEventRegistration<E>
@@ -154,15 +190,24 @@ namespace CCLLC.CDS.Sdk
             });
         }
 
-        public void RegisterActionHandler<TRequest, TResponse>(Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "")
+        /// <summary>
+        /// Register a new event handler for an action message using early bound action request and response types. Handler will
+        /// </summary>
+        /// <typeparam name="TRequest"></typeparam>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <param name="stage"></param>
+        /// <param name="handler"></param>
+        /// <param name="handlerId"></param>
+        public void RegisterActionHandler<TRequest, TResponse>(ePluginStage stage, Action<ICDSPluginExecutionContext, TRequest, TResponse> handler, string handlerId = "")
             where TRequest : OrganizationRequest, new()
             where TResponse : OrganizationResponse, new()
         {
             this._events.Add(new ActionEventRegistration<TRequest, TResponse>
             {
-                HandlerId = handlerId,                
+                Stage = stage,
+                HandlerId = handlerId,
                 PluginAction = handler
-            });
+            }); ;
         }
 
 
