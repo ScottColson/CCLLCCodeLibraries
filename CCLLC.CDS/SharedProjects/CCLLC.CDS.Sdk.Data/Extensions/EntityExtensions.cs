@@ -34,6 +34,14 @@ namespace CCLLC.CDS.Sdk
             return false;
         }
 
+        /// <summary>
+        /// Checks an early bound entity for the existence of one or more fields using projection to
+        /// define the field list.
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="Target"></param>
+        /// <param name="anonymousTypeInitializer"></param>
+        /// <returns></returns>
         public static bool ContainsAny<E>(this E Target, Expression<Func<E, object>> anonymousTypeInitializer) where E : Entity
         {
             var columns = anonymousTypeInitializer.GetAttributeNamesArray<E>();

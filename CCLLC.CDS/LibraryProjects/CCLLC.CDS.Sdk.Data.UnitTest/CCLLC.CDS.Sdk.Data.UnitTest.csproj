@@ -42,9 +42,6 @@
     <Reference Include="CCLLC.Core.ProcessModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=506847acdbcda1d9, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CCLLC.Core.ProcessModel.1.1.2\lib\net462\CCLLC.Core.ProcessModel.dll</HintPath>
     </Reference>
-    <Reference Include="CCLLCCDSSdk, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4c258decc55898a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CCLLC.CDS.Sdk.1.1.3\lib\net462\CCLLCCDSSdk.dll</HintPath>
-    </Reference>
     <Reference Include="CCLLCCoreNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=506847acdbcda1d9, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CCLLC.Core.Net.1.0.1\lib\net462\CCLLCCoreNet.dll</HintPath>
     </Reference>
@@ -129,6 +126,10 @@
     <ProjectReference Include="..\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.csproj">
       <Project>{642d436f-0839-444f-8fd4-955205f98564}</Project>
       <Name>CCLLC.CDS.Sdk.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.csproj">
+      <Project>{cf336bb7-87c9-4561-9549-293426baaa3e}</Project>
+      <Name>CCLLC.CDS.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\CCLLC.CDS.Testing\CCLLC.CDS.Testing.csproj">
       <Project>{b09cab44-f47e-4994-ad63-ef9bf570f2d0}</Project>

@@ -12,7 +12,7 @@ namespace CCLLC.CDS.Test.Builders
         #region Fluent Methods
 
 
-        public PluginExecutionContextBuilder WithPluginEvent(PluginEvent @event)
+        public PluginExecutionContextBuilder WithPluginEvent(PluginEventRegistration @event)
         {
             return WithRegisteredEvent((int)@event.Stage, @event.MessageName, @event.EntityName);
         }
