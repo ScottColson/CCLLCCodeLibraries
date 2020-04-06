@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Projects", "Shared Projects", "{7B680925-EC15-499F-A0C2-8F1188934504}"
+	ProjectSection(SolutionItems) = preProject
+		SharedProjects\CCLLC.CDS.Sdk\CreateEventRegistration.cs = SharedProjects\CCLLC.CDS.Sdk\CreateEventRegistration.cs
+	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.Sdk", "SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.shproj", "{EFE8BFFA-135D-4DCC-A5AF-74E255E4CBD7}"
 EndProject
@@ -29,9 +32,20 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.Sdk.Data", "Share
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.CDS.Sdk", "LibraryProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.csproj", "{CF336BB7-87C9-4561-9549-293426BAAA3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.CDS.Sdk.Data", "LibraryProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.csproj", "{642D436F-0839-444F-8FD4-955205F98564}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCLLC.CDS.Sdk.Data", "LibraryProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.csproj", "{642D436F-0839-444F-8FD4-955205F98564}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.CDS.Sdk.Data.UnitTest", "LibraryProjects\CCLLC.CDS.Sdk.Data.UnitTest\CCLLC.CDS.Sdk.Data.UnitTest.csproj", "{33BAD8B8-7C91-4A88-A96D-DAB3A2490448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FBE6E76A-DD05-4762-A279-7307685D7C9B}"
+	ProjectSection(SolutionItems) = preProject
+		..\docs\CCLLC.CDS.Sdk.Data.md = ..\docs\CCLLC.CDS.Sdk.Data.md
+		..\docs\CCLLC.CDS.Sdk.md = ..\docs\CCLLC.CDS.Sdk.md
+		..\docs\CCLLC.Core.Encryption.md = ..\docs\CCLLC.Core.Encryption.md
+		..\docs\CCLLC.Core.IocContainer.md = ..\docs\CCLLC.Core.IocContainer.md
+		..\docs\CCLLC.Core.Net.md = ..\docs\CCLLC.Core.Net.md
+		..\docs\CCLLC.Core.ProcessModel.md = ..\docs\CCLLC.Core.ProcessModel.md
+		..\docs\README.md = ..\docs\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

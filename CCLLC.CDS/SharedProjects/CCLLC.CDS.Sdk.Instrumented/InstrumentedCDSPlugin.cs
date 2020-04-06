@@ -38,12 +38,19 @@ namespace CCLLC.CDS.Sdk
         /// </summary>
         public string DefaultInstrumentationKey { get; set; }
 
+        private static ITelemetrySink telemetrySink;
         /// <summary>
         /// Provides a <see cref="ITelemetrySink"/> to receive and process various 
         /// <see cref="ITelemetry"/> items generated during the execution of the 
-        /// Plugin.
-        /// </summary>
-        public virtual ITelemetrySink TelemetrySink { get; protected set; }
+        /// Plugin. Default implementation uses a static sink. Override this if
+        /// your plugin is not transmitting to the same location as other plugins
+        /// in your process space.
+        /// </summary>        
+        public virtual ITelemetrySink TelemetrySink 
+        { 
+            get => telemetrySink;
+            protected set => telemetrySink = value; 
+        }
         
         /// <summary>
         /// Constructor for <see cref="InstrumentedCDSPlugin"/>.
@@ -102,7 +109,7 @@ namespace CCLLC.CDS.Sdk
                 {
                     TelemetrySink.ProcessChain.TelemetryProcessors.Add(new SequencePropertyProcessor());
                     TelemetrySink.ProcessChain.TelemetryProcessors.Add(new InstrumentationKeyPropertyProcessor(key));
-                         
+                    TelemetrySink.Channel.Buffer.Capacity = 5000;     
                     return true; //telemetry sink is configured.
                 }
             }
