@@ -18,7 +18,7 @@ namespace SamplePlugin
     ///  1. Add reference to System.Runtime.Caching.
     ///  2. If not using VS2019 - set C# language version to a minimum of 7.1
     ///  3. Install Nuget package Microsoft.CrmSdk.CoreAssemblies 9.0.2.23 or later.
-    ///  3. Install Nuget package CCLLC.CDS.Sdk.Instrumented.Sources 1.1.2 or later.
+    ///  3. Install Nuget package CCLLC.CDS.Sdk.Instrumented.Sources 1.3.0 or later.
     ///  
     ///  To fully see the results of telemetry tracking you will need to setup an ApplicationInsights instance in Azure and set the DefaultIntrumentationKey
     ///  value in the plugin constructor.
@@ -59,10 +59,6 @@ namespace SamplePlugin
             // for developer convenience but in practice it should  be set in a CDS Environment Variable named 'Telemetry.InstrumentationKey'
             this.DefaultInstrumentationKey = "7a6ecb67-6c9c-4640-81d2-80ce76c3ca34";
 
-            // TrackExecutionPerformance (for InstumentedCDSPlugin only)  - When set to true the plugin will capture execution performance time for each 
-            // executed event handler. 
-            this.TrackExecutionPerformance = true;
-
             #endregion
 
 
@@ -87,7 +83,7 @@ namespace SamplePlugin
              */
 
             // Execute the workingWithEntities handler in the PreOpStage of an Account update.
-            RegisterEventHandler("account", MessageNames.Update, ePluginStage.PreOperation, workingWithEntities);
+            RegisterUpdateHandler<Account>(ePluginStage.PreOperation, workingWithEntityUpdate);
 
             // Execute the demonstrateWebRequest handler in the Post Operation stage of an account creation.
             RegisterEventHandler("account", MessageNames.Create, ePluginStage.PostOperation, demonstrateWebRequest);
@@ -103,13 +99,19 @@ namespace SamplePlugin
 
 
         /// <summary>
-        /// Demonstrates some of the shortcuts and features around working with entities.
+        /// Demonstration update event handler
         /// </summary>
-        /// <param name="executionContext"></param>
-        private void workingWithEntities(ICDSPluginExecutionContext executionContext)
+        /// <param name="executionContext">The <see cref="ICDSPluginExecutionContext"/> execution context for
+        /// the handler execution</param>
+        /// <param name="target">The target entity for the update. Contains any fields that are being sent in for update.</param>
+        private void workingWithEntityUpdate(ICDSPluginExecutionContext executionContext, Account target)
         {
-            // TargetEntity - Provides access to the entity in the InputParameters Target parameter if it exists. Returns null if it does not exist.
-            Entity target = executionContext.TargetEntity;
+
+            // carry out actions only if the update is affecting the name or accountnumber fields
+            if (target.ContainsAny( "name", "accountnumber"))
+            {
+                executionContext.Trace("Target contains at least one matching attribute");  // short cut to tracing service Trace method.
+            }
 
             // TargetReference - Provides and entity reference for the entity in the InputParameters Target parameter. Return null if the entity does not exist.
             EntityReference targetRef = executionContext.TargetReference;
@@ -119,24 +121,15 @@ namespace SamplePlugin
 
             // PreMergedTarget - Provides an entity with attributes from the TargetEntity merged into the PreImage entity. If an attribute exists in 
             // both the TargetEntity and the PreImage, the merged target will show the attribute from the Target.
-            Entity mergedTarget = executionContext.PreMergedTarget;
+            var mergedTarget = executionContext.PreMergedTarget.ToEntity<Account>();
 
 
             // GetRecord is a simple retrieve shortcut that accepts an EntityReference, an optional list of columns, 
-            // and/or a cache timeout value for caching the result, and returns an earlybound entity. 
+            // and/or a cache timeout value for caching the result, and returns an early-bound entity. 
             var myRecord1 = executionContext.GetRecord<Account>(targetRef); //Get record with all columns.
             var myRecord2 = executionContext.GetRecord<Account>(targetRef, new string[] {"name", "accountnumber" }); //retrieve 2 columns
             var myRecord3 = executionContext.GetRecord<Account>(targetRef, TimeSpan.FromSeconds(10)); //retrieve and cache for 10 seconds
 
-            // ContainsAny Entity extension - Checks for existence of at least one of multiple attributes. Easier to read and understand than 
-            // target.Contains("name") || target.Contains("accountnumber") especially with a large set of attributes.
-            if (target.ContainsAny(new string[]{ "name","accountnumber"}))
-            {
-                executionContext.Trace("Target contains at least one matching attribute");  // short cut to tracing service Trace method.
-            }
-
-
-            
         }
 
 
@@ -182,6 +175,14 @@ namespace SamplePlugin
                     .Attribute("name").Is<string>(ConditionOperator.BeginsWith,"C"))
                 .OrderByAsc("name","accountnumber")
                 .Retrieve();
+
+            var accountId = executionContext.TargetReference;
+
+            // Load a record based on its record id            
+            var lateBoundRecord = orgService.GetRecord(accountId, "accountid", "name", "accountnumber");
+
+            var earlyBoundRecord = orgService.GetRecord<Account>(accountId, cols => new { cols.Id, cols.Name, cols.AccountNumber });
+
                 
         }
 
