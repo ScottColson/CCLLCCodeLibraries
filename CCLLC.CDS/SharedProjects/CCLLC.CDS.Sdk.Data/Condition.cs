@@ -83,8 +83,15 @@ namespace CCLLC.CDS.Sdk
         }
 
         private void addConditionToFilter(ConditionOperator conditionOperator, object value, IFilterable filter)
-        {            
-           filter.Conditions.Add(new ConditionExpression(AttributeName, conditionOperator, value));
+        {
+            if (value is null)
+            {
+                filter.Conditions.Add(new ConditionExpression(AttributeName, conditionOperator));
+            }
+            else
+            {
+                filter.Conditions.Add(new ConditionExpression(AttributeName, conditionOperator, value));
+            }
         }
     }
 }

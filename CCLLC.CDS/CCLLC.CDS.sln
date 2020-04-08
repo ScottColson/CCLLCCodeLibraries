@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared Projects", "Shared Projects", "{7B680925-EC15-499F-A0C2-8F1188934504}"
-	ProjectSection(SolutionItems) = preProject
-		SharedProjects\CCLLC.CDS.Sdk\CreateEventRegistration.cs = SharedProjects\CCLLC.CDS.Sdk\CreateEventRegistration.cs
-	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.Sdk", "SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.shproj", "{EFE8BFFA-135D-4DCC-A5AF-74E255E4CBD7}"
 EndProject
