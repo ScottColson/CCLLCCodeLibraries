@@ -8,5 +8,7 @@ namespace CCLLC.Core.RESTClient
     {
         IAPIEndpoint ApiEndpoint { get; }
         IRESTResponse Execute(IHttpWebRequest webRequest);
+
+        T Execute<T>(IHttpWebRequest webRequest) where T : IRESTResponse;
     }
 }

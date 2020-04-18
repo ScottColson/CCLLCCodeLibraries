@@ -7,6 +7,9 @@ namespace CCLLC.Core.RESTClient
     {
         IAPIEndpoint AddRoute(string path);
 
+        IAPIEndpoint AddQuery(string key,string value);
+
         Uri ToUri();
     }
 }
+ 

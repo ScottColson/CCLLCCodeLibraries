@@ -37,6 +37,8 @@ namespace CCLLC.Core.RESTClient
         }
 
         public abstract IRESTResponse Execute(IHttpWebRequest webRequest);
-        
+
+        public abstract T Execute<T>(IHttpWebRequest webRequest) where T : IRESTResponse;
+       
     }
 }
