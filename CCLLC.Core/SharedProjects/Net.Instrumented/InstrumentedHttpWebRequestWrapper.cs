@@ -11,12 +11,12 @@ namespace CCLLC.Core.Net
     {               
         private ITelemetryFactory _telemetryFactory = null;
         private ITelemetryClient _telemetryClient = null;
-        private string _dependencyName = null;
+        private string _telemetryTag = null;
 
-        public InstrumentedHttpWebRequestWrapper(Uri address, ITelemetryFactory telemetryFactory, ITelemetryClient telementryClient, string dependencyName = null)
+        public InstrumentedHttpWebRequestWrapper(ITelemetryFactory telemetryFactory, ITelemetryClient telementryClient, Uri address, string telemetryTag = null)
             : base(address)
         {            
-            _dependencyName = dependencyName;
+            _telemetryTag = telemetryTag;
             _telemetryClient = telementryClient ?? throw new ArgumentNullException("telemetryClient is required.");
             _telemetryFactory = telemetryFactory ?? throw new ArgumentNullException("telemetryFactory is required.");
         }
@@ -26,19 +26,19 @@ namespace CCLLC.Core.Net
         {
             base.Dispose(disposing);
 
-            _dependencyName = null;
+            _telemetryTag = null;
             _telemetryClient = null;
             _telemetryFactory = null;           
         }
 
-        public override IHttpWebResponse Get()
+        public override IWebResponse Get()
         {
             IDependencyTelemetry dependencyTelemetry = null;
           
             dependencyTelemetry = _telemetryFactory.BuildDependencyTelemetry(
                 "Web",
                  Address.ToString(),
-                _dependencyName != null ? _dependencyName : "WebRequest",
+                _telemetryTag ?? "WebRequest",
                 null);
 
             using (var dependencyClient = _telemetryClient.StartOperation<IDependencyTelemetry>(dependencyTelemetry))
@@ -52,14 +52,14 @@ namespace CCLLC.Core.Net
             }
         }
       
-        public override IHttpWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)             
+        public override IWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)             
         {
             IDependencyTelemetry dependencyTelemetry = null;           
             
             dependencyTelemetry = _telemetryFactory.BuildDependencyTelemetry(
                 "Web",
                 Address.ToString(),
-                _dependencyName != null ? _dependencyName : "WebRequest",
+                _telemetryTag ?? "WebRequest",
                 null);
              
             using(var dependencyClient = _telemetryClient.StartOperation<IDependencyTelemetry>(dependencyTelemetry))
@@ -73,14 +73,14 @@ namespace CCLLC.Core.Net
             }  
         }
 
-        public override IHttpWebResponse Put(string data, string contentType = null)
+        public override IWebResponse Put(string data, string contentType = null)
         {
             IDependencyTelemetry dependencyTelemetry = null;
 
             dependencyTelemetry = _telemetryFactory.BuildDependencyTelemetry(
                 "Web",
                 Address.ToString(),
-                _dependencyName != null ? _dependencyName : "WebRequest",
+                _telemetryTag ?? "WebRequest",
                 null);
 
             using (var dependencyClient = _telemetryClient.StartOperation<IDependencyTelemetry>(dependencyTelemetry))

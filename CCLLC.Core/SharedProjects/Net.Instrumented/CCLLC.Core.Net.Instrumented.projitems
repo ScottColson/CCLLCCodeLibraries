@@ -9,6 +9,8 @@
     <Import_RootNamespace>CLLC.Core.Net.Instrumented</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IInstrumentedWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InstrumenetedWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InstrumentedHttpWebRequestWrapper.cs" />
   </ItemGroup>
 </Project>
