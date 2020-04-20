@@ -14,7 +14,7 @@
   <PropertyGroup>
     <!--https://docs.microsoft.com/en-us/nuget/schema/msbuild-targets-->
     <AssemblyOriginatorKeyFile>CCLLC.Core.RestClient.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>Provides basic REST client services.</Description>
     <PackageId>CCLLC.Core.RestClient</PackageId>
@@ -30,7 +30,7 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
 
   <ItemGroup>
-    <PackageReference Include="CCLLC.Core.Net" Version="1.0.1" />
+    <PackageReference Include="CCLLC.Core.Net" Version="1.1.0" />
     <PackageReference Include="CCLLC.Core.Serialization" Version="1.0.0" />
   </ItemGroup>
 </Project>

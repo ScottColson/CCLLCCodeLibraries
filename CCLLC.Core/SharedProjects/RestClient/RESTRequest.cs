@@ -6,9 +6,14 @@ namespace CCLLC.Core.RESTClient
     using CCLLC.Core.Net;
 
     [DataContract]
-    public abstract class RESTRequest :  IRESTRequest 
+    public abstract class RESTRequest<T> :  IRESTRequest<T> where T : class, IRESTResponse 
     {       
         protected IRESTEndpointConfiguration Configuration { get; }        
+
+        protected RESTRequest(IAPIEndpoint endpoint, string accessToken = null) 
+            : this(new RESTEndpointConfiguration(endpoint, accessToken))
+        {            
+        }
 
         protected RESTRequest(IRESTEndpointConfiguration configuration)
         {
@@ -20,10 +25,10 @@ namespace CCLLC.Core.RESTClient
             get
             {
                 return Configuration.Endpoint;                                      
-            }
+            }           
         }
 
-        public virtual string AuthenticationToken
+        public virtual string AccessToken
         {
             get
             {
@@ -31,14 +36,12 @@ namespace CCLLC.Core.RESTClient
             }
         }
 
-        protected virtual void SetRequestHeaders(IHttpWebRequest webRequest)
+        protected virtual void SetRequestHeaders(IWebRequest webRequest)
         {
             webRequest.Headers.Add("Cache-Control", "no-cache");
         }
 
-        public abstract IRESTResponse Execute(IHttpWebRequest webRequest);
-
-        public abstract T Execute<T>(IHttpWebRequest webRequest) where T : IRESTResponse;
+        public abstract T Execute(IWebRequest webRequest);        
        
     }
 }

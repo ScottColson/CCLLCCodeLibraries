@@ -9,12 +9,12 @@
     <Import_RootNamespace>CCLLC.Core.RESTClient</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)APIEndpoint.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAPIEndpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRESTEndpointConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRESTRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRESTRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRESTResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISerializedRESTResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RESTEndpointConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SerializedRESTRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RESTRequest.cs" />
   </ItemGroup>

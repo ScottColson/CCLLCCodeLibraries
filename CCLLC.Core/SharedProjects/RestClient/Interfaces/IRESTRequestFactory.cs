@@ -2,6 +2,6 @@
 {
     public interface IRESTRequestFactory
     {
-        T CreateRequest<T>(IRESTEndpointConfiguration configuration) where T : class, IRESTRequest;
+        T CreateRequest<T,R>(IRESTEndpointConfiguration configuration) where T : class, IRESTRequest<R> where R : class, IRESTResponse;
     }
 }

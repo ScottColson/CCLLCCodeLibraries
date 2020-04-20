@@ -1,14 +1,10 @@
-﻿using System;
-
-namespace CCLLC.Core.RESTClient
+﻿namespace CCLLC.Core.RESTClient
 {
     using CCLLC.Core.Net;
 
-    public interface IRESTRequest
+    public interface IRESTRequest<T> where T : class, IRESTResponse
     {
         IAPIEndpoint ApiEndpoint { get; }
-        IRESTResponse Execute(IHttpWebRequest webRequest);
-
-        T Execute<T>(IHttpWebRequest webRequest) where T : IRESTResponse;
+        T Execute(IWebRequest webRequest);
     }
 }

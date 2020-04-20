@@ -1,10 +1,10 @@
-﻿using System;
+﻿namespace CCLLC.Core.RESTClient
+{
+    using CCLLC.Core.Net;
 
-namespace CCLLC.Core.RESTClient
-{ 
     public interface IRESTEndpointConfiguration
     {
-        IAPIEndpoint Endpoint { get; }        
+        IAPIEndpoint Endpoint { get; }
         string AccessToken { get; }
     }
 }
