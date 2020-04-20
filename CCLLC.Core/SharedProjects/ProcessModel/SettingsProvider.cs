@@ -9,32 +9,34 @@ namespace CCLLC.Core
         //Possible separators for defining an array of strings as a value.
         private readonly char[] SEPARATORS = { ';', ',' };
 
-        private IDictionary<string,string> Settings { get; }
+        protected IReadOnlyDictionary<string,string> KeyValuePairs { get; }
 
-        public SettingsProvider(IReadOnlyDictionary<string,string> settings)
+        public SettingsProvider(IReadOnlyDictionary<string,string> keyValuePairs)
         {
-            Settings = new Dictionary<string, string>();
+            var pairs = new Dictionary<string, string>();
 
-            if(settings != null)
+            if(keyValuePairs != null)
             {
-                foreach(var setting in settings)
+                foreach(var setting in keyValuePairs)
                 {
-                    Settings.Add(setting.Key.ToLower(),setting.Value);
+                    pairs.Add(setting.Key.ToLower(),setting.Value);
                 }     
-            }           
+            }
+
+            KeyValuePairs = pairs;
         }
         
-        public string this[string key] => Settings[key];
+        public virtual string this[string key] => KeyValuePairs[key];
 
-        public IEnumerable<string> Keys => Settings.Keys;
+        public virtual IEnumerable<string> Keys => KeyValuePairs.Keys;
 
-        public IEnumerable<string> Values => Settings.Values;
+        public virtual IEnumerable<string> Values => KeyValuePairs.Values;
 
-        public int Count => Settings.Count;
+        public virtual int Count => KeyValuePairs.Count;
 
-        public bool ContainsKey(string key)
+        public virtual bool ContainsKey(string key)
         {
-            return Settings.ContainsKey(key);
+            return KeyValuePairs.ContainsKey(key);
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace CCLLC.Core
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public T GetValue<T>(string key, T defaultValue = default)
+        public virtual T GetValue<T>(string key, T defaultValue = default)
         {
             string value = null;
             if (TryGetValue(key.ToLower(), out value))
@@ -89,19 +91,19 @@ namespace CCLLC.Core
             return defaultValue;
         }
 
-        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+        public virtual IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
-            return Settings.GetEnumerator();
+            return KeyValuePairs.GetEnumerator();
         }
 
-        public bool TryGetValue(string key, out string value)
+        public virtual bool TryGetValue(string key, out string value)
         {
-            return Settings.TryGetValue(key, out value);
+            return KeyValuePairs.TryGetValue(key, out value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return Settings.GetEnumerator();
+            return KeyValuePairs.GetEnumerator();
         }
     }
 }
