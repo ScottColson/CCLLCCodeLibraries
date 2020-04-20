@@ -6,15 +6,16 @@
     <SharedGUID>085a0eb9-d245-4af3-9d25-fb86df3f9b42</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>CCLLC.Core.HttpWebRequest</Import_RootNamespace>
+    <Import_RootNamespace>CCLLC.Core.Net</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)APIEndpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpWebRequestWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpWebResponseWrapper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHttpWebRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHttpWebResponse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAPIEndpoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IWebRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IWebResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IWebRequestFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WebRequestFactory.cs" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ using System.Net;
 
 namespace CCLLC.Core.Net
 {   
-    public class HttpWebRequestWrapper : IHttpWebRequest
+    public class HttpWebRequestWrapper : IWebRequest
     {
         private const string ContentEncodingHeader = "Content-Encoding";
         private const int DefaultTimeoutInSeconds = 30;
@@ -17,6 +17,8 @@ namespace CCLLC.Core.Net
         public WebHeaderCollection Headers { get; set; }
 
         public TimeSpan Timeout { get; set; }
+
+        public HttpWebRequestWrapper(IAPIEndpoint endpoint) : this(endpoint.ToUri()) { }
 
         public HttpWebRequestWrapper(Uri address) : base()
         {
@@ -39,7 +41,7 @@ namespace CCLLC.Core.Net
             this.Headers = null;
         }
 
-        public virtual IHttpWebResponse Get()
+        public virtual IWebResponse Get()
         {  
             try
             {
@@ -83,7 +85,7 @@ namespace CCLLC.Core.Net
         }
 
 
-        public virtual IHttpWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)
+        public virtual IWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)
         { 
             try
             {
@@ -143,7 +145,7 @@ namespace CCLLC.Core.Net
 
         }
 
-        public virtual IHttpWebResponse Put(string data, string contentType = null)
+        public virtual IWebResponse Put(string data, string contentType = null)
         {      
             try
             {

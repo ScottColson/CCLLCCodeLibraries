@@ -2,7 +2,7 @@
 
 namespace CCLLC.Core.Net
 {
-    public interface IHttpWebResponse
+    public interface IWebResponse
     {
         string Content { get; }
         WebHeaderCollection Headers { get; }
