@@ -8,14 +8,19 @@ namespace CCLLC.Core
     /// <summary>
     /// Implements <see cref="IEncryptionService"/> using the Rijndael algorithm.
     /// </summary>
-    public class DefautlEncryptor : IEncryptionService
+    public class DefaultEncryptor : IEncryptionService
     {
         protected string DefaultKey { get; set; }
         protected byte[] Salt { get; set; }
       
-        public DefautlEncryptor()
+        public DefaultEncryptor() 
+            : this("7a5a64brEgaceqenuyegac7era3Ape6aWatrewegeka94waqegayathudrebuc7t")
+        {           
+        }
+
+        public DefaultEncryptor(string key)
         {
-            DefaultKey = "7a5a64brEgaceqenuyegac7era3Ape6aWatrewegeka94waqegayathudrebuc7t";
+            DefaultKey = key;
             Salt = new byte[] { 73, 118, 97, 110, 32, 77, 101, 100, 118, 101, 100, 101, 118 };
         }
 

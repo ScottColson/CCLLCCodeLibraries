@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.Core.Encryption.Sources</id>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <description>Provides basic encryption services.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -10,6 +10,6 @@
     <tags>Encryption</tags>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\Encryption\**\*.cs" target="content/App_Packages/CCLLC.Core.Encryption.Sources.1.0.1/" />
+    <file src="..\..\SharedProjects\Encryption\**\*.cs" target="content/App_Packages/CCLLC.Core.Encryption.Sources.1.1.0/" />
   </files>
 </package>
