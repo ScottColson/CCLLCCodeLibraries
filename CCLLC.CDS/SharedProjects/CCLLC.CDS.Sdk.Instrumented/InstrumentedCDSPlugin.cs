@@ -6,6 +6,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk
 {
+    using CCLLC.Core.Net;
     using CCLLC.Telemetry;
     using CCLLC.Telemetry.EventLogger;
     using CCLLC.Telemetry.Client;
@@ -65,7 +66,7 @@ namespace CCLLC.CDS.Sdk
             
             // Dependencies for instrumented execution context.
             Container.Implement<IInstrumentedCDSExecutionContextFactory<IInstrumentedCDSPluginExecutionContext>>().Using<InstrumentedCDSExecutionContextFactory>().AsSingleInstance();
-            Container.Implement<IInstrumentedCDSWebRequestFactory>().Using<InstrumenetedCDSWebRequestFactory>().AsSingleInstance();
+            Container.Implement<IInstrumentedWebRequestFactory>().Using<InstrumenetedWebRequestFactory>().AsSingleInstance();
 
             // Telemetry issue event logger. Use inert logger for plugins because we don't have
             // the required security level to interact directly with the event log.

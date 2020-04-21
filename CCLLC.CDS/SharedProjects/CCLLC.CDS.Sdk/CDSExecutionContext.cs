@@ -240,20 +240,20 @@ namespace CCLLC.CDS.Sdk
 
         public DateTime OperationCreatedOn => this.ExecutionContext.OperationCreatedOn;
 
-        private ICDSWebRequestFactory _webRequestFactory;    
+        private IWebRequestFactory _webRequestFactory;    
         
         /// <summary>
-        /// Generates a disposable <see cref="IHttpWebRequest"/> object for simplified HTTP web request
+        /// Generates a disposable <see cref="IWebRequest"/> object for simplified HTTP web request
         /// access inside a plugin.
         /// </summary>
         /// <param name="address">The URI of the web resource.</param>
         /// <param name="dependencyName">A dependence name to use for telemetry tracking.</param>
         /// <returns></returns>
-        public virtual IHttpWebRequest CreateWebRequest(Uri address, string dependencyName = null)
+        public virtual IWebRequest CreateWebRequest(Uri address, string dependencyName = null)
         {
             if(_webRequestFactory is null)
             {
-                _webRequestFactory = this.Container.Resolve<ICDSWebRequestFactory>();
+                _webRequestFactory = this.Container.Resolve<IWebRequestFactory>();
             }
             return _webRequestFactory.CreateWebRequest(address, dependencyName);
         }

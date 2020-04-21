@@ -67,7 +67,7 @@ namespace CCLLC.CDS.Sdk
         /// <param name="address"></param>
         /// <param name="dependencyName"></param>
         /// <returns></returns>
-        IHttpWebRequest CreateWebRequest(Uri address, string dependencyName = null);
+        IWebRequest CreateWebRequest(Uri address, string dependencyName = null);
 
         /// <summary>
         /// Get one record returning all columns from the data store as a typed proxy and optionally cache it. Use overloaded

@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
-
+using Microsoft.Xrm.Sdk.Query;
 
 namespace CCLLC.CDS.Sdk
 {
     using CCLLC.Core;
-    using Microsoft.Xrm.Sdk.Query;
+    using CCLLC.Core.Net;
+ 
 
     /// <summary>
     /// Base plugin class for plugins using <see cref="ICDSPlugin"/> functionality. This class does not provide
@@ -80,7 +81,7 @@ namespace CCLLC.CDS.Sdk
             Container.Implement<ISettingsProviderFactory>().Using<SettingsProviderFactory>().AsSingleInstance();
             Container.Implement<ISettingsProviderDataConnector>().Using<EnvironmentVariablesDataConnector>().AsSingleInstance();
             Container.Implement<IXmlConfigurationResourceFactory>().Using<XmlConfigurationResourceFactory>().AsSingleInstance();
-            Container.Implement<ICDSWebRequestFactory>().Using<CDSWebRequestFactory>().AsSingleInstance();
+            Container.Implement<IWebRequestFactory>().Using<WebRequestFactory>().AsSingleInstance();
             Container.Implement<ICDSExecutionContextFactory<ICDSPluginExecutionContext>>().Using<CDSExecutionContextFactory>().AsSingleInstance();
         }
 

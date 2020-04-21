@@ -9,7 +9,6 @@
     <Import_RootNamespace>CCLLC.CDS.Sdk.Instrumented</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)InstrumenetedCDSWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExecutionContextPropertyManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSExecutionContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InstrumentedCDSExecutionContext.cs" />
@@ -19,7 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSPluginExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumenetedCDSPlugin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInstrumentedCDSWebRequestFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICDSTelemetryPropertyManager.cs" />
   </ItemGroup>
 </Project>

@@ -37,7 +37,7 @@ namespace CCLLC.CDS.Sdk
             this.TelemetryClient = telemetryClient ?? throw new ArgumentNullException("telemetryClient is required."); ;
         }
 
-        private IInstrumentedCDSWebRequestFactory _webRequestFactory;
+        private IInstrumentedWebRequestFactory _webRequestFactory;
 
         /// <summary>
         /// Creates a web request that will log telemetry data to the plugin's Telemetry Sink.
@@ -45,13 +45,13 @@ namespace CCLLC.CDS.Sdk
         /// <param name="address"></param>
         /// <param name="dependencyName"></param>
         /// <returns></returns>
-        public override IHttpWebRequest CreateWebRequest(Uri address, string dependencyName = null)
+        public override IWebRequest CreateWebRequest(Uri address, string dependencyName = null)
         {
             if (_webRequestFactory is null)
             {
-                _webRequestFactory = this.Container.Resolve<IInstrumentedCDSWebRequestFactory>();
+                _webRequestFactory = this.Container.Resolve<IInstrumentedWebRequestFactory>();
             }
-            return _webRequestFactory.CreateWebRequest(address, dependencyName,  this.TelemetryFactory, this.TelemetryClient);
+            return _webRequestFactory.CreateWebRequest(this.TelemetryClient, address, dependencyName);
         }
 
         /// <summary>
