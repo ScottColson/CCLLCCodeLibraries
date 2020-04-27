@@ -39,7 +39,7 @@ namespace CCLLC.CDS.Sdk
 
         public void Invoke(ICDSPluginExecutionContext executionContext)
         {
-            var target = executionContext.TargetEntity.ToEntityReference();
+            var target = (EntityReference)executionContext.InputParameters["Target"];
             var columnSet = (ColumnSet)executionContext.InputParameters["ColumnSet"];
 
             if (Stage == ePluginStage.PostOperation) 
