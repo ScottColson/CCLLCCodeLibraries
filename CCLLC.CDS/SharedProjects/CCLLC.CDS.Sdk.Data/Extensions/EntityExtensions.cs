@@ -71,15 +71,21 @@ namespace CCLLC.CDS.Sdk
         }
 
 
-        public static T GetAliasedValue<T>(this Entity Target, string EntityAlias, string FieldName, T DefaultValue)
+        public static T GetAliasedValue<T>(this Entity target, string alias, string fieldName, T defaultValue = default(T))
         {
-            string key = string.Format("{0}.{1}", EntityAlias, FieldName);
-            if (!Target.Contains(key) || Target[key] is null)
+            string key = string.Format("{0}.{1}", alias, fieldName);
+            return target.GetAliasedValue<T>(key, defaultValue);
+            
+        }
+
+        public static T GetAliasedValue<T>(this Entity target, string key, T defaultValue = default(T))
+        {            
+            if (!target.Contains(key) || target[key] is null)
             {
-                return DefaultValue;
+                return defaultValue;
             }
 
-            AliasedValue value = Target.GetAttributeValue<AliasedValue>(key);
+            AliasedValue value = target.GetAttributeValue<AliasedValue>(key);
             return (T)value.Value;
         }
 
