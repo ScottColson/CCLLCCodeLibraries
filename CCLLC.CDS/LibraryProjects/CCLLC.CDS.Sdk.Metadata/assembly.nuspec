@@ -17,7 +17,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\**\CCLLCCdsMetadata.dll" target="lib" />
-    <file src="bin\Release\**\CCLLCCdsMetadata.pdb" target="lib" />
+    <file src="bin\Release\**\CCLLCCdsSdkMetadata.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCdsSdkMetadata.pdb" target="lib" />
   </files>
 </package>
