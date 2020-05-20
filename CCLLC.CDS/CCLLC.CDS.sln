@@ -44,15 +44,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FBE6E76A-D
 		..\docs\README.md = ..\docs\README.md
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CCLLC.CDS.Sdk.Metadata", "SharedProjects\CCLLC.CDS.Sdk.Metadata\CCLLC.CDS.Sdk.Metadata.shproj", "{5A3ABE61-1CFE-4904-AB90-4688408B17D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLLC.CDS.Sdk.Metadata", "LibraryProjects\CCLLC.CDS.Sdk.Metadata\CCLLC.CDS.Sdk.Metadata.csproj", "{A6801E51-F45C-47C7-B2A1-5BE01112CC60}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{0ba50405-d933-4671-9c61-ae6c73ee8d5b}*SharedItemsImports = 13
 		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{27085b8e-2e31-4f96-804a-5c5af9d4751d}*SharedItemsImports = 4
 		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{33bad8b8-7c91-4a88-a96d-dab3a2490448}*SharedItemsImports = 4
 		SharedProjects\CCLLC CDS.TestBase\CCLLC.CDS.TestBase.projitems*{3c48daf6-1a77-485a-9d54-ecad7bdac509}*SharedItemsImports = 13
+		SharedProjects\CCLLC.CDS.Sdk.Metadata\CCLLC.CDS.Sdk.Metadata.projitems*{5a3abe61-1cfe-4904-ab90-4688408b17d5}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.projitems*{642d436f-0839-444f-8fd4-955205f98564}*SharedItemsImports = 5
 		SharedProjects\CCLLC.CDS.Sdk.SearchUtilities\CCLLC.CDS.Sdk.SearchUtilities.projitems*{6bcf5ad7-e2eb-42e9-8317-ffdc2ec7fa11}*SharedItemsImports = 13
 		SharedProjects\CCLLC.CDS.Sdk.Data\CCLLC.CDS.Sdk.Data.projitems*{8248fea5-b7de-42bb-ae95-495103e0d7c2}*SharedItemsImports = 13
+		SharedProjects\CCLLC.CDS.Sdk.Metadata\CCLLC.CDS.Sdk.Metadata.projitems*{a6801e51-f45c-47c7-b2a1-5be01112cc60}*SharedItemsImports = 4
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{cf336bb7-87c9-4561-9549-293426baaa3e}*SharedItemsImports = 5
 		SharedProjects\CCLLC.CDS.Sdk.Instrumented\CCLLC.CDS.Sdk.Instrumented.projitems*{e064abff-1758-44a3-9772-4f9ba6e7283c}*SharedItemsImports = 5
 		SharedProjects\CCLLC.CDS.Sdk\CCLLC.CDS.Sdk.projitems*{efe8bffa-135d-4dcc-a5af-74e255e4cbd7}*SharedItemsImports = 13
@@ -90,6 +96,10 @@ Global
 		{33BAD8B8-7C91-4A88-A96D-DAB3A2490448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33BAD8B8-7C91-4A88-A96D-DAB3A2490448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33BAD8B8-7C91-4A88-A96D-DAB3A2490448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6801E51-F45C-47C7-B2A1-5BE01112CC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6801E51-F45C-47C7-B2A1-5BE01112CC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6801E51-F45C-47C7-B2A1-5BE01112CC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6801E51-F45C-47C7-B2A1-5BE01112CC60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +114,7 @@ Global
 		{986A1892-AA02-4390-A65D-52E10C3FAA64} = {5BCF656A-297A-4D75-B684-8589217C49A4}
 		{8248FEA5-B7DE-42BB-AE95-495103E0D7C2} = {7B680925-EC15-499F-A0C2-8F1188934504}
 		{33BAD8B8-7C91-4A88-A96D-DAB3A2490448} = {6C2A8FFE-F1AA-42B0-ACEF-18DCEA3F8EEC}
+		{5A3ABE61-1CFE-4904-AB90-4688408B17D5} = {7B680925-EC15-499F-A0C2-8F1188934504}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51E4204A-267B-47ED-9A95-067F7B4115FD}

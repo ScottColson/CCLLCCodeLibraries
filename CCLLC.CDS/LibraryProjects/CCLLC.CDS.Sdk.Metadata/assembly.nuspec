@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="3.3.0">
+    <id>CCLLC.CDS.Sdk.Metadata</id>
+    <version>$version$</version>
+    <description>Provides helpers for accessing CDS Metadata.</description>
+    <authors>Colson Code, LLC</authors>
+    <owners>Colson Code, LLC</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
+    <tags></tags>
+    <dependencies>      
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="CCLLC.CDS.Sdk.Data" version="1.1.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\**\CCLLCCdsMetadata.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCdsMetadata.pdb" target="lib" />
+  </files>
+</package>
