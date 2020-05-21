@@ -5,15 +5,22 @@ using Microsoft.Xrm.Sdk;
 
 namespace CCLLC.CDS.Sdk.Metadata
 {
-    using CCLLC.CDS.Sdk.MessageMetadata;
     using CCLLC.CDS.Sdk;
-   
-    public class SdkMessageMetadataService
-    {       
+    using Proxy;
+
+    public class SdkMessageMetadataService : ISdkMessageMetadataService
+    {
+
+        private readonly eEndpoint Endpoint;
+
+        public SdkMessageMetadataService(eEndpoint endpoint = eEndpoint.OrgService)
+        {
+            Endpoint = endpoint;
+        }
 
         public IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService)
         {
-            return new ExecutableFluentQuery<Proxy.SdkMessage>(orgService)
+            return new ExecutableFluentQuery<SdkMessage>(orgService)
                     .Select(cols => new { cols.Name })
                     .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
@@ -22,25 +29,24 @@ namespace CCLLC.CDS.Sdk.Metadata
                     .RetrieveAll().Select(r => r.Name);
         }
 
-
-        public IEnumerable<SdkMessage> GetSdkMessages(IOrganizationService orgService, IEnumerable<string> messageNames, eEndpoint endpoint = eEndpoint.OrgService)
+        public IEnumerable<SdkMessageMetadata> GetSdkMessageMetadata(IOrganizationService orgService, IEnumerable<string> messageNames)
         {
-            var sdkMessages = new List<SdkMessage>();
+            var sdkMessages = new List<SdkMessageMetadata>();
 
             foreach (var messageName in messageNames)
             {
-                var records = GetSdkMessageRecordsForMessageName(orgService, messageName, endpoint);
+                var records = GetSdkMessageRecordsForMessageName(orgService, messageName);
 
-                sdkMessages.AddRange(ParseRecordsToSdkMessages(records));
+                sdkMessages.AddRange(ParseSdkMessageMetadataFromRecords(records));
             }
 
             return sdkMessages;
 
         }
 
-        private IEnumerable<Entity> GetSdkMessageRecordsForMessageName(IOrganizationService orgService, string messageName, eEndpoint endpoint = eEndpoint.OrgService)
+        private IEnumerable<Entity> GetSdkMessageRecordsForMessageName(IOrganizationService orgService, string messageName)
         {
-            string endpointName = endpoint == eEndpoint.OrgService ? "2011/Organization.svc" : "api/data";
+            string endpointName = this.Endpoint == eEndpoint.OrgService ? "2011/Organization.svc" : "api/data";
 
             var records = new CCLLC.CDS.Sdk.ExecutableFluentQuery<Proxy.SdkMessage>(orgService)
                     .Select(cols => new { cols.SdkMessageId, cols.Name, cols.IsPrivate, cols.CustomizationLevel })
@@ -72,106 +78,91 @@ namespace CCLLC.CDS.Sdk.Metadata
             return records;
         }
      
-        private IEnumerable<SdkMessage> ParseRecordsToSdkMessages(IEnumerable<Entity> records)
+        private IEnumerable<SdkMessageMetadata> ParseSdkMessageMetadataFromRecords(IEnumerable<Entity> records)
         {
-            var sdkMessages = new List<SdkMessage>();
+            return records
+                .GroupBy(e => e.GetAttributeValue<Guid>("sdkmessageid"))
+                .Select(m => new SdkMessageMetadata(
+                    id: m.FirstOrDefault().Id,
+                    name: m.FirstOrDefault().GetAttributeValue<string>("name"),
+                    isPrivate: m.FirstOrDefault().GetAttributeValue<bool?>("isprivate") == true,
+                    isCustomAction: m.FirstOrDefault().GetAttributeValue<bool?>("ismanaged") != true,
+                    filters: ParseMessageFilterMetadataFromRecordGroup(m),
+                    messagePairs: ParseMessagePairMetadataFromRecordGroup(m)))
+                .ToArray();       
+        }
+    
+        private IEnumerable<SdkMessageFilterMetadata> ParseMessageFilterMetadataFromRecordGroup(IGrouping<Guid,Entity> recordGroup)
+        {
+            return recordGroup
+                .GroupBy(e => e.GetAliasedValue<Guid>("filter.sdkmessagefilterid"))
+                .Select(e => new SdkMessageFilterMetadata(
+                    id: e.FirstOrDefault().GetAliasedValue<Guid>("filter.sdkmessagefilterid"),
+                    primaryObjectTypeCode: e.FirstOrDefault().GetAliasedValue<string>("filter.primaryobjecttypecode"),
+                    secondaryObjectTypeCode: e.FirstOrDefault().GetAliasedValue<string>("filter.secondaryobjecttypecode"),
+                    isVisible: e.FirstOrDefault().GetAliasedValue<bool?>("filter.isvisible") == true))
+                .ToArray();
+        }
 
-            foreach (var m in records.GroupBy(e => e.GetAttributeValue<Guid>("sdkmessageid")).ToArray())
-            {
-                var id = m.FirstOrDefault().Id;
-                var name = m.FirstOrDefault().GetAttributeValue<string>("name");
-                var isPrivate = m.FirstOrDefault().GetAttributeValue<bool?>("isprivate") == true;
-                var isManaged = m.FirstOrDefault().GetAttributeValue<bool?>("ismanaged") == true;
+        private IEnumerable<SdkMessagePairMetadata> ParseMessagePairMetadataFromRecordGroup(IGrouping<Guid, Entity> recordGroup)
+        {
+            return recordGroup
+                .GroupBy(e => e.GetAliasedValue<Guid>("pair.sdkmessagepairid"))
+                .Select(e => new SdkMessagePairMetadata(
+                    id: e.FirstOrDefault().GetAliasedValue<Guid>("pair.sdkmessagepairid"),
+                    messageNamespace: e.FirstOrDefault().GetAliasedValue<string>("pair.namespace"),
+                    requestMetadata: ParseRequestMetadataFromRecordGroup(e),
+                    responseMetadata: ParseResponseMetadataFromRecordGroup(e)))
+                .ToArray();
+        }
 
-                var msg = new SdkMessage(id, name, isPrivate, !isManaged);
+        private SdkMessageRequestMetadata ParseRequestMetadataFromRecordGroup(IGrouping<Guid,Entity> recordGroup) 
+        {
+            return recordGroup
+                .Where(req => req.Attributes.ContainsKey("request.sdkmessagerequestid")
+                   && req.Attributes["request.sdkmessagerequestid"] != null)
+                .GroupBy(req => req.GetAliasedValue<Guid>("request.sdkmessagerequestid"))
+                .Select(req => new SdkMessageRequestMetadata(
+                    id: req.FirstOrDefault().GetAliasedValue<Guid>("request.sdkmessagerequestid"),
+                    name: req.FirstOrDefault().GetAliasedValue<string>("request.name"),
+                    fields: ParseRequestFieldMetadataFromRecordGroup(req)
+                )).FirstOrDefault();
+        }
 
-                var filters = m
-                    .GroupBy(e => e.GetAliasedValue<Guid>("filter.sdkmessagefilterid"))
-                    .Select(e => new
-                    {
-                        filterId = e.FirstOrDefault().GetAliasedValue<Guid>("filter.sdkmessagefilterid"),
-                        primaryObjectType = e.FirstOrDefault().GetAliasedValue<string>("filter.primaryobjecttypecode"),
-                        secondaryObjectType = e.FirstOrDefault().GetAliasedValue<string>("filter.secondaryobjecttypecode"),
-                        isVisible = e.FirstOrDefault().GetAliasedValue<bool?>("filter.isvisible") == true
-                    })
+        private IEnumerable<SdkMessageRequestFieldMetadata> ParseRequestFieldMetadataFromRecordGroup(IGrouping<Guid,Entity> recordGroup)
+        {
+            return recordGroup
+                .GroupBy(field => field.GetAliasedValue<string>("requestfield.name"))
+                    .Select(field => new SdkMessageRequestFieldMetadata(
+                        index: field.FirstOrDefault().GetAliasedValue<int>("requestfield.position"),
+                        name: field.FirstOrDefault().GetAliasedValue<string>("requestfield.name"),
+                        clrFormatter: field.FirstOrDefault().GetAliasedValue<string>("requestfield.clrparser"),
+                        isOptional: field.FirstOrDefault().GetAliasedValue<bool?>("requestfield.isoptional").GetValueOrDefault()))
                     .ToArray();
+        }
 
-                foreach (var f in filters)
-                {
-                    msg.MessageFilters.Add(f.filterId, new SdkMessageFilter(f.filterId, f.primaryObjectType, f.secondaryObjectType, f.isVisible));
-                }
+        private SdkMessageResponseMetadata ParseResponseMetadataFromRecordGroup(IGrouping<Guid, Entity> recordGroup)
+        {
+            return recordGroup
+                .Where(resp => resp.Attributes.ContainsKey("response.sdkmessageresponseid")
+                    && resp.Attributes["response.sdkmessageresponseid"] != null)
+                .GroupBy(resp => resp.GetAliasedValue<Guid>("response.sdkmessageresponseid"))
+                .Select(resp => new SdkMessageResponseMetadata(
+                    id: resp.FirstOrDefault().GetAliasedValue<Guid>("response.sdkmessageresponseid"),
+                    fields: ParseResponseFieldMetadataFromRecordGroup(resp)
+                )).FirstOrDefault();
+        }
 
-                var pairs = m
-                    .GroupBy(e => e.GetAliasedValue<Guid>("pair.sdkmessagepairid"))
-                    .Select(e => new
-                    {
-                        Id = e.FirstOrDefault().GetAliasedValue<Guid>("pair.sdkmessagepairid"),
-                        Namespace = e.FirstOrDefault().GetAliasedValue<string>("pair.namespace"),
-                        Endpoint = e.FirstOrDefault().GetAliasedValue<string>("pair.endpoint"),
-                        Request = e
-                            .Where(req => req.Attributes.ContainsKey("request.sdkmessagerequestid") && req.Attributes["request.sdkmessagerequestid"] != null)
-                            .GroupBy(req => req.GetAliasedValue<Guid>("request.sdkmessagerequestid"))
-                            .Select(req => new
-                            {
-                                Id = req.FirstOrDefault().GetAliasedValue<Guid>("request.sdkmessagerequestid"),
-                                Name = req.FirstOrDefault().GetAliasedValue<string>("request.name"),
-                                Fields = req.GroupBy(field => field.GetAliasedValue<string>("requestfield.name"))
-                                    .Select(field => new
-                                    {
-                                        Index = field.FirstOrDefault().GetAliasedValue<int>("requestfield.position"),
-                                        Name = field.FirstOrDefault().GetAliasedValue<string>("requestfield.name"),
-                                        ClrParser = field.FirstOrDefault().GetAliasedValue<string>("requestfield.clrparser"),
-                                        IsOptional = field.FirstOrDefault().GetAliasedValue<bool?>("requestfield.isoptional").GetValueOrDefault()
-                                    }).ToArray()
-                            }).FirstOrDefault(),
-                        Response = e
-                            .Where(resp => resp.Attributes.ContainsKey("response.sdkmessageresponseid") && resp.Attributes["response.sdkmessageresponseid"] != null)
-                            .GroupBy(resp => resp.GetAliasedValue<Guid>("response.sdkmessageresponseid"))
-                            .Select(resp => new
-                            {
-                                Id = resp.FirstOrDefault().GetAliasedValue<Guid>("response.sdkmessageresponseid"),
-                                Fields = resp.GroupBy(field => field.GetAliasedValue<string>("responsefield.name"))
-                                    .Select(field => new
-                                    {
-                                        Index = field.FirstOrDefault().GetAliasedValue<int>("responsefield.position"),
-                                        Name = field.FirstOrDefault().GetAliasedValue<string>("responsefield.name"),
-                                        Value = field.FirstOrDefault().GetAliasedValue<string>("responsefield.value"),
-                                        ClrFormatter = field.FirstOrDefault().GetAliasedValue<string>("responsefield.clrformatter")
-                                    }).ToArray()
-                            }).FirstOrDefault()
-                    }).ToArray();
-
-                foreach (var p in pairs)
-                {
-                    var messagePair = new SdkMessagePair(msg, p.Id, p.Namespace);
-
-                    var req = p.Request;
-                    var messageRequest = new SdkMessageRequest(messagePair, req.Id, req.Name);
-                    foreach (var f in req.Fields)
-                    {
-                        var field = new SdkMessageRequestField(messageRequest, f.Index, f.Name, f.ClrParser, f.IsOptional);
-                        messageRequest.RequestFields.Add(f.Index, field);
-                    }
-
-                    var resp = p.Response;
-                    var messageResponse = new SdkMessageResponse(resp.Id);
-                    foreach (var f in resp.Fields)
-                    {
-                        var field = new SdkMessageResponseField(f.Index, f.Name, f.ClrFormatter, f.Value);
-                        messageResponse.ResponseFields.Add(f.Index, field);
-                    }
-
-                    messagePair.Request = messageRequest;
-                    messagePair.Response = messageResponse;
-
-                    msg.MessagePairs.Add(p.Id, messagePair);
-                }
-
-                sdkMessages.Add(msg);
-            }
-
-            return sdkMessages;
-
+        private IEnumerable<SdkMessageResponseFieldMetadata> ParseResponseFieldMetadataFromRecordGroup(IGrouping<Guid, Entity> recordGroup)
+        {
+            return recordGroup
+                .GroupBy(field => field.GetAliasedValue<string>("responsefield.name"))
+                    .Select(field => new SdkMessageResponseFieldMetadata(
+                        index: field.FirstOrDefault().GetAliasedValue<int>("responsefield.position"),
+                        name: field.FirstOrDefault().GetAliasedValue<string>("responsefield.name"),
+                        value: field.FirstOrDefault().GetAliasedValue<string>("responsefield.value"),
+                        clrFormatter: field.FirstOrDefault().GetAliasedValue<string>("responsefield.clrformatter")
+                    )).ToArray();
         }
     }
 }

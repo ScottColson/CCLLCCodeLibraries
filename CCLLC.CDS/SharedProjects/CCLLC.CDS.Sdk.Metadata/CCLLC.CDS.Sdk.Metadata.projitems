@@ -6,10 +6,11 @@
     <SharedGUID>5a3abe61-1cfe-4904-ab90-4688408b17d5</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>CCLLC.CDS.Sdk</Import_RootNamespace>
+    <Import_RootNamespace>CCLLC.CDS.Sdk.Metadata</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\eEndpoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISdkMessageMetadataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessagePair.cs" />
@@ -17,14 +18,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageRequestField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageResponseField.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageMetadata.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SdkMessageMetadataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessagePair.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageRequestField.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageResponseField.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageRequestMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageRequestFieldMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageResponseMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageResponseFieldMetadata.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)MessageMetadata\" />

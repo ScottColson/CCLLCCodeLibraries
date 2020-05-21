@@ -30,6 +30,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CCLLCCDSSdkData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=123e29a4f4f84d01, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CCLLC.CDS.Sdk.Data.1.1.1\lib\net462\CCLLCCDSSdkData.dll</HintPath>

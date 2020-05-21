@@ -1,18 +1,16 @@
-﻿using CCLLC.CDS.Proxy;
-
-namespace CCLLC.CDS.Sdk.MessageMetadata
+﻿
+namespace CCLLC.CDS.Sdk.Metadata
 {
-    public sealed class SdkMessageRequestField
+    public sealed class SdkMessageRequestFieldMetadata
     {
-        public SdkMessageRequestField(SdkMessageRequest request, int index, string name, string clrFormatter, bool isOptional)
+        public SdkMessageRequestFieldMetadata(int index, string name, string clrFormatter, bool isOptional)
         {
             this.Index = index;
             this.Name = name;
             this.CLRFormatter = clrFormatter;
-            this.IsOptional = IsOptional;
+            this.IsOptional = isOptional;
         }
     
-        public SdkMessageRequest Request { get; }
         public int Index { get; }
         public string Name { get; }
         public string CLRFormatter { get; }

@@ -1,23 +1,21 @@
 ﻿using System;
 
-namespace CCLLC.CDS.Sdk.MessageMetadata
+namespace CCLLC.CDS.Sdk.Metadata
 {
     
-    public sealed class SdkMessagePair
+    public sealed class SdkMessagePairMetadata
     {
-        public SdkMessagePair(SdkMessage message, Guid id, string messageNamespace) 
-        {
-            this.Message = message;
+        public SdkMessagePairMetadata(Guid id, string messageNamespace, SdkMessageRequestMetadata requestMetadata, SdkMessageResponseMetadata responseMetadata) 
+        {           
             this.Id = id;
             this.MessageNamespace = messageNamespace;
-            
-
+            this.RequestMetadata = requestMetadata;
+            this.ResponseMetadata = responseMetadata;
         }
 
         public Guid Id { get; }
         public string MessageNamespace { get; }
-        public SdkMessage Message { get; set; }
-        public SdkMessageRequest Request { get; set; }
-        public SdkMessageResponse Response { get; set; }
+        public SdkMessageRequestMetadata RequestMetadata { get; }
+        public SdkMessageResponseMetadata ResponseMetadata { get; }
     }
 }

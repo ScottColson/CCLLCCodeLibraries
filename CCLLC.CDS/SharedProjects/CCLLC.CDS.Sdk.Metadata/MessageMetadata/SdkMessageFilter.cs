@@ -1,11 +1,11 @@
 ﻿using System;
 
 
-namespace CCLLC.CDS.Sdk.MessageMetadata
+namespace CCLLC.CDS.Sdk.Metadata
 {
-    public class SdkMessageFilter
+    public class SdkMessageFilterMetadata
     {
-        public SdkMessageFilter(Guid id, string primaryObjectTypeCode, string secondaryObjectTypeCode, bool isVisible)
+        public SdkMessageFilterMetadata(Guid id, string primaryObjectTypeCode, string secondaryObjectTypeCode, bool isVisible)
         {
             this.Id = id;
             this.PrimaryObjectTypeCode = primaryObjectTypeCode;

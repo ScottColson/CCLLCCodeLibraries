@@ -1,8 +1,8 @@
-﻿namespace CCLLC.CDS.Sdk.MessageMetadata
+﻿namespace CCLLC.CDS.Sdk.Metadata
 {
-    public sealed class SdkMessageResponseField
+    public sealed class SdkMessageResponseFieldMetadata
     {
-        public SdkMessageResponseField(int index, string name, string clrFormatter, string value)
+        public SdkMessageResponseFieldMetadata(int index, string name, string clrFormatter, string value)
         {
             this.Index = index;
             this.Name = name;
