@@ -9,11 +9,11 @@ namespace CCLLC.CDS.Sdk.Metadata
         {
             this.Id = id;
             this.Name = name;
-            this.RequestFields = fields ?? new List<SdkMessageRequestFieldMetadata>();
+            this.FieldMetadata = fields ?? new List<SdkMessageRequestFieldMetadata>();
         }
 
         public Guid Id { get; }
         public string Name { get; }
-        public IEnumerable<SdkMessageRequestFieldMetadata> RequestFields { get; }
+        public IEnumerable<SdkMessageRequestFieldMetadata> FieldMetadata { get; }
     }
 }

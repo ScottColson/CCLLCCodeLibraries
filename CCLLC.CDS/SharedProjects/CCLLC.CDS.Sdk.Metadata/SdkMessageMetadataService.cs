@@ -48,7 +48,7 @@ namespace CCLLC.CDS.Sdk.Metadata
         {
             string endpointName = this.Endpoint == eEndpoint.OrgService ? "2011/Organization.svc" : "api/data";
 
-            var records = new CCLLC.CDS.Sdk.ExecutableFluentQuery<Proxy.SdkMessage>(orgService)
+            var records = new ExecutableFluentQuery<Proxy.SdkMessage>(orgService)
                     .Select(cols => new { cols.SdkMessageId, cols.Name, cols.IsPrivate, cols.CustomizationLevel })
                     .WhereAll(e => e.Attribute(Proxy.SdkMessage.Fields.Name).IsEqualTo(messageName))
                     .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
@@ -95,6 +95,8 @@ namespace CCLLC.CDS.Sdk.Metadata
         private IEnumerable<SdkMessageFilterMetadata> ParseMessageFilterMetadataFromRecordGroup(IGrouping<Guid,Entity> recordGroup)
         {
             return recordGroup
+                .Where(e => e.Contains("filter.sdkmessagefilterid") 
+                    && e["filter.sdkmessagefilterid"] != null)
                 .GroupBy(e => e.GetAliasedValue<Guid>("filter.sdkmessagefilterid"))
                 .Select(e => new SdkMessageFilterMetadata(
                     id: e.FirstOrDefault().GetAliasedValue<Guid>("filter.sdkmessagefilterid"),
@@ -107,6 +109,8 @@ namespace CCLLC.CDS.Sdk.Metadata
         private IEnumerable<SdkMessagePairMetadata> ParseMessagePairMetadataFromRecordGroup(IGrouping<Guid, Entity> recordGroup)
         {
             return recordGroup
+                .Where(e => e.Contains("pair.sdkmessagepairid") &&
+                    e["pair.sdkmessagepairid"] != null)
                 .GroupBy(e => e.GetAliasedValue<Guid>("pair.sdkmessagepairid"))
                 .Select(e => new SdkMessagePairMetadata(
                     id: e.FirstOrDefault().GetAliasedValue<Guid>("pair.sdkmessagepairid"),
@@ -132,6 +136,8 @@ namespace CCLLC.CDS.Sdk.Metadata
         private IEnumerable<SdkMessageRequestFieldMetadata> ParseRequestFieldMetadataFromRecordGroup(IGrouping<Guid,Entity> recordGroup)
         {
             return recordGroup
+                .Where(e => e.Contains("requestfield.name")
+                    && e["requestfield.name"] != null)
                 .GroupBy(field => field.GetAliasedValue<string>("requestfield.name"))
                     .Select(field => new SdkMessageRequestFieldMetadata(
                         index: field.FirstOrDefault().GetAliasedValue<int>("requestfield.position"),
@@ -156,6 +162,8 @@ namespace CCLLC.CDS.Sdk.Metadata
         private IEnumerable<SdkMessageResponseFieldMetadata> ParseResponseFieldMetadataFromRecordGroup(IGrouping<Guid, Entity> recordGroup)
         {
             return recordGroup
+                .Where(e => e.Contains("responsefield.name")
+                    && e["responsefield.name"] != null)
                 .GroupBy(field => field.GetAliasedValue<string>("responsefield.name"))
                     .Select(field => new SdkMessageResponseFieldMetadata(
                         index: field.FirstOrDefault().GetAliasedValue<int>("responsefield.position"),
