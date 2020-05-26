@@ -11,15 +11,15 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\eEndpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISdkMessageMetadataService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageFilter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessagePair.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageRequestField.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Proxies\SdkMessageResponseField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageMetadata.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessagefilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessagepair.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessagerequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessagerequestfield.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessageresponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessageresponsefield.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SdkMessageMetadataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessagePair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageRequestMetadata.cs" />

@@ -24,7 +24,7 @@ namespace CCLLC.CDS.Sdk.Metadata
                     .Select(cols => new { cols.Name })
                     .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
-                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCode, cols.SecondaryObjectTypeCode, cols.IsVisible })
+                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCodeName, cols.SecondaryObjectTypeCodeName, cols.IsVisible })
                         .WhereAll(e => e.Attribute(Proxy.SdkMessageFilter.Fields.IsVisible).IsEqualTo(true)))                   
                     .RetrieveAll().Select(r => r.Name);
         }
@@ -53,11 +53,11 @@ namespace CCLLC.CDS.Sdk.Metadata
                     .WhereAll(e => e.Attribute(Proxy.SdkMessage.Fields.Name).IsEqualTo(messageName))
                     .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
-                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCode, cols.SecondaryObjectTypeCode, cols.IsVisible })
+                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCodeName, cols.SecondaryObjectTypeCodeName, cols.IsVisible })
                         .WhereAll(e => e.Attribute(Proxy.SdkMessageFilter.Fields.IsVisible).IsEqualTo(true))
                     .InnerJoin<Proxy.SdkMessagePair>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessagePair.Fields.SdkMessageId, p => p
                         .With.Alias("pair")
-                        .Select(cols => new { cols.SdkMessagePairId, cols.Namespace, cols.Endpoint })
+                        .Select(cols => new { cols.SdkMessagePairId, cols.__Namespace, cols.Endpoint })
                         .WhereAll(e => e.Attribute(Proxy.SdkMessagePair.Fields.Endpoint).IsEqualTo(endpointName))
                         .LeftJoin<Proxy.SdkMessageRequest>(Proxy.SdkMessagePair.Fields.SdkMessagePairId, Proxy.SdkMessageRequest.Fields.SdkMessagePairId, req => req
                             .With.Alias("request")
