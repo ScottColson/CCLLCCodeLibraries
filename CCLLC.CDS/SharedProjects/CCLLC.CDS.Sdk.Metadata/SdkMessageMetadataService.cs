@@ -22,7 +22,7 @@ namespace CCLLC.CDS.Sdk.Metadata
         {
             return new ExecutableFluentQuery<SdkMessage>(orgService)
                     .Select(cols => new { cols.Name })
-                    .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
+                    .InnerJoin<SdkMessageFilter>(SdkMessage.Fields.SdkMessageId, SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
                         .Select( cols => new {cols.IsVisible}))           
                     .RetrieveAll()
@@ -49,31 +49,31 @@ namespace CCLLC.CDS.Sdk.Metadata
         {
             string endpointName = this.Endpoint == eEndpoint.OrgService ? "2011/Organization.svc" : "api/data";
 
-            var records = new ExecutableFluentQuery<Proxy.SdkMessage>(orgService)
+            var records = new ExecutableFluentQuery<SdkMessage>(orgService)
                     .Select(cols => new { cols.SdkMessageId, cols.Name, cols.IsPrivate, cols.CustomizationLevel })
-                    .WhereAll(e => e.Attribute(Proxy.SdkMessage.Fields.Name).IsEqualTo(messageName))
-                    .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
+                    .WhereAll(e => e.Attribute(SdkMessage.Fields.Name).IsEqualTo(messageName))
+                    .InnerJoin<SdkMessageFilter>(SdkMessage.Fields.SdkMessageId, SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
                         .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCode, cols.SecondaryObjectTypeCode, cols.IsVisible })
-                        .WhereAll(e => e.Attribute(Proxy.SdkMessageFilter.Fields.IsVisible).IsEqualTo(true))
-                    .InnerJoin<Proxy.SdkMessagePair>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessagePair.Fields.SdkMessageId, p => p
+                        .WhereAll(e => e.Attribute(SdkMessageFilter.Fields.IsVisible).IsEqualTo(true))
+                    .InnerJoin<SdkMessagePair>(SdkMessage.Fields.SdkMessageId, SdkMessagePair.Fields.SdkMessageId, p => p
                         .With.Alias("pair")
-                        .Select(cols => new { cols.SdkMessagePairId, cols.__Namespace, cols.Endpoint })
-                        .WhereAll(e => e.Attribute(Proxy.SdkMessagePair.Fields.Endpoint).IsEqualTo(endpointName))
-                        .LeftJoin<Proxy.SdkMessageRequest>(Proxy.SdkMessagePair.Fields.SdkMessagePairId, Proxy.SdkMessageRequest.Fields.SdkMessagePairId, req => req
+                        .Select(cols => new { cols.SdkMessagePairId, cols.Namespace, cols.Endpoint })
+                        .WhereAll(e => e.Attribute(SdkMessagePair.Fields.Endpoint).IsEqualTo(endpointName))
+                        .LeftJoin<SdkMessageRequest>(SdkMessagePair.Fields.SdkMessagePairId, SdkMessageRequest.Fields.SdkMessagePairId, req => req
                             .With.Alias("request")
                             .Select(cols => new { cols.SdkMessageRequestId, cols.Name })
-                            .LeftJoin<Proxy.SdkMessageRequestField>(Proxy.SdkMessageRequest.Fields.SdkMessageRequestId, Proxy.SdkMessageRequestField.Fields.SdkMessageRequestId, fields => fields
+                            .LeftJoin<SdkMessageRequestField>(SdkMessageRequest.Fields.SdkMessageRequestId, SdkMessageRequestField.Fields.SdkMessageRequestId, fields => fields
                                 .With.Alias("requestfield")
                                 .Select(cols => new { cols.Name, cols.Optional, cols.Position, cols.PublicName, cols.ClrParser })
-                                .OrderByAsc(Proxy.SdkMessageRequestField.Fields.SdkMessageRequestFieldId))
-                            .LeftJoin<Proxy.SdkMessageResponse>(Proxy.SdkMessageRequest.Fields.SdkMessageRequestId, Proxy.SdkMessageResponse.Fields.SdkMessageRequestId, resp => resp
+                                .OrderByAsc(SdkMessageRequestField.Fields.SdkMessageRequestFieldId))
+                            .LeftJoin<SdkMessageResponse>(SdkMessageRequest.Fields.SdkMessageRequestId, SdkMessageResponse.Fields.SdkMessageRequestId, resp => resp
                                 .With.Alias("response")
                                 .Select(cols => new { cols.SdkMessageResponseId })
-                                .LeftJoin<Proxy.SdkMessageResponseField>(Proxy.SdkMessageResponse.Fields.SdkMessageResponseId, Proxy.SdkMessageResponseField.Fields.SdkMessageResponseId, fields => fields
+                                .LeftJoin<SdkMessageResponseField>(SdkMessageResponse.Fields.SdkMessageResponseId, SdkMessageResponseField.Fields.SdkMessageResponseId, fields => fields
                                     .With.Alias("responsefield")
                                     .Select(cols => new { cols.Name, cols.Value, cols.Position, cols.PublicName, cols.ClrFormatter })
-                                    .OrderByAsc(Proxy.SdkMessageResponseField.Fields.SdkMessageResponseFieldId))))))
+                                    .OrderByAsc(SdkMessageResponseField.Fields.SdkMessageResponseFieldId))))))
                     .RetrieveAll();
 
             return records;
