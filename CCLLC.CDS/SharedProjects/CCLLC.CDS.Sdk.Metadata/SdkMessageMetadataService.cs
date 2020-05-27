@@ -18,15 +18,16 @@ namespace CCLLC.CDS.Sdk.Metadata
             Endpoint = endpoint;
         }
 
-        public IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService)
+        public IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService, bool includeNonVisibleMessages = false)
         {
             return new ExecutableFluentQuery<SdkMessage>(orgService)
                     .Select(cols => new { cols.Name })
                     .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
-                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCodeName, cols.SecondaryObjectTypeCodeName, cols.IsVisible })
-                        .WhereAll(e => e.Attribute(Proxy.SdkMessageFilter.Fields.IsVisible).IsEqualTo(true)))                   
-                    .RetrieveAll().Select(r => r.Name);
+                        .Select( cols => new {cols.IsVisible}))           
+                    .RetrieveAll()
+                        .Where(e => includeNonVisibleMessages || e.GetAliasedValue<bool?>("filter","isvisible") == true)
+                        .Select(r => r.Name);
         }
 
         public IEnumerable<SdkMessageMetadata> GetSdkMessageMetadata(IOrganizationService orgService, IEnumerable<string> messageNames)
@@ -53,7 +54,7 @@ namespace CCLLC.CDS.Sdk.Metadata
                     .WhereAll(e => e.Attribute(Proxy.SdkMessage.Fields.Name).IsEqualTo(messageName))
                     .InnerJoin<Proxy.SdkMessageFilter>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessageFilter.Fields.SdkMessageId, f => f
                         .With.Alias("filter")
-                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCodeName, cols.SecondaryObjectTypeCodeName, cols.IsVisible })
+                        .Select(cols => new { cols.SdkMessageFilterId, cols.PrimaryObjectTypeCode, cols.SecondaryObjectTypeCode, cols.IsVisible })
                         .WhereAll(e => e.Attribute(Proxy.SdkMessageFilter.Fields.IsVisible).IsEqualTo(true))
                     .InnerJoin<Proxy.SdkMessagePair>(Proxy.SdkMessage.Fields.SdkMessageId, Proxy.SdkMessagePair.Fields.SdkMessageId, p => p
                         .With.Alias("pair")

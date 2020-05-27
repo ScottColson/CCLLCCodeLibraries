@@ -5,7 +5,7 @@ namespace CCLLC.CDS.Sdk.Metadata
 {
     interface ISdkMessageMetadataService
     {
-        IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService);
+        IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService, bool includeNonVisibleMessages = false);
         IEnumerable<SdkMessageMetadata> GetSdkMessageMetadata(IOrganizationService orgService, IEnumerable<string> messageNames);
     }
     

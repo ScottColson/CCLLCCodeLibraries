@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISdkMessageMetadataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageMetadata.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageMetadata\SdkMessageFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Proxies\Componentstate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessagefilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Proxies\sdkmessagepair.cs" />

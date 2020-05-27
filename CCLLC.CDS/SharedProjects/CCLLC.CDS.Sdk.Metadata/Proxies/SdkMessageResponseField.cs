@@ -7,18 +7,16 @@ using Microsoft.Xrm.Sdk.Client;
 
 namespace CCLLC.CDS.Sdk.Metadata.Proxy 
 {
-
-	[EntityLogicalNameAttribute("sdkmessageresponsefield")]
+	[EntityLogicalName("sdkmessageresponsefield")]
 	public partial class SdkMessageResponseField : Entity
 	{
 		public static string EntityLogicalName => "sdkmessageresponsefield";
 
 		public SdkMessageResponseField()
-			: base("sdkmessageresponsefield")
-		{
-		}
+			: base("sdkmessageresponsefield") {}
 
-		#region Late Bound Fields
+
+		#region Late Bound Field Constants
 	
 		public class Fields
 		{			
@@ -57,170 +55,175 @@ namespace CCLLC.CDS.Sdk.Metadata.Proxy
 
 		#endregion
 
-		[AttributeLogicalNameAttribute("sdkmessageresponsefieldid")]
+		[AttributeLogicalName("sdkmessageresponsefieldid")]
 		public override Guid Id
 		{
-			get { return base.Id; }
-			set { SdkMessageResponseFieldId = value; }
+			get => base.Id; 
+			set => SdkMessageResponseFieldId = value;
 		}
 
-		[AttributeLogicalNameAttribute("clrformatter")]
+		[AttributeLogicalName("clrformatter")]
 		public virtual string ClrFormatter
 		{
-			get { return this.GetAttributeValue<string>("clrformatter"); }
-			set { this.SetAttributeValue("clrformatter", value); }
+			get => GetAttributeValue<string>("clrformatter"); 
+			set => SetAttributeValue("clrformatter", value); 
 		}
-		[AttributeLogicalNameAttribute("componentstate")]
-		public virtual OptionSetValue ComponentState
+		[AttributeLogicalName("componentstate")]
+		public virtual GlobalEnums.eComponentstate? ComponentState
 		{
-			get { return this.GetAttributeValue<OptionSetValue>("componentstate"); }
+			get 
+			{
+				var value = GetAttributeValue<OptionSetValue>("componentstate"); 
+				if(value is null) return null;
+				return (GlobalEnums.eComponentstate?)value.Value;
+			}
 		}
-		[AttributeLogicalNameAttribute("createdby")]
+		[AttributeLogicalName("createdby")]
 		public virtual EntityReference CreatedBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("createdby"); }
+			get => GetAttributeValue<EntityReference>("createdby"); 
 		}
-		[AttributeLogicalNameAttribute("createdon")]
+		[AttributeLogicalName("createdon")]
 		public virtual DateTime? CreatedOn
 		{
-			get { return this.GetAttributeValue<DateTime?>("createdon"); }
+			get => GetAttributeValue<DateTime>("createdon"); 
 		}
-		[AttributeLogicalNameAttribute("createdonbehalfby")]
+		[AttributeLogicalName("createdonbehalfby")]
 		public virtual EntityReference CreatedOnBehalfBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("createdonbehalfby"); }
+			get => GetAttributeValue<EntityReference>("createdonbehalfby"); 
 		}
-		[AttributeLogicalNameAttribute("createdonbehalfbyname")]
+		[AttributeLogicalName("createdonbehalfbyname")]
 		public virtual string CreatedOnBehalfByName
 		{
-			get { return this.GetAttributeValue<string>("createdonbehalfbyname"); }
+			get => GetAttributeValue<string>("createdonbehalfbyname"); 
 		}
-		[AttributeLogicalNameAttribute("createdonbehalfbyyominame")]
+		[AttributeLogicalName("createdonbehalfbyyominame")]
 		public virtual string CreatedOnBehalfByYomiName
 		{
-			get { return this.GetAttributeValue<string>("createdonbehalfbyyominame"); }
+			get => GetAttributeValue<string>("createdonbehalfbyyominame"); 
 		}
-		[AttributeLogicalNameAttribute("customizationlevel")]
+		[AttributeLogicalName("customizationlevel")]
 		public virtual int? CustomizationLevel
 		{
-			get { return this.GetAttributeValue<int?>("customizationlevel"); }
+			get => GetAttributeValue<int>("customizationlevel"); 
 		}
-		[AttributeLogicalNameAttribute("formatter")]
+		[AttributeLogicalName("formatter")]
 		public virtual string Formatter
 		{
-			get { return this.GetAttributeValue<string>("formatter"); }
-			set { this.SetAttributeValue("formatter", value); }
+			get => GetAttributeValue<string>("formatter"); 
+			set => SetAttributeValue("formatter", value); 
 		}
-		[AttributeLogicalNameAttribute("introducedversion")]
+		[AttributeLogicalName("introducedversion")]
 		public virtual string IntroducedVersion
 		{
-			get { return this.GetAttributeValue<string>("introducedversion"); }
-			set { this.SetAttributeValue("introducedversion", value); }
+			get => GetAttributeValue<string>("introducedversion"); 
+			set => SetAttributeValue("introducedversion", value); 
 		}
-		[AttributeLogicalNameAttribute("ismanaged")]
+		[AttributeLogicalName("ismanaged")]
 		public virtual bool? IsManaged
 		{
-			get { return this.GetAttributeValue<bool?>("ismanaged"); }
+			get => GetAttributeValue<bool>("ismanaged"); 
 		}
-		[AttributeLogicalNameAttribute("ismanagedname")]
+		[AttributeLogicalName("ismanagedname")]
 		public virtual string IsManagedName
 		{
-			get { return this.GetAttributeValue<string>("ismanagedname"); }
+			get => GetAttributeValue<string>("ismanagedname"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedby")]
+		[AttributeLogicalName("modifiedby")]
 		public virtual EntityReference ModifiedBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("modifiedby"); }
+			get => GetAttributeValue<EntityReference>("modifiedby"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedon")]
+		[AttributeLogicalName("modifiedon")]
 		public virtual DateTime? ModifiedOn
 		{
-			get { return this.GetAttributeValue<DateTime?>("modifiedon"); }
+			get => GetAttributeValue<DateTime>("modifiedon"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[AttributeLogicalName("modifiedonbehalfby")]
 		public virtual EntityReference ModifiedOnBehalfBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("modifiedonbehalfby"); }
+			get => GetAttributeValue<EntityReference>("modifiedonbehalfby"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedonbehalfbyname")]
+		[AttributeLogicalName("modifiedonbehalfbyname")]
 		public virtual string ModifiedOnBehalfByName
 		{
-			get { return this.GetAttributeValue<string>("modifiedonbehalfbyname"); }
+			get => GetAttributeValue<string>("modifiedonbehalfbyname"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedonbehalfbyyominame")]
+		[AttributeLogicalName("modifiedonbehalfbyyominame")]
 		public virtual string ModifiedOnBehalfByYomiName
 		{
-			get { return this.GetAttributeValue<string>("modifiedonbehalfbyyominame"); }
+			get => GetAttributeValue<string>("modifiedonbehalfbyyominame"); 
 		}
-		[AttributeLogicalNameAttribute("name")]
+		[AttributeLogicalName("name")]
 		public virtual string Name
 		{
-			get { return this.GetAttributeValue<string>("name"); }
-			set { this.SetAttributeValue("name", value); }
+			get => GetAttributeValue<string>("name"); 
+			set => SetAttributeValue("name", value); 
 		}
-		[AttributeLogicalNameAttribute("organizationid")]
+		[AttributeLogicalName("organizationid")]
 		public virtual EntityReference OrganizationId
 		{
-			get { return this.GetAttributeValue<EntityReference>("organizationid"); }
+			get => GetAttributeValue<EntityReference>("organizationid"); 
 		}
-		[AttributeLogicalNameAttribute("overwritetime")]
+		[AttributeLogicalName("overwritetime")]
 		public virtual DateTime? OverwriteTime
 		{
-			get { return this.GetAttributeValue<DateTime?>("overwritetime"); }
+			get => GetAttributeValue<DateTime>("overwritetime"); 
 		}
-		[AttributeLogicalNameAttribute("parameterbindinginformation")]
+		[AttributeLogicalName("parameterbindinginformation")]
 		public virtual string ParameterBindingInformation
 		{
-			get { return this.GetAttributeValue<string>("parameterbindinginformation"); }
-			set { this.SetAttributeValue("parameterbindinginformation", value); }
+			get => GetAttributeValue<string>("parameterbindinginformation"); 
+			set => SetAttributeValue("parameterbindinginformation", value); 
 		}
-		[AttributeLogicalNameAttribute("position")]
+		[AttributeLogicalName("position")]
 		public virtual int? Position
 		{
-			get { return this.GetAttributeValue<int?>("position"); }
+			get => GetAttributeValue<int>("position"); 
 		}
-		[AttributeLogicalNameAttribute("publicname")]
+		[AttributeLogicalName("publicname")]
 		public virtual string PublicName
 		{
-			get { return this.GetAttributeValue<string>("publicname"); }
-			set { this.SetAttributeValue("publicname", value); }
+			get => GetAttributeValue<string>("publicname"); 
+			set => SetAttributeValue("publicname", value); 
 		}
-		[AttributeLogicalNameAttribute("sdkmessageresponsefieldid")]
+		[AttributeLogicalName("sdkmessageresponsefieldid")]
 		public virtual Guid SdkMessageResponseFieldId
 		{
-			get { return this.GetAttributeValue<Guid>("sdkmessageresponsefieldid"); }
-			set { this.SetAttributeValue("sdkmessageresponsefieldid", value); }
+			get => GetAttributeValue<Guid>("sdkmessageresponsefieldid"); 
+			set => SetAttributeValue("sdkmessageresponsefieldid", value); 
 		}
-		[AttributeLogicalNameAttribute("sdkmessageresponsefieldidunique")]
+		[AttributeLogicalName("sdkmessageresponsefieldidunique")]
 		public virtual object SdkMessageResponseFieldIdUnique
 		{
-			get { return this.GetAttributeValue<object>("sdkmessageresponsefieldidunique"); }
+			get => GetAttributeValue<object>("sdkmessageresponsefieldidunique"); 
 		}
-		[AttributeLogicalNameAttribute("sdkmessageresponseid")]
+		[AttributeLogicalName("sdkmessageresponseid")]
 		public virtual EntityReference SdkMessageResponseId
 		{
-			get { return this.GetAttributeValue<EntityReference>("sdkmessageresponseid"); }
+			get => GetAttributeValue<EntityReference>("sdkmessageresponseid"); 
 		}
-		[AttributeLogicalNameAttribute("solutionid")]
+		[AttributeLogicalName("solutionid")]
 		public virtual object SolutionId
 		{
-			get { return this.GetAttributeValue<object>("solutionid"); }
+			get => GetAttributeValue<object>("solutionid"); 
 		}
-		[AttributeLogicalNameAttribute("supportingsolutionid")]
+		[AttributeLogicalName("supportingsolutionid")]
 		public virtual object SupportingSolutionId
 		{
-			get { return this.GetAttributeValue<object>("supportingsolutionid"); }
+			get => GetAttributeValue<object>("supportingsolutionid"); 
 		}
-		[AttributeLogicalNameAttribute("value")]
+		[AttributeLogicalName("value")]
 		public virtual string Value
 		{
-			get { return this.GetAttributeValue<string>("value"); }
-			set { this.SetAttributeValue("value", value); }
+			get => GetAttributeValue<string>("value"); 
+			set => SetAttributeValue("value", value); 
 		}
-		[AttributeLogicalNameAttribute("versionnumber")]
+		[AttributeLogicalName("versionnumber")]
 		public virtual int? VersionNumber
 		{
-			get { return this.GetAttributeValue<int?>("versionnumber"); }
+			get => GetAttributeValue<int>("versionnumber"); 
 		}
 	}
 }

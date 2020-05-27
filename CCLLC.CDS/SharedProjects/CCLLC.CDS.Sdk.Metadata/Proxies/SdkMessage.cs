@@ -7,18 +7,16 @@ using Microsoft.Xrm.Sdk.Client;
 
 namespace CCLLC.CDS.Sdk.Metadata.Proxy 
 {
-
-	[EntityLogicalNameAttribute("sdkmessage")]
+	[EntityLogicalName("sdkmessage")]
 	public partial class SdkMessage : Entity
 	{
 		public static string EntityLogicalName => "sdkmessage";
 
 		public SdkMessage()
-			: base("sdkmessage")
-		{
-		}
+			: base("sdkmessage") {}
 
-		#region Late Bound Fields
+
+		#region Late Bound Field Constants
 	
 		public class Fields
 		{			
@@ -70,238 +68,243 @@ namespace CCLLC.CDS.Sdk.Metadata.Proxy
 
 		#endregion
 
-		[AttributeLogicalNameAttribute("sdkmessageid")]
+		[AttributeLogicalName("sdkmessageid")]
 		public override Guid Id
 		{
-			get { return base.Id; }
-			set { SdkMessageId = value; }
+			get => base.Id; 
+			set => SdkMessageId = value;
 		}
 
-		[AttributeLogicalNameAttribute("autotransact")]
+		[AttributeLogicalName("autotransact")]
 		public virtual bool? AutoTransact
 		{
-			get { return this.GetAttributeValue<bool?>("autotransact"); }
-			set { this.SetAttributeValue("autotransact", value); }
+			get => GetAttributeValue<bool>("autotransact"); 
+			set => SetAttributeValue("autotransact", value); 
 		}
-		[AttributeLogicalNameAttribute("autotransactname")]
+		[AttributeLogicalName("autotransactname")]
 		public virtual string AutoTransactName
 		{
-			get { return this.GetAttributeValue<string>("autotransactname"); }
+			get => GetAttributeValue<string>("autotransactname"); 
 		}
-		[AttributeLogicalNameAttribute("availability")]
+		[AttributeLogicalName("availability")]
 		public virtual int? Availability
 		{
-			get { return this.GetAttributeValue<int?>("availability"); }
-			set { this.SetAttributeValue("availability", value); }
+			get => GetAttributeValue<int>("availability"); 
+			set => SetAttributeValue("availability", value); 
 		}
-		[AttributeLogicalNameAttribute("categoryname")]
+		[AttributeLogicalName("categoryname")]
 		public virtual string CategoryName
 		{
-			get { return this.GetAttributeValue<string>("categoryname"); }
-			set { this.SetAttributeValue("categoryname", value); }
+			get => GetAttributeValue<string>("categoryname"); 
+			set => SetAttributeValue("categoryname", value); 
 		}
-		[AttributeLogicalNameAttribute("componentstate")]
-		public virtual OptionSetValue ComponentState
+		[AttributeLogicalName("componentstate")]
+		public virtual GlobalEnums.eComponentstate? ComponentState
 		{
-			get { return this.GetAttributeValue<OptionSetValue>("componentstate"); }
+			get 
+			{
+				var value = GetAttributeValue<OptionSetValue>("componentstate"); 
+				if(value is null) return null;
+				return (GlobalEnums.eComponentstate?)value.Value;
+			}
 		}
-		[AttributeLogicalNameAttribute("createdby")]
+		[AttributeLogicalName("createdby")]
 		public virtual EntityReference CreatedBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("createdby"); }
+			get => GetAttributeValue<EntityReference>("createdby"); 
 		}
-		[AttributeLogicalNameAttribute("createdbyname")]
+		[AttributeLogicalName("createdbyname")]
 		public virtual string CreatedByName
 		{
-			get { return this.GetAttributeValue<string>("createdbyname"); }
+			get => GetAttributeValue<string>("createdbyname"); 
 		}
-		[AttributeLogicalNameAttribute("createdon")]
+		[AttributeLogicalName("createdon")]
 		public virtual DateTime? CreatedOn
 		{
-			get { return this.GetAttributeValue<DateTime?>("createdon"); }
+			get => GetAttributeValue<DateTime>("createdon"); 
 		}
-		[AttributeLogicalNameAttribute("createdonbehalfby")]
+		[AttributeLogicalName("createdonbehalfby")]
 		public virtual EntityReference CreatedOnBehalfBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("createdonbehalfby"); }
+			get => GetAttributeValue<EntityReference>("createdonbehalfby"); 
 		}
-		[AttributeLogicalNameAttribute("createdonbehalfbyname")]
+		[AttributeLogicalName("createdonbehalfbyname")]
 		public virtual string CreatedOnBehalfByName
 		{
-			get { return this.GetAttributeValue<string>("createdonbehalfbyname"); }
+			get => GetAttributeValue<string>("createdonbehalfbyname"); 
 		}
-		[AttributeLogicalNameAttribute("createdonbehalfbyyominame")]
+		[AttributeLogicalName("createdonbehalfbyyominame")]
 		public virtual string CreatedOnBehalfByYomiName
 		{
-			get { return this.GetAttributeValue<string>("createdonbehalfbyyominame"); }
+			get => GetAttributeValue<string>("createdonbehalfbyyominame"); 
 		}
-		[AttributeLogicalNameAttribute("customizationlevel")]
+		[AttributeLogicalName("customizationlevel")]
 		public virtual int? CustomizationLevel
 		{
-			get { return this.GetAttributeValue<int?>("customizationlevel"); }
+			get => GetAttributeValue<int>("customizationlevel"); 
 		}
-		[AttributeLogicalNameAttribute("expand")]
+		[AttributeLogicalName("expand")]
 		public virtual bool? Expand
 		{
-			get { return this.GetAttributeValue<bool?>("expand"); }
-			set { this.SetAttributeValue("expand", value); }
+			get => GetAttributeValue<bool>("expand"); 
+			set => SetAttributeValue("expand", value); 
 		}
-		[AttributeLogicalNameAttribute("expandname")]
+		[AttributeLogicalName("expandname")]
 		public virtual string ExpandName
 		{
-			get { return this.GetAttributeValue<string>("expandname"); }
+			get => GetAttributeValue<string>("expandname"); 
 		}
-		[AttributeLogicalNameAttribute("introducedversion")]
+		[AttributeLogicalName("introducedversion")]
 		public virtual string IntroducedVersion
 		{
-			get { return this.GetAttributeValue<string>("introducedversion"); }
-			set { this.SetAttributeValue("introducedversion", value); }
+			get => GetAttributeValue<string>("introducedversion"); 
+			set => SetAttributeValue("introducedversion", value); 
 		}
-		[AttributeLogicalNameAttribute("isactive")]
+		[AttributeLogicalName("isactive")]
 		public virtual bool? IsActive
 		{
-			get { return this.GetAttributeValue<bool?>("isactive"); }
-			set { this.SetAttributeValue("isactive", value); }
+			get => GetAttributeValue<bool>("isactive"); 
+			set => SetAttributeValue("isactive", value); 
 		}
-		[AttributeLogicalNameAttribute("isactivename")]
+		[AttributeLogicalName("isactivename")]
 		public virtual string IsActiveName
 		{
-			get { return this.GetAttributeValue<string>("isactivename"); }
+			get => GetAttributeValue<string>("isactivename"); 
 		}
-		[AttributeLogicalNameAttribute("ismanaged")]
+		[AttributeLogicalName("ismanaged")]
 		public virtual bool? IsManaged
 		{
-			get { return this.GetAttributeValue<bool?>("ismanaged"); }
+			get => GetAttributeValue<bool>("ismanaged"); 
 		}
-		[AttributeLogicalNameAttribute("ismanagedname")]
+		[AttributeLogicalName("ismanagedname")]
 		public virtual string IsManagedName
 		{
-			get { return this.GetAttributeValue<string>("ismanagedname"); }
+			get => GetAttributeValue<string>("ismanagedname"); 
 		}
-		[AttributeLogicalNameAttribute("isprivate")]
+		[AttributeLogicalName("isprivate")]
 		public virtual bool? IsPrivate
 		{
-			get { return this.GetAttributeValue<bool?>("isprivate"); }
-			set { this.SetAttributeValue("isprivate", value); }
+			get => GetAttributeValue<bool>("isprivate"); 
+			set => SetAttributeValue("isprivate", value); 
 		}
-		[AttributeLogicalNameAttribute("isprivatename")]
+		[AttributeLogicalName("isprivatename")]
 		public virtual string IsPrivateName
 		{
-			get { return this.GetAttributeValue<string>("isprivatename"); }
+			get => GetAttributeValue<string>("isprivatename"); 
 		}
-		[AttributeLogicalNameAttribute("isreadonly")]
+		[AttributeLogicalName("isreadonly")]
 		public virtual bool? IsReadOnly
 		{
-			get { return this.GetAttributeValue<bool?>("isreadonly"); }
-			set { this.SetAttributeValue("isreadonly", value); }
+			get => GetAttributeValue<bool>("isreadonly"); 
+			set => SetAttributeValue("isreadonly", value); 
 		}
-		[AttributeLogicalNameAttribute("isreadonlyname")]
+		[AttributeLogicalName("isreadonlyname")]
 		public virtual string IsReadOnlyName
 		{
-			get { return this.GetAttributeValue<string>("isreadonlyname"); }
+			get => GetAttributeValue<string>("isreadonlyname"); 
 		}
-		[AttributeLogicalNameAttribute("isvalidforexecuteasync")]
+		[AttributeLogicalName("isvalidforexecuteasync")]
 		public virtual bool? IsValidForExecuteAsync
 		{
-			get { return this.GetAttributeValue<bool?>("isvalidforexecuteasync"); }
+			get => GetAttributeValue<bool>("isvalidforexecuteasync"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedby")]
+		[AttributeLogicalName("modifiedby")]
 		public virtual EntityReference ModifiedBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("modifiedby"); }
+			get => GetAttributeValue<EntityReference>("modifiedby"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedbyname")]
+		[AttributeLogicalName("modifiedbyname")]
 		public virtual string ModifiedByName
 		{
-			get { return this.GetAttributeValue<string>("modifiedbyname"); }
+			get => GetAttributeValue<string>("modifiedbyname"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedon")]
+		[AttributeLogicalName("modifiedon")]
 		public virtual DateTime? ModifiedOn
 		{
-			get { return this.GetAttributeValue<DateTime?>("modifiedon"); }
+			get => GetAttributeValue<DateTime>("modifiedon"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[AttributeLogicalName("modifiedonbehalfby")]
 		public virtual EntityReference ModifiedOnBehalfBy
 		{
-			get { return this.GetAttributeValue<EntityReference>("modifiedonbehalfby"); }
+			get => GetAttributeValue<EntityReference>("modifiedonbehalfby"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedonbehalfbyname")]
+		[AttributeLogicalName("modifiedonbehalfbyname")]
 		public virtual string ModifiedOnBehalfByName
 		{
-			get { return this.GetAttributeValue<string>("modifiedonbehalfbyname"); }
+			get => GetAttributeValue<string>("modifiedonbehalfbyname"); 
 		}
-		[AttributeLogicalNameAttribute("modifiedonbehalfbyyominame")]
+		[AttributeLogicalName("modifiedonbehalfbyyominame")]
 		public virtual string ModifiedOnBehalfByYomiName
 		{
-			get { return this.GetAttributeValue<string>("modifiedonbehalfbyyominame"); }
+			get => GetAttributeValue<string>("modifiedonbehalfbyyominame"); 
 		}
-		[AttributeLogicalNameAttribute("name")]
+		[AttributeLogicalName("name")]
 		public virtual string Name
 		{
-			get { return this.GetAttributeValue<string>("name"); }
-			set { this.SetAttributeValue("name", value); }
+			get => GetAttributeValue<string>("name"); 
+			set => SetAttributeValue("name", value); 
 		}
-		[AttributeLogicalNameAttribute("organizationid")]
+		[AttributeLogicalName("organizationid")]
 		public virtual EntityReference OrganizationId
 		{
-			get { return this.GetAttributeValue<EntityReference>("organizationid"); }
+			get => GetAttributeValue<EntityReference>("organizationid"); 
 		}
-		[AttributeLogicalNameAttribute("overwritetime")]
+		[AttributeLogicalName("overwritetime")]
 		public virtual DateTime? OverwriteTime
 		{
-			get { return this.GetAttributeValue<DateTime?>("overwritetime"); }
+			get => GetAttributeValue<DateTime>("overwritetime"); 
 		}
-		[AttributeLogicalNameAttribute("sdkmessageid")]
+		[AttributeLogicalName("sdkmessageid")]
 		public virtual Guid SdkMessageId
 		{
-			get { return this.GetAttributeValue<Guid>("sdkmessageid"); }
-			set { this.SetAttributeValue("sdkmessageid", value); }
+			get => GetAttributeValue<Guid>("sdkmessageid"); 
+			set => SetAttributeValue("sdkmessageid", value); 
 		}
-		[AttributeLogicalNameAttribute("sdkmessageidunique")]
+		[AttributeLogicalName("sdkmessageidunique")]
 		public virtual object SdkMessageIdUnique
 		{
-			get { return this.GetAttributeValue<object>("sdkmessageidunique"); }
+			get => GetAttributeValue<object>("sdkmessageidunique"); 
 		}
-		[AttributeLogicalNameAttribute("solutionid")]
+		[AttributeLogicalName("solutionid")]
 		public virtual object SolutionId
 		{
-			get { return this.GetAttributeValue<object>("solutionid"); }
+			get => GetAttributeValue<object>("solutionid"); 
 		}
-		[AttributeLogicalNameAttribute("supportingsolutionid")]
+		[AttributeLogicalName("supportingsolutionid")]
 		public virtual object SupportingSolutionId
 		{
-			get { return this.GetAttributeValue<object>("supportingsolutionid"); }
+			get => GetAttributeValue<object>("supportingsolutionid"); 
 		}
-		[AttributeLogicalNameAttribute("template")]
+		[AttributeLogicalName("template")]
 		public virtual bool? Template
 		{
-			get { return this.GetAttributeValue<bool?>("template"); }
-			set { this.SetAttributeValue("template", value); }
+			get => GetAttributeValue<bool>("template"); 
+			set => SetAttributeValue("template", value); 
 		}
-		[AttributeLogicalNameAttribute("templatename")]
+		[AttributeLogicalName("templatename")]
 		public virtual string TemplateName
 		{
-			get { return this.GetAttributeValue<string>("templatename"); }
+			get => GetAttributeValue<string>("templatename"); 
 		}
-		[AttributeLogicalNameAttribute("throttlesettings")]
+		[AttributeLogicalName("throttlesettings")]
 		public virtual string ThrottleSettings
 		{
-			get { return this.GetAttributeValue<string>("throttlesettings"); }
+			get => GetAttributeValue<string>("throttlesettings"); 
 		}
-		[AttributeLogicalNameAttribute("versionnumber")]
+		[AttributeLogicalName("versionnumber")]
 		public virtual int? VersionNumber
 		{
-			get { return this.GetAttributeValue<int?>("versionnumber"); }
+			get => GetAttributeValue<int>("versionnumber"); 
 		}
-		[AttributeLogicalNameAttribute("workflowsdkstepenabled")]
+		[AttributeLogicalName("workflowsdkstepenabled")]
 		public virtual bool? WorkflowSdkStepEnabled
 		{
-			get { return this.GetAttributeValue<bool?>("workflowsdkstepenabled"); }
+			get => GetAttributeValue<bool>("workflowsdkstepenabled"); 
 		}
-		[AttributeLogicalNameAttribute("workflowsdkstepenabledname")]
+		[AttributeLogicalName("workflowsdkstepenabledname")]
 		public virtual string WorkflowSdkStepEnabledName
 		{
-			get { return this.GetAttributeValue<string>("workflowsdkstepenabledname"); }
+			get => GetAttributeValue<string>("workflowsdkstepenabledname"); 
 		}
 	}
 }
