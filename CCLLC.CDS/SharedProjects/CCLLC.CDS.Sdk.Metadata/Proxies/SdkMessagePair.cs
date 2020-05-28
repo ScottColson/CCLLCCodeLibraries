@@ -21,7 +21,7 @@ namespace CCLLC.CDS.Sdk.Metadata.Proxy
 		public class Fields
 		{			
 			public const string Id = "sdkmessagepairid";
-			public const string __Namespace = "namespace";
+			public const string Namespace = "namespace";
 			public const string ComponentState = "componentstate";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
@@ -60,7 +60,7 @@ namespace CCLLC.CDS.Sdk.Metadata.Proxy
 		}
 
 		[AttributeLogicalName("namespace")]
-		public virtual string __Namespace
+		public virtual string Namespace
 		{
 			get => GetAttributeValue<string>("namespace"); 
 			set => SetAttributeValue("namespace", value); 
