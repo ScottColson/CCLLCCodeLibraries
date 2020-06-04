@@ -9,6 +9,7 @@
     <Import_RootNamespace>CCLLC.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DefaultCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\eSeverityLevel.cs" />
