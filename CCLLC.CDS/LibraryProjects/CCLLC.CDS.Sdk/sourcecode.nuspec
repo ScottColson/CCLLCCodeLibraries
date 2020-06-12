@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="3.3.0">
     <id>CCLLC.CDS.Sdk.Sources</id>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <description>CDS Plugin framework built on the Process Execution Model.</description>
     <authors>Colson Code, LLC</authors>
     <owners>Colson Code, LLC</owners>
@@ -13,11 +13,11 @@
     <dependencies>
       <dependency id="CCLLC.Core.ProcessModel.Sources" version="1.1.3" />
       <dependency id="CCLLC.Core.Net.Sources" version="1.1.0" />
-      <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.0" />
+      <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.2" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="9.0.2.20" />
     </dependencies>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.1.4.1/" />
+    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.1.4.2/" />
   </files>
 </package>

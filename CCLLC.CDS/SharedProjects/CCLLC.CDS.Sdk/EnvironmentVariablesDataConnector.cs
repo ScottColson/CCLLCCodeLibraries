@@ -26,7 +26,7 @@ namespace CCLLC.CDS.Sdk
 
             public const string EntityLogicalName = "environmentvariabledefinition";
 
-    
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("defaultvalue")]
             public string DefaultValue
             {
                 get
@@ -39,7 +39,7 @@ namespace CCLLC.CDS.Sdk
                 }
             }
 
-           
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("displayname")]
             public string DisplayName
             {
                 get
@@ -52,7 +52,7 @@ namespace CCLLC.CDS.Sdk
                 }
             }
 
-           
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("environmentvariabledefinitionid")]
             public System.Nullable<System.Guid> EnvironmentVariableDefinitionId
             {
                 get
@@ -72,7 +72,8 @@ namespace CCLLC.CDS.Sdk
                     }                    
                 }
             }
-                        
+
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("environmentvariabledefinitionid")]
             public override System.Guid Id
             {
                 get
@@ -102,7 +103,8 @@ namespace CCLLC.CDS.Sdk
            
             /// <summary>
             /// Unique identifier for Environment Variable Definition associated with Environment Variable Value.
-            /// </summary>            
+            /// </summary>   
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("environmentvariabledefinitionid")]
             public Microsoft.Xrm.Sdk.EntityReference EnvironmentVariableDefinitionId
             {
                 get
@@ -117,7 +119,8 @@ namespace CCLLC.CDS.Sdk
 
             /// <summary>
             /// Unique identifier for entity instances
-            /// </summary>           
+            /// </summary>      
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("environmentvariablevalueid")]
             public System.Nullable<System.Guid> EnvironmentVariableValueId
             {
                 get
@@ -137,7 +140,8 @@ namespace CCLLC.CDS.Sdk
                     }
                 }
             }
-                        
+
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("environmentvariablevalueid")]
             public override System.Guid Id
             {
                 get
@@ -150,10 +154,11 @@ namespace CCLLC.CDS.Sdk
                 }
             }
 
-           
+
             /// <summary>
             /// Contains the actual variable data.
             /// </summary>
+            [Microsoft.Xrm.Sdk.AttributeLogicalName("value")]
             public string Value
             {
                 get
