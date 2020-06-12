@@ -9,6 +9,7 @@
     <Import_RootNamespace>CCLLC.CDS.Sdk.Data</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)EntityProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Condition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExecutableFluentQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\EntityExtensions.cs" />
