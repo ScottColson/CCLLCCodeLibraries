@@ -31,7 +31,8 @@ namespace CCLLC.CDS.Sdk.Metadata
             return new ExecutableFluentQuery<SdkMessage>(orgService)
                     .Select(cols => new { cols.Name })
                     .InnerJoin<SdkMessageFilter>(SdkMessage.Fields.SdkMessageId, SdkMessageFilter.Fields.SdkMessageId, f => f
-                        .WhereAll(e => e.Attribute("isvisible").Equals(true)))                         
+                        .WhereAll(e => e.Attribute("isvisible").Equals(true)))
+                    .With.UniqueRecords()
                     .RetrieveAll()                        
                         .Select(r => r.Name);
         }
