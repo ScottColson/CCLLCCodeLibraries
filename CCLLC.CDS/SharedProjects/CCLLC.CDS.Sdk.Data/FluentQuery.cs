@@ -6,7 +6,9 @@ namespace CCLLC.CDS.Sdk
 {
     public abstract class FluentQuery<P, E> : QueryEntity<P, E>, IFluentQuery<P, E> where P : IFluentQuery<P, E> where E : Entity, new()
     {
+#pragma warning disable CS0693 // Type parameter has the same name as the type parameter from outer type
         class FluentQuerySettings<P,E> : IFluentQuerySettings<P,E> where P : IFluentQuery<P, E> where E : Entity
+#pragma warning restore CS0693 // Type parameter has the same name as the type parameter from outer type
         {
             private IFluentQuery Parent { get; }
             public bool UseNoLock { get; private set; }
