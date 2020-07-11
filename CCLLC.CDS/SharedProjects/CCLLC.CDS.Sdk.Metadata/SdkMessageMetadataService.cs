@@ -20,13 +20,20 @@ namespace CCLLC.CDS.Sdk.Metadata
 
         public IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService, bool includeNonVisibleMessages = false)
         {
+            if (includeNonVisibleMessages)
+            {
+                return new ExecutableFluentQuery<SdkMessage>(orgService)
+                    .Select(cols => new { cols.Name })                    
+                    .RetrieveAll()
+                        .Select(r => r.Name);
+            }
+
             return new ExecutableFluentQuery<SdkMessage>(orgService)
                     .Select(cols => new { cols.Name })
                     .InnerJoin<SdkMessageFilter>(SdkMessage.Fields.SdkMessageId, SdkMessageFilter.Fields.SdkMessageId, f => f
-                        .With.Alias("filter")
-                        .Select( cols => new {cols.IsVisible}))           
-                    .RetrieveAll()
-                        .Where(e => includeNonVisibleMessages || e.GetAliasedValue<bool?>("filter","isvisible") == true)
+                        .WhereAll(e => e.Attribute("isvisible").Equals(true)))
+                    .With.UniqueRecords()
+                    .RetrieveAll()                        
                         .Select(r => r.Name);
         }
 
