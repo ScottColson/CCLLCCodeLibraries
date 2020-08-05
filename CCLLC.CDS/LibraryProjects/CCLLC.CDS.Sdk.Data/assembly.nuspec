@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="3.3.0">
+    <id>CCLLC.CDS.Sdk.Data</id>
+    <version>$version$</version>
+    <description>CDS data access helpers.</description>
+    <authors>Colson Code, LLC</authors>
+    <owners>Colson Code, LLC</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
+    <tags></tags>
+    <dependencies/>      
+  </metadata>
+  <files>
+    <file src="bin\Release\**\CCLLCCdsSdkData.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCdsSdkDatapdb" target="lib" />
+  </files>
+</package>
