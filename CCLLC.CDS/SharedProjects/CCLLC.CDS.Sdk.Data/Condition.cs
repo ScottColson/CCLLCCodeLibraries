@@ -50,6 +50,23 @@ namespace CCLLC.CDS.Sdk
             return (IFilter<P>)Parent;
         }
 
+        public IFilter<P> IsLike(string[] values)
+        {
+            if (values is null) return (IFilter<P>)Parent;
+
+            //handle wild card conversion
+            for(int i=0; i<values.Length; i++)
+            {
+                if (values[i].Contains("*"))
+                {
+                    values[i] = values[i].Replace('*', '%');
+                }
+            }
+
+            addConditions<string>(ConditionOperator.Like, values);
+            return (IFilter<P>)Parent;
+        }
+
         public IFilter<P> IsNotNull()
         {
             addConditionToFilter(ConditionOperator.NotNull, null, Parent);
