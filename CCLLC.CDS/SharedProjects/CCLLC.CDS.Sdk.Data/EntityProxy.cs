@@ -15,7 +15,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
-namespace ITD.CDLCertification.Plugins.ProxyClasses
+namespace CCLLC.CDS.Sdk.EarlyBound
 {
     public abstract partial class EntityProxy : Entity, INotifyPropertyChanged, INotifyPropertyChanging
     {
