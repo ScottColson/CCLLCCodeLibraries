@@ -11,7 +11,7 @@
     <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
     <tags></tags>
     <dependencies>      
-       <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.1" />   
+       <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.6" />   
     </dependencies>
   </metadata>
   <files>   

@@ -18,9 +18,9 @@ namespace CCLLC.CDS.Sdk.Metadata
             Endpoint = endpoint;
         }
 
+        [Obsolete("Obsolete do to performance issues - GetSdkMesageNames(IOrganizationService, IEnumerable<string> messageFilters")]
         public IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService, bool includeNonVisibleMessages = false)
-        {
-           
+        {         
 
             if (includeNonVisibleMessages)
             {
@@ -37,6 +37,22 @@ namespace CCLLC.CDS.Sdk.Metadata
                     .With.UniqueRecords()
                     .RetrieveAll()                        
                         .Select(r => r.Name);
+        }
+
+        public IEnumerable<string> GetSdkMessageNames(IOrganizationService orgService, IEnumerable<string> messageFilters)
+        {
+            if (messageFilters is null) return new List<string>();
+
+            return new ExecutableFluentQuery<SdkMessage>(orgService)
+                    .Select(cols => new { cols.Name })
+                    .WhereAll( e => e
+                        .Attribute(SdkMessage.Fields.Name).IsLike(messageFilters.ToArray()))
+                    .InnerJoin<SdkMessageFilter>(SdkMessage.Fields.SdkMessageId, SdkMessageFilter.Fields.SdkMessageId, f => f
+                        .WhereAll(e => e.Attribute("isvisible").Equals(true)))
+                    .With.UniqueRecords()
+                    .RetrieveAll()
+                        .Select(r => r.Name);
+            
         }
 
         public IEnumerable<SdkMessageMetadata> GetSdkMessageMetadata(IOrganizationService orgService, IEnumerable<string> messageNames)
@@ -182,5 +198,7 @@ namespace CCLLC.CDS.Sdk.Metadata
                         clrFormatter: field.FirstOrDefault().GetAliasedValue<string>("responsefield.clrformatter")
                     )).ToArray();
         }
+
+        
     }
 }
