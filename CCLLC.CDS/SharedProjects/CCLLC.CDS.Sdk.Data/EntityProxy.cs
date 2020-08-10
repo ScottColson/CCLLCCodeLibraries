@@ -17,20 +17,65 @@ using Microsoft.Xrm.Sdk.Metadata;
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
 namespace CCLLC.CDS.Sdk.EarlyBound
 {
+    public enum eTextOptions
+    {
+        /// <summary>Ignore and let CRM handle any issues with the value</summary>
+        Ignore,
+        /// <summary>If the length is greater than the max length, truncate the value to the max length</summary>
+        Truncate,
+        /// <summary>Throw an error if the length of the value is greater than the max length</summary>
+        ThrowError
+    }
+
+    public enum eNumberOptions
+    {
+        /// <summary>Ignore and let CRM handle any issues with the value.</summary>
+        Ignore,
+        /// <summary>If the value is less than the min value set the value as the min value.<para>Let CRM handle any issues with the max value.</para></summary>
+        CorrectMinIgnoreMax,
+        /// <summary>If the value is less than the min value set the value as the min value.<para>Throw an error if the value is greater than the max value.</para></summary>
+        CorrectMinThrowMax,
+        /// <summary>If the value is greater than the max value set the value as the max value.<para>Let CRM handle any issues with the min value.</para></summary>
+        CorrectMaxIgnoreMin,
+        /// <summary>If the value is greater than the max value set the value as the max value.<para>Throw an error if the value is less than the min value.</para></summary>
+        CorrectMaxThrowMin,
+        /// <summary>If the value is less than the min value set the value as the min value.<para>If the value is greater than the max value set the value as the max value.</para></summary>
+        CorrectMinAndMax,
+        /// <summary>Throw an error if the value is less than the min or greater than the max</summary>
+        ThrowError
+    }
+
+    public enum eErrorType
+    {
+        Text,
+        Number
+    }
+
     public abstract partial class EntityProxy : Entity, INotifyPropertyChanged, INotifyPropertyChanging
     {
-        Dictionary<string, object> _changedValues = new Dictionary<string, object>();
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        Dictionary<string,object> changedValues = new Dictionary<string, object>();
+        Dictionary<string,eTextOptions> textOptions = new Dictionary<string, eTextOptions>();
+        Dictionary<string,eNumberOptions> numberOptions = new Dictionary<string, eNumberOptions>();
+        Dictionary<string, string> errorText = new Dictionary<string, string>();
+
         AttributeEqualityComparer _equalityComparer = new AttributeEqualityComparer();
+
+        public bool IsDirty => this.changedValues.Count > 0;
+        public eNumberOptions NumberOptions { get; set; } = eNumberOptions.ThrowError;
+        public eTextOptions TextOptions { get; set; } = eTextOptions.ThrowError;
+        public string TextError { get; set; } = "The value for {0} exceeds the maximum length of {2}.";
+        public string NumberError { get; set; } = "The value for {0} must be between {1} and {2}.";
 
         protected EntityProxy(string logicalName)
            : this(new Entity(logicalName)) { }
 
         protected EntityProxy(Entity original)
         {
-            if (string.IsNullOrEmpty(original.LogicalName)) { throw new Exception("Please specify the 'logicalName' on the entity when using a proxy class."); }
-            this.LogicalName = GetLogicalName(this.GetType());
-            if (this.LogicalName != original.LogicalName) { throw new Exception("Please make sure that the entity logical name matches that of the proxy class you are creating."); }
-
+            _ = original?.LogicalName ?? throw new ArgumentNullException(nameof(original));
+           
             this.LogicalName = original.LogicalName;
             this.RelatedEntities.Clear();
             this.FormattedValues.Clear();
@@ -43,116 +88,70 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             this.Id = original.Id;
         }
 
-        public static bool ReturnDatesInLocalTime = false;
-
+        public void Save(IOrganizationService service)
+        {
+            if (this.Id != Guid.Empty) {
+                this.Update(service); }
+            else {
+                this.Create(service); }
+        }
+        
         public Guid Create(IOrganizationService service)
         {
             this.Id = service.Create(this);
-            _changedValues.Clear();
+            changedValues.Clear();
             return this.Id;
+        }
+
+        public void Update(IOrganizationService service)
+        {
+            if (IsDirty)
+            {
+                service.Update(GetChangedEntity());
+                changedValues.Clear();
+            }
         }
 
         public void Delete(IOrganizationService service)
         {
             service.Delete(this.LogicalName, this.Id);
-        }
-
-        public void Update(IOrganizationService service)
-        {
-            if (_changedValues.Count > 0)
-                service.Update(GetChangedEntity());
-            _changedValues.Clear();
-        }
-
-        public async System.Threading.Tasks.Task<Guid> CreateAsync(IOrganizationService service)
-        {
-            return await System.Threading.Tasks.Task.Run(() => { return this.Create(service); });
-        }
-        public async System.Threading.Tasks.Task UpdateAsync(IOrganizationService service)
-        {
-            await System.Threading.Tasks.Task.Run(() => { this.Update(service); });
-        }
-        public async System.Threading.Tasks.Task DeleteAsync(IOrganizationService service)
-        {
-            await System.Threading.Tasks.Task.Run(() => { this.Delete(service); });
-        }
+        }       
+               
         public Entity GetChangedEntity()
         {
             var entity = new Entity(this.LogicalName);
             entity.Id = this.Id;
-            foreach (string attributeName in _changedValues.Keys)
+            foreach (string attributeName in changedValues.Keys)
                 entity.Attributes[attributeName] = this.Attributes[attributeName];
             return entity;
-        }
-        public void Save(IOrganizationService service)
-        {
-            if (this.Id != Guid.Empty) { this.Update(service); }
-            else { this.Create(service); }
-        }
-        public async System.Threading.Tasks.Task SaveAsync(IOrganizationService service)
-        {
-            await System.Threading.Tasks.Task.Run(() => { this.Save(service); });
-        }
-
-        private static Dictionary<Type, string> _proxyTypes = new Dictionary<Type, string>();
-        public static void RegisterProxyType(Type ProxyType, string logicalName)
-        {
-            if (!_proxyTypes.ContainsKey(ProxyType)) { _proxyTypes.Add(ProxyType, logicalName); }
-        }
-        public static void RegisterProxyTypesInAssembly(Assembly assembly)
-        {
-            if (assembly != null)
-            {
-                foreach (var type in assembly.GetTypes())
-                    System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(type.TypeHandle);
-            }
-        }
-        public static string GetLogicalName<T>() where T : EntityProxy
-        {
-            return GetLogicalName(typeof(T));
-        }
-
-        public static string GetLogicalName(Type t)
-        {
-            var logicalNameAttribute =
-                (EntityLogicalNameAttribute)Attribute.GetCustomAttribute(t, typeof(EntityLogicalNameAttribute));
-
-            return logicalNameAttribute?.LogicalName;
         }
 
         public static implicit operator EntityReference(EntityProxy proxy)
         {
-            if (proxy != null) { return proxy.ToEntityReference(); }
-            return null;
+             return proxy?.ToEntityReference(); 
         }
 
         public T GetPropertyValue<T>(string name)
         {
             if (this.Contains(name))
             {
-                var value = (T)this.Attributes[name];
-                if ((typeof(T) == typeof(DateTime) || typeof(T) == typeof(DateTime?)) && ReturnDatesInLocalTime && value != null)
-                    value = (T)(Object)((DateTime)(Object)value).ToLocalTime();
-                return value;
+                return (T)this.Attributes[name];
             }
             return default(T);
         }
-
-
-       
-
-        public void SetPropertyValue<T>(string name, T value, string propertyName)
+        
+        public void SetPropertyValue<T>(string name, T value)
         {
-            if (_changedValues.ContainsKey(name))
+            if (changedValues.ContainsKey(name))
             {
-                var originalValue = _changedValues[name];
+                var originalValue = changedValues[name];
                 var currentValue = this.Contains(name) ? (object)this.GetPropertyValue<T>(name) : null;
                 if (!_equalityComparer.Equals(currentValue, value))
                 {
-                    OnPropertyChanging(propertyName);
-                    if (_equalityComparer.Equals(originalValue, value)) { _changedValues.Remove(name); }
+                    OnPropertyChanging(name);
+                    if (_equalityComparer.Equals(originalValue, value)) { changedValues.Remove(name); }
                     this.Attributes[name] = value;
-                    OnPropertyChanged(propertyName);
+                    OnPropertyChanged(name);
                 }
             }
             else
@@ -160,12 +159,91 @@ namespace CCLLC.CDS.Sdk.EarlyBound
                 var currentValue = this.Contains(name) ? (object)this.GetPropertyValue<T>(name) : null;
                 if (!_equalityComparer.Equals(currentValue, value))
                 {
-                    OnPropertyChanging(propertyName);
-                    _changedValues.Add(name, currentValue);
+                    OnPropertyChanging(name);
+                    changedValues.Add(name, currentValue);
                     this.Attributes[name] = value;
-                    OnPropertyChanged(propertyName);
+                    OnPropertyChanged(name);
                 }
             }
+        }
+
+        public void SetPropertyValue(string name, string value, int maxLength)
+        {
+            var textOptions = GetTextOptions(name);
+            if (textOptions != eTextOptions.Ignore && !string.IsNullOrEmpty(value) && value.Length > maxLength)
+            {
+                if (textOptions == eTextOptions.Truncate) { value = value.Substring(0, maxLength); }
+                else { throw new Exception(string.Format(GetErrorText(name, eErrorType.Text), name, value.Length, maxLength)); }
+            }
+            SetPropertyValue<string>(name, value);
+        }
+
+        public void SetPropertyValue(string name, int? value, int minValue, int maxValue)
+        {
+            var numberOptions = GetNumberOptions(name);
+            if (numberOptions != eNumberOptions.Ignore && (value < minValue || value > maxValue))
+            {
+                bool throwError = false;
+                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value = (value < minValue) ? minValue : maxValue; }
+                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value = (value < minValue) ? minValue : value; }
+                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value < minValue) { value = minValue; }
+                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value = (value > maxValue) ? maxValue : value; }
+                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value > maxValue) { value = maxValue; }
+                else { throwError = true; }
+                if (throwError) { throw new Exception(string.Format(GetErrorText(name, eErrorType.Number), name, value, minValue, maxValue)); }
+            }
+            SetPropertyValue<int?>(name, value);
+        }
+
+        public void SetPropertyValue(string name, decimal? value, decimal minValue, decimal maxValue)
+        {
+            var numberOptions = GetNumberOptions(name);
+            if (numberOptions != eNumberOptions.Ignore && (value < minValue || value > maxValue))
+            {
+                bool throwError = false;
+                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value = (value < minValue) ? minValue : maxValue; }
+                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value = (value < minValue) ? minValue : value; }
+                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value < minValue) { value = minValue; }
+                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value = (value > maxValue) ? maxValue : value; }
+                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value > maxValue) { value = maxValue; }
+                else { throwError = true; }
+                if (throwError) { throw new Exception(string.Format(GetErrorText(name, eErrorType.Number), name, value, minValue, maxValue)); }
+            }
+            SetPropertyValue<decimal?>(name, value);
+        }
+
+        public void SetPropertyValue(string name, double? value, double minValue, double maxValue)
+        {
+            var numberOptions = GetNumberOptions(name);
+            if (numberOptions != eNumberOptions.Ignore && (value < minValue || value > maxValue))
+            {
+                bool throwError = false;
+                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value = (value < minValue) ? minValue : maxValue; }
+                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value = (value < minValue) ? minValue : value; }
+                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value < minValue) { value = minValue; }
+                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value = (value > maxValue) ? maxValue : value; }
+                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value > maxValue) { value = maxValue; }
+                else { throwError = true; }
+                if (throwError) { throw new Exception(string.Format(GetErrorText(name, eErrorType.Number), name, value, minValue, maxValue)); }
+            }
+            SetPropertyValue<double?>(name, value);
+        }
+
+        public void SetPropertyValue(string name, Money value, decimal minValue, decimal maxValue)
+        {
+            var numberOptions = GetNumberOptions(name);
+            if (value != null && numberOptions != eNumberOptions.Ignore && (value.Value < minValue || value.Value > maxValue))
+            {
+                bool throwError = false;
+                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value.Value = (value.Value < minValue) ? minValue : maxValue; }
+                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value.Value = (value.Value < minValue) ? minValue : value.Value; }
+                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value.Value < minValue) { value.Value = minValue; }
+                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value.Value = (value.Value > maxValue) ? maxValue : value.Value; }
+                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value.Value > maxValue) { value.Value = maxValue; }
+                else { throwError = true; }
+                if (throwError) { throw new Exception(string.Format(GetErrorText(name, eErrorType.Number), name, value.Value, minValue, maxValue)); }
+            }
+            SetPropertyValue<Money>(name, value);
         }
 
         private void OnPropertyChanging(string propertyName)
@@ -178,91 +256,24 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void SetPropertyValue(string name, string value, int maxLength, string propertyName)
+        protected eTextOptions GetTextOptions(string logicalName)
         {
-            var textOptions = GetTextOptions(name);
-            if (textOptions != eTextOptions.Ignore && !string.IsNullOrEmpty(value) && value.Length > maxLength)
-            {
-                if (textOptions == eTextOptions.Truncate) { value = value.Substring(0, maxLength); }
-                else { throw new Exception(string.Format(GetErrorString(name, eErrorType.Text), name, value, value.Length, maxLength)); }
-            }
-            SetPropertyValue<string>(name, value, propertyName);
+            if (textOptions.ContainsKey(logicalName)) { return textOptions[logicalName]; }
+            return TextOptions;
         }
 
-        public void SetPropertyValue(string name, int? value, int minValue, int maxValue, string propertyName)
+        protected eNumberOptions GetNumberOptions(string logicalName)
         {
-            var numberOptions = GetNumberOptions(name);
-            if (numberOptions != eNumberOptions.Ignore && (value < minValue || value > maxValue))
-            {
-                bool throwError = false;
-                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value = (value < minValue) ? minValue : maxValue; }
-                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value = (value < minValue) ? minValue : value; }
-                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value < minValue) { value = minValue; }
-                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value = (value > maxValue) ? maxValue : value; }
-                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value > maxValue) { value = maxValue; }
-                else { throwError = true; }
-                if (throwError) { throw new Exception(string.Format(GetErrorString(name, eErrorType.Number), name, value, minValue, maxValue)); }
-            }
-            SetPropertyValue(name, value, propertyName);
-        }
-        public void SetPropertyValue(string name, decimal? value, decimal minValue, decimal maxValue, string propertyName)
-        {
-            var numberOptions = GetNumberOptions(name);
-            if (numberOptions != eNumberOptions.Ignore && (value < minValue || value > maxValue))
-            {
-                bool throwError = false;
-                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value = (value < minValue) ? minValue : maxValue; }
-                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value = (value < minValue) ? minValue : value; }
-                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value < minValue) { value = minValue; }
-                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value = (value > maxValue) ? maxValue : value; }
-                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value > maxValue) { value = maxValue; }
-                else { throwError = true; }
-                if (throwError) { throw new Exception(string.Format(GetErrorString(name, eErrorType.Number), name, value, minValue, maxValue)); }
-            }
-            SetPropertyValue(name, value, propertyName);
-        }
-        public void SetPropertyValue(string name, double? value, double minValue, double maxValue, string propertyName)
-        {
-            var numberOptions = GetNumberOptions(name);
-            if (numberOptions != eNumberOptions.Ignore && (value < minValue || value > maxValue))
-            {
-                bool throwError = false;
-                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value = (value < minValue) ? minValue : maxValue; }
-                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value = (value < minValue) ? minValue : value; }
-                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value < minValue) { value = minValue; }
-                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value = (value > maxValue) ? maxValue : value; }
-                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value > maxValue) { value = maxValue; }
-                else { throwError = true; }
-                if (throwError) { throw new Exception(string.Format(GetErrorString(name, eErrorType.Number), name, value, minValue, maxValue)); }
-            }
-            SetPropertyValue(name, value, propertyName);
-        }
-        public void SetPropertyValue(string name, Money value, decimal minValue, decimal maxValue, string propertyName)
-        {
-            var numberOptions = GetNumberOptions(name);
-            if (value != null && numberOptions != eNumberOptions.Ignore && (value.Value < minValue || value.Value > maxValue))
-            {
-                bool throwError = false;
-                if (numberOptions == eNumberOptions.CorrectMinAndMax) { value.Value = (value.Value < minValue) ? minValue : maxValue; }
-                else if (numberOptions == eNumberOptions.CorrectMinIgnoreMax) { value.Value = (value.Value < minValue) ? minValue : value.Value; }
-                else if (numberOptions == eNumberOptions.CorrectMinThrowMax && value.Value < minValue) { value.Value = minValue; }
-                else if (numberOptions == eNumberOptions.CorrectMaxIgnoreMin) { value.Value = (value.Value > maxValue) ? maxValue : value.Value; }
-                else if (numberOptions == eNumberOptions.CorrectMaxThrowMin && value.Value > maxValue) { value.Value = maxValue; }
-                else { throwError = true; }
-                if (throwError) { throw new Exception(string.Format(GetErrorString(name, eErrorType.Number), name, value.Value, minValue, maxValue)); }
-            }
-            SetPropertyValue(name, value, propertyName);
-        }
-        protected abstract eTextOptions GetTextOptions(string logicalName);
-        protected abstract string GetErrorString(string attributeName, eErrorType defaultErrorType);
-        protected abstract eNumberOptions GetNumberOptions(string logicalName);
-
-        public bool IsDirty
-        {
-            get { return this._changedValues.Count > 0; }
+            if (numberOptions.ContainsKey(logicalName)) { return numberOptions[logicalName]; }
+            return NumberOptions;
         }
 
+        protected string GetErrorText(string attributeName, eErrorType defaultError)
+        {
+            if (errorText.ContainsKey(attributeName)) return errorText[attributeName];
 
+            return defaultError == eErrorType.Number ? NumberError : TextError;
+        }
 
         private class AttributeEqualityComparer : IEqualityComparer
         {
@@ -286,8 +297,7 @@ namespace CCLLC.CDS.Sdk.EarlyBound
                         }
                         else if (x.GetType() == typeof(Money)) { return (((Money)x).Value == ((Money)y).Value); }
                         else if (x.GetType() == typeof(DateTime) || x.GetType() == typeof(DateTime?))
-                        {
-                            //Compare only down to the second since CRM only tracks down to the second
+                        {                            
                             return Math.Abs(((DateTime)x - (DateTime)y).TotalSeconds) < 1;
                         }
                         else { return x.Equals(y); }
@@ -300,40 +310,7 @@ namespace CCLLC.CDS.Sdk.EarlyBound
                 return obj.GetHashCode();
             }
         }
-        public enum eTextOptions
-        {
-            /// <summary>Ignore and let CRM handle any issues with the value</summary>
-            Ignore,
-            /// <summary>If the length is greater than the max length, truncate the value to the max length</summary>
-            Truncate,
-            /// <summary>Throw an error if the length of the value is greater than the max length</summary>
-            ThrowError
-        }
-        public enum eNumberOptions
-        {
-            /// <summary>Ignore and let CRM handle any issues with the value.</summary>
-            Ignore,
-            /// <summary>If the value is less than the min value set the value as the min value.<para>Let CRM handle any issues with the max value.</para></summary>
-            CorrectMinIgnoreMax,
-            /// <summary>If the value is less than the min value set the value as the min value.<para>Throw an error if the value is greater than the max value.</para></summary>
-            CorrectMinThrowMax,
-            /// <summary>If the value is greater than the max value set the value as the max value.<para>Let CRM handle any issues with the min value.</para></summary>
-            CorrectMaxIgnoreMin,
-            /// <summary>If the value is greater than the max value set the value as the max value.<para>Throw an error if the value is less than the min value.</para></summary>
-            CorrectMaxThrowMin,
-            /// <summary>If the value is less than the min value set the value as the min value.<para>If the value is greater than the max value set the value as the max value.</para></summary>
-            CorrectMinAndMax,
-            /// <summary>Throw an error if the value is less than the min or greater than the max</summary>
-            ThrowError
-        }
-        public enum eErrorType
-        {
-            Text,
-            Number
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event PropertyChangingEventHandler PropertyChanging;
+        
     }
 
     public static partial class ExtensionMethods
@@ -343,18 +320,22 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             proxy.Id = service.Create(proxy);
             return proxy.Id;
         }
+
         public static void Update(this IOrganizationService service, EntityProxy proxy)
         {
             proxy.Update(service);
         }
+
         public static void Delete(this IOrganizationService service, EntityProxy proxy)
         {
             service.Delete(proxy.LogicalName, proxy.Id);
         }
+
         public static void SetState(this IOrganizationService service, EntityProxy proxy, int state, int status)
         {
             service.SetState(proxy, new OptionSetValue(state), new OptionSetValue(status));
         }
+
         public static void SetState(this IOrganizationService service, EntityProxy proxy, OptionSetValue state, OptionSetValue status)
         {
             var request = new SetStateRequest() { EntityMoniker = proxy, State = state, Status = status };
@@ -366,6 +347,7 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             if (reference == null) { return null; }
             return reference.ToEntity().ToProxy<T>();
         }
+
         public static Entity ToEntity(this EntityReference reference)
         {
             if (reference == null) { return null; }
