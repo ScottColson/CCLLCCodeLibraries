@@ -17,7 +17,7 @@ namespace CCLLC.CDS.Sdk
         [System.Runtime.Serialization.DataContractAttribute()]
         [Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("environmentvariabledefinition")]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
-        class EnvironmentVariableDefinition : Microsoft.Xrm.Sdk.Entity
+        public class EnvironmentVariableDefinition : Microsoft.Xrm.Sdk.Entity
         {            
             public EnvironmentVariableDefinition() :
                     base(EntityLogicalName)
@@ -36,6 +36,22 @@ namespace CCLLC.CDS.Sdk
                 set
                 {
                     this.SetAttributeValue("defaultvalue", value);
+                }
+            }
+
+    
+            [Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("schemaname")]
+            public string SchemaName
+            {
+                [System.Diagnostics.DebuggerNonUserCode()]
+                get
+                {
+                    return this.GetAttributeValue<string>("schemaname");
+                }
+                [System.Diagnostics.DebuggerNonUserCode()]
+                set
+                {
+                   this.SetAttributeValue("schemaname", value);                    
                 }
             }
 
@@ -91,7 +107,7 @@ namespace CCLLC.CDS.Sdk
         [System.Runtime.Serialization.DataContractAttribute()]
         [Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("environmentvariablevalue")]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.41")]
-        class EnvironmentVariableValue : Microsoft.Xrm.Sdk.Entity
+        public class EnvironmentVariableValue : Microsoft.Xrm.Sdk.Entity
         {            
             public EnvironmentVariableValue() :
                     base(EntityLogicalName)
@@ -192,12 +208,14 @@ namespace CCLLC.CDS.Sdk
                 .WhereAll(e => e.IsActive())
                 .RetrieveAll();
 
-            // Build a dictionary 
-            Dictionary<string, string> entries = new Dictionary<string, string>(definitions.Count);
+            // Build a dictionary with entires keyed by display name and schema name.
+            Dictionary<string, string> entries = new Dictionary<string, string>();
            
             foreach(var definition in definitions)
             {
-                var key = definition.DisplayName;
+                var key1 = definition.DisplayName;
+                var key2 = definition.SchemaName;
+                
                
                 // Use override value if present otherwise default value from definition.
                 var value = overrideValues
@@ -207,7 +225,8 @@ namespace CCLLC.CDS.Sdk
                 // Only include in the returned data if value is not null or empty.
                 if (!string.IsNullOrEmpty(value))
                 {
-                    entries.Add(key, value);
+                    entries.Add(key1, value);
+                    entries.Add(key2, value);
                 }
             }
 
