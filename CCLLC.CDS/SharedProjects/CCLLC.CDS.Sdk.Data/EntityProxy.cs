@@ -85,7 +85,11 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             this.ExtensionData = original.ExtensionData;
             this.Attributes.AddRange(original.Attributes);
             this.EntityState = original.EntityState;
-            this.Id = original.Id;
+
+            if (original.Id != default(Guid))
+            {
+                this.Id = original.Id;
+            }
         }
 
         public void Save(IOrganizationService service)
