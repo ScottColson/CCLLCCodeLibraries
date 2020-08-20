@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <package>
   <metadata minClientVersion="3.3.0">
-    <id>CCLLC.CDS.Sdk.Sources</id>
+    <id>CCLLC.CDS.Sdk</id>
     <version>$version$</version>
     <description>CDS Plugin framework built on the Process Execution Model.</description>
     <authors>Colson Code, LLC</authors>
@@ -11,13 +11,14 @@
     <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
     <tags>D365 CDS Plugin</tags>
     <dependencies>
-      <dependency id="CCLLC.Core.ProcessModel.Sources" version="1.1.5" />
-      <dependency id="CCLLC.Core.Net.Sources" version="1.1.0" />
-      <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.8" />
+      <dependency id="CCLLC.Core.ProcessModel" version="1.1.5" />
+      <dependency id="CCLLC.Core.Net" version="1.1.0" />
+      <dependency id="CCLLC.CDS.Sdk.Data" version="1.1.8" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="9.0.2.20" />
-    </dependencies>
+    </dependencies>      
   </metadata>
-  <files>   
-    <file src="..\..\SharedProjects\CCLLC.CDS.Sdk\**\*.cs" target="content/App_Packages/CCLLC.CDS.Sdk.1.4.3/" />
+  <files>
+    <file src="bin\Release\**\CCLLCCdsSdk.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCdsSdkpdb" target="lib" />
   </files>
 </package>
