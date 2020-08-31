@@ -51,6 +51,7 @@ namespace CCLLC.CDS.Sdk.EarlyBound
         Number
     }
 
+    [System.Runtime.Serialization.DataContractAttribute()]
     public abstract partial class EntityProxy : Entity, INotifyPropertyChanged, INotifyPropertyChanging
     {
         public event PropertyChangedEventHandler PropertyChanged;

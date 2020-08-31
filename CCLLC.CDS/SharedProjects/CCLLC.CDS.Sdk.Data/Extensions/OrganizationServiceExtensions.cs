@@ -42,7 +42,7 @@ namespace CCLLC.CDS.Sdk
         /// </summary> 
         public static Entity GetRecord(this IOrganizationService organizationService, EntityReference recordId, params string[] columns)
         {
-            var columnSet = columns == null ? new ColumnSet(true) : new ColumnSet(columns);
+            var columnSet = (columns == null || columns.Length == 0) ? new ColumnSet(true) : new ColumnSet(columns);
 
             var record = organizationService.Retrieve(
                 recordId.LogicalName,
