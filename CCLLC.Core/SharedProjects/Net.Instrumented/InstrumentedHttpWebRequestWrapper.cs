@@ -51,7 +51,28 @@ namespace CCLLC.Core.Net
                 return response;
             }
         }
-      
+
+        public override IWebResponse Delete()
+        {
+            IDependencyTelemetry dependencyTelemetry = null;
+
+            dependencyTelemetry = _telemetryFactory.BuildDependencyTelemetry(
+                "Web",
+                Address.ToString(),
+                _telemetryTag ?? "WebRequest",
+                null);
+
+            using (var dependencyClient = _telemetryClient.StartOperation<IDependencyTelemetry>(dependencyTelemetry))
+            {
+                var response = base.Delete();
+
+                dependencyTelemetry.ResultCode = response.StatusCode.ToString();
+                dependencyClient.CompleteOperation(response.Success);
+
+                return response;
+            }
+        }
+
         public override IWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)             
         {
             IDependencyTelemetry dependencyTelemetry = null;           

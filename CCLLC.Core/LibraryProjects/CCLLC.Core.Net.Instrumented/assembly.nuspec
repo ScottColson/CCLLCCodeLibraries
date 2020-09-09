@@ -11,11 +11,12 @@
     <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
     <tags>HTTP WebRequest</tags>
     <dependencies>
-      <dependency id="CCLLC.Core.Net.Sources" version="1.1.1" />
-      <dependency id="CCLLC.Telemetry.Sources" version="2.1.2" />
+      <dependency id="CCLLC.Core.Net" version="1.1.1" />
+      <dependency id="CCLLC.Telemetry" version="2.1.2" />
     </dependencies>
   </metadata>
-  <files>   
-    <file src="..\..\SharedProjects\Net.Instrumented\**\*.cs" target="content/App_Packages/CCLLC.Core.Net.Instrumented.$version$/" />
+  <files>
+    <file src="bin\Release\**\CCLLCCoreNetInstrumented.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCoreNetInstrumented.pdb" target="lib" />
   </files>
 </package>

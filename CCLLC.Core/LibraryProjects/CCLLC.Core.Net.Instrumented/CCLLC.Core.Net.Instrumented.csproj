@@ -29,7 +29,7 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'Common.targets'))\Common.targets" />
 
   <ItemGroup>
-    <PackageReference Include="CCLLC.Core.Net" Version="1.1.0" />
+    <PackageReference Include="CCLLC.Core.Net" Version="1.1.1" />
     <PackageReference Include="CCLLC.Telemetry" Version="2.1.2" />
   </ItemGroup>
 </Project>
