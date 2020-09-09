@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <package>
   <metadata minClientVersion="3.3.0">
-    <id>CCLLC.Core.Serialization.Sources</id>
+    <id>CCLLC.Core.Serialization</id>
     <version>$version$</version>
     <description>Provides basic serialization services.</description>
     <authors>Colson Code, LLC</authors>
@@ -10,8 +10,10 @@
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
     <tags>Serialization</tags>
+    <dependencies/>
   </metadata>
   <files>   
-    <file src="..\..\SharedProjects\Serialization\**\*.cs" target="content/App_Packages/CCLLC.Core.Serialization.$version$/" />
+    <file src="bin\Release\**\CCLLCCoreSerialization.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCoreSerialization.pdb" target="lib" />
   </files>
 </package>

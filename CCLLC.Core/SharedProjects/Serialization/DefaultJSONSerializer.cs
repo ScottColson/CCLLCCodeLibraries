@@ -40,6 +40,7 @@ namespace CCLLC.Core.Serialization
             return new DataContractJsonSerializer(typeof(T),
               new DataContractJsonSerializerSettings
               {
+                  UseSimpleDictionaryFormat = true,
                   DateTimeFormat = new DateTimeFormat(DateTimeFormat)
               });
         }
