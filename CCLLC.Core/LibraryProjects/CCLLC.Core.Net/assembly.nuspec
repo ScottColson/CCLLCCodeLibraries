@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <package>
   <metadata minClientVersion="3.3.0">
-    <id>CCLLC.Core.Net.Sources</id>
+    <id>CCLLC.Core.Net</id>
     <version>$version$</version>
     <description>Provides basic HTTP Web services.</description>
     <authors>Colson Code, LLC</authors>
@@ -11,7 +11,8 @@
     <projectUrl>https://github.com/ScottColson/CCLLCCodeLibraries</projectUrl>
     <tags>HTTP WebRequest</tags>
   </metadata>
-  <files>   
-    <file src="..\..\SharedProjects\Net\**\*.cs" target="content/App_Packages/CCLLC.Core.Net.$version$/" />
+  <files>
+    <file src="bin\Release\**\CCLLCCoreNet.dll" target="lib" />
+    <file src="bin\Release\**\CCLLCCoreNet.pdb" target="lib" />
   </files>
 </package>

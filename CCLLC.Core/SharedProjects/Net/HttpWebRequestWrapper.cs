@@ -84,6 +84,48 @@ namespace CCLLC.Core.Net
             }            
         }
 
+        public virtual IWebResponse Delete()
+        {
+            try
+            {
+                var request = (System.Net.HttpWebRequest)WebRequest.Create(Address);
+                request.Method = "DELETE";
+                if (this.Credentials != null)
+                {
+                    request.Credentials = this.Credentials;
+                }
+                request.Headers = this.Headers;
+                request.Timeout = (int)this.Timeout.TotalMilliseconds;
+
+                using (var response = request.GetResponse() as HttpWebResponse)
+                {
+                    return new HttpWebResponseWrapper(response);
+
+                }
+
+            }
+            catch (WebException ex)
+            {
+                string str = string.Empty;
+                if (ex.Response != null)
+                {
+                    using (StreamReader reader = new StreamReader(ex.Response.GetResponseStream()))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+                    ex.Response.Close();
+                }
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    throw new Exception("Web Request Timeout occurred.", ex);
+                }
+
+                throw new Exception(String.Format(CultureInfo.InvariantCulture,
+                    "A Web exception occurred while attempting to issue the request. {0}: {1}",
+                    ex.Message, str), ex);
+            }
+        }
 
         public virtual IWebResponse Post(byte[] data, string contentType = null, string contentEncoding = null)
         { 
