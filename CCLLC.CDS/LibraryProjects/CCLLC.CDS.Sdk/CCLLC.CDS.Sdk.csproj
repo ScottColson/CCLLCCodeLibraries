@@ -48,8 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CCLLC.CDS.Sdk.Data" Version="1.1.8" />
-    <PackageReference Include="CCLLC.Core.Net" Version="1.1.0" />
+    <PackageReference Include="CCLLC.CDS.Sdk.Data" Version="1.1.9" />
+    <PackageReference Include="CCLLC.Core.Net" Version="1.1.1" />
     <PackageReference Include="CCLLC.Core.ProcessModel" Version="1.1.5" />
   </ItemGroup>
 

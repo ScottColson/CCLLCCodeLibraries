@@ -12,8 +12,8 @@
     <tags>D365 CDS Plugin</tags>
     <dependencies>
       <dependency id="CCLLC.Core.ProcessModel.Sources" version="1.1.5" />
-      <dependency id="CCLLC.Core.Net.Sources" version="1.1.0" />
-      <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.8" />
+      <dependency id="CCLLC.Core.Net.Sources" version="1.1.1" />
+      <dependency id="CCLLC.CDS.Sdk.Data.Sources" version="1.1.9" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="9.0.2.20" />
     </dependencies>
   </metadata>
