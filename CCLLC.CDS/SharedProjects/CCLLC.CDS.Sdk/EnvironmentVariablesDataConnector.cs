@@ -198,7 +198,7 @@ namespace CCLLC.CDS.Sdk
 
             // Load environment variable definitions
             var definitions = orgService.Query<EnvironmentVariableDefinition>()
-                .Select(cols => new { cols.EnvironmentVariableDefinitionId, cols.DisplayName, cols.DefaultValue })
+                .Select(cols => new { cols.EnvironmentVariableDefinitionId, cols.DisplayName, cols.SchemaName, cols.DefaultValue })
                 .WhereAll(e => e.IsActive())
                 .RetrieveAll();
 
