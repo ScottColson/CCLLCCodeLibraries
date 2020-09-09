@@ -4,10 +4,13 @@
 namespace SamplePlugin
 {
     using System;
+    using System.Linq;
     using Microsoft.Xrm.Sdk;
     using Microsoft.Xrm.Sdk.Query;
     using CCLLC.Core;
     using CCLLC.CDS.Sdk;
+    using CCLLC.Core.Serialization;
+    using System.Collections.Generic;
 
     /// <summary>
     ///  Sample plugin built on top of the <see cref="InstrumentedCDSPlugin"/> abstract class. It demonstrates various features of the 
@@ -45,6 +48,8 @@ namespace SamplePlugin
         /// <param name="secureConfig"></param>
         public PluginWithTelemetry(string unsecureConfig, string secureConfig) : base(unsecureConfig, secureConfig)
         {
+            // add json serializer to the container. Requires CCLCC.Core.Serialization.Sources NuGet package
+            Container.Implement<IJSONContractSerializer>().Using<DateOnlyJSONSerializer>();
 
             #region Set Execution Properties
             /* 
@@ -106,6 +111,7 @@ namespace SamplePlugin
         /// <param name="target">The target entity for the update. Contains any fields that are being sent in for update.</param>
         private void workingWithEntityUpdate(ICDSPluginExecutionContext executionContext, Account target)
         {
+            var setting = executionContext.Settings.GetValue<string>("ps_environmentvariablename");
 
             // carry out actions only if the update is affecting the name or accountnumber fields
             if (target.ContainsAny( "name", "accountnumber"))
@@ -132,6 +138,23 @@ namespace SamplePlugin
 
         }
 
+        private void workingWithSerialization(ICDSExecutionContext executionContext, Entity target)
+        {
+            //Get upto 50 account records.
+            var records = executionContext.OrganizationService.Query<Account>().SelectAll().With.RecordLimit(50).RetrieveAll();
+
+            Model.Registrations registrations = new Model.Registrations();
+
+            foreach (var record in records)
+            {
+                registrations.Add(new Model.RegistrationData { Id = record.Id, CreatedOn = record.CreatedOn.Value });
+            }
+
+            var serializer = Container.Resolve<IJSONContractSerializer>();
+
+            var serializedData = registrations.ToString(serializer);
+
+        }
 
         /// <summary>
         /// Demonstrates a simple GET operation using built in web request support. Will automatically

@@ -167,8 +167,7 @@ namespace CCLLC.CDS.Sdk
         /// <summary>
         /// Returns the 'Target' of the message as an EntityReference if available
         /// </summary>
-        public EntityReference TargetReference => this.TargetEntity?.ToEntityReference();        
-
+        public EntityReference TargetReference => this.TargetEntity?.ToEntityReference() ?? this.InputParameters["Target"] as EntityReference;
 
         private ITracingService tracingService;
         /// <summary>

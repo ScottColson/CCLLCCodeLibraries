@@ -38,7 +38,7 @@ namespace CCLLC.CDS.Sdk
 
         public void Invoke(ICDSPluginExecutionContext executionContext)
         {
-            var target = executionContext.TargetEntity.ToEntityReference();
+            var target = executionContext.TargetReference;
             PluginAction.Invoke(executionContext, target);
         }
     }

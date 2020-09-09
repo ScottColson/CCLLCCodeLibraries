@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
+
 
 namespace SamplePlugin
 {
