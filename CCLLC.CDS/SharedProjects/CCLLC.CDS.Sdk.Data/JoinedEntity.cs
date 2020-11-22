@@ -31,11 +31,8 @@ namespace CCLLC.CDS.Sdk
             var relatedRecordType = new RE().LogicalName;
 
             var linkEntity = new LinkEntity(ParentEntity, RelatedEntity, ParentAttribute, RelatedAttribute, JoinOperator);
-           
-            if (!string.IsNullOrEmpty(Alias))
-            {
-                linkEntity.EntityAlias = Alias;               
-            }
+
+            linkEntity.EntityAlias = string.IsNullOrEmpty(Alias) ? RelatedEntity : Alias;
 
             linkEntity.Columns = GetColumnSet();
             linkEntity.LinkCriteria = GetFilterExpression();

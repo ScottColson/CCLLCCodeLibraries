@@ -9,13 +9,15 @@
     <Import_RootNamespace>CCLLC.CDS.Sdk.Data</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)EntityProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeEqualityComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Condition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EntityProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExecutableFluentQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\EntityExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\TheLaBarExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\OrganizationServiceExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAttributeEqualityComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IExecutableFluentQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IQueryEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FluentQuery.cs" />

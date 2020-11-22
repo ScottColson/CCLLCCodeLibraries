@@ -1,18 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Reflection;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Client;
-using Microsoft.Xrm.Sdk.Query;
-using Microsoft.Crm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata;
-
-
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
 namespace CCLLC.CDS.Sdk.EarlyBound
@@ -49,6 +40,27 @@ namespace CCLLC.CDS.Sdk.EarlyBound
     {
         Text,
         Number
+    }
+
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public abstract partial class EntityProxy<T> : EntityProxy where T : EntityProxy
+    {
+        protected EntityProxy(string logicalName) : base(logicalName)
+        { }
+
+        protected EntityProxy(Entity original) : base(original)
+        { }
+
+        public T WithClearedChangeHistory()
+        {
+            this.ClearChangeHistory();
+            return this.ToEntity<T>();
+        }
+
+        new public T GetChangedEntity()
+        {
+            return base.GetChangedEntity().ToEntity<T>();
+        }
     }
 
     [System.Runtime.Serialization.DataContractAttribute()]
@@ -89,13 +101,22 @@ namespace CCLLC.CDS.Sdk.EarlyBound
 
             if (original.Id != default(Guid))
             {
-                this.Id = original.Id;
-            }
+                base.Id = original.Id;
+            }            
+        }
+
+        /// <summary>
+        /// Clears history of any previous changes so state of the proxy is as it would be if
+        /// it was just retrieved.
+        /// </summary>
+        protected void ClearChangeHistory()
+        {
+            this.changedValues.Clear();
         }
 
         public void Save(IOrganizationService service)
         {
-            if (this.Id != Guid.Empty) {
+            if (this.Id != default(Guid)) {
                 this.Update(service); }
             else {
                 this.Create(service); }
@@ -104,7 +125,7 @@ namespace CCLLC.CDS.Sdk.EarlyBound
         public Guid Create(IOrganizationService service)
         {
             this.Id = service.Create(this);
-            changedValues.Clear();
+            ClearChangeHistory();
             return this.Id;
         }
 
@@ -113,7 +134,7 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             if (IsDirty)
             {
                 service.Update(GetChangedEntity());
-                changedValues.Clear();
+                ClearChangeHistory();
             }
         }
 
@@ -280,120 +301,24 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             return defaultError == eErrorType.Number ? NumberError : TextError;
         }
 
-        private class AttributeEqualityComparer : IEqualityComparer
-        {
-            public new bool Equals(object x, object y)
-            {
-                if ((x == null || (x.GetType() == typeof(string) && string.IsNullOrEmpty(x as string))) && (y == null || (y.GetType() == typeof(string) && string.IsNullOrEmpty(y as string))))
-                    return true;
-                else
-                {
-                    if (x == null && y == null) { return true; }
-                    else if (x == null && y != null) { return false; }
-                    else if (x != null && y == null) { return false; }
-                    else if (x.GetType() == y.GetType())
-                    {
-                        if (x.GetType() == typeof(OptionSetValue)) { return ((OptionSetValue)x).Value == ((OptionSetValue)y).Value; }
-                        else if (x.GetType() == typeof(BooleanManagedProperty)) { return ((BooleanManagedProperty)x).Value == ((BooleanManagedProperty)y).Value; }
-                        else if (x.GetType() == typeof(EntityReference))
-                        {
-                            if (((EntityReference)x).LogicalName == ((EntityReference)y).LogicalName) { return ((EntityReference)x).Id == ((EntityReference)y).Id; }
-                            else { return false; }
-                        }
-                        else if (x.GetType() == typeof(Money)) { return (((Money)x).Value == ((Money)y).Value); }
-                        else if (x.GetType() == typeof(DateTime) || x.GetType() == typeof(DateTime?))
-                        {                            
-                            return Math.Abs(((DateTime)x - (DateTime)y).TotalSeconds) < 1;
-                        }
-                        else { return x.Equals(y); }
-                    }
-                    else { return false; }
-                }
-            }
-            public int GetHashCode(object obj)
-            {
-                return obj.GetHashCode();
-            }
-        }
-        
     }
 
     public static partial class ExtensionMethods
     {
-        public static Guid Create(this IOrganizationService service, EntityProxy proxy)
-        {
-            proxy.Id = service.Create(proxy);
-            return proxy.Id;
-        }
-
-        public static void Update(this IOrganizationService service, EntityProxy proxy)
-        {
-            proxy.Update(service);
-        }
-
-        public static void Delete(this IOrganizationService service, EntityProxy proxy)
-        {
-            service.Delete(proxy.LogicalName, proxy.Id);
-        }
-
-        public static void SetState(this IOrganizationService service, EntityProxy proxy, int state, int status)
-        {
-            service.SetState(proxy, new OptionSetValue(state), new OptionSetValue(status));
-        }
-
-        public static void SetState(this IOrganizationService service, EntityProxy proxy, OptionSetValue state, OptionSetValue status)
-        {
-            var request = new SetStateRequest() { EntityMoniker = proxy, State = state, Status = status };
-            service.Execute(request);
-        }
-
+        [Obsolete("Obsolete. Use ToEntity<T>.")]
         public static T ToProxy<T>(this EntityReference reference) where T : EntityProxy
         {
             if (reference == null) { return null; }
             return reference.ToEntity().ToProxy<T>();
-        }
+        }        
 
-        public static Entity ToEntity(this EntityReference reference)
-        {
-            if (reference == null) { return null; }
-            return new Entity() { LogicalName = reference.LogicalName, Id = reference.Id };
-        }
-
+        [Obsolete("Obsolete. Use ToEntity<T>.")]
         private static T ToProxy<T>(this Entity entity, ConstructorInfo construcor) where T : EntityProxy
         {
             return construcor.Invoke(new object[] { entity }) as T;
         }
-        public static AttributeMetadata GetAttributeMetadata(this IOrganizationService service, string entityLogicalName, string attributeLogicalName)
-        {
-            var request = new RetrieveAttributeRequest() { EntityLogicalName = entityLogicalName, LogicalName = attributeLogicalName };
-            return (service.Execute(request) as RetrieveAttributeResponse).AttributeMetadata;
-        }
-        public static OptionMetadata GetOptionMetadata(this OptionSetValue value, IOrganizationService service, EntityProxy entity, string attributeLogicalName)
-        {
-            var attributeMeta = service.GetAttributeMetadata(entity.LogicalName, attributeLogicalName);
-            if (attributeMeta is EnumAttributeMetadata)
-                return ((EnumAttributeMetadata)attributeMeta).GetOptionMetadata(value.Value);
-            else { throw new Exception("The attribute is not an Enum type attribute"); }
-        }
-        public static OptionMetadata GetOptionMetadata(this EnumAttributeMetadata enumMeta, int value)
-        {
-            return (from meta in enumMeta.OptionSet.Options where meta.Value == value select meta).FirstOrDefault();
-        }
-        public static string GetOptionSetText(this EnumAttributeMetadata enumMeta, int value)
-        {
-            return enumMeta.GetOptionMetadata(value).GetOptionSetText();
-        }
-        public static string GetOptionSetText(this OptionSetValue value, IOrganizationService service, EntityProxy entity, string attributeLogicalName)
-        {
-            var optionMeta = GetOptionMetadata(value, service, entity, attributeLogicalName);
-            return optionMeta.GetOptionSetText();
-        }
-        public static string GetOptionSetText(this OptionMetadata optionMeta)
-        {
-            if (optionMeta != null && optionMeta.Label != null && optionMeta.Label.UserLocalizedLabel != null) { return optionMeta.Label.UserLocalizedLabel.Label; }
-            return string.Empty;
-        }
 
+        [Obsolete("Obsolete. Use ToEntity<T>.")]
         public static T ToProxy<T>(this Entity entity) where T : EntityProxy
         {
             if (entity != null)
@@ -403,15 +328,18 @@ namespace CCLLC.CDS.Sdk.EarlyBound
             }
             return null;
         }
+
+        [Obsolete("Obsolete. Use ToList<T>.")]
         public static List<T> ToProxies<T>(this EntityCollection entities) where T : EntityProxy
         {
             return entities.Entities.ToProxies<T>();
         }
+
+        [Obsolete("Obsolete. Use ToList<T>.")]
         public static List<T> ToProxies<T>(this IEnumerable<Entity> entities) where T : EntityProxy
         {
             var constructor = typeof(T).GetConstructor(new Type[] { typeof(Entity) });
             return (from entity in entities select entity.ToProxy<T>(constructor)).ToList();
-        }
-
+        }       
     }
 }
